@@ -11,9 +11,11 @@ Pod::Spec.new do |s|
     s.author       = { 'Amazon Web Services' => 'amazonwebservices' }
     s.platform     = :ios, '9.0'
     s.source       = { :git => 'https://github.com/aws-amplify/aws-appsync-realtime-client-ios.git', :tag => s.version}
-    
+    s.swift_version= '4.0'
+
     s.requires_arc = true
     
     s.source_files = 'AppSyncRealTimeClient/**/*.swift'
     s.dependency 'Starscream', '~> 3.0.2'
+
   end
