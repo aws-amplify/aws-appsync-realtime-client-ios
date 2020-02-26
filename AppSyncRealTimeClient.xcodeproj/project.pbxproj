@@ -10,6 +10,8 @@
 		217F39992405D9D500F1A0B3 /* AppSyncRealTimeClient.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 217F398F2405D9D500F1A0B3 /* AppSyncRealTimeClient.framework */; };
 		217F399E2405D9D500F1A0B3 /* AppSyncRealTimeClientTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 217F399D2405D9D500F1A0B3 /* AppSyncRealTimeClientTests.swift */; };
 		217F39A02405D9D500F1A0B3 /* AppSyncRealTimeClient.h in Headers */ = {isa = PBXBuildFile; fileRef = 217F39922405D9D500F1A0B3 /* AppSyncRealTimeClient.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		259F9EB83B9F67D0413A6D4C /* Pods_AppSyncRealTimeClient.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81AFCBED5A97E398A4BD9D06 /* Pods_AppSyncRealTimeClient.framework */; };
+		DCFE701B5D1380E566694A48 /* Pods_AppSyncRealTimeClient_AppSyncRealTimeClientTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E662A46AB2C93EE316F784C /* Pods_AppSyncRealTimeClient_AppSyncRealTimeClientTests.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -29,6 +31,12 @@
 		217F39982405D9D500F1A0B3 /* AppSyncRealTimeClientTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AppSyncRealTimeClientTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		217F399D2405D9D500F1A0B3 /* AppSyncRealTimeClientTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSyncRealTimeClientTests.swift; sourceTree = "<group>"; };
 		217F399F2405D9D500F1A0B3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3E662A46AB2C93EE316F784C /* Pods_AppSyncRealTimeClient_AppSyncRealTimeClientTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AppSyncRealTimeClient_AppSyncRealTimeClientTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		7D4F451B830A5837CE5274A3 /* Pods-AppSyncRealTimeClient-AppSyncRealTimeClientTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AppSyncRealTimeClient-AppSyncRealTimeClientTests.release.xcconfig"; path = "Target Support Files/Pods-AppSyncRealTimeClient-AppSyncRealTimeClientTests/Pods-AppSyncRealTimeClient-AppSyncRealTimeClientTests.release.xcconfig"; sourceTree = "<group>"; };
+		81AFCBED5A97E398A4BD9D06 /* Pods_AppSyncRealTimeClient.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AppSyncRealTimeClient.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		93AA1C96F1B8D428CCC24CF0 /* Pods-AppSyncRealTimeClient-AppSyncRealTimeClientTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AppSyncRealTimeClient-AppSyncRealTimeClientTests.debug.xcconfig"; path = "Target Support Files/Pods-AppSyncRealTimeClient-AppSyncRealTimeClientTests/Pods-AppSyncRealTimeClient-AppSyncRealTimeClientTests.debug.xcconfig"; sourceTree = "<group>"; };
+		B07A87133C24AA78AF59093C /* Pods-AppSyncRealTimeClient.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AppSyncRealTimeClient.debug.xcconfig"; path = "Target Support Files/Pods-AppSyncRealTimeClient/Pods-AppSyncRealTimeClient.debug.xcconfig"; sourceTree = "<group>"; };
+		C73EA796F50FB0196FDF4865 /* Pods-AppSyncRealTimeClient.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AppSyncRealTimeClient.release.xcconfig"; path = "Target Support Files/Pods-AppSyncRealTimeClient/Pods-AppSyncRealTimeClient.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -36,6 +44,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				259F9EB83B9F67D0413A6D4C /* Pods_AppSyncRealTimeClient.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -44,6 +53,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				217F39992405D9D500F1A0B3 /* AppSyncRealTimeClient.framework in Frameworks */,
+				DCFE701B5D1380E566694A48 /* Pods_AppSyncRealTimeClient_AppSyncRealTimeClientTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -56,6 +66,8 @@
 				217F39912405D9D500F1A0B3 /* AppSyncRealTimeClient */,
 				217F399C2405D9D500F1A0B3 /* AppSyncRealTimeClientTests */,
 				217F39902405D9D500F1A0B3 /* Products */,
+				D146D6DDE2251CCA7A4ECD7F /* Pods */,
+				CC47BA7DC6033B1626BAD959 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -86,6 +98,27 @@
 			path = AppSyncRealTimeClientTests;
 			sourceTree = "<group>";
 		};
+		CC47BA7DC6033B1626BAD959 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				81AFCBED5A97E398A4BD9D06 /* Pods_AppSyncRealTimeClient.framework */,
+				3E662A46AB2C93EE316F784C /* Pods_AppSyncRealTimeClient_AppSyncRealTimeClientTests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		D146D6DDE2251CCA7A4ECD7F /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				B07A87133C24AA78AF59093C /* Pods-AppSyncRealTimeClient.debug.xcconfig */,
+				C73EA796F50FB0196FDF4865 /* Pods-AppSyncRealTimeClient.release.xcconfig */,
+				93AA1C96F1B8D428CCC24CF0 /* Pods-AppSyncRealTimeClient-AppSyncRealTimeClientTests.debug.xcconfig */,
+				7D4F451B830A5837CE5274A3 /* Pods-AppSyncRealTimeClient-AppSyncRealTimeClientTests.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -104,6 +137,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 217F39A32405D9D500F1A0B3 /* Build configuration list for PBXNativeTarget "AppSyncRealTimeClient" */;
 			buildPhases = (
+				F78B4AC87B22D691D620684A /* [CP] Check Pods Manifest.lock */,
 				217F398A2405D9D500F1A0B3 /* Headers */,
 				217F398B2405D9D500F1A0B3 /* Sources */,
 				217F398C2405D9D500F1A0B3 /* Frameworks */,
@@ -122,9 +156,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 217F39A62405D9D500F1A0B3 /* Build configuration list for PBXNativeTarget "AppSyncRealTimeClientTests" */;
 			buildPhases = (
+				4F32EBC5131508484DC03565 /* [CP] Check Pods Manifest.lock */,
 				217F39942405D9D500F1A0B3 /* Sources */,
 				217F39952405D9D500F1A0B3 /* Frameworks */,
 				217F39962405D9D500F1A0B3 /* Resources */,
+				9CB3A44F02BD117B9687BF03 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -189,6 +225,70 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		4F32EBC5131508484DC03565 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-AppSyncRealTimeClient-AppSyncRealTimeClientTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		9CB3A44F02BD117B9687BF03 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-AppSyncRealTimeClient-AppSyncRealTimeClientTests/Pods-AppSyncRealTimeClient-AppSyncRealTimeClientTests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-AppSyncRealTimeClient-AppSyncRealTimeClientTests/Pods-AppSyncRealTimeClient-AppSyncRealTimeClientTests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-AppSyncRealTimeClient-AppSyncRealTimeClientTests/Pods-AppSyncRealTimeClient-AppSyncRealTimeClientTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F78B4AC87B22D691D620684A /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-AppSyncRealTimeClient-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		217F398B2405D9D500F1A0B3 /* Sources */ = {
@@ -339,6 +439,7 @@
 		};
 		217F39A42405D9D500F1A0B3 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B07A87133C24AA78AF59093C /* Pods-AppSyncRealTimeClient.debug.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
@@ -364,6 +465,7 @@
 		};
 		217F39A52405D9D500F1A0B3 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = C73EA796F50FB0196FDF4865 /* Pods-AppSyncRealTimeClient.release.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
@@ -389,6 +491,7 @@
 		};
 		217F39A72405D9D500F1A0B3 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 93AA1C96F1B8D428CCC24CF0 /* Pods-AppSyncRealTimeClient-AppSyncRealTimeClientTests.debug.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = W3DRXD72QU;
@@ -407,6 +510,7 @@
 		};
 		217F39A82405D9D500F1A0B3 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7D4F451B830A5837CE5274A3 /* Pods-AppSyncRealTimeClient-AppSyncRealTimeClientTests.release.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = W3DRXD72QU;
