@@ -206,9 +206,9 @@
 		217F39BB2406E98300F1A0B3 /* AppSyncConnection */ = {
 			isa = PBXGroup;
 			children = (
-				217F39BC2406E98300F1A0B3 /* AppSyncSubscriptionConnection+DataHandler.swift */,
 				217F39BD2406E98300F1A0B3 /* AppSyncSubscriptionConnection.swift */,
 				217F39BE2406E98300F1A0B3 /* AppSyncSubscriptionConnection+Connection.swift */,
+				217F39BC2406E98300F1A0B3 /* AppSyncSubscriptionConnection+DataHandler.swift */,
 				217F39BF2406E98300F1A0B3 /* AppSyncSubscriptionConnection+ErrorHandler.swift */,
 			);
 			path = AppSyncConnection;
