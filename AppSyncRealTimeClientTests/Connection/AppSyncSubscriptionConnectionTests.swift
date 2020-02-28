@@ -204,4 +204,33 @@ class AppSyncSubscriptionConnectionTests: XCTestCase {
         wait(for: [dataEventExpectation], timeout: 2)
     }
 
+    func testNilDataInVariables() {
+        let variablesWithNil = ["key": nil] as [String : Any?]
+        let connectionProvider = MockConnectionProvider()
+        let connection = AppSyncSubscriptionConnection(provider: connectionProvider)
+
+        let connectingMessageExpectation = expectation(description: "Connecting event should be fired")
+        let connectedMessageExpectation = expectation(description: "Connected event should be fired")
+
+        let item = connection.subscribe(requestString: mockRequestString,
+                                        variables: variablesWithNil) { (event, item) in
+            switch event {
+            case .connection(let status):
+
+                if status == .connected {
+                    connectedMessageExpectation.fulfill()
+                }
+                if status == .connecting {
+                    connectingMessageExpectation.fulfill()
+                }
+            case .data:
+                XCTFail("Data event should not be published")
+            case .failed:
+                XCTFail("Error should not be thrown")
+            }
+        }
+        XCTAssertNotNil(item, "Subscription item should not be nil")
+        wait(for: [connectingMessageExpectation, connectedMessageExpectation], timeout: 5, enforceOrder: true)
+    }
+
 }
