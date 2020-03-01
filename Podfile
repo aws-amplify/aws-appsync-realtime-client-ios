@@ -7,9 +7,18 @@ target 'AppSyncRealTimeClient' do
 
   # Pods for AppSyncRealTimeClient
   pod "Starscream", "~> 3.0.2"
+  pod "AWSCore", "~> 2.12.7"
   
   target 'AppSyncRealTimeClientTests' do
     # Pods for testing
+    pod "AWSCore", "~> 2.12.7"
   end
 
+end
+
+target "HostApp" do 
+  use_frameworks!
+  target "AppSyncRealTimeClientIntegrationTests" do 
+    inherit! :complete
+  end
 end

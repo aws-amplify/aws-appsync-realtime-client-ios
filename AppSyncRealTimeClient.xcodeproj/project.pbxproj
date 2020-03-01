@@ -40,7 +40,33 @@
 		217F39F12406EA4000F1A0B3 /* MockConnectionProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 217F39EB2406EA3F00F1A0B3 /* MockConnectionProvider.swift */; };
 		217F39F22406EA4000F1A0B3 /* RealtimeConnectionProviderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 217F39ED2406EA4000F1A0B3 /* RealtimeConnectionProviderTests.swift */; };
 		217F39F32406EA4000F1A0B3 /* RealtimeGatewayURLInterceptorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 217F39EF2406EA4000F1A0B3 /* RealtimeGatewayURLInterceptorTests.swift */; };
+		21D38B412409AFBD00EC2A8D /* AppSyncRealTimeClientIntegrationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21D38B402409AFBD00EC2A8D /* AppSyncRealTimeClientIntegrationTests.swift */; };
+		21D38B432409AFBD00EC2A8D /* AppSyncRealTimeClient.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 217F398F2405D9D500F1A0B3 /* AppSyncRealTimeClient.framework */; };
+		21D38B4C2409B6C000EC2A8D /* amplifyconfiguration.json in Resources */ = {isa = PBXBuildFile; fileRef = 21D38B4B2409B6C000EC2A8D /* amplifyconfiguration.json */; };
+		21D38B4E2409B8B200EC2A8D /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 21D38B4D2409B8B200EC2A8D /* README.md */; };
+		21D38B562409B93F00EC2A8D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21D38B552409B93F00EC2A8D /* AppDelegate.swift */; };
+		21D38B582409B93F00EC2A8D /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21D38B572409B93F00EC2A8D /* SceneDelegate.swift */; };
+		21D38B5A2409B93F00EC2A8D /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21D38B592409B93F00EC2A8D /* ContentView.swift */; };
+		21D38B5C2409B94100EC2A8D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 21D38B5B2409B94100EC2A8D /* Assets.xcassets */; };
+		21D38B5F2409B94100EC2A8D /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 21D38B5E2409B94100EC2A8D /* Preview Assets.xcassets */; };
+		21D38B622409B94100EC2A8D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 21D38B602409B94100EC2A8D /* LaunchScreen.storyboard */; };
+		21D38B692409B95B00EC2A8D /* amplifyconfiguration.json in Resources */ = {isa = PBXBuildFile; fileRef = 21D38B4B2409B6C000EC2A8D /* amplifyconfiguration.json */; };
+		21D38B6D240A262800EC2A8D /* AppSyncJSONHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21D38B6C240A262800EC2A8D /* AppSyncJSONHelper.swift */; };
+		21D38B7B240A2A1300EC2A8D /* IAMAuthInterceptor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21D38B77240A2A1300EC2A8D /* IAMAuthInterceptor.swift */; };
+		21D38B7C240A2A1300EC2A8D /* OIDCAuthInterceptor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21D38B78240A2A1300EC2A8D /* OIDCAuthInterceptor.swift */; };
+		21D38B83240A392B00EC2A8D /* APIKeyAuthInterceptor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21D38B82240A392B00EC2A8D /* APIKeyAuthInterceptor.swift */; };
+		21D38B89240A39E400EC2A8D /* OIDCAuthInterceptorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21D38B85240A39E400EC2A8D /* OIDCAuthInterceptorTests.swift */; };
+		21D38B8A240A39E400EC2A8D /* IAMAuthInterceptorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21D38B86240A39E400EC2A8D /* IAMAuthInterceptorTests.swift */; };
+		21D38B8B240A39E400EC2A8D /* AppSyncJSONHelperTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21D38B87240A39E400EC2A8D /* AppSyncJSONHelperTests.swift */; };
+		21D38B8C240A39E400EC2A8D /* APIKeyAuthInterceptorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21D38B88240A39E400EC2A8D /* APIKeyAuthInterceptorTests.swift */; };
+		21D38B8E240A3C2300EC2A8D /* ConnectionProviderFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21D38B8D240A3C2300EC2A8D /* ConnectionProviderFactory.swift */; };
+		21D38B94240C4A2A00EC2A8D /* OIDCAuthProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21D38B93240C4A2A00EC2A8D /* OIDCAuthProvider.swift */; };
+		21D38B97240C4DCF00EC2A8D /* Error+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21D38B96240C4DCF00EC2A8D /* Error+Extension.swift */; };
+		21D38B99240C4E1C00EC2A8D /* ConfigurationHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21D38B98240C4E1C00EC2A8D /* ConfigurationHelper.swift */; };
+		21D38B9D240C540D00EC2A8D /* TestCommonConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21D38B9C240C540D00EC2A8D /* TestCommonConstants.swift */; };
 		259F9EB83B9F67D0413A6D4C /* Pods_AppSyncRealTimeClient.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81AFCBED5A97E398A4BD9D06 /* Pods_AppSyncRealTimeClient.framework */; };
+		450019BB151D701382536BD0 /* Pods_HostApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 29CDD85F44666C7241232D29 /* Pods_HostApp.framework */; };
+		4A3EAC9B20D96D81CC3A7EF4 /* Pods_HostApp_AppSyncRealTimeClientIntegrationTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43D112B03D6D38F84995D6FA /* Pods_HostApp_AppSyncRealTimeClientIntegrationTests.framework */; };
 		DCFE701B5D1380E566694A48 /* Pods_AppSyncRealTimeClient_AppSyncRealTimeClientTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E662A46AB2C93EE316F784C /* Pods_AppSyncRealTimeClient_AppSyncRealTimeClientTests.framework */; };
 /* End PBXBuildFile section */
 
@@ -52,9 +78,24 @@
 			remoteGlobalIDString = 217F398E2405D9D500F1A0B3;
 			remoteInfo = AppSyncRealTimeClient;
 		};
+		21D38B442409AFBD00EC2A8D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 217F39862405D9D500F1A0B3 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 217F398E2405D9D500F1A0B3;
+			remoteInfo = AppSyncRealTimeClient;
+		};
+		21D38B672409B95000EC2A8D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 217F39862405D9D500F1A0B3 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 21D38B522409B93F00EC2A8D;
+			remoteInfo = HostApp;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		18D6E56CE03BAC33493CC19B /* Pods-HostApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HostApp.debug.xcconfig"; path = "Target Support Files/Pods-HostApp/Pods-HostApp.debug.xcconfig"; sourceTree = "<group>"; };
 		217F398F2405D9D500F1A0B3 /* AppSyncRealTimeClient.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = AppSyncRealTimeClient.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		217F39932405D9D500F1A0B3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		217F39982405D9D500F1A0B3 /* AppSyncRealTimeClientTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AppSyncRealTimeClientTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -91,12 +132,43 @@
 		217F39EB2406EA3F00F1A0B3 /* MockConnectionProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockConnectionProvider.swift; sourceTree = "<group>"; };
 		217F39ED2406EA4000F1A0B3 /* RealtimeConnectionProviderTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RealtimeConnectionProviderTests.swift; sourceTree = "<group>"; };
 		217F39EF2406EA4000F1A0B3 /* RealtimeGatewayURLInterceptorTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RealtimeGatewayURLInterceptorTests.swift; sourceTree = "<group>"; };
+		21D38B3E2409AFBD00EC2A8D /* AppSyncRealTimeClientIntegrationTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AppSyncRealTimeClientIntegrationTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		21D38B402409AFBD00EC2A8D /* AppSyncRealTimeClientIntegrationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSyncRealTimeClientIntegrationTests.swift; sourceTree = "<group>"; };
+		21D38B422409AFBD00EC2A8D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		21D38B4B2409B6C000EC2A8D /* amplifyconfiguration.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = amplifyconfiguration.json; sourceTree = "<group>"; };
+		21D38B4D2409B8B200EC2A8D /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		21D38B532409B93F00EC2A8D /* HostApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HostApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		21D38B552409B93F00EC2A8D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		21D38B572409B93F00EC2A8D /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		21D38B592409B93F00EC2A8D /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		21D38B5B2409B94100EC2A8D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		21D38B5E2409B94100EC2A8D /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		21D38B612409B94100EC2A8D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		21D38B632409B94100EC2A8D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		21D38B6C240A262800EC2A8D /* AppSyncJSONHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppSyncJSONHelper.swift; sourceTree = "<group>"; };
+		21D38B77240A2A1300EC2A8D /* IAMAuthInterceptor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IAMAuthInterceptor.swift; sourceTree = "<group>"; };
+		21D38B78240A2A1300EC2A8D /* OIDCAuthInterceptor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OIDCAuthInterceptor.swift; sourceTree = "<group>"; };
+		21D38B82240A392B00EC2A8D /* APIKeyAuthInterceptor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIKeyAuthInterceptor.swift; sourceTree = "<group>"; };
+		21D38B85240A39E400EC2A8D /* OIDCAuthInterceptorTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OIDCAuthInterceptorTests.swift; sourceTree = "<group>"; };
+		21D38B86240A39E400EC2A8D /* IAMAuthInterceptorTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IAMAuthInterceptorTests.swift; sourceTree = "<group>"; };
+		21D38B87240A39E400EC2A8D /* AppSyncJSONHelperTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppSyncJSONHelperTests.swift; sourceTree = "<group>"; };
+		21D38B88240A39E400EC2A8D /* APIKeyAuthInterceptorTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIKeyAuthInterceptorTests.swift; sourceTree = "<group>"; };
+		21D38B8D240A3C2300EC2A8D /* ConnectionProviderFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConnectionProviderFactory.swift; sourceTree = "<group>"; };
+		21D38B93240C4A2A00EC2A8D /* OIDCAuthProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OIDCAuthProvider.swift; sourceTree = "<group>"; };
+		21D38B96240C4DCF00EC2A8D /* Error+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Error+Extension.swift"; sourceTree = "<group>"; };
+		21D38B98240C4E1C00EC2A8D /* ConfigurationHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigurationHelper.swift; sourceTree = "<group>"; };
+		21D38B9C240C540D00EC2A8D /* TestCommonConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestCommonConstants.swift; sourceTree = "<group>"; };
+		29CDD85F44666C7241232D29 /* Pods_HostApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HostApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		356411189EAD2C776D250FB7 /* Pods-HostApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HostApp.release.xcconfig"; path = "Target Support Files/Pods-HostApp/Pods-HostApp.release.xcconfig"; sourceTree = "<group>"; };
 		3E662A46AB2C93EE316F784C /* Pods_AppSyncRealTimeClient_AppSyncRealTimeClientTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AppSyncRealTimeClient_AppSyncRealTimeClientTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		43D112B03D6D38F84995D6FA /* Pods_HostApp_AppSyncRealTimeClientIntegrationTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HostApp_AppSyncRealTimeClientIntegrationTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7D4F451B830A5837CE5274A3 /* Pods-AppSyncRealTimeClient-AppSyncRealTimeClientTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AppSyncRealTimeClient-AppSyncRealTimeClientTests.release.xcconfig"; path = "Target Support Files/Pods-AppSyncRealTimeClient-AppSyncRealTimeClientTests/Pods-AppSyncRealTimeClient-AppSyncRealTimeClientTests.release.xcconfig"; sourceTree = "<group>"; };
 		81AFCBED5A97E398A4BD9D06 /* Pods_AppSyncRealTimeClient.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AppSyncRealTimeClient.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		93AA1C96F1B8D428CCC24CF0 /* Pods-AppSyncRealTimeClient-AppSyncRealTimeClientTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AppSyncRealTimeClient-AppSyncRealTimeClientTests.debug.xcconfig"; path = "Target Support Files/Pods-AppSyncRealTimeClient-AppSyncRealTimeClientTests/Pods-AppSyncRealTimeClient-AppSyncRealTimeClientTests.debug.xcconfig"; sourceTree = "<group>"; };
+		A843B4589131E0D2DB13ADC7 /* Pods-HostApp-AppSyncRealTimeClientIntegrationTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HostApp-AppSyncRealTimeClientIntegrationTests.debug.xcconfig"; path = "Target Support Files/Pods-HostApp-AppSyncRealTimeClientIntegrationTests/Pods-HostApp-AppSyncRealTimeClientIntegrationTests.debug.xcconfig"; sourceTree = "<group>"; };
 		B07A87133C24AA78AF59093C /* Pods-AppSyncRealTimeClient.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AppSyncRealTimeClient.debug.xcconfig"; path = "Target Support Files/Pods-AppSyncRealTimeClient/Pods-AppSyncRealTimeClient.debug.xcconfig"; sourceTree = "<group>"; };
 		C73EA796F50FB0196FDF4865 /* Pods-AppSyncRealTimeClient.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AppSyncRealTimeClient.release.xcconfig"; path = "Target Support Files/Pods-AppSyncRealTimeClient/Pods-AppSyncRealTimeClient.release.xcconfig"; sourceTree = "<group>"; };
+		E65A19C826699DA299A49284 /* Pods-HostApp-AppSyncRealTimeClientIntegrationTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HostApp-AppSyncRealTimeClientIntegrationTests.release.xcconfig"; path = "Target Support Files/Pods-HostApp-AppSyncRealTimeClientIntegrationTests/Pods-HostApp-AppSyncRealTimeClientIntegrationTests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -117,6 +189,23 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		21D38B3B2409AFBD00EC2A8D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				21D38B432409AFBD00EC2A8D /* AppSyncRealTimeClient.framework in Frameworks */,
+				4A3EAC9B20D96D81CC3A7EF4 /* Pods_HostApp_AppSyncRealTimeClientIntegrationTests.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		21D38B502409B93F00EC2A8D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				450019BB151D701382536BD0 /* Pods_HostApp.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -125,6 +214,8 @@
 			children = (
 				217F39912405D9D500F1A0B3 /* AppSyncRealTimeClient */,
 				217F399C2405D9D500F1A0B3 /* AppSyncRealTimeClientTests */,
+				21D38B3F2409AFBD00EC2A8D /* AppSyncRealTimeClientIntegrationTests */,
+				21D38B542409B93F00EC2A8D /* HostApp */,
 				217F39902405D9D500F1A0B3 /* Products */,
 				D146D6DDE2251CCA7A4ECD7F /* Pods */,
 				CC47BA7DC6033B1626BAD959 /* Frameworks */,
@@ -136,6 +227,8 @@
 			children = (
 				217F398F2405D9D500F1A0B3 /* AppSyncRealTimeClient.framework */,
 				217F39982405D9D500F1A0B3 /* AppSyncRealTimeClientTests.xctest */,
+				21D38B3E2409AFBD00EC2A8D /* AppSyncRealTimeClientIntegrationTests.xctest */,
+				21D38B532409B93F00EC2A8D /* HostApp.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -146,6 +239,7 @@
 				217F39B82406E98300F1A0B3 /* Connection */,
 				217F39A92406E98300F1A0B3 /* ConnectionProvider */,
 				217F39932405D9D500F1A0B3 /* Info.plist */,
+				21D38B6E240A272F00EC2A8D /* Interceptor */,
 				217F39C62406E98400F1A0B3 /* Support */,
 				217F39C12406E98400F1A0B3 /* Websocket */,
 			);
@@ -158,6 +252,7 @@
 				217F39E82406EA3F00F1A0B3 /* Connection */,
 				217F39EC2406EA4000F1A0B3 /* ConnectionProvider */,
 				217F399F2405D9D500F1A0B3 /* Info.plist */,
+				21D38B84240A39E400EC2A8D /* Interceptor */,
 				217F39EA2406EA3F00F1A0B3 /* Mocks */,
 				217F39EE2406EA4000F1A0B3 /* Support */,
 			);
@@ -172,6 +267,7 @@
 				217F39AD2406E98300F1A0B3 /* AppSyncMessage+Encodable.swift */,
 				217F39B02406E98300F1A0B3 /* AppsyncRealtimeConnection */,
 				217F39AA2406E98300F1A0B3 /* AppSyncResponse.swift */,
+				21D38B8D240A3C2300EC2A8D /* ConnectionProviderFactory.swift */,
 				217F39B72406E98300F1A0B3 /* ConnectionProvider.swift */,
 				217F39AC2406E98300F1A0B3 /* ConnectionProviderError.swift */,
 				217F39AB2406E98300F1A0B3 /* InterceptableConnection.swift */,
@@ -235,9 +331,10 @@
 		217F39C62406E98400F1A0B3 /* Support */ = {
 			isa = PBXGroup;
 			children = (
+				21D38B6C240A262800EC2A8D /* AppSyncJSONHelper.swift */,
 				217F39C92406E98400F1A0B3 /* AppSyncJSONValue.swift */,
 				217F39C72406E98400F1A0B3 /* AppSyncLogger.swift */,
-				217F39C82406E98400F1A0B3 /* RealtimeGatewayURLInterceptor.swift */,
+				21D38B93240C4A2A00EC2A8D /* OIDCAuthProvider.swift */,
 				217F39CB2406E98400F1A0B3 /* SubscriptionConnectionType.swift */,
 				217F39CA2406E98400F1A0B3 /* SubscriptionConstants.swift */,
 			);
@@ -276,11 +373,79 @@
 			path = Support;
 			sourceTree = "<group>";
 		};
+		21D38B3F2409AFBD00EC2A8D /* AppSyncRealTimeClientIntegrationTests */ = {
+			isa = PBXGroup;
+			children = (
+				21D38B4B2409B6C000EC2A8D /* amplifyconfiguration.json */,
+				21D38B402409AFBD00EC2A8D /* AppSyncRealTimeClientIntegrationTests.swift */,
+				21D38B422409AFBD00EC2A8D /* Info.plist */,
+				21D38B4D2409B8B200EC2A8D /* README.md */,
+				21D38B95240C4DC200EC2A8D /* Support */,
+			);
+			path = AppSyncRealTimeClientIntegrationTests;
+			sourceTree = "<group>";
+		};
+		21D38B542409B93F00EC2A8D /* HostApp */ = {
+			isa = PBXGroup;
+			children = (
+				21D38B552409B93F00EC2A8D /* AppDelegate.swift */,
+				21D38B572409B93F00EC2A8D /* SceneDelegate.swift */,
+				21D38B592409B93F00EC2A8D /* ContentView.swift */,
+				21D38B5B2409B94100EC2A8D /* Assets.xcassets */,
+				21D38B602409B94100EC2A8D /* LaunchScreen.storyboard */,
+				21D38B632409B94100EC2A8D /* Info.plist */,
+				21D38B5D2409B94100EC2A8D /* Preview Content */,
+			);
+			path = HostApp;
+			sourceTree = "<group>";
+		};
+		21D38B5D2409B94100EC2A8D /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				21D38B5E2409B94100EC2A8D /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		21D38B6E240A272F00EC2A8D /* Interceptor */ = {
+			isa = PBXGroup;
+			children = (
+				21D38B82240A392B00EC2A8D /* APIKeyAuthInterceptor.swift */,
+				21D38B77240A2A1300EC2A8D /* IAMAuthInterceptor.swift */,
+				21D38B78240A2A1300EC2A8D /* OIDCAuthInterceptor.swift */,
+				217F39C82406E98400F1A0B3 /* RealtimeGatewayURLInterceptor.swift */,
+			);
+			path = Interceptor;
+			sourceTree = "<group>";
+		};
+		21D38B84240A39E400EC2A8D /* Interceptor */ = {
+			isa = PBXGroup;
+			children = (
+				21D38B85240A39E400EC2A8D /* OIDCAuthInterceptorTests.swift */,
+				21D38B86240A39E400EC2A8D /* IAMAuthInterceptorTests.swift */,
+				21D38B87240A39E400EC2A8D /* AppSyncJSONHelperTests.swift */,
+				21D38B88240A39E400EC2A8D /* APIKeyAuthInterceptorTests.swift */,
+			);
+			path = Interceptor;
+			sourceTree = "<group>";
+		};
+		21D38B95240C4DC200EC2A8D /* Support */ = {
+			isa = PBXGroup;
+			children = (
+				21D38B96240C4DCF00EC2A8D /* Error+Extension.swift */,
+				21D38B98240C4E1C00EC2A8D /* ConfigurationHelper.swift */,
+				21D38B9C240C540D00EC2A8D /* TestCommonConstants.swift */,
+			);
+			path = Support;
+			sourceTree = "<group>";
+		};
 		CC47BA7DC6033B1626BAD959 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
 				81AFCBED5A97E398A4BD9D06 /* Pods_AppSyncRealTimeClient.framework */,
 				3E662A46AB2C93EE316F784C /* Pods_AppSyncRealTimeClient_AppSyncRealTimeClientTests.framework */,
+				29CDD85F44666C7241232D29 /* Pods_HostApp.framework */,
+				43D112B03D6D38F84995D6FA /* Pods_HostApp_AppSyncRealTimeClientIntegrationTests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -292,6 +457,10 @@
 				C73EA796F50FB0196FDF4865 /* Pods-AppSyncRealTimeClient.release.xcconfig */,
 				93AA1C96F1B8D428CCC24CF0 /* Pods-AppSyncRealTimeClient-AppSyncRealTimeClientTests.debug.xcconfig */,
 				7D4F451B830A5837CE5274A3 /* Pods-AppSyncRealTimeClient-AppSyncRealTimeClientTests.release.xcconfig */,
+				18D6E56CE03BAC33493CC19B /* Pods-HostApp.debug.xcconfig */,
+				356411189EAD2C776D250FB7 /* Pods-HostApp.release.xcconfig */,
+				A843B4589131E0D2DB13ADC7 /* Pods-HostApp-AppSyncRealTimeClientIntegrationTests.debug.xcconfig */,
+				E65A19C826699DA299A49284 /* Pods-HostApp-AppSyncRealTimeClientIntegrationTests.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -348,6 +517,45 @@
 			productReference = 217F39982405D9D500F1A0B3 /* AppSyncRealTimeClientTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
+		21D38B3D2409AFBD00EC2A8D /* AppSyncRealTimeClientIntegrationTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 21D38B482409AFBD00EC2A8D /* Build configuration list for PBXNativeTarget "AppSyncRealTimeClientIntegrationTests" */;
+			buildPhases = (
+				6996A5923AF9E7D35CA85369 /* [CP] Check Pods Manifest.lock */,
+				21D38B3A2409AFBD00EC2A8D /* Sources */,
+				21D38B3B2409AFBD00EC2A8D /* Frameworks */,
+				21D38B3C2409AFBD00EC2A8D /* Resources */,
+				D3A1E54210CC83949895F543 /* [CP] Embed Pods Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				21D38B452409AFBD00EC2A8D /* PBXTargetDependency */,
+				21D38B682409B95000EC2A8D /* PBXTargetDependency */,
+			);
+			name = AppSyncRealTimeClientIntegrationTests;
+			productName = AppSyncRealTimeClientIntegrationTests;
+			productReference = 21D38B3E2409AFBD00EC2A8D /* AppSyncRealTimeClientIntegrationTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		21D38B522409B93F00EC2A8D /* HostApp */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 21D38B642409B94100EC2A8D /* Build configuration list for PBXNativeTarget "HostApp" */;
+			buildPhases = (
+				B4AC537B815B7AF42413C854 /* [CP] Check Pods Manifest.lock */,
+				21D38B4F2409B93F00EC2A8D /* Sources */,
+				21D38B502409B93F00EC2A8D /* Frameworks */,
+				21D38B512409B93F00EC2A8D /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = HostApp;
+			productName = HostApp;
+			productReference = 21D38B532409B93F00EC2A8D /* HostApp.app */;
+			productType = "com.apple.product-type.application";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -362,6 +570,13 @@
 						CreatedOnToolsVersion = 11.3.1;
 					};
 					217F39972405D9D500F1A0B3 = {
+						CreatedOnToolsVersion = 11.3.1;
+					};
+					21D38B3D2409AFBD00EC2A8D = {
+						CreatedOnToolsVersion = 11.3.1;
+						TestTargetID = 21D38B522409B93F00EC2A8D;
+					};
+					21D38B522409B93F00EC2A8D = {
 						CreatedOnToolsVersion = 11.3.1;
 					};
 				};
@@ -381,6 +596,8 @@
 			targets = (
 				217F398E2405D9D500F1A0B3 /* AppSyncRealTimeClient */,
 				217F39972405D9D500F1A0B3 /* AppSyncRealTimeClientTests */,
+				21D38B3D2409AFBD00EC2A8D /* AppSyncRealTimeClientIntegrationTests */,
+				21D38B522409B93F00EC2A8D /* HostApp */,
 			);
 		};
 /* End PBXProject section */
@@ -397,6 +614,26 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		21D38B3C2409AFBD00EC2A8D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				21D38B4E2409B8B200EC2A8D /* README.md in Resources */,
+				21D38B4C2409B6C000EC2A8D /* amplifyconfiguration.json in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		21D38B512409B93F00EC2A8D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				21D38B692409B95B00EC2A8D /* amplifyconfiguration.json in Resources */,
+				21D38B622409B94100EC2A8D /* LaunchScreen.storyboard in Resources */,
+				21D38B5F2409B94100EC2A8D /* Preview Assets.xcassets in Resources */,
+				21D38B5C2409B94100EC2A8D /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -425,6 +662,28 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
+		6996A5923AF9E7D35CA85369 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-HostApp-AppSyncRealTimeClientIntegrationTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
 		9CB3A44F02BD117B9687BF03 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -440,6 +699,45 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-AppSyncRealTimeClient-AppSyncRealTimeClientTests/Pods-AppSyncRealTimeClient-AppSyncRealTimeClientTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		B4AC537B815B7AF42413C854 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-HostApp-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		D3A1E54210CC83949895F543 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-HostApp-AppSyncRealTimeClientIntegrationTests/Pods-HostApp-AppSyncRealTimeClientIntegrationTests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-HostApp-AppSyncRealTimeClientIntegrationTests/Pods-HostApp-AppSyncRealTimeClientIntegrationTests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-HostApp-AppSyncRealTimeClientIntegrationTests/Pods-HostApp-AppSyncRealTimeClientIntegrationTests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		F78B4AC87B22D691D620684A /* [CP] Check Pods Manifest.lock */ = {
@@ -471,10 +769,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				21D38B7C240A2A1300EC2A8D /* OIDCAuthInterceptor.swift in Sources */,
 				217F39DB2406E98400F1A0B3 /* AppSyncSubscriptionConnection+DataHandler.swift in Sources */,
+				21D38B94240C4A2A00EC2A8D /* OIDCAuthProvider.swift in Sources */,
 				217F39DF2406E98400F1A0B3 /* SubscriptionItem.swift in Sources */,
 				217F39CF2406E98400F1A0B3 /* AppSyncMessage+Encodable.swift in Sources */,
 				217F39CD2406E98400F1A0B3 /* InterceptableConnection.swift in Sources */,
+				21D38B8E240A3C2300EC2A8D /* ConnectionProviderFactory.swift in Sources */,
 				217F39E02406E98400F1A0B3 /* AppSyncWebsocketProvider.swift in Sources */,
 				217F39D32406E98400F1A0B3 /* RealtimeConnectionProvider.swift in Sources */,
 				217F39D12406E98400F1A0B3 /* AppSyncConnectionRequest.swift in Sources */,
@@ -488,12 +789,15 @@
 				217F39D02406E98400F1A0B3 /* AppSyncMessage.swift in Sources */,
 				217F39E32406E98400F1A0B3 /* AppSyncLogger.swift in Sources */,
 				217F39D82406E98400F1A0B3 /* ConnectionProvider.swift in Sources */,
+				21D38B83240A392B00EC2A8D /* APIKeyAuthInterceptor.swift in Sources */,
 				217F39D92406E98400F1A0B3 /* SubscriptionConnection.swift in Sources */,
 				217F39DA2406E98400F1A0B3 /* RetryableConnection.swift in Sources */,
 				217F39CC2406E98400F1A0B3 /* AppSyncResponse.swift in Sources */,
 				217F39E72406E98400F1A0B3 /* SubscriptionConnectionType.swift in Sources */,
 				217F39D42406E98400F1A0B3 /* RealtimeConnectionProvider+Websocket.swift in Sources */,
 				217F39DC2406E98400F1A0B3 /* AppSyncSubscriptionConnection.swift in Sources */,
+				21D38B6D240A262800EC2A8D /* AppSyncJSONHelper.swift in Sources */,
+				21D38B7B240A2A1300EC2A8D /* IAMAuthInterceptor.swift in Sources */,
 				217F39CE2406E98400F1A0B3 /* ConnectionProviderError.swift in Sources */,
 				217F39E12406E98400F1A0B3 /* StarscreamAdapter.swift in Sources */,
 				217F39D72406E98400F1A0B3 /* RealtimeConnectionProvider+ConnectionInterceptable.swift in Sources */,
@@ -506,10 +810,35 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				21D38B89240A39E400EC2A8D /* OIDCAuthInterceptorTests.swift in Sources */,
+				21D38B8A240A39E400EC2A8D /* IAMAuthInterceptorTests.swift in Sources */,
 				217F39F22406EA4000F1A0B3 /* RealtimeConnectionProviderTests.swift in Sources */,
 				217F39F02406EA4000F1A0B3 /* AppSyncSubscriptionConnectionTests.swift in Sources */,
+				21D38B8C240A39E400EC2A8D /* APIKeyAuthInterceptorTests.swift in Sources */,
+				21D38B8B240A39E400EC2A8D /* AppSyncJSONHelperTests.swift in Sources */,
 				217F39F32406EA4000F1A0B3 /* RealtimeGatewayURLInterceptorTests.swift in Sources */,
 				217F39F12406EA4000F1A0B3 /* MockConnectionProvider.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		21D38B3A2409AFBD00EC2A8D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				21D38B99240C4E1C00EC2A8D /* ConfigurationHelper.swift in Sources */,
+				21D38B97240C4DCF00EC2A8D /* Error+Extension.swift in Sources */,
+				21D38B9D240C540D00EC2A8D /* TestCommonConstants.swift in Sources */,
+				21D38B412409AFBD00EC2A8D /* AppSyncRealTimeClientIntegrationTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		21D38B4F2409B93F00EC2A8D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				21D38B562409B93F00EC2A8D /* AppDelegate.swift in Sources */,
+				21D38B582409B93F00EC2A8D /* SceneDelegate.swift in Sources */,
+				21D38B5A2409B93F00EC2A8D /* ContentView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -521,7 +850,28 @@
 			target = 217F398E2405D9D500F1A0B3 /* AppSyncRealTimeClient */;
 			targetProxy = 217F399A2405D9D500F1A0B3 /* PBXContainerItemProxy */;
 		};
+		21D38B452409AFBD00EC2A8D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 217F398E2405D9D500F1A0B3 /* AppSyncRealTimeClient */;
+			targetProxy = 21D38B442409AFBD00EC2A8D /* PBXContainerItemProxy */;
+		};
+		21D38B682409B95000EC2A8D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 21D38B522409B93F00EC2A8D /* HostApp */;
+			targetProxy = 21D38B672409B95000EC2A8D /* PBXContainerItemProxy */;
+		};
 /* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		21D38B602409B94100EC2A8D /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				21D38B612409B94100EC2A8D /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		217F39A12405D9D500F1A0B3 /* Debug */ = {
@@ -575,7 +925,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -632,7 +982,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -736,6 +1086,92 @@
 			};
 			name = Release;
 		};
+		21D38B462409AFBD00EC2A8D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = A843B4589131E0D2DB13ADC7 /* Pods-HostApp-AppSyncRealTimeClientIntegrationTests.debug.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = W3DRXD72QU;
+				INFOPLIST_FILE = AppSyncRealTimeClientIntegrationTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.amazonaws.AppSyncRealTimeClientIntegrationTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/HostApp.app/HostApp";
+			};
+			name = Debug;
+		};
+		21D38B472409AFBD00EC2A8D /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = E65A19C826699DA299A49284 /* Pods-HostApp-AppSyncRealTimeClientIntegrationTests.release.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = W3DRXD72QU;
+				INFOPLIST_FILE = AppSyncRealTimeClientIntegrationTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.amazonaws.AppSyncRealTimeClientIntegrationTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/HostApp.app/HostApp";
+			};
+			name = Release;
+		};
+		21D38B652409B94100EC2A8D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 18D6E56CE03BAC33493CC19B /* Pods-HostApp.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_ASSET_PATHS = "\"HostApp/Preview Content\"";
+				DEVELOPMENT_TEAM = W3DRXD72QU;
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = HostApp/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.amazonaws.HostApp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		21D38B662409B94100EC2A8D /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 356411189EAD2C776D250FB7 /* Pods-HostApp.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_ASSET_PATHS = "\"HostApp/Preview Content\"";
+				DEVELOPMENT_TEAM = W3DRXD72QU;
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = HostApp/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.amazonaws.HostApp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -762,6 +1198,24 @@
 			buildConfigurations = (
 				217F39A72405D9D500F1A0B3 /* Debug */,
 				217F39A82405D9D500F1A0B3 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		21D38B482409AFBD00EC2A8D /* Build configuration list for PBXNativeTarget "AppSyncRealTimeClientIntegrationTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				21D38B462409AFBD00EC2A8D /* Debug */,
+				21D38B472409AFBD00EC2A8D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		21D38B642409B94100EC2A8D /* Build configuration list for PBXNativeTarget "HostApp" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				21D38B652409B94100EC2A8D /* Debug */,
+				21D38B662409B94100EC2A8D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
