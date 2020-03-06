@@ -79,13 +79,7 @@ public class RealtimeConnectionProvider: ConnectionProvider {
                 AppSyncLogger.error(error)
                 switch message.messageType {
                 case .connectionInit:
-                    self.serialConnectionQueue.async {[weak self] in
-                        guard let self = self else {
-                            return
-                        }
-                        self.status = .notConnected
-                        self.updateCallback(event: .error(ConnectionProviderError.connection))
-                    }
+                    self.receivedConnectionInit()
                 default:
                     self.updateCallback(event: .error(ConnectionProviderError.jsonParse(message.id, error)))
                 }
