@@ -17,5 +17,4 @@ Pod::Spec.new do |s|
     
     s.source_files = 'AppSyncRealTimeClient/**/*.swift'
     s.dependency 'Starscream', '~> 3.0.2'
-    s.dependency "AWSCore", "~> 2.12.7"
   end
