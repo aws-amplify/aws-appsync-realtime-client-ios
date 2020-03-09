@@ -12,8 +12,11 @@ public struct ConnectionProviderFactory {
 
     public static func createConnectionProvider(for url: URL,
                                                 authInterceptor: AuthInterceptor,
-                                                connectionType: SubscriptionConnectionType) -> ConnectionProvider {
-        let provider = ConnectionProviderFactory.createConnectionProvider(for: url, connectionType: connectionType)
+                                                connectionType: SubscriptionConnectionType,
+                                                unusedConnectionTimeout: DispatchTimeInterval? = nil) -> ConnectionProvider {
+        let provider = ConnectionProviderFactory.createConnectionProvider(for: url,
+                                                                          connectionType: connectionType,
+                                                                          unusedConnectionTimeout: unusedConnectionTimeout)
 
         if let messageInterceptable = provider as? MessageInterceptable {
             messageInterceptable.addInterceptor(authInterceptor)
@@ -26,11 +29,15 @@ public struct ConnectionProviderFactory {
         return provider
     }
 
-    static func createConnectionProvider(for url: URL, connectionType: SubscriptionConnectionType) -> ConnectionProvider {
+    static func createConnectionProvider(for url: URL,
+                                         connectionType: SubscriptionConnectionType,
+                                         unusedConnectionTimeout: DispatchTimeInterval? = nil) -> ConnectionProvider {
         switch connectionType {
         case .appSyncRealtime:
             let websocketProvider = StarscreamAdapter()
-            let connectionProvider = RealtimeConnectionProvider(for: url, websocket: websocketProvider)
+            let connectionProvider = RealtimeConnectionProvider(for: url,
+                                                                websocket: websocketProvider,
+                                                                unusedConnectionTimeout: unusedConnectionTimeout)
             return connectionProvider
         }
     }

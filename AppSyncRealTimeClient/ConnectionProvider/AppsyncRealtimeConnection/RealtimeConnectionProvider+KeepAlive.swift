@@ -39,4 +39,32 @@ extension RealtimeConnectionProvider {
         }
 
     }
+
+    /// Check if there are any remaining subscription connections on the connection provider
+    /// If there are no remaining subscription connections, disconnect the underlying websocket
+    func disconnectIfNoRemainingSubscriptionConnections() {
+        guard status != .notConnected else {
+            return
+        }
+        serialCallbackQueue.async {[weak self] in
+            guard let self = self else {
+                return
+            }
+            if self.listeners.count == 0 && self.status == .connected {
+                AppSyncLogger.info("Realtime connection has no subscription connections, disconnecting.")
+                self.serialConnectionQueue.async { [weak self] in
+                    guard let self = self else {
+                        return
+                    }
+                    self.status = .notConnected
+                    self.websocket.disconnect()
+                }
+
+            } else {
+                DispatchQueue.global().asyncAfter(deadline: DispatchTime.now() + self.unusedConnectionTimeout) { [weak self] in
+                    self?.disconnectIfNoRemainingSubscriptionConnections()
+                }
+            }
+        }
+    }
 }

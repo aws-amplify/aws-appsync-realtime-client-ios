@@ -19,6 +19,7 @@ public class RealtimeConnectionProvider: ConnectionProvider {
     var connectionInterceptors: [ConnectionInterceptor] = []
 
     var staleConnectionTimeout = DispatchTimeInterval.seconds(5 * 60)
+    var unusedConnectionTimeout = DispatchTimeInterval.seconds(60)
     var lastKeepAliveTime = DispatchTime.now()
 
     /// Serial queue for websocket connection.
@@ -30,9 +31,14 @@ public class RealtimeConnectionProvider: ConnectionProvider {
 
     let serialWriteQueue = DispatchQueue(label: "com.amazonaws.AppSyncRealTimeConnectionProvider.writeQueue")
 
-    public init(for url: URL, websocket: AppSyncWebsocketProvider) {
+    public init(for url: URL,
+                websocket: AppSyncWebsocketProvider,
+                unusedConnectionTimeout: DispatchTimeInterval? = nil) {
         self.url = url
         self.websocket = websocket
+        if let unusedConnectionTimeout = unusedConnectionTimeout {
+            self.unusedConnectionTimeout = unusedConnectionTimeout
+        }
     }
 
     // MARK: - ConnectionProvider methods
@@ -93,15 +99,14 @@ public class RealtimeConnectionProvider: ConnectionProvider {
     }
 
     public func addListener(identifier: String, callback: @escaping ConnectionProviderCallback) {
-        serialCallbackQueue.async {
-            self.listeners[identifier] = callback
+        serialCallbackQueue.async { [weak self] in
+            self?.listeners[identifier] = callback
         }
-
     }
 
     public func removeListener(identifier: String) {
-        serialCallbackQueue.async {
-            self.listeners.removeValue(forKey: identifier)
+        serialCallbackQueue.async { [weak self] in
+            self?.listeners.removeValue(forKey: identifier)
         }
     }
 
