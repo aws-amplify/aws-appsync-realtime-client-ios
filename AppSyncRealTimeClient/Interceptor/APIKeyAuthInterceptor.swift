@@ -6,7 +6,6 @@
 //
 
 import Foundation
-import AWSCore
 
 /// Auth interceptor for API Key based authentication
 public class APIKeyAuthInterceptor: AuthInterceptor {
@@ -68,12 +67,20 @@ public class APIKeyAuthInterceptor: AuthInterceptor {
 
 /// Authentication header for API key based auth
 private class APIKeyAuthenticationHeader: AuthenticationHeader {
+    static let ISO8601DateFormat: String = "yyyyMMdd'T'HHmmss'Z'"
     let date: String?
     let apiKey: String
 
+    var formatter: DateFormatter = {
+        var formatter = DateFormatter()
+        formatter.timeZone = TimeZone(secondsFromGMT: 0)
+        formatter.locale = Locale(identifier: "en_US_POSIX")
+        formatter.dateFormat = ISO8601DateFormat
+        return formatter
+    }()
+
     init(apiKey: String, host: String) {
-        let amzDate =  NSDate.aws_clockSkewFixed() as NSDate
-        self.date = amzDate.aws_stringValue(AWSDateISO8601DateFormat2)
+        self.date = formatter.string(from: Date())
         self.apiKey = apiKey
         super.init(host: host)
     }

@@ -39,8 +39,7 @@ class OIDCAuthInterceptorTests: XCTestCase {
 }
 
 class MockUserPoolsAuthProvider: OIDCAuthProvider {
-
-    func getLatestAuthToken(_ callback: @escaping (String?, Error?) -> Void) {
-        callback("jwtToken", nil)
+    func getLatestAuthToken() -> Result<String, Error> {
+        return .success("jwtToken")
     }
 }

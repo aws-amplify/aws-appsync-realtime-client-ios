@@ -52,11 +52,9 @@
 		21D38B622409B94100EC2A8D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 21D38B602409B94100EC2A8D /* LaunchScreen.storyboard */; };
 		21D38B692409B95B00EC2A8D /* amplifyconfiguration.json in Resources */ = {isa = PBXBuildFile; fileRef = 21D38B4B2409B6C000EC2A8D /* amplifyconfiguration.json */; };
 		21D38B6D240A262800EC2A8D /* AppSyncJSONHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21D38B6C240A262800EC2A8D /* AppSyncJSONHelper.swift */; };
-		21D38B7B240A2A1300EC2A8D /* IAMAuthInterceptor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21D38B77240A2A1300EC2A8D /* IAMAuthInterceptor.swift */; };
 		21D38B7C240A2A1300EC2A8D /* OIDCAuthInterceptor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21D38B78240A2A1300EC2A8D /* OIDCAuthInterceptor.swift */; };
 		21D38B83240A392B00EC2A8D /* APIKeyAuthInterceptor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21D38B82240A392B00EC2A8D /* APIKeyAuthInterceptor.swift */; };
 		21D38B89240A39E400EC2A8D /* OIDCAuthInterceptorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21D38B85240A39E400EC2A8D /* OIDCAuthInterceptorTests.swift */; };
-		21D38B8A240A39E400EC2A8D /* IAMAuthInterceptorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21D38B86240A39E400EC2A8D /* IAMAuthInterceptorTests.swift */; };
 		21D38B8B240A39E400EC2A8D /* AppSyncJSONHelperTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21D38B87240A39E400EC2A8D /* AppSyncJSONHelperTests.swift */; };
 		21D38B8C240A39E400EC2A8D /* APIKeyAuthInterceptorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21D38B88240A39E400EC2A8D /* APIKeyAuthInterceptorTests.swift */; };
 		21D38B8E240A3C2300EC2A8D /* ConnectionProviderFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21D38B8D240A3C2300EC2A8D /* ConnectionProviderFactory.swift */; };
@@ -146,11 +144,9 @@
 		21D38B612409B94100EC2A8D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		21D38B632409B94100EC2A8D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		21D38B6C240A262800EC2A8D /* AppSyncJSONHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppSyncJSONHelper.swift; sourceTree = "<group>"; };
-		21D38B77240A2A1300EC2A8D /* IAMAuthInterceptor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IAMAuthInterceptor.swift; sourceTree = "<group>"; };
 		21D38B78240A2A1300EC2A8D /* OIDCAuthInterceptor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OIDCAuthInterceptor.swift; sourceTree = "<group>"; };
 		21D38B82240A392B00EC2A8D /* APIKeyAuthInterceptor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIKeyAuthInterceptor.swift; sourceTree = "<group>"; };
 		21D38B85240A39E400EC2A8D /* OIDCAuthInterceptorTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OIDCAuthInterceptorTests.swift; sourceTree = "<group>"; };
-		21D38B86240A39E400EC2A8D /* IAMAuthInterceptorTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IAMAuthInterceptorTests.swift; sourceTree = "<group>"; };
 		21D38B87240A39E400EC2A8D /* AppSyncJSONHelperTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppSyncJSONHelperTests.swift; sourceTree = "<group>"; };
 		21D38B88240A39E400EC2A8D /* APIKeyAuthInterceptorTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIKeyAuthInterceptorTests.swift; sourceTree = "<group>"; };
 		21D38B8D240A3C2300EC2A8D /* ConnectionProviderFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConnectionProviderFactory.swift; sourceTree = "<group>"; };
@@ -411,7 +407,6 @@
 			isa = PBXGroup;
 			children = (
 				21D38B82240A392B00EC2A8D /* APIKeyAuthInterceptor.swift */,
-				21D38B77240A2A1300EC2A8D /* IAMAuthInterceptor.swift */,
 				21D38B78240A2A1300EC2A8D /* OIDCAuthInterceptor.swift */,
 				217F39C82406E98400F1A0B3 /* RealtimeGatewayURLInterceptor.swift */,
 			);
@@ -422,7 +417,6 @@
 			isa = PBXGroup;
 			children = (
 				21D38B85240A39E400EC2A8D /* OIDCAuthInterceptorTests.swift */,
-				21D38B86240A39E400EC2A8D /* IAMAuthInterceptorTests.swift */,
 				21D38B87240A39E400EC2A8D /* AppSyncJSONHelperTests.swift */,
 				21D38B88240A39E400EC2A8D /* APIKeyAuthInterceptorTests.swift */,
 			);
@@ -797,7 +791,6 @@
 				217F39D42406E98400F1A0B3 /* RealtimeConnectionProvider+Websocket.swift in Sources */,
 				217F39DC2406E98400F1A0B3 /* AppSyncSubscriptionConnection.swift in Sources */,
 				21D38B6D240A262800EC2A8D /* AppSyncJSONHelper.swift in Sources */,
-				21D38B7B240A2A1300EC2A8D /* IAMAuthInterceptor.swift in Sources */,
 				217F39CE2406E98400F1A0B3 /* ConnectionProviderError.swift in Sources */,
 				217F39E12406E98400F1A0B3 /* StarscreamAdapter.swift in Sources */,
 				217F39D72406E98400F1A0B3 /* RealtimeConnectionProvider+ConnectionInterceptable.swift in Sources */,
@@ -811,7 +804,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				21D38B89240A39E400EC2A8D /* OIDCAuthInterceptorTests.swift in Sources */,
-				21D38B8A240A39E400EC2A8D /* IAMAuthInterceptorTests.swift in Sources */,
 				217F39F22406EA4000F1A0B3 /* RealtimeConnectionProviderTests.swift in Sources */,
 				217F39F02406EA4000F1A0B3 /* AppSyncSubscriptionConnectionTests.swift in Sources */,
 				21D38B8C240A39E400EC2A8D /* APIKeyAuthInterceptorTests.swift in Sources */,

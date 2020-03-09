@@ -1,9 +1,8 @@
 //
-//  AppDelegate.swift
-//  HostApp
+// Copyright 2018-2020 Amazon.com,
+// Inc. or its affiliates. All Rights Reserved.
 //
-//  Created by Law, Michael on 2/28/20.
-//  Copyright © 2020 amazonaws. All rights reserved.
+// SPDX-License-Identifier: Apache-2.0
 //
 
 import UIKit

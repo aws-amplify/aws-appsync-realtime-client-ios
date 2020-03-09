@@ -6,5 +6,5 @@
 //
 
 public protocol OIDCAuthProvider {
-    func getLatestAuthToken(_ callback: @escaping (String?, Error?) -> Void)
+    func getLatestAuthToken() -> Result<String, Error>
 }

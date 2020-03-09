@@ -6,7 +6,6 @@
 //
 
 import Foundation
-import AWSCore
 
 public class OIDCAuthInterceptor: AuthInterceptor {
 
@@ -18,16 +17,16 @@ public class OIDCAuthInterceptor: AuthInterceptor {
 
     public func interceptMessage(_ message: AppSyncMessage, for endpoint: URL) -> AppSyncMessage {
         let host = endpoint.host!
-        var jwtToken: String?
-        authProvider.getLatestAuthToken { (token, error) in
+        let jwtToken: String
+        switch authProvider.getLatestAuthToken() {
+        case .success(let token):
             jwtToken = token
-        }
-        guard let token = jwtToken else {
+        case .failure:
             return message
         }
         switch message.messageType {
         case .subscribe:
-            let authHeader = UserPoolsAuthenticationHeader(token: token, host: host)
+            let authHeader = UserPoolsAuthenticationHeader(token: jwtToken, host: host)
             var payload = message.payload ?? AppSyncMessage.Payload()
             payload.authHeader = authHeader
 
@@ -43,14 +42,15 @@ public class OIDCAuthInterceptor: AuthInterceptor {
 
     public func interceptConnection(_ request: AppSyncConnectionRequest, for endpoint: URL) -> AppSyncConnectionRequest {
         let host = endpoint.host!
-        var jwtToken: String?
-        authProvider.getLatestAuthToken { (token, error) in
+        let jwtToken: String
+        switch authProvider.getLatestAuthToken() {
+        case .success(let token):
             jwtToken = token
-        }
-        guard let token = jwtToken else {
+        case .failure:
             return request
         }
-        let authHeader = UserPoolsAuthenticationHeader(token: token, host: host)
+
+        let authHeader = UserPoolsAuthenticationHeader(token: jwtToken, host: host)
         let base64Auth = AppSyncJSONHelper.base64AuthenticationBlob(authHeader)
 
         let payloadData = SubscriptionConstants.emptyPayload.data(using: .utf8)
