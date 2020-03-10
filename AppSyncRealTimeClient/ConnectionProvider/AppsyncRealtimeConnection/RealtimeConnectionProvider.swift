@@ -88,16 +88,6 @@ public class RealtimeConnectionProvider: ConnectionProvider {
 
     }
 
-    func receivedConnectionInit() {
-        self.serialConnectionQueue.async {[weak self] in
-            guard let self = self else {
-                return
-            }
-            self.status = .notConnected
-            self.updateCallback(event: .error(ConnectionProviderError.connection))
-        }
-    }
-
     public func disconnect() {
         websocket.disconnect()
     }
@@ -124,6 +114,16 @@ public class RealtimeConnectionProvider: ConnectionProvider {
     func updateCallback(event: ConnectionProviderEvent) {
         serialCallbackQueue.async { [weak self] in
             self?.listeners.values.forEach { $0(event) }
+        }
+    }
+
+    func receivedConnectionInit() {
+        self.serialConnectionQueue.async {[weak self] in
+            guard let self = self else {
+                return
+            }
+            self.status = .notConnected
+            self.updateCallback(event: .error(ConnectionProviderError.connection))
         }
     }
 }
