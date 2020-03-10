@@ -6,7 +6,7 @@
 //
 
 import XCTest
-import AppSyncRealTimeClient
+@testable import AppSyncRealTimeClient
 
 class RealtimeGatewayURLInterceptorTests: XCTestCase {
 

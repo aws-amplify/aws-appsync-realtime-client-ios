@@ -13,3 +13,10 @@ target 'AppSyncRealTimeClient' do
   end
 
 end
+
+target "HostApp" do 
+  use_frameworks!
+  target "AppSyncRealTimeClientIntegrationTests" do 
+    inherit! :complete
+  end
+end

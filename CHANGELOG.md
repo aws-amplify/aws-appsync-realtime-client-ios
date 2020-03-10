@@ -1,5 +1,8 @@
 # AppSync RealTime Client for iOS
 
+## 1.0.2
+
+Add Interceptors and interceptor protocols
 
 ## 1.0.1
 
