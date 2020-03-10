@@ -2,7 +2,9 @@
 
 ## 1.0.2
 
-Add Interceptors and interceptor protocols
+### Improvements
+
+Add Interceptors and Connection Provider Factory to allow consumers more easily create websocket connections. See [PR #4](https://github.com/aws-amplify/aws-appsync-realtime-client-ios/pull/4) for more details.
 
 ## 1.0.1
 
