@@ -1,5 +1,10 @@
 # AppSync RealTime Client for iOS
 
+## 1.2.0
+
+### Improvements
+- Adding Cartfile with dependency on StarScream See [PR #9](https://github.com/aws-amplify/aws-appsync-realtime-client-ios/pull/9)
+
 ## 1.1.0
 
 ### Improvements
