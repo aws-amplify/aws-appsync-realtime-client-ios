@@ -32,8 +32,6 @@ AWS*.framework
 # Stuff that can't be committed #
 ######################
 *credentials.json
-Pods
-Podfile.lock
 Documentation
 Scripts/build.sh
 Scripts/gcovr

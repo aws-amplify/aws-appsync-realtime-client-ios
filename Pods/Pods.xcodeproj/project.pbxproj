@@ -1,0 +1,1138 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 51;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		068E5963381B58D7D8CD321462F567ED /* Compression.swift in Sources */ = {isa = PBXBuildFile; fileRef = 734469CD9655D7C38786710ED18F3D6B /* Compression.swift */; };
+		1627E6FA0453D6DB472BA444F1D32AE7 /* SSLClientCertificate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DBD425D2B58528B26427B72C1648FA8 /* SSLClientCertificate.swift */; };
+		16C1C5B1133FDB6FC9DF32E86B789E93 /* Pods-HostApp-AppSyncRealTimeClientIntegrationTests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = A707D7A77DACD85A7E89A5C64E03ECF6 /* Pods-HostApp-AppSyncRealTimeClientIntegrationTests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		26FA4B9AD3BC213147DEDAA9B75B2A4B /* Pods-HostApp-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 77251B65B0BC867A2BC73E05A057680B /* Pods-HostApp-dummy.m */; };
+		294D61E8A195B6A1F6AEDCF0F73599A5 /* Starscream-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = E7CD3B886D6D8805A735BDEF3BDCF0BA /* Starscream-dummy.m */; };
+		5F34566CD48894CFB1D11DEB98FD00D6 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3212113385A8FBBDB272BD23C409FF61 /* Foundation.framework */; };
+		619350AEB08F934F94F886473DD53961 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3212113385A8FBBDB272BD23C409FF61 /* Foundation.framework */; };
+		6C199ECB9BA4D9C91081CEDEF8E7B9B0 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3212113385A8FBBDB272BD23C409FF61 /* Foundation.framework */; };
+		817804C5825785E8C68D23F39AFD3ABF /* Pods-HostApp-AppSyncRealTimeClientIntegrationTests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = BC78695BA9B09FD71768039EEFD9E505 /* Pods-HostApp-AppSyncRealTimeClientIntegrationTests-dummy.m */; };
+		8B3350D96B15B975184C8EE0819F9623 /* SSLSecurity.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2D9C839438B1BC7D9DC70F5786B7A79 /* SSLSecurity.swift */; };
+		8B5F4307259687BF12A342B61BA74205 /* Pods-AppSyncRealTimeClient-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B9620166AD3C7EE0FC8BD78D464CD79 /* Pods-AppSyncRealTimeClient-dummy.m */; };
+		96D67F9A7630A34944B6EAAD47F785E3 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3212113385A8FBBDB272BD23C409FF61 /* Foundation.framework */; };
+		AE652350C268B314D54639B7ED7250EB /* Pods-AppSyncRealTimeClient-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = E2E89DDFAB03922917F8DA4C8553B27D /* Pods-AppSyncRealTimeClient-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		B4A6283FDFA04E3A7B6FD0C13B6FEF32 /* Starscream-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 224B8A4E0612334207A2B350C859D2D4 /* Starscream-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		C02D9FEB295BDA1359D2F52C80F8E75A /* WebSocket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A53698F1D065DB33E81AB27CAAC02A /* WebSocket.swift */; };
+		C61D0BE9E766F6FA0C8EC736E75D3712 /* Pods-AppSyncRealTimeClient-AppSyncRealTimeClientTests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = DA1A1FD3AA7BE899D52C937AD2ABCDF8 /* Pods-AppSyncRealTimeClient-AppSyncRealTimeClientTests-dummy.m */; };
+		E1ADB160973B846BBA5A23EFDF1663F5 /* Pods-AppSyncRealTimeClient-AppSyncRealTimeClientTests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = AC5FC9D449FA2A8877A19191F3A092CE /* Pods-AppSyncRealTimeClient-AppSyncRealTimeClientTests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		ECE826AD8C2FC36A0D51101B1A21FFCF /* Pods-HostApp-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 785E2FB330C79BE4EA1802F98E208B30 /* Pods-HostApp-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F1A1D71AAC10E5156D1BE45FCF41D452 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3212113385A8FBBDB272BD23C409FF61 /* Foundation.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		79A096E9051D81A58C84B009CC5263BA /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 9B78EE4AF6AE03E79D88886319853FF7;
+			remoteInfo = Starscream;
+		};
+		7CBCAA27F012DE27E4C9B6B159DAF0DD /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 9B78EE4AF6AE03E79D88886319853FF7;
+			remoteInfo = Starscream;
+		};
+		A533856D6D077FB09CCD4D79DB0C326C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 9B78EE4AF6AE03E79D88886319853FF7;
+			remoteInfo = Starscream;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		03962F9349E90408DB21339851805D40 /* Pods-HostApp-AppSyncRealTimeClientIntegrationTests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-HostApp-AppSyncRealTimeClientIntegrationTests-acknowledgements.markdown"; sourceTree = "<group>"; };
+		160F8F9FC3A23D5BC21D6E5BADBBB504 /* Pods-HostApp-AppSyncRealTimeClientIntegrationTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-HostApp-AppSyncRealTimeClientIntegrationTests.release.xcconfig"; sourceTree = "<group>"; };
+		1C6EB0583D12861755E29BFCB033A83A /* Pods-HostApp-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-HostApp-acknowledgements.markdown"; sourceTree = "<group>"; };
+		1D331371962AF5917334FF1DE4E79DE2 /* Pods-AppSyncRealTimeClient-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-AppSyncRealTimeClient-acknowledgements.plist"; sourceTree = "<group>"; };
+		210903E32DA46D1883283394CA6441CE /* Pods-AppSyncRealTimeClient-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-AppSyncRealTimeClient-acknowledgements.markdown"; sourceTree = "<group>"; };
+		224B8A4E0612334207A2B350C859D2D4 /* Starscream-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Starscream-umbrella.h"; sourceTree = "<group>"; };
+		22A29C08E1F2879B5F40B9272E98D7BD /* Pods_AppSyncRealTimeClient_AppSyncRealTimeClientTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_AppSyncRealTimeClient_AppSyncRealTimeClientTests.framework; path = "Pods-AppSyncRealTimeClient-AppSyncRealTimeClientTests.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		22A53698F1D065DB33E81AB27CAAC02A /* WebSocket.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = WebSocket.swift; path = Sources/Starscream/WebSocket.swift; sourceTree = "<group>"; };
+		3212113385A8FBBDB272BD23C409FF61 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS12.2.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
+		3A2AB5FF990A8E0FE800DBDCA93CDD21 /* Pods-AppSyncRealTimeClient.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-AppSyncRealTimeClient.modulemap"; sourceTree = "<group>"; };
+		3C4577D7D047FA934744235DAA310B13 /* Pods-HostApp-AppSyncRealTimeClientIntegrationTests-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-HostApp-AppSyncRealTimeClientIntegrationTests-frameworks.sh"; sourceTree = "<group>"; };
+		4112AC35BEB06583873BB954015933BC /* Pods-HostApp-AppSyncRealTimeClientIntegrationTests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-HostApp-AppSyncRealTimeClientIntegrationTests.modulemap"; sourceTree = "<group>"; };
+		4B9620166AD3C7EE0FC8BD78D464CD79 /* Pods-AppSyncRealTimeClient-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-AppSyncRealTimeClient-dummy.m"; sourceTree = "<group>"; };
+		51DA23FAEBF4AC04EFCA9E251DB83C8B /* Pods-AppSyncRealTimeClient-AppSyncRealTimeClientTests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-AppSyncRealTimeClient-AppSyncRealTimeClientTests-acknowledgements.markdown"; sourceTree = "<group>"; };
+		53FD200EDC1B7F726E251F28FC00588D /* Pods_HostApp_AppSyncRealTimeClientIntegrationTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_HostApp_AppSyncRealTimeClientIntegrationTests.framework; path = "Pods-HostApp-AppSyncRealTimeClientIntegrationTests.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		5599714541A03035056F88F2784DB3AD /* Pods-AppSyncRealTimeClient-AppSyncRealTimeClientTests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-AppSyncRealTimeClient-AppSyncRealTimeClientTests-acknowledgements.plist"; sourceTree = "<group>"; };
+		5D5E240C51338D03C83A9EF0676C3AFD /* Starscream-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Starscream-Info.plist"; sourceTree = "<group>"; };
+		644246984C21E39FC534EC33329665F8 /* Pods-HostApp-AppSyncRealTimeClientIntegrationTests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-HostApp-AppSyncRealTimeClientIntegrationTests-acknowledgements.plist"; sourceTree = "<group>"; };
+		67D7B82C5EAD303BC90480FC359E1EE8 /* Pods-HostApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-HostApp.debug.xcconfig"; sourceTree = "<group>"; };
+		6872C6E03EEA24905C6813A477B6C3B3 /* Pods_AppSyncRealTimeClient.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_AppSyncRealTimeClient.framework; path = "Pods-AppSyncRealTimeClient.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		6A0B7D439B81AAF110C14562A8D7CE1A /* Starscream.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = Starscream.debug.xcconfig; sourceTree = "<group>"; };
+		6B2A114B8E1404487C992A3D9835FD3D /* Pods-HostApp-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-HostApp-acknowledgements.plist"; sourceTree = "<group>"; };
+		6DBD425D2B58528B26427B72C1648FA8 /* SSLClientCertificate.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SSLClientCertificate.swift; path = Sources/Starscream/SSLClientCertificate.swift; sourceTree = "<group>"; };
+		6E3F1CFF889AA1BA55D7FAED2617740A /* Pods-AppSyncRealTimeClient-AppSyncRealTimeClientTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-AppSyncRealTimeClient-AppSyncRealTimeClientTests.release.xcconfig"; sourceTree = "<group>"; };
+		734469CD9655D7C38786710ED18F3D6B /* Compression.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Compression.swift; path = Sources/Starscream/Compression.swift; sourceTree = "<group>"; };
+		735A451220FDEA76F5BB1DD6E29EA51A /* Pods-AppSyncRealTimeClient.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-AppSyncRealTimeClient.debug.xcconfig"; sourceTree = "<group>"; };
+		77251B65B0BC867A2BC73E05A057680B /* Pods-HostApp-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-HostApp-dummy.m"; sourceTree = "<group>"; };
+		785E2FB330C79BE4EA1802F98E208B30 /* Pods-HostApp-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-HostApp-umbrella.h"; sourceTree = "<group>"; };
+		7FFFAFD46A0F73A3A2D631937E365358 /* Pods-HostApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-HostApp.release.xcconfig"; sourceTree = "<group>"; };
+		81B676869B0B4CAFC7E88D6BAC199B49 /* Pods-AppSyncRealTimeClient-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-AppSyncRealTimeClient-Info.plist"; sourceTree = "<group>"; };
+		820632578FC956F3D78011F8A9AA5A02 /* Pods-HostApp-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-HostApp-Info.plist"; sourceTree = "<group>"; };
+		8395B32D173647B089D8967DE4A1F136 /* Pods-AppSyncRealTimeClient.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-AppSyncRealTimeClient.release.xcconfig"; sourceTree = "<group>"; };
+		891B2270823847ED23F2ECFC28F935EC /* Starscream.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Starscream.framework; path = Starscream.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		9FA687F3F7C4CBAA16364EF8295D4028 /* Pods-AppSyncRealTimeClient-AppSyncRealTimeClientTests-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-AppSyncRealTimeClient-AppSyncRealTimeClientTests-frameworks.sh"; sourceTree = "<group>"; };
+		A2D9C839438B1BC7D9DC70F5786B7A79 /* SSLSecurity.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SSLSecurity.swift; path = Sources/Starscream/SSLSecurity.swift; sourceTree = "<group>"; };
+		A707D7A77DACD85A7E89A5C64E03ECF6 /* Pods-HostApp-AppSyncRealTimeClientIntegrationTests-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-HostApp-AppSyncRealTimeClientIntegrationTests-umbrella.h"; sourceTree = "<group>"; };
+		AC5FC9D449FA2A8877A19191F3A092CE /* Pods-AppSyncRealTimeClient-AppSyncRealTimeClientTests-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-AppSyncRealTimeClient-AppSyncRealTimeClientTests-umbrella.h"; sourceTree = "<group>"; };
+		BC78695BA9B09FD71768039EEFD9E505 /* Pods-HostApp-AppSyncRealTimeClientIntegrationTests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-HostApp-AppSyncRealTimeClientIntegrationTests-dummy.m"; sourceTree = "<group>"; };
+		C0EAE127EDC177828E9B145FD09EF73E /* Pods-HostApp.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-HostApp.modulemap"; sourceTree = "<group>"; };
+		CB46FF3E5CC30D8A3D0A6B004D6F252C /* Pods-AppSyncRealTimeClient-AppSyncRealTimeClientTests-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-AppSyncRealTimeClient-AppSyncRealTimeClientTests-Info.plist"; sourceTree = "<group>"; };
+		D4AA0E3CD4A50DFB82FB9B64E4D1CEEA /* Starscream-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Starscream-prefix.pch"; sourceTree = "<group>"; };
+		DA1A1FD3AA7BE899D52C937AD2ABCDF8 /* Pods-AppSyncRealTimeClient-AppSyncRealTimeClientTests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-AppSyncRealTimeClient-AppSyncRealTimeClientTests-dummy.m"; sourceTree = "<group>"; };
+		DBC54E5EF1964185AC24E0EED24FE4E7 /* Pods-AppSyncRealTimeClient-AppSyncRealTimeClientTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-AppSyncRealTimeClient-AppSyncRealTimeClientTests.debug.xcconfig"; sourceTree = "<group>"; };
+		E0690E22960644838E0FE920E79709F9 /* Pods-HostApp-AppSyncRealTimeClientIntegrationTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-HostApp-AppSyncRealTimeClientIntegrationTests.debug.xcconfig"; sourceTree = "<group>"; };
+		E2E89DDFAB03922917F8DA4C8553B27D /* Pods-AppSyncRealTimeClient-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-AppSyncRealTimeClient-umbrella.h"; sourceTree = "<group>"; };
+		E3906951D662C15605A4ECFC2C66E3AD /* Pods-AppSyncRealTimeClient-AppSyncRealTimeClientTests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-AppSyncRealTimeClient-AppSyncRealTimeClientTests.modulemap"; sourceTree = "<group>"; };
+		E63A7F2D8B4DA51D2907CBD374D6EF7C /* Starscream.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = Starscream.release.xcconfig; sourceTree = "<group>"; };
+		E7CD3B886D6D8805A735BDEF3BDCF0BA /* Starscream-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Starscream-dummy.m"; sourceTree = "<group>"; };
+		ED00F87B053026A542BE85D0CA39F88F /* Pods_HostApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_HostApp.framework; path = "Pods-HostApp.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		F4471EBE247E4859EC4A6D53B668AC5F /* Pods-HostApp-AppSyncRealTimeClientIntegrationTests-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-HostApp-AppSyncRealTimeClientIntegrationTests-Info.plist"; sourceTree = "<group>"; };
+		F639798900C02A52DB81BC2169DA9ED5 /* Starscream.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = Starscream.modulemap; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		09206235EB9393FD6D895453F2569AF9 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				96D67F9A7630A34944B6EAAD47F785E3 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		443EA6E63E17EA34B18BE5208505200E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6C199ECB9BA4D9C91081CEDEF8E7B9B0 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C1C5A97ECF42FF57F718A0ABC49CDD71 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				619350AEB08F934F94F886473DD53961 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C4A67CD57F72281B77804823F6F31A59 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F1A1D71AAC10E5156D1BE45FCF41D452 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DE9C5EA3A18BB52C8771253A937F74EC /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5F34566CD48894CFB1D11DEB98FD00D6 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		264B30FB4D9C0B4BDC8349AFF40FD43D /* Pods-AppSyncRealTimeClient-AppSyncRealTimeClientTests */ = {
+			isa = PBXGroup;
+			children = (
+				E3906951D662C15605A4ECFC2C66E3AD /* Pods-AppSyncRealTimeClient-AppSyncRealTimeClientTests.modulemap */,
+				51DA23FAEBF4AC04EFCA9E251DB83C8B /* Pods-AppSyncRealTimeClient-AppSyncRealTimeClientTests-acknowledgements.markdown */,
+				5599714541A03035056F88F2784DB3AD /* Pods-AppSyncRealTimeClient-AppSyncRealTimeClientTests-acknowledgements.plist */,
+				DA1A1FD3AA7BE899D52C937AD2ABCDF8 /* Pods-AppSyncRealTimeClient-AppSyncRealTimeClientTests-dummy.m */,
+				9FA687F3F7C4CBAA16364EF8295D4028 /* Pods-AppSyncRealTimeClient-AppSyncRealTimeClientTests-frameworks.sh */,
+				CB46FF3E5CC30D8A3D0A6B004D6F252C /* Pods-AppSyncRealTimeClient-AppSyncRealTimeClientTests-Info.plist */,
+				AC5FC9D449FA2A8877A19191F3A092CE /* Pods-AppSyncRealTimeClient-AppSyncRealTimeClientTests-umbrella.h */,
+				DBC54E5EF1964185AC24E0EED24FE4E7 /* Pods-AppSyncRealTimeClient-AppSyncRealTimeClientTests.debug.xcconfig */,
+				6E3F1CFF889AA1BA55D7FAED2617740A /* Pods-AppSyncRealTimeClient-AppSyncRealTimeClientTests.release.xcconfig */,
+			);
+			name = "Pods-AppSyncRealTimeClient-AppSyncRealTimeClientTests";
+			path = "Target Support Files/Pods-AppSyncRealTimeClient-AppSyncRealTimeClientTests";
+			sourceTree = "<group>";
+		};
+		2B24D4899EF353F3905CF68DBFECA023 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				6872C6E03EEA24905C6813A477B6C3B3 /* Pods_AppSyncRealTimeClient.framework */,
+				22A29C08E1F2879B5F40B9272E98D7BD /* Pods_AppSyncRealTimeClient_AppSyncRealTimeClientTests.framework */,
+				ED00F87B053026A542BE85D0CA39F88F /* Pods_HostApp.framework */,
+				53FD200EDC1B7F726E251F28FC00588D /* Pods_HostApp_AppSyncRealTimeClientIntegrationTests.framework */,
+				891B2270823847ED23F2ECFC28F935EC /* Starscream.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		6674FFB9FC5D9ABF500A75608657D094 /* Targets Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				D53943E22ED900152E008CDEBDCA3C0F /* Pods-AppSyncRealTimeClient */,
+				264B30FB4D9C0B4BDC8349AFF40FD43D /* Pods-AppSyncRealTimeClient-AppSyncRealTimeClientTests */,
+				FB05EB7B21FEEB6DDBA927C5D2BEFB39 /* Pods-HostApp */,
+				EFF1E5739CC989436B49F67FE48E4F54 /* Pods-HostApp-AppSyncRealTimeClientIntegrationTests */,
+			);
+			name = "Targets Support Files";
+			sourceTree = "<group>";
+		};
+		7022F56D3C22E8CAE58845194650BA35 /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				F639798900C02A52DB81BC2169DA9ED5 /* Starscream.modulemap */,
+				E7CD3B886D6D8805A735BDEF3BDCF0BA /* Starscream-dummy.m */,
+				5D5E240C51338D03C83A9EF0676C3AFD /* Starscream-Info.plist */,
+				D4AA0E3CD4A50DFB82FB9B64E4D1CEEA /* Starscream-prefix.pch */,
+				224B8A4E0612334207A2B350C859D2D4 /* Starscream-umbrella.h */,
+				6A0B7D439B81AAF110C14562A8D7CE1A /* Starscream.debug.xcconfig */,
+				E63A7F2D8B4DA51D2907CBD374D6EF7C /* Starscream.release.xcconfig */,
+			);
+			name = "Support Files";
+			path = "../Target Support Files/Starscream";
+			sourceTree = "<group>";
+		};
+		97C5288770E1953BDB40F8F908E40D46 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				F5209523CD23E3706A7BB516D14FA299 /* Starscream */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		C0834CEBB1379A84116EF29F93051C60 /* iOS */ = {
+			isa = PBXGroup;
+			children = (
+				3212113385A8FBBDB272BD23C409FF61 /* Foundation.framework */,
+			);
+			name = iOS;
+			sourceTree = "<group>";
+		};
+		CF1408CF629C7361332E53B88F7BD30C = {
+			isa = PBXGroup;
+			children = (
+				9D940727FF8FB9C785EB98E56350EF41 /* Podfile */,
+				D210D550F4EA176C3123ED886F8F87F5 /* Frameworks */,
+				97C5288770E1953BDB40F8F908E40D46 /* Pods */,
+				2B24D4899EF353F3905CF68DBFECA023 /* Products */,
+				6674FFB9FC5D9ABF500A75608657D094 /* Targets Support Files */,
+			);
+			sourceTree = "<group>";
+		};
+		D210D550F4EA176C3123ED886F8F87F5 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				C0834CEBB1379A84116EF29F93051C60 /* iOS */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		D53943E22ED900152E008CDEBDCA3C0F /* Pods-AppSyncRealTimeClient */ = {
+			isa = PBXGroup;
+			children = (
+				3A2AB5FF990A8E0FE800DBDCA93CDD21 /* Pods-AppSyncRealTimeClient.modulemap */,
+				210903E32DA46D1883283394CA6441CE /* Pods-AppSyncRealTimeClient-acknowledgements.markdown */,
+				1D331371962AF5917334FF1DE4E79DE2 /* Pods-AppSyncRealTimeClient-acknowledgements.plist */,
+				4B9620166AD3C7EE0FC8BD78D464CD79 /* Pods-AppSyncRealTimeClient-dummy.m */,
+				81B676869B0B4CAFC7E88D6BAC199B49 /* Pods-AppSyncRealTimeClient-Info.plist */,
+				E2E89DDFAB03922917F8DA4C8553B27D /* Pods-AppSyncRealTimeClient-umbrella.h */,
+				735A451220FDEA76F5BB1DD6E29EA51A /* Pods-AppSyncRealTimeClient.debug.xcconfig */,
+				8395B32D173647B089D8967DE4A1F136 /* Pods-AppSyncRealTimeClient.release.xcconfig */,
+			);
+			name = "Pods-AppSyncRealTimeClient";
+			path = "Target Support Files/Pods-AppSyncRealTimeClient";
+			sourceTree = "<group>";
+		};
+		EFF1E5739CC989436B49F67FE48E4F54 /* Pods-HostApp-AppSyncRealTimeClientIntegrationTests */ = {
+			isa = PBXGroup;
+			children = (
+				4112AC35BEB06583873BB954015933BC /* Pods-HostApp-AppSyncRealTimeClientIntegrationTests.modulemap */,
+				03962F9349E90408DB21339851805D40 /* Pods-HostApp-AppSyncRealTimeClientIntegrationTests-acknowledgements.markdown */,
+				644246984C21E39FC534EC33329665F8 /* Pods-HostApp-AppSyncRealTimeClientIntegrationTests-acknowledgements.plist */,
+				BC78695BA9B09FD71768039EEFD9E505 /* Pods-HostApp-AppSyncRealTimeClientIntegrationTests-dummy.m */,
+				3C4577D7D047FA934744235DAA310B13 /* Pods-HostApp-AppSyncRealTimeClientIntegrationTests-frameworks.sh */,
+				F4471EBE247E4859EC4A6D53B668AC5F /* Pods-HostApp-AppSyncRealTimeClientIntegrationTests-Info.plist */,
+				A707D7A77DACD85A7E89A5C64E03ECF6 /* Pods-HostApp-AppSyncRealTimeClientIntegrationTests-umbrella.h */,
+				E0690E22960644838E0FE920E79709F9 /* Pods-HostApp-AppSyncRealTimeClientIntegrationTests.debug.xcconfig */,
+				160F8F9FC3A23D5BC21D6E5BADBBB504 /* Pods-HostApp-AppSyncRealTimeClientIntegrationTests.release.xcconfig */,
+			);
+			name = "Pods-HostApp-AppSyncRealTimeClientIntegrationTests";
+			path = "Target Support Files/Pods-HostApp-AppSyncRealTimeClientIntegrationTests";
+			sourceTree = "<group>";
+		};
+		F5209523CD23E3706A7BB516D14FA299 /* Starscream */ = {
+			isa = PBXGroup;
+			children = (
+				734469CD9655D7C38786710ED18F3D6B /* Compression.swift */,
+				6DBD425D2B58528B26427B72C1648FA8 /* SSLClientCertificate.swift */,
+				A2D9C839438B1BC7D9DC70F5786B7A79 /* SSLSecurity.swift */,
+				22A53698F1D065DB33E81AB27CAAC02A /* WebSocket.swift */,
+				7022F56D3C22E8CAE58845194650BA35 /* Support Files */,
+			);
+			name = Starscream;
+			path = Starscream;
+			sourceTree = "<group>";
+		};
+		FB05EB7B21FEEB6DDBA927C5D2BEFB39 /* Pods-HostApp */ = {
+			isa = PBXGroup;
+			children = (
+				C0EAE127EDC177828E9B145FD09EF73E /* Pods-HostApp.modulemap */,
+				1C6EB0583D12861755E29BFCB033A83A /* Pods-HostApp-acknowledgements.markdown */,
+				6B2A114B8E1404487C992A3D9835FD3D /* Pods-HostApp-acknowledgements.plist */,
+				77251B65B0BC867A2BC73E05A057680B /* Pods-HostApp-dummy.m */,
+				820632578FC956F3D78011F8A9AA5A02 /* Pods-HostApp-Info.plist */,
+				785E2FB330C79BE4EA1802F98E208B30 /* Pods-HostApp-umbrella.h */,
+				67D7B82C5EAD303BC90480FC359E1EE8 /* Pods-HostApp.debug.xcconfig */,
+				7FFFAFD46A0F73A3A2D631937E365358 /* Pods-HostApp.release.xcconfig */,
+			);
+			name = "Pods-HostApp";
+			path = "Target Support Files/Pods-HostApp";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		7090D230A5F0064BE8CD4DD38E0CF5BD /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				ECE826AD8C2FC36A0D51101B1A21FFCF /* Pods-HostApp-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		ABD37AF9B9F78580D159AE761C456202 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B4A6283FDFA04E3A7B6FD0C13B6FEF32 /* Starscream-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EFD984AB8D80FBD33A7DF3D80A794ECF /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E1ADB160973B846BBA5A23EFDF1663F5 /* Pods-AppSyncRealTimeClient-AppSyncRealTimeClientTests-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F71AB311F657B5A0B7E822B3E3F1C501 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AE652350C268B314D54639B7ED7250EB /* Pods-AppSyncRealTimeClient-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F7C24F1561E1D07DBFDFAE34A498E37A /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				16C1C5B1133FDB6FC9DF32E86B789E93 /* Pods-HostApp-AppSyncRealTimeClientIntegrationTests-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		2BEF669ED21FB1C24EB8C90152EB8E69 /* Pods-AppSyncRealTimeClient-AppSyncRealTimeClientTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 0C2566A1C7D7F5BC80A925F7465B1BB5 /* Build configuration list for PBXNativeTarget "Pods-AppSyncRealTimeClient-AppSyncRealTimeClientTests" */;
+			buildPhases = (
+				EFD984AB8D80FBD33A7DF3D80A794ECF /* Headers */,
+				DD72ABBA34DA46FD759331EE798E8E4C /* Sources */,
+				443EA6E63E17EA34B18BE5208505200E /* Frameworks */,
+				61AB37568659E02D315D904649A440A1 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				EBFC85D68425620215AF080CC83AEB83 /* PBXTargetDependency */,
+			);
+			name = "Pods-AppSyncRealTimeClient-AppSyncRealTimeClientTests";
+			productName = "Pods-AppSyncRealTimeClient-AppSyncRealTimeClientTests";
+			productReference = 22A29C08E1F2879B5F40B9272E98D7BD /* Pods_AppSyncRealTimeClient_AppSyncRealTimeClientTests.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		6EEF16DB9C03678478A914A8EF4798C9 /* Pods-HostApp */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = EA87744D5019387CF4ACA8B58746EB97 /* Build configuration list for PBXNativeTarget "Pods-HostApp" */;
+			buildPhases = (
+				7090D230A5F0064BE8CD4DD38E0CF5BD /* Headers */,
+				E0A55DAF3293C2CFDCAC96E74AECB74E /* Sources */,
+				C4A67CD57F72281B77804823F6F31A59 /* Frameworks */,
+				859F9E9A3DBC98ABDAA477BD1D13AC8C /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Pods-HostApp";
+			productName = "Pods-HostApp";
+			productReference = ED00F87B053026A542BE85D0CA39F88F /* Pods_HostApp.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		9785554C3AC8196C58B3F36D51C5DF3E /* Pods-HostApp-AppSyncRealTimeClientIntegrationTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 6D274754DBDCAFECB42B6500F93C8CDE /* Build configuration list for PBXNativeTarget "Pods-HostApp-AppSyncRealTimeClientIntegrationTests" */;
+			buildPhases = (
+				F7C24F1561E1D07DBFDFAE34A498E37A /* Headers */,
+				B5CF4F9670E42F64BD5DDF3E188ABC4B /* Sources */,
+				C1C5A97ECF42FF57F718A0ABC49CDD71 /* Frameworks */,
+				2836ABC6CE4683F4357E80E555DE95B5 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				6BBD4075CA22A7D10778283519C736F4 /* PBXTargetDependency */,
+			);
+			name = "Pods-HostApp-AppSyncRealTimeClientIntegrationTests";
+			productName = "Pods-HostApp-AppSyncRealTimeClientIntegrationTests";
+			productReference = 53FD200EDC1B7F726E251F28FC00588D /* Pods_HostApp_AppSyncRealTimeClientIntegrationTests.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		9A8C78C2BEE0B5D110555008D00CA1F1 /* Pods-AppSyncRealTimeClient */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 93FEAC97C420A74C2CCEF1CE28B3F47D /* Build configuration list for PBXNativeTarget "Pods-AppSyncRealTimeClient" */;
+			buildPhases = (
+				F71AB311F657B5A0B7E822B3E3F1C501 /* Headers */,
+				1ABFD7FB8E80EE70098E1FA9823EB59A /* Sources */,
+				DE9C5EA3A18BB52C8771253A937F74EC /* Frameworks */,
+				423CF8AA589509252EDED74D0BA59591 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				E2E5C1B46701EB31CDBE9A7E94DC5AC4 /* PBXTargetDependency */,
+			);
+			name = "Pods-AppSyncRealTimeClient";
+			productName = "Pods-AppSyncRealTimeClient";
+			productReference = 6872C6E03EEA24905C6813A477B6C3B3 /* Pods_AppSyncRealTimeClient.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		9B78EE4AF6AE03E79D88886319853FF7 /* Starscream */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = ED5C15C705AB67930733A7E237A0A33A /* Build configuration list for PBXNativeTarget "Starscream" */;
+			buildPhases = (
+				ABD37AF9B9F78580D159AE761C456202 /* Headers */,
+				621EE447A1C117BDCD418F5DE070FD3C /* Sources */,
+				09206235EB9393FD6D895453F2569AF9 /* Frameworks */,
+				BE174469BA3F43D1B5CE60520CA93EB3 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Starscream;
+			productName = Starscream;
+			productReference = 891B2270823847ED23F2ECFC28F935EC /* Starscream.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		BFDFE7DC352907FC980B868725387E98 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1100;
+				LastUpgradeCheck = 1100;
+			};
+			buildConfigurationList = 4821239608C13582E20E6DA73FD5F1F9 /* Build configuration list for PBXProject "Pods" */;
+			compatibilityVersion = "Xcode 10.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = CF1408CF629C7361332E53B88F7BD30C;
+			productRefGroup = 2B24D4899EF353F3905CF68DBFECA023 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				9A8C78C2BEE0B5D110555008D00CA1F1 /* Pods-AppSyncRealTimeClient */,
+				2BEF669ED21FB1C24EB8C90152EB8E69 /* Pods-AppSyncRealTimeClient-AppSyncRealTimeClientTests */,
+				6EEF16DB9C03678478A914A8EF4798C9 /* Pods-HostApp */,
+				9785554C3AC8196C58B3F36D51C5DF3E /* Pods-HostApp-AppSyncRealTimeClientIntegrationTests */,
+				9B78EE4AF6AE03E79D88886319853FF7 /* Starscream */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		2836ABC6CE4683F4357E80E555DE95B5 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		423CF8AA589509252EDED74D0BA59591 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		61AB37568659E02D315D904649A440A1 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		859F9E9A3DBC98ABDAA477BD1D13AC8C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BE174469BA3F43D1B5CE60520CA93EB3 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		1ABFD7FB8E80EE70098E1FA9823EB59A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8B5F4307259687BF12A342B61BA74205 /* Pods-AppSyncRealTimeClient-dummy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		621EE447A1C117BDCD418F5DE070FD3C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				068E5963381B58D7D8CD321462F567ED /* Compression.swift in Sources */,
+				1627E6FA0453D6DB472BA444F1D32AE7 /* SSLClientCertificate.swift in Sources */,
+				8B3350D96B15B975184C8EE0819F9623 /* SSLSecurity.swift in Sources */,
+				294D61E8A195B6A1F6AEDCF0F73599A5 /* Starscream-dummy.m in Sources */,
+				C02D9FEB295BDA1359D2F52C80F8E75A /* WebSocket.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B5CF4F9670E42F64BD5DDF3E188ABC4B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				817804C5825785E8C68D23F39AFD3ABF /* Pods-HostApp-AppSyncRealTimeClientIntegrationTests-dummy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DD72ABBA34DA46FD759331EE798E8E4C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C61D0BE9E766F6FA0C8EC736E75D3712 /* Pods-AppSyncRealTimeClient-AppSyncRealTimeClientTests-dummy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E0A55DAF3293C2CFDCAC96E74AECB74E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				26FA4B9AD3BC213147DEDAA9B75B2A4B /* Pods-HostApp-dummy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		6BBD4075CA22A7D10778283519C736F4 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = Starscream;
+			target = 9B78EE4AF6AE03E79D88886319853FF7 /* Starscream */;
+			targetProxy = A533856D6D077FB09CCD4D79DB0C326C /* PBXContainerItemProxy */;
+		};
+		E2E5C1B46701EB31CDBE9A7E94DC5AC4 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = Starscream;
+			target = 9B78EE4AF6AE03E79D88886319853FF7 /* Starscream */;
+			targetProxy = 79A096E9051D81A58C84B009CC5263BA /* PBXContainerItemProxy */;
+		};
+		EBFC85D68425620215AF080CC83AEB83 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = Starscream;
+			target = 9B78EE4AF6AE03E79D88886319853FF7 /* Starscream */;
+			targetProxy = 7CBCAA27F012DE27E4C9B6B159DAF0DD /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		0439035460E8539BA92E22A7DD746F82 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = DBC54E5EF1964185AC24E0EED24FE4E7 /* Pods-AppSyncRealTimeClient-AppSyncRealTimeClientTests.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "Target Support Files/Pods-AppSyncRealTimeClient-AppSyncRealTimeClientTests/Pods-AppSyncRealTimeClient-AppSyncRealTimeClientTests-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-AppSyncRealTimeClient-AppSyncRealTimeClientTests/Pods-AppSyncRealTimeClient-AppSyncRealTimeClientTests.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		20A0E4F409700F18721BC0062CD8F91B /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 160F8F9FC3A23D5BC21D6E5BADBBB504 /* Pods-HostApp-AppSyncRealTimeClientIntegrationTests.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "Target Support Files/Pods-HostApp-AppSyncRealTimeClientIntegrationTests/Pods-HostApp-AppSyncRealTimeClientIntegrationTests-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-HostApp-AppSyncRealTimeClientIntegrationTests/Pods-HostApp-AppSyncRealTimeClientIntegrationTests.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		25159E683F5FA60BE3620471DF9B0CA9 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = E0690E22960644838E0FE920E79709F9 /* Pods-HostApp-AppSyncRealTimeClientIntegrationTests.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "Target Support Files/Pods-HostApp-AppSyncRealTimeClientIntegrationTests/Pods-HostApp-AppSyncRealTimeClientIntegrationTests-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-HostApp-AppSyncRealTimeClientIntegrationTests/Pods-HostApp-AppSyncRealTimeClientIntegrationTests.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		3736A6618D74EA0C0B75FC9DA7EDCFC2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7FFFAFD46A0F73A3A2D631937E365358 /* Pods-HostApp.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "Target Support Files/Pods-HostApp/Pods-HostApp-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-HostApp/Pods-HostApp.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		3E06D9461032CC4CE41B933D8A6B717A /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = E63A7F2D8B4DA51D2907CBD374D6EF7C /* Starscream.release.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/Starscream/Starscream-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/Starscream/Starscream-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MODULEMAP_FILE = "Target Support Files/Starscream/Starscream.modulemap";
+				PRODUCT_MODULE_NAME = Starscream;
+				PRODUCT_NAME = Starscream;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		476AE845BE0EBDC5216F6AEFF54B91DC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 735A451220FDEA76F5BB1DD6E29EA51A /* Pods-AppSyncRealTimeClient.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "Target Support Files/Pods-AppSyncRealTimeClient/Pods-AppSyncRealTimeClient-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-AppSyncRealTimeClient/Pods-AppSyncRealTimeClient.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		511CE8D2C675AEB3E4FB2B1CA5A91C09 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6A0B7D439B81AAF110C14562A8D7CE1A /* Starscream.debug.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/Starscream/Starscream-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/Starscream/Starscream-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MODULEMAP_FILE = "Target Support Files/Starscream/Starscream.modulemap";
+				PRODUCT_MODULE_NAME = Starscream;
+				PRODUCT_NAME = Starscream;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		8F17DC3A99F99FBAD606CE6963886315 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"POD_CONFIGURATION_RELEASE=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRIP_INSTALLED_PRODUCT = NO;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.0;
+				SYMROOT = "${SRCROOT}/../build";
+			};
+			name = Release;
+		};
+		916E0404255105F480DC4950B7625F7A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"POD_CONFIGURATION_DEBUG=1",
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRIP_INSTALLED_PRODUCT = NO;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				SYMROOT = "${SRCROOT}/../build";
+			};
+			name = Debug;
+		};
+		D21F59F208413E45E3E1408C2EC0ECEB /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6E3F1CFF889AA1BA55D7FAED2617740A /* Pods-AppSyncRealTimeClient-AppSyncRealTimeClientTests.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "Target Support Files/Pods-AppSyncRealTimeClient-AppSyncRealTimeClientTests/Pods-AppSyncRealTimeClient-AppSyncRealTimeClientTests-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-AppSyncRealTimeClient-AppSyncRealTimeClientTests/Pods-AppSyncRealTimeClient-AppSyncRealTimeClientTests.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		E216A8C6C1347A07620A28CB2C4BC3B2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8395B32D173647B089D8967DE4A1F136 /* Pods-AppSyncRealTimeClient.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "Target Support Files/Pods-AppSyncRealTimeClient/Pods-AppSyncRealTimeClient-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-AppSyncRealTimeClient/Pods-AppSyncRealTimeClient.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		F32EA9BA4532C78CC2F9E2B46F13AC12 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 67D7B82C5EAD303BC90480FC359E1EE8 /* Pods-HostApp.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "Target Support Files/Pods-HostApp/Pods-HostApp-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-HostApp/Pods-HostApp.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		0C2566A1C7D7F5BC80A925F7465B1BB5 /* Build configuration list for PBXNativeTarget "Pods-AppSyncRealTimeClient-AppSyncRealTimeClientTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				0439035460E8539BA92E22A7DD746F82 /* Debug */,
+				D21F59F208413E45E3E1408C2EC0ECEB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		4821239608C13582E20E6DA73FD5F1F9 /* Build configuration list for PBXProject "Pods" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				916E0404255105F480DC4950B7625F7A /* Debug */,
+				8F17DC3A99F99FBAD606CE6963886315 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		6D274754DBDCAFECB42B6500F93C8CDE /* Build configuration list for PBXNativeTarget "Pods-HostApp-AppSyncRealTimeClientIntegrationTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				25159E683F5FA60BE3620471DF9B0CA9 /* Debug */,
+				20A0E4F409700F18721BC0062CD8F91B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		93FEAC97C420A74C2CCEF1CE28B3F47D /* Build configuration list for PBXNativeTarget "Pods-AppSyncRealTimeClient" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				476AE845BE0EBDC5216F6AEFF54B91DC /* Debug */,
+				E216A8C6C1347A07620A28CB2C4BC3B2 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		EA87744D5019387CF4ACA8B58746EB97 /* Build configuration list for PBXNativeTarget "Pods-HostApp" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F32EA9BA4532C78CC2F9E2B46F13AC12 /* Debug */,
+				3736A6618D74EA0C0B75FC9DA7EDCFC2 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		ED5C15C705AB67930733A7E237A0A33A /* Build configuration list for PBXNativeTarget "Starscream" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				511CE8D2C675AEB3E4FB2B1CA5A91C09 /* Debug */,
+				3E06D9461032CC4CE41B933D8A6B717A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = BFDFE7DC352907FC980B868725387E98 /* Project object */;
+}
