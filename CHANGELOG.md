@@ -2,7 +2,11 @@
 
 ## 1.1.5
 
+### Bug fix
+
 - Added necessary files required for Carthage users. See [PR #12](https://github.com/aws-amplify/aws-appsync-realtime-client-ios/pull/12) [PR #13](https://github.com/aws-amplify/aws-appsync-realtime-client-ios/pull/13) 
+
+## 1.1.0
 
 ### Improvements
 
