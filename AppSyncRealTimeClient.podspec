@@ -1,7 +1,7 @@
 Pod::Spec.new do |s|
 
     s.name         = 'AppSyncRealTimeClient'
-    s.version      = '1.1.4'
+    s.version      = '1.1.5'
     s.summary      = 'Amazon Web Services AppSync RealTime Client for iOS.'
   
     s.description  = 'AppSync RealTime Client provides subscription connections to AppSync websocket endpoints'
