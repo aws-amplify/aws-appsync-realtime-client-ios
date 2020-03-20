@@ -12,11 +12,8 @@ public struct ConnectionProviderFactory {
 
     public static func createConnectionProvider(for url: URL,
                                                 authInterceptor: AuthInterceptor,
-                                                connectionType: SubscriptionConnectionType,
-                                                unusedConnectionTimeout: DispatchTimeInterval? = nil) -> ConnectionProvider {
-        let provider = ConnectionProviderFactory.createConnectionProvider(for: url,
-                                                                          connectionType: connectionType,
-                                                                          unusedConnectionTimeout: unusedConnectionTimeout)
+                                                connectionType: SubscriptionConnectionType) -> ConnectionProvider {
+        let provider = ConnectionProviderFactory.createConnectionProvider(for: url, connectionType: connectionType)
 
         if let messageInterceptable = provider as? MessageInterceptable {
             messageInterceptable.addInterceptor(authInterceptor)
@@ -30,14 +27,11 @@ public struct ConnectionProviderFactory {
     }
 
     static func createConnectionProvider(for url: URL,
-                                         connectionType: SubscriptionConnectionType,
-                                         unusedConnectionTimeout: DispatchTimeInterval? = nil) -> ConnectionProvider {
+                                         connectionType: SubscriptionConnectionType) -> ConnectionProvider {
         switch connectionType {
         case .appSyncRealtime:
             let websocketProvider = StarscreamAdapter()
-            let connectionProvider = RealtimeConnectionProvider(for: url,
-                                                                websocket: websocketProvider,
-                                                                unusedConnectionTimeout: unusedConnectionTimeout)
+            let connectionProvider = RealtimeConnectionProvider(for: url, websocket: websocketProvider)
             return connectionProvider
         }
     }

@@ -15,7 +15,6 @@ extension RealtimeConnectionProvider: AppSyncWebsocketDelegate {
         AppSyncLogger.debug("WebsocketDidConnect, sending init message...")
         sendConnectionInitMessage()
         disconnectIfStale()
-        disconnectIfNoRemainingSubscriptionConnections()
     }
 
     public func websocketDidDisconnect(provider: AppSyncWebsocketProvider, error: Error?) {

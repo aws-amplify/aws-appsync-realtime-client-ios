@@ -88,7 +88,7 @@ class AppSyncRealTimeClientIntegrationTests: XCTestCase {
     /// 1. Create a new connection provider
     /// 2. Create multiple subscriptions
     /// 3. Unsubscribe the subscriptions
-    /// 4. Wait for the unusedConnectionTimeout process to disconnect the socket
+    /// 4. Sleep to make sure the asynchronous process to disconnect the socket is executed
     /// 5. Ensure the socket is disconnected
     /// 6. Repeat Steps 2-5 with the existing connection provider.
     ///
@@ -98,17 +98,13 @@ class AppSyncRealTimeClientIntegrationTests: XCTestCase {
     /// - Then:
     ///    - Underlying websocket is disconnected
     func testAllSubscriptionsCancelledShouldDisconnectTheWebsocket() {
-        let timeoutInSeconds = 5
-        let unusedConnectionTimeout = DispatchTimeInterval.seconds(timeoutInSeconds)
-        let waitForTimeout = timeoutInSeconds*3
         let connectedInvoked = expectation(description: "Connection established")
         connectedInvoked.expectedFulfillmentCount = 3
 
         let authInterceptor = APIKeyAuthInterceptor(apiKey)
         let connectionProvider = ConnectionProviderFactory.createConnectionProvider(for: url,
                                                                                     authInterceptor: authInterceptor,
-                                                                                    connectionType: .appSyncRealtime,
-                                                                                    unusedConnectionTimeout: unusedConnectionTimeout)
+                                                                                    connectionType: .appSyncRealtime)
         let subscriptionConnection1 = AppSyncSubscriptionConnection(provider: connectionProvider)
         let item1 = subscriptionConnection1.subscribe(requestString: requestString, variables: nil) { (event, item) in
             if case let .connection(state) = event {
@@ -149,7 +145,10 @@ class AppSyncRealTimeClientIntegrationTests: XCTestCase {
         subscriptionConnection2.unsubscribe(item: item2)
         subscriptionConnection3.unsubscribe(item: item3)
 
-        sleep(UInt32(waitForTimeout))
+        // Sleep is required here as disconnecting the connection provider is done asynchronously on the connection
+        // queue for the very last unsubscribe. This means we need to "pull" for the status to ensure the system is operating correctly by sleeping
+        // and checking that the status is .notConnected
+        sleep(5)
         XCTAssertEqual(realTimeConnectionProvider.status, .notConnected)
 
         let newConnectedInvoked = expectation(description: "Connection established")
@@ -164,7 +163,7 @@ class AppSyncRealTimeClientIntegrationTests: XCTestCase {
         wait(for: [newConnectedInvoked], timeout: TestCommonConstants.networkTimeout)
         XCTAssertEqual(realTimeConnectionProvider.status, .connected)
         subscriptionConnection4.unsubscribe(item: newItem)
-        sleep(UInt32(waitForTimeout))
+        sleep(5)
         XCTAssertEqual(realTimeConnectionProvider.status, .notConnected)
     }
 }

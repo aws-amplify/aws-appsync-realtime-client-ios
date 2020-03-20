@@ -1,5 +1,11 @@
 # AppSync RealTime Client for iOS
 
+## 1.1.6
+
+### Improvements
+
+- Socket Disconnect when no remaining subscriptions. See [PR #8](https://github.com/aws-amplify/aws-appsync-realtime-client-ios/pull/8)
+
 ## 1.1.5
 
 ### Bug fix
