@@ -107,12 +107,14 @@ public class RealtimeConnectionProvider: ConnectionProvider {
 
             self.listeners.removeValue(forKey: identifier)
 
-            self.serialConnectionQueue.async { [weak self] in
-                guard let self = self else {
-                    return
+            if self.listeners.count == 0 {
+                self.serialConnectionQueue.async { [weak self] in
+                    guard let self = self else {
+                        return
+                    }
+                    self.status = .notConnected
+                    self.websocket.disconnect()
                 }
-                self.status = .notConnected
-                self.websocket.disconnect()
             }
         }
     }
