@@ -12,6 +12,15 @@ class AppSyncRealTimeClientIntegrationTests: XCTestCase {
 
     var url: URL!
     var apiKey: String!
+    let requestString = """
+        subscription onCreate {
+          onCreateTodo{
+            id
+            description
+            name
+          }
+        }
+        """
 
     override func setUp() {
         do {
@@ -49,19 +58,9 @@ class AppSyncRealTimeClientIntegrationTests: XCTestCase {
         let subscribeSuccess = expectation(description: "subscribe successfully")
         let authInterceptor = APIKeyAuthInterceptor(apiKey)
         let connectionProvider = ConnectionProviderFactory.createConnectionProvider(for: url,
-                                                                                authInterceptor: authInterceptor,
-                                                                                connectionType: .appSyncRealtime)
-
+                                                                                    authInterceptor: authInterceptor,
+                                                                                    connectionType: .appSyncRealtime)
         let subscriptionConnection = AppSyncSubscriptionConnection(provider: connectionProvider)
-        let requestString = """
-                            subscription onCreate {
-                              onCreateTodo{
-                                id
-                                description
-                                name
-                              }
-                            }
-                            """
         _ = subscriptionConnection.subscribe(requestString: requestString, variables: nil) { (event, item) in
 
             switch event {
@@ -83,5 +82,88 @@ class AppSyncRealTimeClientIntegrationTests: XCTestCase {
 
         wait(for: [subscribeSuccess], timeout: TestCommonConstants.networkTimeout)
     }
-}
 
+    /// The purpose of this test is to ensure that all websockets can be successfully created, exercised and terminated
+    /// while keeping a single connection provider in memory. Specifically, the following test exercises the following:
+    /// 1. Create a new connection provider
+    /// 2. Create multiple subscriptions
+    /// 3. Unsubscribe the subscriptions
+    /// 4. Sleep to make sure the asynchronous process to disconnect the socket is executed
+    /// 5. Ensure the socket is disconnected
+    /// 6. Repeat Steps 2-5 with the existing connection provider.
+    ///
+    /// - Given: Connected subscriptions
+    /// - When:
+    ///    - All subscription items are unsubscribed
+    /// - Then:
+    ///    - Underlying websocket is disconnected
+    func testAllSubscriptionsCancelledShouldDisconnectTheWebsocket() {
+        let connectedInvoked = expectation(description: "Connection established")
+        connectedInvoked.expectedFulfillmentCount = 3
+
+        let authInterceptor = APIKeyAuthInterceptor(apiKey)
+        let connectionProvider = ConnectionProviderFactory.createConnectionProvider(for: url,
+                                                                                    authInterceptor: authInterceptor,
+                                                                                    connectionType: .appSyncRealtime)
+        let subscriptionConnection1 = AppSyncSubscriptionConnection(provider: connectionProvider)
+        let item1 = subscriptionConnection1.subscribe(requestString: requestString, variables: nil) { (event, item) in
+            if case let .connection(state) = event {
+                if case .connected = state {
+                    connectedInvoked.fulfill()
+                }
+            }
+        }
+        let subscriptionConnection2 = AppSyncSubscriptionConnection(provider: connectionProvider)
+        let item2 = subscriptionConnection2.subscribe(requestString: requestString, variables: nil) { (event, item) in
+            if case let .connection(state) = event {
+                if case .connected = state {
+                    connectedInvoked.fulfill()
+                }
+            }
+        }
+        let subscriptionConnection3 = AppSyncSubscriptionConnection(provider: connectionProvider)
+        let item3 = subscriptionConnection3.subscribe(requestString: requestString, variables: nil) { (event, item) in
+            if case let .connection(state) = event {
+                if case .connected = state {
+                    connectedInvoked.fulfill()
+                }
+            }
+        }
+
+        XCTAssertNotNil(item1)
+        XCTAssertNotNil(item2)
+        XCTAssertNotNil(item3)
+        wait(for: [connectedInvoked], timeout: TestCommonConstants.networkTimeout)
+
+        guard let realTimeConnectionProvider = connectionProvider as? RealtimeConnectionProvider else {
+            XCTFail("Could not retrieve concrete connection provider")
+            return
+        }
+        XCTAssertEqual(realTimeConnectionProvider.status, .connected)
+
+        subscriptionConnection1.unsubscribe(item: item1)
+        subscriptionConnection2.unsubscribe(item: item2)
+        subscriptionConnection3.unsubscribe(item: item3)
+
+        // Sleep is required here as disconnecting the connection provider is done asynchronously on the connection
+        // queue for the very last unsubscribe. This means we need to "pull" for the status to ensure the system is operating correctly by sleeping
+        // and checking that the status is .notConnected
+        sleep(5)
+        XCTAssertEqual(realTimeConnectionProvider.status, .notConnected)
+
+        let newConnectedInvoked = expectation(description: "Connection established")
+        let subscriptionConnection4 = AppSyncSubscriptionConnection(provider: connectionProvider)
+        let newItem = subscriptionConnection4.subscribe(requestString: requestString, variables: nil) { (event, item) in
+            if case let .connection(state) = event {
+                if case .connected = state {
+                    newConnectedInvoked.fulfill()
+                }
+            }
+        }
+        wait(for: [newConnectedInvoked], timeout: TestCommonConstants.networkTimeout)
+        XCTAssertEqual(realTimeConnectionProvider.status, .connected)
+        subscriptionConnection4.unsubscribe(item: newItem)
+        sleep(5)
+        XCTAssertEqual(realTimeConnectionProvider.status, .notConnected)
+    }
+}
