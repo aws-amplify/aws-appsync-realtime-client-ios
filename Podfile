@@ -6,7 +6,7 @@ target 'AppSyncRealTimeClient' do
   use_frameworks!
 
   # Pods for AppSyncRealTimeClient
-  pod "Starscream", "3.0.6"
+  pod "Starscream", "~> 3.1.0"
   
   target 'AppSyncRealTimeClientTests' do
     # Pods for testing
