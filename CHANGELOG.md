@@ -1,5 +1,11 @@
 # AppSync RealTime Client for iOS
 
+## 1.2.0
+
+### Misc
+
+- Upgrade Starscream to ~> 3.1.0. See [PR #17](https://github.com/aws-amplify/aws-appsync-realtime-client-ios/pull/17)
+
 ## 1.1.6
 
 ### Improvements
