@@ -1,5 +1,11 @@
 # AppSync RealTime Client for iOS
 
+## 1.2.1
+
+### Misc
+
+- Make SubscriptionItem.init public. See [PR #19](https://github.com/aws-amplify/aws-appsync-realtime-client-ios/pull/19)
+
 ## 1.2.0
 
 ### Misc
