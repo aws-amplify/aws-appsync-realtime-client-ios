@@ -1,17 +1,12 @@
 # AppSync RealTime Client for iOS
 
-## Unreleased
-
-### Misc
-
-- Update CocoaPods JSON gem dependency. See [PR #20](https://github.com/aws-amplify/aws-appsync-realtime-client-ios/pull/20)
-- Fix integration tests instructions and add test schema to support files. See [PR #21](https://github.com/aws-amplify/aws-appsync-realtime-client-ios/pull/21)
-
-## 1.2.1
+## 1.3.0
 
 ### Misc
 
 - Make SubscriptionItem.init public. See [PR #19](https://github.com/aws-amplify/aws-appsync-realtime-client-ios/pull/19)
+- Update CocoaPods JSON gem dependency. See [PR #20](https://github.com/aws-amplify/aws-appsync-realtime-client-ios/pull/20)
+- Fix integration tests instructions and add test schema to support files. See [PR #21](https://github.com/aws-amplify/aws-appsync-realtime-client-ios/pull/21)
 
 ## 1.2.0
 
