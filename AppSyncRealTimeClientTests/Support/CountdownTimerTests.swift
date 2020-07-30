@@ -13,7 +13,7 @@ import XCTest
 /// handle stale connections.
 ///
 /// Clearly many of these tests are timing dependent, and could vary based on the
-/// execution environment. We'll try these test now, and if they turns out to be
+/// execution environment. We'll try these tests now, and if they turn out to be
 /// unstable then we'll remove it and try a different approach.
 class CountdownTimerTests: XCTestCase {
 
