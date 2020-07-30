@@ -18,8 +18,12 @@ public class RealtimeConnectionProvider: ConnectionProvider {
     var messageInterceptors: [MessageInterceptor] = []
     var connectionInterceptors: [ConnectionInterceptor] = []
 
-    var staleConnectionTimeout = DispatchTimeInterval.seconds(5 * 60)
-    var lastKeepAliveTime = DispatchTime.now()
+    /// Maximum number of seconds a connection may go without receiving a keep alive
+    /// message before we consider it stale and force a disconnect
+    var staleConnectionTimeout: TimeInterval = 5 * 60
+
+    /// A timer to track receipt of a keep alive message
+    var keepAliveTimer: CountdownTimer?
 
     /// Serial queue for websocket connection.
     ///
@@ -91,6 +95,8 @@ public class RealtimeConnectionProvider: ConnectionProvider {
 
     public func disconnect() {
         websocket.disconnect()
+        keepAliveTimer?.invalidate()
+        keepAliveTimer = nil
     }
 
     public func addListener(identifier: String, callback: @escaping ConnectionProviderCallback) {
@@ -108,7 +114,9 @@ public class RealtimeConnectionProvider: ConnectionProvider {
             self.listeners.removeValue(forKey: identifier)
 
             if self.listeners.count == 0 {
+                print("### Listener count == 0, disconnecting")
                 self.serialConnectionQueue.async { [weak self] in
+                    print("### serialConnectionQueue.async disconnecting")
                     guard let self = self else {
                         return
                     }

@@ -14,7 +14,6 @@
 		217F39CF2406E98400F1A0B3 /* AppSyncMessage+Encodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 217F39AD2406E98300F1A0B3 /* AppSyncMessage+Encodable.swift */; };
 		217F39D02406E98400F1A0B3 /* AppSyncMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 217F39AE2406E98300F1A0B3 /* AppSyncMessage.swift */; };
 		217F39D12406E98400F1A0B3 /* AppSyncConnectionRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 217F39AF2406E98300F1A0B3 /* AppSyncConnectionRequest.swift */; };
-		217F39D22406E98400F1A0B3 /* RealtimeConnectionProvider+KeepAlive.swift in Sources */ = {isa = PBXBuildFile; fileRef = 217F39B12406E98300F1A0B3 /* RealtimeConnectionProvider+KeepAlive.swift */; };
 		217F39D32406E98400F1A0B3 /* RealtimeConnectionProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 217F39B22406E98300F1A0B3 /* RealtimeConnectionProvider.swift */; };
 		217F39D42406E98400F1A0B3 /* RealtimeConnectionProvider+Websocket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 217F39B32406E98300F1A0B3 /* RealtimeConnectionProvider+Websocket.swift */; };
 		217F39D52406E98400F1A0B3 /* RealtimeConnectionProviderResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 217F39B42406E98300F1A0B3 /* RealtimeConnectionProviderResponse.swift */; };
@@ -50,7 +49,6 @@
 		21D38B5C2409B94100EC2A8D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 21D38B5B2409B94100EC2A8D /* Assets.xcassets */; };
 		21D38B5F2409B94100EC2A8D /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 21D38B5E2409B94100EC2A8D /* Preview Assets.xcassets */; };
 		21D38B622409B94100EC2A8D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 21D38B602409B94100EC2A8D /* LaunchScreen.storyboard */; };
-		21D38B692409B95B00EC2A8D /* amplifyconfiguration.json in Resources */ = {isa = PBXBuildFile; fileRef = 21D38B4B2409B6C000EC2A8D /* amplifyconfiguration.json */; };
 		21D38B6D240A262800EC2A8D /* AppSyncJSONHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21D38B6C240A262800EC2A8D /* AppSyncJSONHelper.swift */; };
 		21D38B7C240A2A1300EC2A8D /* OIDCAuthInterceptor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21D38B78240A2A1300EC2A8D /* OIDCAuthInterceptor.swift */; };
 		21D38B83240A392B00EC2A8D /* APIKeyAuthInterceptor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21D38B82240A392B00EC2A8D /* APIKeyAuthInterceptor.swift */; };
@@ -66,6 +64,9 @@
 		450019BB151D701382536BD0 /* Pods_HostApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 29CDD85F44666C7241232D29 /* Pods_HostApp.framework */; };
 		4A3EAC9B20D96D81CC3A7EF4 /* Pods_HostApp_AppSyncRealTimeClientIntegrationTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43D112B03D6D38F84995D6FA /* Pods_HostApp_AppSyncRealTimeClientIntegrationTests.framework */; };
 		DCFE701B5D1380E566694A48 /* Pods_AppSyncRealTimeClient_AppSyncRealTimeClientTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E662A46AB2C93EE316F784C /* Pods_AppSyncRealTimeClient_AppSyncRealTimeClientTests.framework */; };
+		FAB5AA1E24D1CD31001F370F /* AppSyncRTCProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB5AA1D24D1CD31001F370F /* AppSyncRTCProvider.swift */; };
+		FAB5AA1F24D1CD84001F370F /* amplifyconfiguration.json in Resources */ = {isa = PBXBuildFile; fileRef = 21D38B4B2409B6C000EC2A8D /* amplifyconfiguration.json */; };
+		FAB7E91224D2644E00DF1EA1 /* RealtimeConnectionProvider+StaleConnection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 217F39B12406E98300F1A0B3 /* RealtimeConnectionProvider+StaleConnection.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -104,7 +105,7 @@
 		217F39AD2406E98300F1A0B3 /* AppSyncMessage+Encodable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "AppSyncMessage+Encodable.swift"; sourceTree = "<group>"; };
 		217F39AE2406E98300F1A0B3 /* AppSyncMessage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppSyncMessage.swift; sourceTree = "<group>"; };
 		217F39AF2406E98300F1A0B3 /* AppSyncConnectionRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppSyncConnectionRequest.swift; sourceTree = "<group>"; };
-		217F39B12406E98300F1A0B3 /* RealtimeConnectionProvider+KeepAlive.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "RealtimeConnectionProvider+KeepAlive.swift"; sourceTree = "<group>"; };
+		217F39B12406E98300F1A0B3 /* RealtimeConnectionProvider+StaleConnection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "RealtimeConnectionProvider+StaleConnection.swift"; sourceTree = "<group>"; };
 		217F39B22406E98300F1A0B3 /* RealtimeConnectionProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RealtimeConnectionProvider.swift; sourceTree = "<group>"; };
 		217F39B32406E98300F1A0B3 /* RealtimeConnectionProvider+Websocket.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "RealtimeConnectionProvider+Websocket.swift"; sourceTree = "<group>"; };
 		217F39B42406E98300F1A0B3 /* RealtimeConnectionProviderResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RealtimeConnectionProviderResponse.swift; sourceTree = "<group>"; };
@@ -165,6 +166,7 @@
 		B07A87133C24AA78AF59093C /* Pods-AppSyncRealTimeClient.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AppSyncRealTimeClient.debug.xcconfig"; path = "Target Support Files/Pods-AppSyncRealTimeClient/Pods-AppSyncRealTimeClient.debug.xcconfig"; sourceTree = "<group>"; };
 		C73EA796F50FB0196FDF4865 /* Pods-AppSyncRealTimeClient.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AppSyncRealTimeClient.release.xcconfig"; path = "Target Support Files/Pods-AppSyncRealTimeClient/Pods-AppSyncRealTimeClient.release.xcconfig"; sourceTree = "<group>"; };
 		E65A19C826699DA299A49284 /* Pods-HostApp-AppSyncRealTimeClientIntegrationTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HostApp-AppSyncRealTimeClientIntegrationTests.release.xcconfig"; path = "Target Support Files/Pods-HostApp-AppSyncRealTimeClientIntegrationTests/Pods-HostApp-AppSyncRealTimeClientIntegrationTests.release.xcconfig"; sourceTree = "<group>"; };
+		FAB5AA1D24D1CD31001F370F /* AppSyncRTCProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSyncRTCProvider.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -276,7 +278,7 @@
 			children = (
 				217F39B22406E98300F1A0B3 /* RealtimeConnectionProvider.swift */,
 				217F39B62406E98300F1A0B3 /* RealtimeConnectionProvider+ConnectionInterceptable.swift */,
-				217F39B12406E98300F1A0B3 /* RealtimeConnectionProvider+KeepAlive.swift */,
+				217F39B12406E98300F1A0B3 /* RealtimeConnectionProvider+StaleConnection.swift */,
 				217F39B52406E98300F1A0B3 /* RealtimeConnectionProvider+MessageInterceptable.swift */,
 				217F39B32406E98300F1A0B3 /* RealtimeConnectionProvider+Websocket.swift */,
 				217F39B42406E98300F1A0B3 /* RealtimeConnectionProviderResponse.swift */,
@@ -385,6 +387,7 @@
 			isa = PBXGroup;
 			children = (
 				21D38B552409B93F00EC2A8D /* AppDelegate.swift */,
+				FAB5AA1D24D1CD31001F370F /* AppSyncRTCProvider.swift */,
 				21D38B572409B93F00EC2A8D /* SceneDelegate.swift */,
 				21D38B592409B93F00EC2A8D /* ContentView.swift */,
 				21D38B5B2409B94100EC2A8D /* Assets.xcassets */,
@@ -540,6 +543,7 @@
 				21D38B4F2409B93F00EC2A8D /* Sources */,
 				21D38B502409B93F00EC2A8D /* Frameworks */,
 				21D38B512409B93F00EC2A8D /* Resources */,
+				C43554BD3E688AB397994E9A /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -624,10 +628,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				21D38B692409B95B00EC2A8D /* amplifyconfiguration.json in Resources */,
 				21D38B622409B94100EC2A8D /* LaunchScreen.storyboard in Resources */,
 				21D38B5F2409B94100EC2A8D /* Preview Assets.xcassets in Resources */,
 				21D38B5C2409B94100EC2A8D /* Assets.xcassets in Resources */,
+				FAB5AA1F24D1CD84001F370F /* amplifyconfiguration.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -717,6 +721,23 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
+		C43554BD3E688AB397994E9A /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-HostApp/Pods-HostApp-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-HostApp/Pods-HostApp-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-HostApp/Pods-HostApp-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		D3A1E54210CC83949895F543 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -771,6 +792,7 @@
 				217F39CD2406E98400F1A0B3 /* InterceptableConnection.swift in Sources */,
 				21D38B8E240A3C2300EC2A8D /* ConnectionProviderFactory.swift in Sources */,
 				217F39E02406E98400F1A0B3 /* AppSyncWebsocketProvider.swift in Sources */,
+				FAB7E91224D2644E00DF1EA1 /* RealtimeConnectionProvider+StaleConnection.swift in Sources */,
 				217F39D32406E98400F1A0B3 /* RealtimeConnectionProvider.swift in Sources */,
 				217F39D12406E98400F1A0B3 /* AppSyncConnectionRequest.swift in Sources */,
 				217F39DD2406E98400F1A0B3 /* AppSyncSubscriptionConnection+Connection.swift in Sources */,
@@ -795,7 +817,6 @@
 				217F39E12406E98400F1A0B3 /* StarscreamAdapter.swift in Sources */,
 				217F39D72406E98400F1A0B3 /* RealtimeConnectionProvider+ConnectionInterceptable.swift in Sources */,
 				217F39DE2406E98400F1A0B3 /* AppSyncSubscriptionConnection+ErrorHandler.swift in Sources */,
-				217F39D22406E98400F1A0B3 /* RealtimeConnectionProvider+KeepAlive.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -829,6 +850,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				21D38B562409B93F00EC2A8D /* AppDelegate.swift in Sources */,
+				FAB5AA1E24D1CD31001F370F /* AppSyncRTCProvider.swift in Sources */,
 				21D38B582409B93F00EC2A8D /* SceneDelegate.swift in Sources */,
 				21D38B5A2409B93F00EC2A8D /* ContentView.swift in Sources */,
 			);

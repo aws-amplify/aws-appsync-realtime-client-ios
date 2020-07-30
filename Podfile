@@ -16,6 +16,9 @@ end
 
 target "HostApp" do 
   use_frameworks!
+
+  pod 'AppSyncRealTimeClient', :path => '.'
+  
   target "AppSyncRealTimeClientIntegrationTests" do 
     inherit! :complete
   end

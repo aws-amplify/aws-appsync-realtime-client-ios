@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import Starscream
 
 extension AppSyncSubscriptionConnection {
 
@@ -16,7 +17,10 @@ extension AppSyncSubscriptionConnection {
             identifier != subscriptionItem.identifier {
             return
         }
+
         AppSyncLogger.error(error)
+        AppSyncSubscriptionConnection.logAdditionalInfo(for: error)
+
         subscriptionState = .notSubscribed
         guard let retryHandler = retryHandler,
             let connectionError = error as? ConnectionProviderError  else {
@@ -33,5 +37,75 @@ extension AppSyncSubscriptionConnection {
         } else {
             subscriptionItem.subscriptionEventHandler(.failed(error), subscriptionItem)
         }
+    }
+
+    public static func logAdditionalInfo(for error: Error) {
+        switch error {
+        case let typedError as ConnectionProviderError:
+            logAdditionalInfo(for: typedError)
+        case let typedError as WSError:
+            logAdditionalInfo(for: typedError)
+        case let typedError as NSError:
+            logAdditionalInfo(for: typedError)
+        default:
+            break
+        }
+    }
+
+    private static func logAdditionalInfo(for error: ConnectionProviderError) {
+        switch error {
+        case .connection:
+            AppSyncLogger.error("ConnectionProviderError.connection")
+        case .jsonParse(let identifier, let underlyingError):
+            AppSyncLogger.error(
+                """
+                ConnectionProviderError.jsonParse; \
+                identifier=\(identifier ?? "(N/A)"); \
+                underlyingError=\(underlyingError?.localizedDescription ?? "(N/A)")
+                """
+            )
+        case .limitExceeded(let identifier):
+            AppSyncLogger.error(
+                """
+                ConnectionProviderError.limitExceeded; \
+                identifier=\(identifier ?? "(N/A)");
+                """
+            )
+        case .subscription(let identifier, let errorPayload):
+            AppSyncLogger.error(
+                """
+                ConnectionProviderError.jsonParse; \
+                identifier=\(identifier); \
+                additionalInfo=\(String(describing: errorPayload))
+                """
+            )
+        case .other:
+            AppSyncLogger.error("ConnectionProviderError.other")
+        }
+    }
+
+    private static func logAdditionalInfo(for error: WSError) {
+        AppSyncLogger.error(error)
+    }
+
+    private static func logAdditionalInfo(for error: NSError) {
+        AppSyncLogger.error(
+            """
+            NSError:\(error.domain); \
+            code:\(error.code); \
+            userInfo:\(error.userInfo)
+            """
+        )
+    }
+
+}
+
+extension WSError: CustomStringConvertible {
+    public var description: String {
+        """
+        WSError:\(message); \
+        code:\(code); \
+        type:\(type)
+        """
     }
 }

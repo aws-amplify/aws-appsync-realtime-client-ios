@@ -14,7 +14,7 @@ extension RealtimeConnectionProvider: AppSyncWebsocketDelegate {
         // Inform the callback when ack gives back a response.
         AppSyncLogger.debug("WebsocketDidConnect, sending init message...")
         sendConnectionInitMessage()
-        disconnectIfStale()
+        startStaleConnectionTimer()
     }
 
     public func websocketDidDisconnect(provider: AppSyncWebsocketProvider, error: Error?) {
@@ -43,7 +43,7 @@ extension RealtimeConnectionProvider: AppSyncWebsocketDelegate {
 
     // MARK: - Handle websocket response
     func handleResponse(_ response: RealtimeConnectionProviderResponse) {
-        lastKeepAliveTime = DispatchTime.now()
+        resetStaleConnectionTimer()
         switch response.responseType {
         case .connectionAck:
 
@@ -62,7 +62,17 @@ extension RealtimeConnectionProvider: AppSyncWebsocketDelegate {
 
                 /// If the service returns a connection timeout, use that instead of the default
                 if case let .number(value) = response.payload?["connectionTimeoutMs"] {
-                    self.staleConnectionTimeout = DispatchTimeInterval.milliseconds(Int(value))
+                    let interval = value / 1_000
+                    if interval != self.keepAliveTimer?.interval {
+                        AppSyncLogger.debug(
+                            """
+                            Resetting keep alive timer in response to service timeout \
+                            instructions \(interval)s
+                            """
+                        )
+                        self.staleConnectionTimeout = interval
+                        self.startStaleConnectionTimer()
+                    }
                 }
             }
 
