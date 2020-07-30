@@ -1,6 +1,0 @@
-framework module Pods_AppSyncRealTimeClient {
-  umbrella header "Pods-AppSyncRealTimeClient-umbrella.h"
-
-  export *
-  module * { export * }
-}

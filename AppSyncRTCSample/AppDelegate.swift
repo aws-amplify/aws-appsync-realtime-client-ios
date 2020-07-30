@@ -5,15 +5,19 @@
 // SPDX-License-Identifier: Apache-2.0
 //
 
+import os.log
 import UIKit
+import AppSyncRealTimeClient
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
-
-
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+
+        // Initialize the subscription, don't do anything in particular with it
+        _ = AppSyncRTCProvider.default
+
         return true
     }
 
@@ -31,6 +35,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Use this method to release any resources that were specific to the discarded scenes, as they will not return.
     }
 
+    func applicationWillResignActive(_ application: UIApplication) {
+        OSLog.subscription.log("\(#function), unsubscribing", log: .subscription)
+        AppSyncRTCProvider.default.unsubscribe()
+    }
+
+    func applicationDidEnterBackground(_ application: UIApplication) {
+        OSLog.subscription.log("\(#function), unsubscribing", log: .subscription)
+        AppSyncRTCProvider.default.unsubscribe()
+    }
 
 }
-

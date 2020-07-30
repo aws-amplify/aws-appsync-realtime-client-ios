@@ -1,8 +1,9 @@
 //
-// Copyright 2018-2020 Amazon.com,
-// Inc. or its affiliates. All Rights Reserved.
+//  SceneDelegate.swift
+//  AppSyncRTCSample
 //
-// SPDX-License-Identifier: Apache-2.0
+//  Created by Schmelter, Tim on 7/30/20.
+//  Copyright © 2020 amazonaws. All rights reserved.
 //
 
 import UIKit
