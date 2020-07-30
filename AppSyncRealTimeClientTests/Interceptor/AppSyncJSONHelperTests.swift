@@ -41,7 +41,6 @@ class AppSyncJSONHelperTests: XCTestCase {
     }
 }
 
-
 private class MockInvalidHeader: AuthenticationHeader {
 
     private enum CodingKeys: String, CodingKey {
