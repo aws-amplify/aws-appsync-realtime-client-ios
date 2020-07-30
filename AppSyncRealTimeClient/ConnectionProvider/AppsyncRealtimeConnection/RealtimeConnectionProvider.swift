@@ -115,9 +115,7 @@ public class RealtimeConnectionProvider: ConnectionProvider {
             self.listeners.removeValue(forKey: identifier)
 
             if self.listeners.isEmpty {
-                print("### Listener count == 0, disconnecting")
                 self.serialConnectionQueue.async { [weak self] in
-                    print("### serialConnectionQueue.async disconnecting")
                     guard let self = self else {
                         return
                     }

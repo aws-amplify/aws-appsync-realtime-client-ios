@@ -113,7 +113,7 @@ extension RealtimeConnectionProvider: AppSyncWebsocketDelegate {
                 updateCallback(event: .data(appSyncResponse))
             }
         case .keepAlive:
-            print("")
+            break
         }
     }
 }

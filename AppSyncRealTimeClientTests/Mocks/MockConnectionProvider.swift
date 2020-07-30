@@ -50,7 +50,7 @@ class MockConnectionProvider: ConnectionProvider {
 
         switch message.messageType {
         case .connectionInit:
-            print("")
+            break
         case .subscribe:
             let response = AppSyncResponse(
                 id: message.id,
