@@ -240,8 +240,8 @@
 				217F39912405D9D500F1A0B3 /* AppSyncRealTimeClient */,
 				217F399C2405D9D500F1A0B3 /* AppSyncRealTimeClientTests */,
 				21D38B3F2409AFBD00EC2A8D /* AppSyncRealTimeClientIntegrationTests */,
-				21D38B542409B93F00EC2A8D /* HostApp */,
 				FA91B1FC24D3063E0017404D /* AppSyncRTCSample */,
+				21D38B542409B93F00EC2A8D /* HostApp */,
 				217F39902405D9D500F1A0B3 /* Products */,
 				D146D6DDE2251CCA7A4ECD7F /* Pods */,
 				CC47BA7DC6033B1626BAD959 /* Frameworks */,
@@ -263,9 +263,9 @@
 		217F39912405D9D500F1A0B3 /* AppSyncRealTimeClient */ = {
 			isa = PBXGroup;
 			children = (
+				217F39932405D9D500F1A0B3 /* Info.plist */,
 				217F39B82406E98300F1A0B3 /* Connection */,
 				217F39A92406E98300F1A0B3 /* ConnectionProvider */,
-				217F39932405D9D500F1A0B3 /* Info.plist */,
 				21D38B6E240A272F00EC2A8D /* Interceptor */,
 				217F39C62406E98400F1A0B3 /* Support */,
 				217F39C12406E98400F1A0B3 /* Websocket */,
@@ -276,9 +276,9 @@
 		217F399C2405D9D500F1A0B3 /* AppSyncRealTimeClientTests */ = {
 			isa = PBXGroup;
 			children = (
+				217F399F2405D9D500F1A0B3 /* Info.plist */,
 				217F39E82406EA3F00F1A0B3 /* Connection */,
 				217F39EC2406EA4000F1A0B3 /* ConnectionProvider */,
-				217F399F2405D9D500F1A0B3 /* Info.plist */,
 				21D38B84240A39E400EC2A8D /* Interceptor */,
 				217F39EA2406EA3F00F1A0B3 /* Mocks */,
 				217F39EE2406EA4000F1A0B3 /* Support */,
@@ -292,12 +292,12 @@
 				217F39AF2406E98300F1A0B3 /* AppSyncConnectionRequest.swift */,
 				217F39AE2406E98300F1A0B3 /* AppSyncMessage.swift */,
 				217F39AD2406E98300F1A0B3 /* AppSyncMessage+Encodable.swift */,
-				217F39B02406E98300F1A0B3 /* AppsyncRealtimeConnection */,
 				217F39AA2406E98300F1A0B3 /* AppSyncResponse.swift */,
-				21D38B8D240A3C2300EC2A8D /* ConnectionProviderFactory.swift */,
 				217F39B72406E98300F1A0B3 /* ConnectionProvider.swift */,
 				217F39AC2406E98300F1A0B3 /* ConnectionProviderError.swift */,
+				21D38B8D240A3C2300EC2A8D /* ConnectionProviderFactory.swift */,
 				217F39AB2406E98300F1A0B3 /* InterceptableConnection.swift */,
+				217F39B02406E98300F1A0B3 /* AppsyncRealtimeConnection */,
 			);
 			path = ConnectionProvider;
 			sourceTree = "<group>";
@@ -307,8 +307,8 @@
 			children = (
 				217F39B22406E98300F1A0B3 /* RealtimeConnectionProvider.swift */,
 				217F39B62406E98300F1A0B3 /* RealtimeConnectionProvider+ConnectionInterceptable.swift */,
-				217F39B12406E98300F1A0B3 /* RealtimeConnectionProvider+StaleConnection.swift */,
 				217F39B52406E98300F1A0B3 /* RealtimeConnectionProvider+MessageInterceptable.swift */,
+				217F39B12406E98300F1A0B3 /* RealtimeConnectionProvider+StaleConnection.swift */,
 				217F39B32406E98300F1A0B3 /* RealtimeConnectionProvider+Websocket.swift */,
 				217F39B42406E98300F1A0B3 /* RealtimeConnectionProviderResponse.swift */,
 			);
@@ -318,10 +318,10 @@
 		217F39B82406E98300F1A0B3 /* Connection */ = {
 			isa = PBXGroup;
 			children = (
-				217F39BB2406E98300F1A0B3 /* AppSyncConnection */,
 				217F39BA2406E98300F1A0B3 /* RetryableConnection.swift */,
 				217F39B92406E98300F1A0B3 /* SubscriptionConnection.swift */,
 				217F39C02406E98300F1A0B3 /* SubscriptionItem.swift */,
+				217F39BB2406E98300F1A0B3 /* AppSyncConnection */,
 			);
 			path = Connection;
 			sourceTree = "<group>";
@@ -404,9 +404,9 @@
 			isa = PBXGroup;
 			children = (
 				21D38B4B2409B6C000EC2A8D /* amplifyconfiguration.json */,
-				21D38B402409AFBD00EC2A8D /* AppSyncRealTimeClientIntegrationTests.swift */,
-				21D38B422409AFBD00EC2A8D /* Info.plist */,
 				21D38B4D2409B8B200EC2A8D /* README.md */,
+				21D38B422409AFBD00EC2A8D /* Info.plist */,
+				21D38B402409AFBD00EC2A8D /* AppSyncRealTimeClientIntegrationTests.swift */,
 				21D38B95240C4DC200EC2A8D /* Support */,
 			);
 			path = AppSyncRealTimeClientIntegrationTests;
@@ -447,9 +447,9 @@
 		21D38B84240A39E400EC2A8D /* Interceptor */ = {
 			isa = PBXGroup;
 			children = (
-				21D38B85240A39E400EC2A8D /* OIDCAuthInterceptorTests.swift */,
-				21D38B87240A39E400EC2A8D /* AppSyncJSONHelperTests.swift */,
 				21D38B88240A39E400EC2A8D /* APIKeyAuthInterceptorTests.swift */,
+				21D38B87240A39E400EC2A8D /* AppSyncJSONHelperTests.swift */,
+				21D38B85240A39E400EC2A8D /* OIDCAuthInterceptorTests.swift */,
 			);
 			path = Interceptor;
 			sourceTree = "<group>";
@@ -457,8 +457,8 @@
 		21D38B95240C4DC200EC2A8D /* Support */ = {
 			isa = PBXGroup;
 			children = (
-				21D38B96240C4DCF00EC2A8D /* Error+Extension.swift */,
 				21D38B98240C4E1C00EC2A8D /* ConfigurationHelper.swift */,
+				21D38B96240C4DCF00EC2A8D /* Error+Extension.swift */,
 				21D38B9C240C540D00EC2A8D /* TestCommonConstants.swift */,
 			);
 			path = Support;
@@ -496,13 +496,13 @@
 		FA91B1FC24D3063E0017404D /* AppSyncRTCSample */ = {
 			isa = PBXGroup;
 			children = (
-				FAB5AA1D24D1CD31001F370F /* AppSyncRTCProvider.swift */,
+				FA91B20B24D306430017404D /* Info.plist */,
 				FA91B1FD24D3063E0017404D /* AppDelegate.swift */,
-				FA91B1FF24D3063E0017404D /* SceneDelegate.swift */,
+				FAB5AA1D24D1CD31001F370F /* AppSyncRTCProvider.swift */,
 				FA91B20124D3063E0017404D /* ContentView.swift */,
+				FA91B1FF24D3063E0017404D /* SceneDelegate.swift */,
 				FA91B20324D306420017404D /* Assets.xcassets */,
 				FA91B20824D306430017404D /* LaunchScreen.storyboard */,
-				FA91B20B24D306430017404D /* Info.plist */,
 				FA91B20524D306420017404D /* Preview Content */,
 			);
 			path = AppSyncRTCSample;
