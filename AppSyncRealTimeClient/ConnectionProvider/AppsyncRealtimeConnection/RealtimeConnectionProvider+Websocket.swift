@@ -18,7 +18,7 @@ extension RealtimeConnectionProvider: AppSyncWebsocketDelegate {
     }
 
     public func websocketDidDisconnect(provider: AppSyncWebsocketProvider, error: Error?) {
-        serialConnectionQueue.async {[weak self] in
+        serialConnectionQueue.async { [weak self] in
             guard let self = self else {
                 return
             }
@@ -47,9 +47,9 @@ extension RealtimeConnectionProvider: AppSyncWebsocketDelegate {
         switch response.responseType {
         case .connectionAck:
 
-            /// Only from in progress state, the connection can transition to connected state.
-            /// The below guard statement make sure that. If we get connectionAck in other state means that
-            /// we have initiated a disconnect parallely.
+            // Only from in progress state, the connection can transition to connected state.
+            // The below guard statement make sure that. If we get connectionAck in other
+            // state means that we have initiated a disconnect parallely.
             guard status == .inProgress else {
                 return
             }
@@ -60,7 +60,7 @@ extension RealtimeConnectionProvider: AppSyncWebsocketDelegate {
                 self.status = .connected
                 self.updateCallback(event: .connection(self.status))
 
-                /// If the service returns a connection timeout, use that instead of the default
+                // If the service returns a connection timeout, use that instead of the default
                 if case let .number(value) = response.payload?["connectionTimeoutMs"] {
                     let interval = value / 1_000
                     if interval != self.keepAliveTimer?.interval {
@@ -77,7 +77,7 @@ extension RealtimeConnectionProvider: AppSyncWebsocketDelegate {
             }
 
         case .error:
-            /// If we get an error in connection inprogress state, return back as connection error.
+            // If we get an error in connection inprogress state, return back as connection error.
             if status == .inProgress {
                 serialConnectionQueue.async {[weak self] in
                     guard let self = self else {
@@ -89,14 +89,14 @@ extension RealtimeConnectionProvider: AppSyncWebsocketDelegate {
                 return
             }
 
-            /// Return back as generic error if there is no identifier.
+            // Return back as generic error if there is no identifier.
             guard let identifier = response.id else {
                 let genericError = ConnectionProviderError.other
                 updateCallback(event: .error(genericError))
                 return
             }
 
-            /// Map to limit exceed error if we get MaxSubscriptionsReachedException
+            // Map to limit exceed error if we get MaxSubscriptionsReachedException
             if let errorType = response.payload?["errorType"],
                 errorType == "MaxSubscriptionsReachedException" {
                 let limitExceedError = ConnectionProviderError.limitExceeded(identifier)
@@ -121,7 +121,7 @@ extension RealtimeConnectionProvider: AppSyncWebsocketDelegate {
 extension RealtimeConnectionProviderResponse {
 
     func toAppSyncResponse() -> AppSyncResponse? {
-        guard let appSyncType = self.responseType.toAppSyncResponseType() else {
+        guard let appSyncType = responseType.toAppSyncResponseType() else {
             return nil
         }
         return AppSyncResponse(id: id, payload: payload, type: appSyncType)

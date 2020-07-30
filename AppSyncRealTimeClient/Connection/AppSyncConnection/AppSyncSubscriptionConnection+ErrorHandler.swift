@@ -9,7 +9,6 @@ import Foundation
 import Starscream
 
 extension AppSyncSubscriptionConnection {
-
     func handleError(error: Error) {
         // If the error identifier is not for the this connection
         // we return immediately without handling the error.
@@ -18,14 +17,14 @@ extension AppSyncSubscriptionConnection {
             return
         }
 
-        AppSyncLogger.error(error)
-        AppSyncSubscriptionConnection.logAdditionalInfo(for: error)
+        AppSyncSubscriptionConnection.logExtendedErrorInfo(for: error)
 
         subscriptionState = .notSubscribed
         guard let retryHandler = retryHandler,
-            let connectionError = error as? ConnectionProviderError  else {
-                subscriptionItem.subscriptionEventHandler(.failed(error), subscriptionItem)
-                return
+            let connectionError = error as? ConnectionProviderError
+        else {
+            subscriptionItem.subscriptionEventHandler(.failed(error), subscriptionItem)
+            return
         }
 
         let retryAdvice = retryHandler.shouldRetryRequest(for: connectionError)
@@ -39,20 +38,20 @@ extension AppSyncSubscriptionConnection {
         }
     }
 
-    public static func logAdditionalInfo(for error: Error) {
+    public static func logExtendedErrorInfo(for error: Error) {
         switch error {
         case let typedError as ConnectionProviderError:
-            logAdditionalInfo(for: typedError)
+            logExtendedErrorInfo(for: typedError)
         case let typedError as WSError:
-            logAdditionalInfo(for: typedError)
+            logExtendedErrorInfo(for: typedError)
         case let typedError as NSError:
-            logAdditionalInfo(for: typedError)
+            logExtendedErrorInfo(for: typedError)
         default:
             break
         }
     }
 
-    private static func logAdditionalInfo(for error: ConnectionProviderError) {
+    private static func logExtendedErrorInfo(for error: ConnectionProviderError) {
         switch error {
         case .connection:
             AppSyncLogger.error("ConnectionProviderError.connection")
@@ -84,11 +83,11 @@ extension AppSyncSubscriptionConnection {
         }
     }
 
-    private static func logAdditionalInfo(for error: WSError) {
+    private static func logExtendedErrorInfo(for error: WSError) {
         AppSyncLogger.error(error)
     }
 
-    private static func logAdditionalInfo(for error: NSError) {
+    private static func logExtendedErrorInfo(for error: NSError) {
         AppSyncLogger.error(
             """
             NSError:\(error.domain); \

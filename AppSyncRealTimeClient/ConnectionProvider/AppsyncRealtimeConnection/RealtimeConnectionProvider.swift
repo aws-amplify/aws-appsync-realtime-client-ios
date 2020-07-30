@@ -34,8 +34,7 @@ public class RealtimeConnectionProvider: ConnectionProvider {
 
     let serialWriteQueue = DispatchQueue(label: "com.amazonaws.AppSyncRealTimeConnectionProvider.writeQueue")
 
-    public init(for url: URL,
-                websocket: AppSyncWebsocketProvider) {
+    public init(for url: URL, websocket: AppSyncWebsocketProvider) {
         self.url = url
         self.websocket = websocket
     }
@@ -56,9 +55,11 @@ public class RealtimeConnectionProvider: ConnectionProvider {
             let request = AppSyncConnectionRequest(url: self.url)
             let signedRequest = self.interceptConnection(request, for: self.url)
             DispatchQueue.global().async {
-                self.websocket.connect(url: signedRequest.url,
-                                       protocols: ["graphql-ws"],
-                                       delegate: self)
+                self.websocket.connect(
+                    url: signedRequest.url,
+                    protocols: ["graphql-ws"],
+                    delegate: self
+                )
             }
         }
     }
@@ -113,7 +114,7 @@ public class RealtimeConnectionProvider: ConnectionProvider {
 
             self.listeners.removeValue(forKey: identifier)
 
-            if self.listeners.count == 0 {
+            if self.listeners.isEmpty {
                 print("### Listener count == 0, disconnecting")
                 self.serialConnectionQueue.async { [weak self] in
                     print("### serialConnectionQueue.async disconnecting")
@@ -140,7 +141,7 @@ public class RealtimeConnectionProvider: ConnectionProvider {
     }
 
     func receivedConnectionInit() {
-        self.serialConnectionQueue.async {[weak self] in
+        serialConnectionQueue.async { [weak self] in
             guard let self = self else {
                 return
             }

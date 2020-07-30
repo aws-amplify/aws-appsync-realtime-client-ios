@@ -1,9 +1,8 @@
 //
-//  AppSyncRTCProvider.swift
-//  HostApp
+// Copyright 2018-2020 Amazon.com,
+// Inc. or its affiliates. All Rights Reserved.
 //
-//  Created by Schmelter, Tim on 7/29/20.
-//  Copyright © 2020 amazonaws. All rights reserved.
+// SPDX-License-Identifier: Apache-2.0
 //
 
 import os.log
@@ -16,6 +15,9 @@ class AppSyncRTCProvider: ObservableObject {
 
     public static var `default`: AppSyncRTCProvider {
         guard let existingInstance = instance else {
+            // If we can't initialize the provider, we can't do anything meaningful in the
+            // app. A crash is appropriate here.
+            // swiftlint:disable:next force_try
             let newInstance = try! AppSyncRTCProvider()
             instance = newInstance
             return newInstance
@@ -89,17 +91,17 @@ class AppSyncRTCProvider: ObservableObject {
     }
 
     func handleEvent(event: SubscriptionItemEvent) {
-        self.events.append(event)
+        events.append(event)
 
         switch event {
         case .connection(let connectionEvent):
             switch connectionEvent {
             case .connected:
-                self.connectionState = .connected
+                connectionState = .connected
             case .connecting:
-                self.connectionState = .inProgress
+                connectionState = .inProgress
             case .disconnected:
-                self.connectionState = .notConnected
+                connectionState = .notConnected
             }
 
         case .failed(let error):
@@ -108,9 +110,9 @@ class AppSyncRTCProvider: ObservableObject {
                 log: .subscription,
                 type: .error
             )
-            AppSyncSubscriptionConnection.logAdditionalInfo(for: error)
+            AppSyncSubscriptionConnection.logExtendedErrorInfo(for: error)
 
-            self.lastError = error
+            lastError = error
 
         case .data(let data):
             OSLog.subscription.log(
@@ -118,14 +120,14 @@ class AppSyncRTCProvider: ObservableObject {
                 log: .subscription,
                 type: .debug
             )
-            self.lastData = String(data: data, encoding: .utf8)
+            lastData = String(data: data, encoding: .utf8)
         }
     }
 
     func subscribe() {
         os_log(#function, log: .subscription, type: .debug)
         if subscriptionConnection != nil, subscriptionItem != nil {
-            self.unsubscribe()
+            unsubscribe()
         }
 
         let subscriptionConnection = AppSyncRTCProvider
