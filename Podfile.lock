@@ -1,12 +1,9 @@
 PODS:
-  - AppSyncRealTimeClient (1.3.0):
-    - Starscream (~> 3.1.0)
   - Starscream (3.1.1)
   - SwiftFormat/CLI (0.45.1)
   - SwiftLint (0.39.2)
 
 DEPENDENCIES:
-  - AppSyncRealTimeClient (from `.`)
   - Starscream (~> 3.1.0)
   - SwiftFormat/CLI
   - SwiftLint
@@ -17,16 +14,11 @@ SPEC REPOS:
     - SwiftFormat
     - SwiftLint
 
-EXTERNAL SOURCES:
-  AppSyncRealTimeClient:
-    :path: "."
-
 SPEC CHECKSUMS:
-  AppSyncRealTimeClient: 22189199c4ec10b27347ee4dd6ec44b1a26aaf5d
   Starscream: 4bb2f9942274833f7b4d296a55504dcfc7edb7b0
   SwiftFormat: 69db45cf8e30eda564431e0241322773b2d975fc
   SwiftLint: 22ccbbe3b8008684be5955693bab135e0ed6a447
 
-PODFILE CHECKSUM: aba5eb379392784071bfa9b6e559469cfd8cd8c9
+PODFILE CHECKSUM: 71c8eb2113846f76ef7a6a63fb46360909718a3c
 
 COCOAPODS: 1.9.3

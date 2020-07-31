@@ -24,7 +24,13 @@ end
 target "AppSyncRTCSample" do 
   use_frameworks!
 
-  pod 'AppSyncRealTimeClient', :path => '.'
+  # Note: This only contains build tool Pods for the AppSyncRTCSample. If we
+  # specify the 'AppSyncRealTimeClient' pod here as well, it can cause
+  # confusion as xcodebuild attempts to build this target's
+  # 'AppSyncRealTimeClient' dependency instead of the main target.
+  # Specify AppSyncRealTimeClient as a dependency by direclty including it in
+  # AppSyncRTCSample's Xcode build phase.
+  # pod 'AppSyncRealTimeClient', :path => '.'
   include_build_tools!
 
 end

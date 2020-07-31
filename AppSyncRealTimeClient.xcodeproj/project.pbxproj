@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0B59161BB37D32073E4FD61B /* Pods_AppSyncRTCSample.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7CF486070B34EFD15B4DB8FC /* Pods_AppSyncRTCSample.framework */; };
 		217F39992405D9D500F1A0B3 /* AppSyncRealTimeClient.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 217F398F2405D9D500F1A0B3 /* AppSyncRealTimeClient.framework */; };
 		217F39CC2406E98400F1A0B3 /* AppSyncResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 217F39AA2406E98300F1A0B3 /* AppSyncResponse.swift */; };
 		217F39CD2406E98400F1A0B3 /* InterceptableConnection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 217F39AB2406E98300F1A0B3 /* InterceptableConnection.swift */; };
@@ -63,7 +64,6 @@
 		259F9EB83B9F67D0413A6D4C /* Pods_AppSyncRealTimeClient.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81AFCBED5A97E398A4BD9D06 /* Pods_AppSyncRealTimeClient.framework */; };
 		450019BB151D701382536BD0 /* Pods_HostApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 29CDD85F44666C7241232D29 /* Pods_HostApp.framework */; };
 		4A3EAC9B20D96D81CC3A7EF4 /* Pods_HostApp_AppSyncRealTimeClientIntegrationTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43D112B03D6D38F84995D6FA /* Pods_HostApp_AppSyncRealTimeClientIntegrationTests.framework */; };
-		9617CE1692296AC6B7336E65 /* Pods_AppSyncRTCSample.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2CF92F54E085ECA65E1932A6 /* Pods_AppSyncRTCSample.framework */; };
 		DCFE701B5D1380E566694A48 /* Pods_AppSyncRealTimeClient_AppSyncRealTimeClientTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E662A46AB2C93EE316F784C /* Pods_AppSyncRealTimeClient_AppSyncRealTimeClientTests.framework */; };
 		FA67507824D3244A005A1345 /* MockWebsocketProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA67507724D3244A005A1345 /* MockWebsocketProvider.swift */; };
 		FA67507B24D338CB005A1345 /* Error+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA67507A24D338C6005A1345 /* Error+Extension.swift */; };
@@ -105,10 +105,16 @@
 			remoteGlobalIDString = 21D38B522409B93F00EC2A8D;
 			remoteInfo = HostApp;
 		};
+		FA2B2C3424D4B77600C6B108 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 217F39862405D9D500F1A0B3 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 217F398E2405D9D500F1A0B3;
+			remoteInfo = AppSyncRealTimeClient;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		106B0590055335CE3655E19D /* Pods-AppSyncRTCSample.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AppSyncRTCSample.debug.xcconfig"; path = "Target Support Files/Pods-AppSyncRTCSample/Pods-AppSyncRTCSample.debug.xcconfig"; sourceTree = "<group>"; };
 		18D6E56CE03BAC33493CC19B /* Pods-HostApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HostApp.debug.xcconfig"; path = "Target Support Files/Pods-HostApp/Pods-HostApp.debug.xcconfig"; sourceTree = "<group>"; };
 		217F398F2405D9D500F1A0B3 /* AppSyncRealTimeClient.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = AppSyncRealTimeClient.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		217F39932405D9D500F1A0B3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -171,16 +177,17 @@
 		21D38B98240C4E1C00EC2A8D /* ConfigurationHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigurationHelper.swift; sourceTree = "<group>"; };
 		21D38B9C240C540D00EC2A8D /* TestCommonConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestCommonConstants.swift; sourceTree = "<group>"; };
 		29CDD85F44666C7241232D29 /* Pods_HostApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HostApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		2CF92F54E085ECA65E1932A6 /* Pods_AppSyncRTCSample.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AppSyncRTCSample.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		356411189EAD2C776D250FB7 /* Pods-HostApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HostApp.release.xcconfig"; path = "Target Support Files/Pods-HostApp/Pods-HostApp.release.xcconfig"; sourceTree = "<group>"; };
 		3E662A46AB2C93EE316F784C /* Pods_AppSyncRealTimeClient_AppSyncRealTimeClientTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AppSyncRealTimeClient_AppSyncRealTimeClientTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		43D112B03D6D38F84995D6FA /* Pods_HostApp_AppSyncRealTimeClientIntegrationTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HostApp_AppSyncRealTimeClientIntegrationTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		7729985A4AC28DABC48ED0E7 /* Pods-AppSyncRTCSample.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AppSyncRTCSample.release.xcconfig"; path = "Target Support Files/Pods-AppSyncRTCSample/Pods-AppSyncRTCSample.release.xcconfig"; sourceTree = "<group>"; };
+		7CF486070B34EFD15B4DB8FC /* Pods_AppSyncRTCSample.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AppSyncRTCSample.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7D4F451B830A5837CE5274A3 /* Pods-AppSyncRealTimeClient-AppSyncRealTimeClientTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AppSyncRealTimeClient-AppSyncRealTimeClientTests.release.xcconfig"; path = "Target Support Files/Pods-AppSyncRealTimeClient-AppSyncRealTimeClientTests/Pods-AppSyncRealTimeClient-AppSyncRealTimeClientTests.release.xcconfig"; sourceTree = "<group>"; };
 		81AFCBED5A97E398A4BD9D06 /* Pods_AppSyncRealTimeClient.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AppSyncRealTimeClient.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		93AA1C96F1B8D428CCC24CF0 /* Pods-AppSyncRealTimeClient-AppSyncRealTimeClientTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AppSyncRealTimeClient-AppSyncRealTimeClientTests.debug.xcconfig"; path = "Target Support Files/Pods-AppSyncRealTimeClient-AppSyncRealTimeClientTests/Pods-AppSyncRealTimeClient-AppSyncRealTimeClientTests.debug.xcconfig"; sourceTree = "<group>"; };
 		A843B4589131E0D2DB13ADC7 /* Pods-HostApp-AppSyncRealTimeClientIntegrationTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HostApp-AppSyncRealTimeClientIntegrationTests.debug.xcconfig"; path = "Target Support Files/Pods-HostApp-AppSyncRealTimeClientIntegrationTests/Pods-HostApp-AppSyncRealTimeClientIntegrationTests.debug.xcconfig"; sourceTree = "<group>"; };
 		B07A87133C24AA78AF59093C /* Pods-AppSyncRealTimeClient.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AppSyncRealTimeClient.debug.xcconfig"; path = "Target Support Files/Pods-AppSyncRealTimeClient/Pods-AppSyncRealTimeClient.debug.xcconfig"; sourceTree = "<group>"; };
+		B4A642C2C000E0D0B568A4A9 /* Pods-AppSyncRTCSample.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AppSyncRTCSample.release.xcconfig"; path = "Target Support Files/Pods-AppSyncRTCSample/Pods-AppSyncRTCSample.release.xcconfig"; sourceTree = "<group>"; };
+		BBF14AA5E9A4D036CA87B952 /* Pods-AppSyncRTCSample.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AppSyncRTCSample.debug.xcconfig"; path = "Target Support Files/Pods-AppSyncRTCSample/Pods-AppSyncRTCSample.debug.xcconfig"; sourceTree = "<group>"; };
 		C73EA796F50FB0196FDF4865 /* Pods-AppSyncRealTimeClient.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AppSyncRealTimeClient.release.xcconfig"; path = "Target Support Files/Pods-AppSyncRealTimeClient/Pods-AppSyncRealTimeClient.release.xcconfig"; sourceTree = "<group>"; };
 		E65A19C826699DA299A49284 /* Pods-HostApp-AppSyncRealTimeClientIntegrationTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HostApp-AppSyncRealTimeClientIntegrationTests.release.xcconfig"; path = "Target Support Files/Pods-HostApp-AppSyncRealTimeClientIntegrationTests/Pods-HostApp-AppSyncRealTimeClientIntegrationTests.release.xcconfig"; sourceTree = "<group>"; };
 		FA67507724D3244A005A1345 /* MockWebsocketProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockWebsocketProvider.swift; sourceTree = "<group>"; };
@@ -239,7 +246,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9617CE1692296AC6B7336E65 /* Pods_AppSyncRTCSample.framework in Frameworks */,
+				0B59161BB37D32073E4FD61B /* Pods_AppSyncRTCSample.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -489,7 +496,7 @@
 				3E662A46AB2C93EE316F784C /* Pods_AppSyncRealTimeClient_AppSyncRealTimeClientTests.framework */,
 				29CDD85F44666C7241232D29 /* Pods_HostApp.framework */,
 				43D112B03D6D38F84995D6FA /* Pods_HostApp_AppSyncRealTimeClientIntegrationTests.framework */,
-				2CF92F54E085ECA65E1932A6 /* Pods_AppSyncRTCSample.framework */,
+				7CF486070B34EFD15B4DB8FC /* Pods_AppSyncRTCSample.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -505,8 +512,8 @@
 				356411189EAD2C776D250FB7 /* Pods-HostApp.release.xcconfig */,
 				A843B4589131E0D2DB13ADC7 /* Pods-HostApp-AppSyncRealTimeClientIntegrationTests.debug.xcconfig */,
 				E65A19C826699DA299A49284 /* Pods-HostApp-AppSyncRealTimeClientIntegrationTests.release.xcconfig */,
-				106B0590055335CE3655E19D /* Pods-AppSyncRTCSample.debug.xcconfig */,
-				7729985A4AC28DABC48ED0E7 /* Pods-AppSyncRTCSample.release.xcconfig */,
+				BBF14AA5E9A4D036CA87B952 /* Pods-AppSyncRTCSample.debug.xcconfig */,
+				B4A642C2C000E0D0B568A4A9 /* Pods-AppSyncRTCSample.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -643,17 +650,18 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = FA91B20E24D306430017404D /* Build configuration list for PBXNativeTarget "AppSyncRTCSample" */;
 			buildPhases = (
-				29B508C3BFEFCAE624464616 /* [CP] Check Pods Manifest.lock */,
+				A19977CDA1FE7EB3815A5E31 /* [CP] Check Pods Manifest.lock */,
 				FA91B1F724D3063E0017404D /* Sources */,
 				FA91B21724D308EB0017404D /* SwiftFormat */,
 				FA91B21824D308FD0017404D /* SwiftLint */,
 				FA91B1F824D3063E0017404D /* Frameworks */,
 				FA91B1F924D3063E0017404D /* Resources */,
-				B225C44A936D8399256AB27A /* [CP] Embed Pods Frameworks */,
+				7CEC6E6F72B76741B987A5FE /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				FA2B2C3524D4B77600C6B108 /* PBXTargetDependency */,
 			);
 			name = AppSyncRTCSample;
 			productName = AppSyncRTCSample;
@@ -759,28 +767,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		29B508C3BFEFCAE624464616 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-AppSyncRTCSample-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
 		4F32EBC5131508484DC03565 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -825,6 +811,23 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
+		7CEC6E6F72B76741B987A5FE /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-AppSyncRTCSample/Pods-AppSyncRTCSample-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-AppSyncRTCSample/Pods-AppSyncRTCSample-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-AppSyncRTCSample/Pods-AppSyncRTCSample-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		9CB3A44F02BD117B9687BF03 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -842,21 +845,26 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-AppSyncRealTimeClient-AppSyncRealTimeClientTests/Pods-AppSyncRealTimeClient-AppSyncRealTimeClientTests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		B225C44A936D8399256AB27A /* [CP] Embed Pods Frameworks */ = {
+		A19977CDA1FE7EB3815A5E31 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-AppSyncRTCSample/Pods-AppSyncRTCSample-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
-			name = "[CP] Embed Pods Frameworks";
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
 			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-AppSyncRTCSample/Pods-AppSyncRTCSample-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-AppSyncRTCSample-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-AppSyncRTCSample/Pods-AppSyncRTCSample-frameworks.sh\"\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 		B4AC537B815B7AF42413C854 /* [CP] Check Pods Manifest.lock */ = {
@@ -1176,6 +1184,11 @@
 			isa = PBXTargetDependency;
 			target = 21D38B522409B93F00EC2A8D /* HostApp */;
 			targetProxy = 21D38B672409B95000EC2A8D /* PBXContainerItemProxy */;
+		};
+		FA2B2C3524D4B77600C6B108 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 217F398E2405D9D500F1A0B3 /* AppSyncRealTimeClient */;
+			targetProxy = FA2B2C3424D4B77600C6B108 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -1499,7 +1512,7 @@
 		};
 		FA91B20C24D306430017404D /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 106B0590055335CE3655E19D /* Pods-AppSyncRTCSample.debug.xcconfig */;
+			baseConfigurationReference = BBF14AA5E9A4D036CA87B952 /* Pods-AppSyncRTCSample.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -1520,7 +1533,7 @@
 		};
 		FA91B20D24D306430017404D /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 7729985A4AC28DABC48ED0E7 /* Pods-AppSyncRTCSample.release.xcconfig */;
+			baseConfigurationReference = B4A642C2C000E0D0B568A4A9 /* Pods-AppSyncRTCSample.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
