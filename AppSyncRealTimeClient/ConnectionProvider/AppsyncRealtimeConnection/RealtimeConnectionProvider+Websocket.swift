@@ -63,7 +63,7 @@ extension RealtimeConnectionProvider: AppSyncWebsocketDelegate {
                 // If the service returns a connection timeout, use that instead of the default
                 if case let .number(value) = response.payload?["connectionTimeoutMs"] {
                     let interval = value / 1_000
-                    if interval != self.keepAliveTimer?.interval {
+                    if interval != self.staleConnectionTimer?.interval {
                         AppSyncLogger.debug(
                             """
                             Resetting keep alive timer in response to service timeout \
@@ -113,7 +113,7 @@ extension RealtimeConnectionProvider: AppSyncWebsocketDelegate {
                 updateCallback(event: .data(appSyncResponse))
             }
         case .keepAlive:
-            break
+            AppSyncLogger.debug("\(self) received keepAlive")
         }
     }
 }

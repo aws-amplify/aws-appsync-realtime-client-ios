@@ -22,12 +22,15 @@ public class RealtimeConnectionProvider: ConnectionProvider {
     /// message before we consider it stale and force a disconnect
     var staleConnectionTimeout: TimeInterval = 5 * 60
 
-    /// A timer to track receipt of a keep alive message
-    var keepAliveTimer: CountdownTimer?
+    /// A timer that automatically disconnects the current connection if it goes longer
+    /// than `staleConnectionTimeout` without activity. Receiving any data or "keep
+    /// alive" message will cause the timer to be reset to the full interval.
+    var staleConnectionTimer: CountdownTimer?
 
     /// Serial queue for websocket connection.
     ///
-    /// Each connection request will be send to this queue. Connection request are handled one at a time.
+    /// Each connection request will be sent to this queue. Connection request are
+    /// handled one at a time.
     let serialConnectionQueue = DispatchQueue(label: "com.amazonaws.AppSyncRealTimeConnectionProvider.serialQueue")
 
     let serialCallbackQueue = DispatchQueue(label: "com.amazonaws.AppSyncRealTimeConnectionProvider.callbackQueue")
@@ -96,8 +99,8 @@ public class RealtimeConnectionProvider: ConnectionProvider {
 
     public func disconnect() {
         websocket.disconnect()
-        keepAliveTimer?.invalidate()
-        keepAliveTimer = nil
+        staleConnectionTimer?.invalidate()
+        staleConnectionTimer = nil
     }
 
     public func addListener(identifier: String, callback: @escaping ConnectionProviderCallback) {
@@ -115,12 +118,13 @@ public class RealtimeConnectionProvider: ConnectionProvider {
             self.listeners.removeValue(forKey: identifier)
 
             if self.listeners.isEmpty {
+                AppSyncLogger.debug("All listeners removed, disconnecting")
                 self.serialConnectionQueue.async { [weak self] in
                     guard let self = self else {
                         return
                     }
                     self.status = .notConnected
-                    self.websocket.disconnect()
+                    self.disconnect()
                 }
             }
         }

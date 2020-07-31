@@ -47,7 +47,7 @@ extension AppSyncSubscriptionConnection {
         case let typedError as NSError:
             logExtendedErrorInfo(for: typedError)
         default:
-            break
+            AppSyncLogger.error(error)
         }
     }
 

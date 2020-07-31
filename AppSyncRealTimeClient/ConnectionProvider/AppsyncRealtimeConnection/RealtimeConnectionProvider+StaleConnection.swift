@@ -12,10 +12,10 @@ extension RealtimeConnectionProvider {
     /// Start a stale connection timer, first invalidating and destroying any existing timer
     func startStaleConnectionTimer() {
         AppSyncLogger.debug("Starting stale connection timer for \(staleConnectionTimeout)s")
-        if keepAliveTimer != nil {
+        if staleConnectionTimer != nil {
             stopStaleConnectionTimer()
         }
-        keepAliveTimer = CountdownTimer(interval: staleConnectionTimeout) {
+        staleConnectionTimer = CountdownTimer(interval: staleConnectionTimeout) {
             self.disconnectStaleConnection()
         }
     }
@@ -23,14 +23,14 @@ extension RealtimeConnectionProvider {
     /// Stop and destroy any existing stale connection timer
     func stopStaleConnectionTimer() {
         AppSyncLogger.debug("Stopping and destroying stale connection timer")
-        keepAliveTimer?.invalidate()
-        keepAliveTimer = nil
+        staleConnectionTimer?.invalidate()
+        staleConnectionTimer = nil
     }
 
     /// Reset the stale connection timer in response to receiving a message
     func resetStaleConnectionTimer() {
         AppSyncLogger.debug("Resetting stale connection timer")
-        keepAliveTimer?.resetCountdown()
+        staleConnectionTimer?.resetCountdown()
     }
 
     /// Fired when the stale connection timer expires
