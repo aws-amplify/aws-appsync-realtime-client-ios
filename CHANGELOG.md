@@ -1,6 +1,6 @@
 # AppSync RealTime Client for iOS
 
-## Unreleased
+## 1.4.0
 
 ### Bug fixes
 
