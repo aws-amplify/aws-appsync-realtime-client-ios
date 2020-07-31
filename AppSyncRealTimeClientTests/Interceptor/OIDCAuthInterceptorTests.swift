@@ -25,8 +25,8 @@ class OIDCAuthInterceptorTests: XCTestCase {
             assertionFailure("Query parameters should not be nil")
             return
         }
-        XCTAssertTrue(queries.contains{ $0.name == "header"}, "Should contain the header query")
-        XCTAssertTrue(queries.contains{ $0.name == "payload"}, "Should contain the payload query")
+        XCTAssertTrue(queries.contains { $0.name == "header"}, "Should contain the header query")
+        XCTAssertTrue(queries.contains { $0.name == "payload"}, "Should contain the payload query")
     }
 
     func testInterceptMessage() {

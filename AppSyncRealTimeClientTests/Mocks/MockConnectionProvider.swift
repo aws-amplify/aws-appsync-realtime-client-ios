@@ -1,7 +1,8 @@
 //
-// Copyright 2019 Amazon.com, Inc. or its affiliates. All Rights Reserved.
-// Licensed under the Amazon Software License
-// http://aws.amazon.com/asl/
+// Copyright 2018-2020 Amazon.com,
+// Inc. or its affiliates. All Rights Reserved.
+//
+// SPDX-License-Identifier: Apache-2.0
 //
 
 import Foundation
@@ -15,7 +16,7 @@ class MockConnectionProvider: ConnectionProvider {
     /// If this boolean is set, all the request to this provider will return `notConnected` event
     var isConnected: Bool = true
 
-    init (validConnection: Bool = true) {
+    init(validConnection: Bool = true) {
         self.validConnection = validConnection
     }
 
@@ -49,16 +50,20 @@ class MockConnectionProvider: ConnectionProvider {
 
         switch message.messageType {
         case .connectionInit:
-            print("")
+            break
         case .subscribe:
-            let response = AppSyncResponse(id: message.id,
-                                           payload: [:],
-                                           type: .subscriptionAck)
+            let response = AppSyncResponse(
+                id: message.id,
+                payload: [:],
+                type: .subscriptionAck
+            )
             listener?(.data(response))
         case .unsubscribe:
-            let response = AppSyncResponse(id: message.id,
-                                           payload: [:],
-                                           type: .unsubscriptionAck)
+            let response = AppSyncResponse(
+                id: message.id,
+                payload: [:],
+                type: .unsubscriptionAck
+            )
             listener?(.data(response))
         }
     }

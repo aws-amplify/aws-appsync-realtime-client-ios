@@ -10,7 +10,17 @@ import XCTest
 
 class AppSyncSubscriptionConnectionTests: XCTestCase {
 
-    let mockRequestString = "subscription OnCreateMessage {\n  onCreateMessage {\n    __typename\n    id\n    message\n    createdAt\n  }\n}"
+    let mockRequestString = """
+        subscription OnCreateMessage {
+            onCreateMessage {
+                __typename
+                id
+                message
+                createdAt
+            }
+        }
+        """
+
     let variables = [String: Any]()
 
     /// Test to check if subscription works
@@ -28,7 +38,10 @@ class AppSyncSubscriptionConnectionTests: XCTestCase {
         let connectingMessageExpectation = expectation(description: "Connecting event should be fired")
         let connectedMessageExpectation = expectation(description: "Connected event should be fired")
 
-        let item = connection.subscribe(requestString: mockRequestString, variables: variables) { (event, item) in
+        let item = connection.subscribe(
+            requestString: mockRequestString,
+            variables: variables
+        ) { event, _ in
             switch event {
             case .connection(let status):
 
@@ -63,7 +76,10 @@ class AppSyncSubscriptionConnectionTests: XCTestCase {
         let connectingMessageExpectation = expectation(description: "Connecting event should be fired")
         let connectedMessageExpectation = expectation(description: "Connected event should be fired")
         let unsubscribeAckExpectation = expectation(description: "Not connected event should be fired")
-        let item = connection.subscribe(requestString: mockRequestString, variables: variables) { (event, item) in
+        let item = connection.subscribe(
+            requestString: mockRequestString,
+            variables: variables
+        ) { event, _ in
             switch event {
             case .connection(let status):
 
@@ -104,7 +120,10 @@ class AppSyncSubscriptionConnectionTests: XCTestCase {
         let connectingMessageExpectation = expectation(description: "Connecting event should be fired")
         let errorEventExpectation = expectation(description: "Error event should be fired")
 
-        let item = connection.subscribe(requestString: mockRequestString, variables: variables) { (event, item) in
+        let item = connection.subscribe(
+            requestString: mockRequestString,
+            variables: variables
+        ) { event, _ in
             switch event {
             case .connection(let status):
 
@@ -141,7 +160,10 @@ class AppSyncSubscriptionConnectionTests: XCTestCase {
         let connectingMessageExpectation = expectation(description: "Connecting event should be fired")
         let errorEventExpectation = expectation(description: "Error event should be fired")
 
-        let item = connection.subscribe(requestString: mockRequestString, variables: variables) { (event, item) in
+        let item = connection.subscribe(
+            requestString: mockRequestString,
+            variables: variables
+        ) { event, _ in
             switch event {
             case .connection(let status):
 
@@ -178,7 +200,10 @@ class AppSyncSubscriptionConnectionTests: XCTestCase {
 
         let dataEventExpectation = expectation(description: "Data event should be fired")
 
-        let item = connection.subscribe(requestString: mockRequestString, variables: variables) { (event, item) in
+        let item = connection.subscribe(
+            requestString: mockRequestString,
+            variables: variables
+        ) { event, _ in
             switch event {
             case .connection(let status):
 
@@ -198,22 +223,27 @@ class AppSyncSubscriptionConnectionTests: XCTestCase {
         XCTAssertNotNil(item, "Subscription item should not be nil")
         wait(for: [connectingMessageExpectation, connectedMessageExpectation], timeout: 5, enforceOrder: true)
 
-        let mockResponse = AppSyncResponse(id: item.identifier,
-                                           payload: ["data" : "testData"], type: .data)
+        let mockResponse = AppSyncResponse(
+            id: item.identifier,
+            payload: ["data": "testData"],
+            type: .data
+        )
         connectionProvider.sendDataResponse(mockResponse)
         wait(for: [dataEventExpectation], timeout: 2)
     }
 
     func testNilDataInVariables() {
-        let variablesWithNil = ["key": nil] as [String : Any?]
+        let variablesWithNil = ["key": nil] as [String: Any?]
         let connectionProvider = MockConnectionProvider()
         let connection = AppSyncSubscriptionConnection(provider: connectionProvider)
 
         let connectingMessageExpectation = expectation(description: "Connecting event should be fired")
         let connectedMessageExpectation = expectation(description: "Connected event should be fired")
 
-        let item = connection.subscribe(requestString: mockRequestString,
-                                        variables: variablesWithNil) { (event, item) in
+        let item = connection.subscribe(
+            requestString: mockRequestString,
+            variables: variablesWithNil
+        ) { event, _ in
             switch event {
             case .connection(let status):
 
