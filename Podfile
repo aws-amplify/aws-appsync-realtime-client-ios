@@ -11,6 +11,8 @@ target 'AppSyncRealTimeClient' do
   use_frameworks!
 
   # Pods for AppSyncRealTimeClient
+  
+  # If you update this dependency version, be sure to update the Cartfile also
   pod "Starscream", "~> 3.1.0"
   
   include_build_tools!
