@@ -1,5 +1,14 @@
 # AppSync RealTime Client for iOS
 
+## Unreleased
+*Changes on `main` branch that have not yet been released*
+
+## 1.4.1
+
+### Misc
+
+- Updated Cartfile with correct version of StarScream
+
 ## 1.4.0
 
 ### Bug fixes
