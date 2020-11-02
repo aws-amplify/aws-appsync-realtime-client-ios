@@ -65,6 +65,7 @@
 		450019BB151D701382536BD0 /* Pods_HostApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 29CDD85F44666C7241232D29 /* Pods_HostApp.framework */; };
 		4A3EAC9B20D96D81CC3A7EF4 /* Pods_HostApp_AppSyncRealTimeClientIntegrationTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43D112B03D6D38F84995D6FA /* Pods_HostApp_AppSyncRealTimeClientIntegrationTests.framework */; };
 		DCFE701B5D1380E566694A48 /* Pods_AppSyncRealTimeClient_AppSyncRealTimeClientTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E662A46AB2C93EE316F784C /* Pods_AppSyncRealTimeClient_AppSyncRealTimeClientTests.framework */; };
+		FA2EFABC2550CAC7007698C7 /* AtomicValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA2EFABB2550CAC6007698C7 /* AtomicValue.swift */; };
 		FA67507824D3244A005A1345 /* MockWebsocketProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA67507724D3244A005A1345 /* MockWebsocketProvider.swift */; };
 		FA67507B24D338CB005A1345 /* Error+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA67507A24D338C6005A1345 /* Error+Extension.swift */; };
 		FA67507E24D33976005A1345 /* RealtimeConnectionProviderTestBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA67507C24D338FA005A1345 /* RealtimeConnectionProviderTestBase.swift */; };
@@ -190,6 +191,7 @@
 		BBF14AA5E9A4D036CA87B952 /* Pods-AppSyncRTCSample.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AppSyncRTCSample.debug.xcconfig"; path = "Target Support Files/Pods-AppSyncRTCSample/Pods-AppSyncRTCSample.debug.xcconfig"; sourceTree = "<group>"; };
 		C73EA796F50FB0196FDF4865 /* Pods-AppSyncRealTimeClient.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AppSyncRealTimeClient.release.xcconfig"; path = "Target Support Files/Pods-AppSyncRealTimeClient/Pods-AppSyncRealTimeClient.release.xcconfig"; sourceTree = "<group>"; };
 		E65A19C826699DA299A49284 /* Pods-HostApp-AppSyncRealTimeClientIntegrationTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HostApp-AppSyncRealTimeClientIntegrationTests.release.xcconfig"; path = "Target Support Files/Pods-HostApp-AppSyncRealTimeClientIntegrationTests/Pods-HostApp-AppSyncRealTimeClientIntegrationTests.release.xcconfig"; sourceTree = "<group>"; };
+		FA2EFABB2550CAC6007698C7 /* AtomicValue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AtomicValue.swift; sourceTree = "<group>"; };
 		FA67507724D3244A005A1345 /* MockWebsocketProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockWebsocketProvider.swift; sourceTree = "<group>"; };
 		FA67507A24D338C6005A1345 /* Error+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Error+Extension.swift"; sourceTree = "<group>"; };
 		FA67507C24D338FA005A1345 /* RealtimeConnectionProviderTestBase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealtimeConnectionProviderTestBase.swift; sourceTree = "<group>"; };
@@ -419,8 +421,9 @@
 		217F39EE2406EA4000F1A0B3 /* Support */ = {
 			isa = PBXGroup;
 			children = (
-				217F39EF2406EA4000F1A0B3 /* RealtimeGatewayURLInterceptorTests.swift */,
+				FA2EFABB2550CAC6007698C7 /* AtomicValue.swift */,
 				FA67508324D33ACC005A1345 /* CountdownTimerTests.swift */,
+				217F39EF2406EA4000F1A0B3 /* RealtimeGatewayURLInterceptorTests.swift */,
 			);
 			path = Support;
 			sourceTree = "<group>";
@@ -1126,6 +1129,7 @@
 				217F39F02406EA4000F1A0B3 /* AppSyncSubscriptionConnectionTests.swift in Sources */,
 				FA67507B24D338CB005A1345 /* Error+Extension.swift in Sources */,
 				21D38B8C240A39E400EC2A8D /* APIKeyAuthInterceptorTests.swift in Sources */,
+				FA2EFABC2550CAC7007698C7 /* AtomicValue.swift in Sources */,
 				21D38B8B240A39E400EC2A8D /* AppSyncJSONHelperTests.swift in Sources */,
 				217F39F32406EA4000F1A0B3 /* RealtimeGatewayURLInterceptorTests.swift in Sources */,
 				FA67507E24D33976005A1345 /* RealtimeConnectionProviderTestBase.swift in Sources */,
