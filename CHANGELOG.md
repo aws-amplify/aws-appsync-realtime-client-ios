@@ -1,10 +1,14 @@
 # AppSync RealTime Client for iOS
 
 ## Unreleased
-*Changes on `main` branch that have not yet been released*
+
+- *Changes on `main` branch that have not yet been released*
+
+## 1.4.2
 
 ### Bug fixes
 
+- Fix implicitly unwrapped subscriptionItem (See [Issue #33](https://github.com/aws-amplify/aws-appsync-realtime-client-ios/issues/33), [PR #35](https://github.com/aws-amplify/aws-appsync-realtime-client-ios/pull/35))
 - Fix data races in CountdownTimer (See [PR #37](https://github.com/aws-amplify/aws-appsync-realtime-client-ios/pull/37))
 
 ## 1.4.1
