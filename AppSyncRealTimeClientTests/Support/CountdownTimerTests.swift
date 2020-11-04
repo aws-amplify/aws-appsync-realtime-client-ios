@@ -138,4 +138,14 @@ class CountdownTimerTests: XCTestCase {
         timer.invalidate()
     }
 
+    /// Test that concurrent operations on the timer do not result in data races
+    func testConcurrency() {
+        let timerShouldHaveFired = expectation(description: "the timer should have fired by now")
+        let timer = CountdownTimer(interval: 0.1) { timerShouldHaveFired.fulfill() }
+        DispatchQueue.concurrentPerform(iterations: 10_000) { _ in
+            timer.resetCountdown()
+        }
+        waitForExpectations(timeout: 1.0)
+    }
+
 }

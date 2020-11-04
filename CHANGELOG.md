@@ -3,6 +3,10 @@
 ## Unreleased
 *Changes on `main` branch that have not yet been released*
 
+### Bug fixes
+
+- Fix data races in CountdownTimer (See [PR #37](https://github.com/aws-amplify/aws-appsync-realtime-client-ios/pull/37))
+
 ## 1.4.1
 
 ### Misc
