@@ -57,7 +57,7 @@ class ConnectionProviderStaleConnectionTests: RealtimeConnectionProviderTestBase
         let provider = createProviderAndConnect()
 
         wait(for: [receivedConnected], timeout: 0.05)
-        XCTAssertEqual(provider.staleConnectionTimeout, expectedTimeoutInSeconds)
+        XCTAssertEqual(provider.staleConnectionTimeout.get(), expectedTimeoutInSeconds)
 
         waitForExpectations(timeout: 0.05)
     }

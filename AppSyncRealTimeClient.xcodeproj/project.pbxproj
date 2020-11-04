@@ -79,6 +79,7 @@
 		FA91B20A24D306430017404D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FA91B20824D306430017404D /* LaunchScreen.storyboard */; };
 		FA91B20F24D306550017404D /* amplifyconfiguration.json in Resources */ = {isa = PBXBuildFile; fileRef = 21D38B4B2409B6C000EC2A8D /* amplifyconfiguration.json */; };
 		FA91B21024D306730017404D /* AppSyncRTCProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB5AA1D24D1CD31001F370F /* AppSyncRTCProvider.swift */; };
+		FAAEF946255229DA009DA4D5 /* AtomicValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA2EFABB2550CAC6007698C7 /* AtomicValue.swift */; };
 		FAB5AA1F24D1CD84001F370F /* amplifyconfiguration.json in Resources */ = {isa = PBXBuildFile; fileRef = 21D38B4B2409B6C000EC2A8D /* amplifyconfiguration.json */; };
 		FAB7E91224D2644E00DF1EA1 /* RealtimeConnectionProvider+StaleConnection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 217F39B12406E98300F1A0B3 /* RealtimeConnectionProvider+StaleConnection.swift */; };
 /* End PBXBuildFile section */
@@ -190,6 +191,7 @@
 		BBF14AA5E9A4D036CA87B952 /* Pods-AppSyncRTCSample.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AppSyncRTCSample.debug.xcconfig"; path = "Target Support Files/Pods-AppSyncRTCSample/Pods-AppSyncRTCSample.debug.xcconfig"; sourceTree = "<group>"; };
 		C73EA796F50FB0196FDF4865 /* Pods-AppSyncRealTimeClient.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AppSyncRealTimeClient.release.xcconfig"; path = "Target Support Files/Pods-AppSyncRealTimeClient/Pods-AppSyncRealTimeClient.release.xcconfig"; sourceTree = "<group>"; };
 		E65A19C826699DA299A49284 /* Pods-HostApp-AppSyncRealTimeClientIntegrationTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HostApp-AppSyncRealTimeClientIntegrationTests.release.xcconfig"; path = "Target Support Files/Pods-HostApp-AppSyncRealTimeClientIntegrationTests/Pods-HostApp-AppSyncRealTimeClientIntegrationTests.release.xcconfig"; sourceTree = "<group>"; };
+		FA2EFABB2550CAC6007698C7 /* AtomicValue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AtomicValue.swift; sourceTree = "<group>"; };
 		FA67507724D3244A005A1345 /* MockWebsocketProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockWebsocketProvider.swift; sourceTree = "<group>"; };
 		FA67507A24D338C6005A1345 /* Error+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Error+Extension.swift"; sourceTree = "<group>"; };
 		FA67507C24D338FA005A1345 /* RealtimeConnectionProviderTestBase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealtimeConnectionProviderTestBase.swift; sourceTree = "<group>"; };
@@ -381,6 +383,7 @@
 				21D38B6C240A262800EC2A8D /* AppSyncJSONHelper.swift */,
 				217F39C92406E98400F1A0B3 /* AppSyncJSONValue.swift */,
 				217F39C72406E98400F1A0B3 /* AppSyncLogger.swift */,
+				FA2EFABB2550CAC6007698C7 /* AtomicValue.swift */,
 				FA67508124D33A7A005A1345 /* CountdownTimer.swift */,
 				21D38B93240C4A2A00EC2A8D /* OIDCAuthProvider.swift */,
 				217F39CB2406E98400F1A0B3 /* SubscriptionConnectionType.swift */,
@@ -419,8 +422,8 @@
 		217F39EE2406EA4000F1A0B3 /* Support */ = {
 			isa = PBXGroup;
 			children = (
-				217F39EF2406EA4000F1A0B3 /* RealtimeGatewayURLInterceptorTests.swift */,
 				FA67508324D33ACC005A1345 /* CountdownTimerTests.swift */,
+				217F39EF2406EA4000F1A0B3 /* RealtimeGatewayURLInterceptorTests.swift */,
 			);
 			path = Support;
 			sourceTree = "<group>";
@@ -1083,6 +1086,7 @@
 				217F39DB2406E98400F1A0B3 /* AppSyncSubscriptionConnection+DataHandler.swift in Sources */,
 				21D38B94240C4A2A00EC2A8D /* OIDCAuthProvider.swift in Sources */,
 				217F39DF2406E98400F1A0B3 /* SubscriptionItem.swift in Sources */,
+				FAAEF946255229DA009DA4D5 /* AtomicValue.swift in Sources */,
 				217F39CF2406E98400F1A0B3 /* AppSyncMessage+Encodable.swift in Sources */,
 				217F39CD2406E98400F1A0B3 /* InterceptableConnection.swift in Sources */,
 				21D38B8E240A3C2300EC2A8D /* ConnectionProviderFactory.swift in Sources */,
