@@ -158,7 +158,8 @@ class AppSyncRealTimeClientIntegrationTests: XCTestCase {
             XCTFail("Could not retrieve concrete connection provider")
             return
         }
-        XCTAssertEqual(realTimeConnectionProvider.status, .connected)
+
+        assertStatus(of: realTimeConnectionProvider, equals: .connected)
 
         subscriptionConnection1.unsubscribe(item: item1)
         subscriptionConnection2.unsubscribe(item: item2)
@@ -169,7 +170,7 @@ class AppSyncRealTimeClientIntegrationTests: XCTestCase {
         // means we need to "pull" for the status to ensure the system is operating
         // correctly by sleeping and checking that the status is .notConnected
         sleep(5)
-        XCTAssertEqual(realTimeConnectionProvider.status, .notConnected)
+        assertStatus(of: realTimeConnectionProvider, equals: .notConnected)
 
         let newConnectedInvoked = expectation(description: "Connection established")
         let subscriptionConnection4 = AppSyncSubscriptionConnection(provider: connectionProvider)
@@ -184,9 +185,20 @@ class AppSyncRealTimeClientIntegrationTests: XCTestCase {
             }
         }
         wait(for: [newConnectedInvoked], timeout: TestCommonConstants.networkTimeout)
-        XCTAssertEqual(realTimeConnectionProvider.status, .connected)
+        assertStatus(of: realTimeConnectionProvider, equals: .connected)
         subscriptionConnection4.unsubscribe(item: newItem)
         sleep(5)
-        XCTAssertEqual(realTimeConnectionProvider.status, .notConnected)
+        assertStatus(of: realTimeConnectionProvider, equals: .notConnected)
+    }
+
+    /// Checks the status of the provider in a thread-safe way. This is only needed for tests; real-world
+    /// call sites wouldn't be able to access the `status` as it has `internal` access.
+    private func assertStatus(
+        of provider: RealtimeConnectionProvider,
+        equals status: ConnectionState
+    ) {
+        provider.connectionQueue.sync {
+            XCTAssertEqual(provider.status, status)
+        }
     }
 }
