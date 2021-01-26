@@ -4,6 +4,12 @@
 
 - *Changes on `main` branch that have not yet been released*
 
+## 1.4.3
+
+### Bug fixes
+
+- Fix race condition in disconnect; protect status & write access (See [PR #40](https://github.com/aws-amplify/aws-appsync-realtime-client-ios/pull/40))
+
 ## 1.4.2
 
 ### Bug fixes
