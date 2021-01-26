@@ -17,6 +17,16 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
+               BlueprintIdentifier = "217F39972405D9D500F1A0B3"
+               BuildableName = "AppSyncRealTimeClientTests.xctest"
+               BlueprintName = "AppSyncRealTimeClientTests"
+               ReferencedContainer = "container:AppSyncRealTimeClient.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
                BlueprintIdentifier = "21D38B3D2409AFBD00EC2A8D"
                BuildableName = "AppSyncRealTimeClientIntegrationTests.xctest"
                BlueprintName = "AppSyncRealTimeClientIntegrationTests"

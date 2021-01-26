@@ -35,7 +35,7 @@ extension RealtimeConnectionProvider {
 
     /// Fired when the stale connection timer expires
     private func disconnectStaleConnection() {
-        serialConnectionQueue.async {[weak self] in
+        connectionQueue.async {[weak self] in
             guard let self = self else {
                 return
             }
