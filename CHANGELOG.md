@@ -4,6 +4,12 @@
 
 - *Changes on `main` branch that have not yet been released*
 
+## 1.4.4
+
+### Feature
+
+- AppSyncRealTimeClient can now be installed via Swift Package Manager. Thanks [@pjechris](https://github.com/pjechris)!
+
 ## 1.4.3
 
 ### Bug fixes

@@ -1,7 +1,7 @@
 Pod::Spec.new do |s|
 
     s.name         = 'AppSyncRealTimeClient'
-    s.version      = '1.4.3'
+    s.version      = '1.4.4'
     s.summary      = 'Amazon Web Services AppSync RealTime Client for iOS.'
   
     s.description  = 'AppSync RealTime Client provides subscription connections to AppSync websocket endpoints'
@@ -16,5 +16,5 @@ Pod::Spec.new do |s|
     s.requires_arc = true
     
     s.source_files = 'AppSyncRealTimeClient/**/*.swift'
-    s.dependency 'Starscream', '~> 3.1.0'
+    s.dependency 'Starscream', '~> 3.1.1'
   end
