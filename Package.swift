@@ -17,12 +17,14 @@ let package = Package(
         .target(
             name: "AppSyncRealTimeClient",
             dependencies: ["Starscream"],
-            path: "AppSyncRealTimeClient"
+            path: "AppSyncRealTimeClient",
+            exclude: ["Info.plist"]
         ),
         .testTarget(
             name: "AppSyncRealTimeClientTests",
             dependencies: ["AppSyncRealTimeClient"],
-            path: "AppSyncRealTimeClientTests"
+            path: "AppSyncRealTimeClientTests",
+            exclude: ["Info.plist"]
         )
     ]
 )
