@@ -37,7 +37,7 @@ public class OIDCAuthInterceptor: AuthInterceptor {
             )
             return signedMessage
         default:
-            AppSyncLogger.debug("Message type does not need signing - \(message.messageType)")
+            AppSyncLogger.debug("[OIDCAuthInterceptor] interceptMessage: No signing required for \(message.messageType)")
         }
         return message
     }

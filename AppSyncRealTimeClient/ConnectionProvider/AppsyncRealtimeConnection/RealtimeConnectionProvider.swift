@@ -131,9 +131,11 @@ public class RealtimeConnectionProvider: ConnectionProvider {
             self.listeners.removeValue(forKey: identifier)
 
             if self.listeners.isEmpty {
-                AppSyncLogger.debug("All listeners removed, disconnecting")
+                AppSyncLogger.debug("[RealtimeConnectionProvider] all subscriptions removed, disconnecting websocket connection.")
                 self.status = .notConnected
-                self.disconnect()
+                self.websocket.disconnect()
+                self.staleConnectionTimer?.invalidate()
+                self.staleConnectionTimer = nil
             }
         }
     }

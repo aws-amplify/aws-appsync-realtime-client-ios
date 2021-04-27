@@ -105,7 +105,7 @@ class AppSyncRealTimeClientIntegrationTests: XCTestCase {
     ///    - All subscription items are unsubscribed
     /// - Then:
     ///    - Underlying websocket is disconnected
-    func testAllSubscriptionsCancelledShouldDisconnectTheWebsocket() {
+    func testAllSubscriptionsCancelledShouldDisconnectTheWebsocket2() {
         let connectedInvoked = expectation(description: "Connection established")
         connectedInvoked.expectedFulfillmentCount = 3
 
@@ -162,7 +162,9 @@ class AppSyncRealTimeClientIntegrationTests: XCTestCase {
         assertStatus(of: realTimeConnectionProvider, equals: .connected)
 
         subscriptionConnection1.unsubscribe(item: item1)
+        assertStatus(of: realTimeConnectionProvider, equals: .connected)
         subscriptionConnection2.unsubscribe(item: item2)
+        assertStatus(of: realTimeConnectionProvider, equals: .connected)
         subscriptionConnection3.unsubscribe(item: item3)
 
         // Sleep is required here as disconnecting the connection provider is done
@@ -188,6 +190,61 @@ class AppSyncRealTimeClientIntegrationTests: XCTestCase {
         assertStatus(of: realTimeConnectionProvider, equals: .connected)
         subscriptionConnection4.unsubscribe(item: newItem)
         sleep(5)
+        assertStatus(of: realTimeConnectionProvider, equals: .notConnected)
+    }
+
+    func subscribe(_ connectionProvider: ConnectionProvider, count: Int) -> [(SubscriptionItem, AppSyncSubscriptionConnection)] {
+        let connectedInvoked = expectation(description: "Connection established")
+        connectedInvoked.expectedFulfillmentCount = count
+        var subscriptions = [(SubscriptionItem, AppSyncSubscriptionConnection)]()
+
+        for _ in 1 ... count {
+            let subscriptionConnection = AppSyncSubscriptionConnection(provider: connectionProvider)
+            let item = subscriptionConnection.subscribe(
+                requestString: requestString,
+                variables: nil
+            ) { event, _ in
+                if case let .connection(state) = event {
+                    if case .connected = state {
+                        connectedInvoked.fulfill()
+                    }
+                }
+            }
+            subscriptions.append((item, subscriptionConnection))
+        }
+
+        wait(for: [connectedInvoked], timeout: TestCommonConstants.networkTimeout)
+        return subscriptions
+    }
+
+    func testAllSubscriptionsCancelledShouldDisconnectTheWebsocket() {
+        let authInterceptor = APIKeyAuthInterceptor(apiKey)
+        let connectionProvider = ConnectionProviderFactory.createConnectionProvider(
+            for: url,
+            authInterceptor: authInterceptor,
+            connectionType: .appSyncRealtime
+        )
+        guard let realTimeConnectionProvider = connectionProvider as? RealtimeConnectionProvider else {
+            XCTFail("Could not retrieve concrete connection provider")
+            return
+        }
+
+        var count = 30
+        let subscriptions = subscribe(connectionProvider, count: count)
+        //sleep(5)
+        for index in 0 ..< count {
+            subscriptions[index].1.unsubscribe(item: subscriptions[index].0)
+        }
+
+        print("Sleeping")
+        //sleep(5)
+        count = 30
+        let subscriptions2 = subscribe(connectionProvider, count: count)
+//        sleep(5)
+        for index in 0 ..< count {
+            subscriptions2[index].1.unsubscribe(item: subscriptions2[index].0)
+        }
+//        sleep(5)
         assertStatus(of: realTimeConnectionProvider, equals: .notConnected)
     }
 

@@ -63,7 +63,7 @@ public class APIKeyAuthInterceptor: AuthInterceptor {
             )
             return signedMessage
         default:
-            AppSyncLogger.debug("Message type does not need signing - \(message.messageType)")
+            AppSyncLogger.debug("[APIKeyAuthInterceptor] interceptMessage: No signing required for \(message.messageType)")
         }
         return message
     }

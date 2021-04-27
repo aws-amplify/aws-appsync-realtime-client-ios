@@ -12,17 +12,17 @@ import Starscream
 extension StarscreamAdapter: Starscream.WebSocketDelegate {
 
     public func websocketDidConnect(socket: WebSocketClient) {
-        AppSyncLogger.verbose("WebsocketDidConnect")
+        AppSyncLogger.verbose("[StarscreamAdapter] websocketDidConnect: websocket has been connected.")
         delegate?.websocketDidConnect(provider: self)
     }
 
     public func websocketDidDisconnect(socket: WebSocketClient, error: Error?) {
-        AppSyncLogger.verbose("WebsocketDidDisconnect - \(error?.localizedDescription ?? "No error")")
+        AppSyncLogger.verbose("[StarscreamAdapter] websocketDidDisconnect: \(error?.localizedDescription ?? "No error")")
         delegate?.websocketDidDisconnect(provider: self, error: error)
     }
 
     public func websocketDidReceiveMessage(socket: WebSocketClient, text: String) {
-        AppSyncLogger.verbose("WebsocketDidReceiveMessage - \(text)")
+        AppSyncLogger.verbose("[StarscreamAdapter] websocketDidReceiveMessage: - \(text)")
         let data = text.data(using: .utf8) ?? Data()
         delegate?.websocketDidReceiveData(provider: self, data: data)
     }
