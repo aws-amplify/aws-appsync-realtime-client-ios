@@ -11,12 +11,14 @@ extension AppSyncSubscriptionConnection {
 
     func handleDataEvent(response: AppSyncResponse) {
         guard let subscriptionItem = subscriptionItem else {
-            AppSyncLogger.debug("\(#function): no subscription item")
+            AppSyncLogger.warn("[AppSyncSubscriptionConnection] \(#function): missing subscription item")
             return
         }
 
         guard response.id == subscriptionItem.identifier else {
-            AppSyncLogger.verbose("\(#function): ignoring data event for \(response.id ?? "(null)")")
+            AppSyncLogger.verbose("""
+                [AppSyncSubscriptionConnection] \(#function): \(subscriptionItem.identifier). Ignoring data event for \(response.id ?? "(null)")
+                """)
             return
         }
 
