@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		0B59161BB37D32073E4FD61B /* Pods_AppSyncRTCSample.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7CF486070B34EFD15B4DB8FC /* Pods_AppSyncRTCSample.framework */; };
 		2164E65D2639AD5600385027 /* StarscreamAdapterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2164E65C2639AD5600385027 /* StarscreamAdapterTests.swift */; };
+		2164E674263C58CE00385027 /* AppSyncRealTimeClientTestBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2164E673263C58CD00385027 /* AppSyncRealTimeClientTestBase.swift */; };
 		217F39992405D9D500F1A0B3 /* AppSyncRealTimeClient.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 217F398F2405D9D500F1A0B3 /* AppSyncRealTimeClient.framework */; };
 		217F39CC2406E98400F1A0B3 /* AppSyncResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 217F39AA2406E98300F1A0B3 /* AppSyncResponse.swift */; };
 		217F39CD2406E98400F1A0B3 /* InterceptableConnection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 217F39AB2406E98300F1A0B3 /* InterceptableConnection.swift */; };
@@ -119,6 +120,7 @@
 /* Begin PBXFileReference section */
 		18D6E56CE03BAC33493CC19B /* Pods-HostApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HostApp.debug.xcconfig"; path = "Target Support Files/Pods-HostApp/Pods-HostApp.debug.xcconfig"; sourceTree = "<group>"; };
 		2164E65C2639AD5600385027 /* StarscreamAdapterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StarscreamAdapterTests.swift; sourceTree = "<group>"; };
+		2164E673263C58CD00385027 /* AppSyncRealTimeClientTestBase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSyncRealTimeClientTestBase.swift; sourceTree = "<group>"; };
 		217F398F2405D9D500F1A0B3 /* AppSyncRealTimeClient.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = AppSyncRealTimeClient.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		217F39932405D9D500F1A0B3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		217F39982405D9D500F1A0B3 /* AppSyncRealTimeClientTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AppSyncRealTimeClientTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -435,6 +437,7 @@
 			children = (
 				21D38B4B2409B6C000EC2A8D /* amplifyconfiguration.json */,
 				21D38B402409AFBD00EC2A8D /* AppSyncRealTimeClientIntegrationTests.swift */,
+				2164E673263C58CD00385027 /* AppSyncRealTimeClientTestBase.swift */,
 				21D38B422409AFBD00EC2A8D /* Info.plist */,
 				21D38B4D2409B8B200EC2A8D /* README.md */,
 				2164E65C2639AD5600385027 /* StarscreamAdapterTests.swift */,
@@ -1147,6 +1150,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				21D38B99240C4E1C00EC2A8D /* ConfigurationHelper.swift in Sources */,
+				2164E674263C58CE00385027 /* AppSyncRealTimeClientTestBase.swift in Sources */,
 				21D38B97240C4DCF00EC2A8D /* Error+Extension.swift in Sources */,
 				21D38B9D240C540D00EC2A8D /* TestCommonConstants.swift in Sources */,
 				21D38B412409AFBD00EC2A8D /* AppSyncRealTimeClientIntegrationTests.swift in Sources */,
