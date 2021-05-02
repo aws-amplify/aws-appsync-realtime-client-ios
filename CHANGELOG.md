@@ -2,7 +2,9 @@
 
 ## Unreleased
 
-- *Changes on `main` branch that have not yet been released*
+### Feature
+
+- feat: disconnect on last subscription, fix data races (See [PR #46](https://github.com/aws-amplify/aws-appsync-realtime-client-ios/pull/46))
 
 ## 1.4.4
 

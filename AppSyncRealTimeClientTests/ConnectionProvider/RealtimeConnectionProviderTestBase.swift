@@ -1,5 +1,5 @@
 //
-// Copyright 2018-2020 Amazon.com,
+// Copyright 2018-2021 Amazon.com,
 // Inc. or its affiliates. All Rights Reserved.
 //
 // SPDX-License-Identifier: Apache-2.0
@@ -39,7 +39,7 @@ class RealtimeConnectionProviderTestBase: XCTestCase {
     ///
     /// Preconditions:
     /// - `self.websocket` must be initialized in the mock provider's `onConnect`
-    func createProviderAndConnect() -> RealtimeConnectionProvider {
+    func createProviderAndConnect(listeners: [String]? = nil) -> RealtimeConnectionProvider {
         let provider = RealtimeConnectionProvider(for: url, websocket: websocket)
         provider.addListener(identifier: "testListener") { event in
             switch event {
@@ -56,6 +56,11 @@ class RealtimeConnectionProviderTestBase: XCTestCase {
                 self.receivedError.fulfill()
             default:
                 break
+            }
+        }
+        if let listeners = listeners {
+            listeners.forEach { identifier in
+                provider.addListener(identifier: identifier) { _ in }
             }
         }
         provider.connect()
