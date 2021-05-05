@@ -6,6 +6,10 @@
 
 - feat: disconnect on last subscription, fix data races (See [PR #46](https://github.com/aws-amplify/aws-appsync-realtime-client-ios/pull/46))
 
+### Misc
+
+- Exclude resources file from SPM (See [PR #43](https://github.com/aws-amplify/aws-appsync-realtime-client-ios/pull/43))
+
 ## 1.4.4
 
 ### Feature
