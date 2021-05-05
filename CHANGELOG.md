@@ -1,6 +1,8 @@
 # AppSync RealTime Client for iOS
 
 ## Unreleased
+*Changes on `main` branch that have not yet been released*
+
 
 ## 1.5.0
 
