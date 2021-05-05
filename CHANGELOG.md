@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+## 1.5.0
+
 ### Feature
 
 - feat: disconnect on last subscription, fix data races (See [PR #46](https://github.com/aws-amplify/aws-appsync-realtime-client-ios/pull/46))
