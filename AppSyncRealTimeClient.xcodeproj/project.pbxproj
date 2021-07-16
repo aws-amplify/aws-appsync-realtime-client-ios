@@ -1348,6 +1348,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = B07A87133C24AA78AF59093C /* Pods-AppSyncRealTimeClient.debug.xcconfig */;
 			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = W3DRXD72QU;
@@ -1374,6 +1375,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = C73EA796F50FB0196FDF4865 /* Pods-AppSyncRealTimeClient.release.xcconfig */;
 			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = W3DRXD72QU;
