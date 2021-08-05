@@ -1,10 +1,10 @@
 PODS:
-  - Starscream (3.1.1)
-  - SwiftFormat/CLI (0.45.1)
-  - SwiftLint (0.39.2)
+  - Starscream (4.0.4)
+  - SwiftFormat/CLI (0.48.11)
+  - SwiftLint (0.43.1)
 
 DEPENDENCIES:
-  - Starscream (~> 3.1.0)
+  - Starscream (~> 4.0.0)
   - SwiftFormat/CLI
   - SwiftLint
 
@@ -15,10 +15,10 @@ SPEC REPOS:
     - SwiftLint
 
 SPEC CHECKSUMS:
-  Starscream: 4bb2f9942274833f7b4d296a55504dcfc7edb7b0
-  SwiftFormat: 69db45cf8e30eda564431e0241322773b2d975fc
-  SwiftLint: 22ccbbe3b8008684be5955693bab135e0ed6a447
+  Starscream: 5178aed56b316f13fa3bc55694e583d35dd414d9
+  SwiftFormat: 938e5865a118c49d63c7a290ddad86335f9e585f
+  SwiftLint: 99f82d07b837b942dd563c668de129a03fc3fb52
 
-PODFILE CHECKSUM: 52bc6ec211be54e08e048379812e7a696613d5bf
+PODFILE CHECKSUM: 14e28963aed20e35237654c2def802dc0b6ca74b
 
-COCOAPODS: 1.9.3
+COCOAPODS: 1.10.2

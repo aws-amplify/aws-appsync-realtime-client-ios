@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct SubscriptionConstants {
+public enum SubscriptionConstants {
     public static let appsyncHostPart = "appsync-api"
 
     public static let appsyncRealtimeHostPart = "appsync-realtime-api"
@@ -21,7 +21,7 @@ public struct SubscriptionConstants {
     public static let authorizationkey = "Authorization"
 }
 
-public struct RealtimeProviderConstants {
+public enum RealtimeProviderConstants {
     public static let header = "header"
 
     public static let payload = "payload"

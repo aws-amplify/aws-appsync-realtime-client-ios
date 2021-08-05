@@ -11,7 +11,7 @@ let package = Package(
             targets: ["AppSyncRealTimeClient"]),
     ],
     dependencies: [
-        .package(url: "https://github.com/daltoniam/Starscream", .upToNextMinor(from: "3.1.1"))
+        .package(url: "https://github.com/daltoniam/Starscream", .upToNextMajor(from: "4.0.0"))
     ],
     targets: [
         .target(
