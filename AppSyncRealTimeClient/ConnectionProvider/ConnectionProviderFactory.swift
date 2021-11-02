@@ -13,9 +13,14 @@ public struct ConnectionProviderFactory {
     public static func createConnectionProvider(
         for url: URL,
         authInterceptor: AuthInterceptor,
-        connectionType: SubscriptionConnectionType
+        connectionType: SubscriptionConnectionType,
+        overrideConnectionTimeoutInSeconds: Int?
     ) -> ConnectionProvider {
-        let provider = ConnectionProviderFactory.createConnectionProvider(for: url, connectionType: connectionType)
+        let provider = ConnectionProviderFactory.createConnectionProvider(
+            for: url,
+            connectionType: connectionType,
+            overrideConnectionTimeoutInSeconds: overrideConnectionTimeoutInSeconds
+        )
 
         if let messageInterceptable = provider as? MessageInterceptable {
             messageInterceptable.addInterceptor(authInterceptor)
@@ -30,12 +35,17 @@ public struct ConnectionProviderFactory {
 
     static func createConnectionProvider(
         for url: URL,
-        connectionType: SubscriptionConnectionType
+        connectionType: SubscriptionConnectionType,
+        overrideConnectionTimeoutInSeconds: Int?
     ) -> ConnectionProvider {
         switch connectionType {
         case .appSyncRealtime:
             let websocketProvider = StarscreamAdapter()
-            let connectionProvider = RealtimeConnectionProvider(for: url, websocket: websocketProvider)
+            let connectionProvider = RealtimeConnectionProvider(
+                for: url,
+                websocket: websocketProvider,
+                overrideConnectionTimeoutInSeconds: overrideConnectionTimeoutInSeconds
+            )
             return connectionProvider
         }
     }

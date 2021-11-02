@@ -80,6 +80,16 @@ extension RealtimeConnectionProvider: AppSyncWebsocketDelegate {
         status = .connected
         updateCallback(event: .connection(status))
 
+        if let overrideConnectionTimeoutInSeconds = overrideConnectionTimeoutInSeconds {
+            AppSyncLogger.debug(
+                """
+                `overrideConnectionTimeoutInSeconds` exists: \(overrideConnectionTimeoutInSeconds) seconds.
+                Ignoring service `connectionTimeoutMs`.
+                """
+            )
+            return
+        }
+
         // If the service returns a connection timeout, use that instead of the default
         guard case let .number(value) = response.payload?["connectionTimeoutMs"] else {
             return
@@ -87,6 +97,7 @@ extension RealtimeConnectionProvider: AppSyncWebsocketDelegate {
 
         let interval = value / 1_000
 
+        // Only use the service value if it is not equal to the one set already
         guard interval != staleConnectionTimer?.interval else {
             return
         }

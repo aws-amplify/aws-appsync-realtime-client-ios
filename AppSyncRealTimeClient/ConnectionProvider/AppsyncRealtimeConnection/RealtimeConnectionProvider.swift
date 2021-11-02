@@ -23,6 +23,9 @@ public class RealtimeConnectionProvider: ConnectionProvider {
     /// message before we consider it stale and force a disconnect
     let staleConnectionTimeout: AtomicValue<TimeInterval>
 
+    /// Optional overide for taking client side precendent over service's `connectionTimeoutMs`
+    var overrideConnectionTimeoutInSeconds: Int?
+
     /// A timer that automatically disconnects the current connection if it goes longer
     /// than `staleConnectionTimeout` without activity. Receiving any data or "keep
     /// alive" message will cause the timer to be reset to the full interval.
@@ -39,7 +42,7 @@ public class RealtimeConnectionProvider: ConnectionProvider {
         label: "com.amazonaws.AppSyncRealTimeConnectionProvider.callbackQueue"
     )
 
-    public init(for url: URL, websocket: AppSyncWebsocketProvider) {
+    public init(for url: URL, websocket: AppSyncWebsocketProvider, overrideConnectionTimeoutInSeconds: Int? = nil) {
         self.url = url
         self.websocket = websocket
 
@@ -47,7 +50,13 @@ public class RealtimeConnectionProvider: ConnectionProvider {
         self.status = .notConnected
         self.messageInterceptors = []
         self.connectionInterceptors = []
-        self.staleConnectionTimeout = AtomicValue(initialValue: 5 * 60)
+        self.overrideConnectionTimeoutInSeconds = overrideConnectionTimeoutInSeconds
+        if let overrideConnectionTimeoutInSeconds = overrideConnectionTimeoutInSeconds {
+            self.staleConnectionTimeout = AtomicValue(initialValue: Double(overrideConnectionTimeoutInSeconds))
+        } else {
+            self.staleConnectionTimeout = AtomicValue(initialValue: 5 * 60)
+        }
+
         self.connectionQueue = DispatchQueue(
             label: "com.amazonaws.AppSyncRealTimeConnectionProvider.serialQueue"
         )
