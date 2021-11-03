@@ -23,11 +23,17 @@ public class RealtimeGatewayURLInterceptor: ConnectionInterceptor {
         guard var urlComponents = URLComponents(url: request.url, resolvingAgainstBaseURL: false) else {
             return request
         }
+        
         urlComponents.scheme = SubscriptionConstants.realtimeWebsocketScheme
-        urlComponents.host = host.replacingOccurrences(
-            of: SubscriptionConstants.appsyncHostPart,
-            with: SubscriptionConstants.appsyncRealtimeHostPart
-        )
+        if(AppSyncURLHelper.isCustomGraphQLDomain(url: endpoint)) {
+            urlComponents.path.append(contentsOf: "/" + SubscriptionConstants.appsyncCustomDomainWebSocketPathAppend)
+        } else {
+            urlComponents.host = host.replacingOccurrences(
+                of: SubscriptionConstants.appsyncHostPart,
+                with: SubscriptionConstants.appsyncRealtimeHostPart
+            )
+        }
+        
         guard let url = urlComponents.url else {
             return request
         }

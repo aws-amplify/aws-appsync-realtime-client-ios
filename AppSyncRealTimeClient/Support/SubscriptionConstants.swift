@@ -13,6 +13,8 @@ public struct SubscriptionConstants {
     public static let appsyncRealtimeHostPart = "appsync-realtime-api"
 
     public static let realtimeWebsocketScheme = "wss"
+    
+    public static let appsyncCustomDomainWebSocketPathAppend = "realtime"
 
     public static let emptyPayload = "{}"
 
