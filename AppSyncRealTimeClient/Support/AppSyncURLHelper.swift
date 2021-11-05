@@ -9,13 +9,15 @@ import Foundation
 
 public struct AppSyncURLHelper {
 
-    public static let standardDomainPattern = "^https://\\w{26}.appsync-api.\\w{2}-\\w{2,}-\\d.amazonaws.com/graphql$"
+    public static let standardDomainPattern =
+    "^https://\\w{26}.appsync-api.\\w{2}(?:(?:-\\w{2,})+)-\\d.amazonaws.com/graphql$"
     
-    // Check whether the URL is a custom GraphQL domain
-    public static func isCustomGraphQLDomain(url : URL) -> Bool {
+    // Check whether the provided GraphQL endpoint has standard appsync domain
+    public static func hasStandardAppSyncGraphQLDomain(url : URL) -> Bool {
         return url.absoluteString.range(of: standardDomainPattern,
-                                        options: .regularExpression,
+                                        options: [.regularExpression,
+                                                  .caseInsensitive],
                                        range: nil,
-                                       locale: nil) == nil
+                                       locale: nil) != nil
     }
 }

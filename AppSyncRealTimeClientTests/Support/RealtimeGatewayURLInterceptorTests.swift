@@ -32,10 +32,10 @@ class RealtimeGatewayURLInterceptorTests: XCTestCase {
         let request = AppSyncConnectionRequest(url: url)
         let changedRequest = realtimeGatewayURLInterceptor.interceptConnection(request, for: url)
         XCTAssertEqual(changedRequest.url.scheme, "wss", "Scheme should be wss")
-        XCTAssertTrue(
-            changedRequest.url.absoluteString.contains("graphql/realtime"),
-            "URL should contain the graphql/realtime part"
-        )
+        XCTAssertEqual(
+            changedRequest.url.absoluteString,
+            "wss://api.example.com/graphql/realtime",
+            "URL string should be equal wss://api.example.com/graphql/realtime")
     }
 
 }
