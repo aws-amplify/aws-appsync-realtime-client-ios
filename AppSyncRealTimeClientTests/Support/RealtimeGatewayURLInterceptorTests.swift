@@ -1,5 +1,5 @@
 //
-// Copyright 2018-2020 Amazon.com,
+// Copyright 2018-2021 Amazon.com,
 // Inc. or its affiliates. All Rights Reserved.
 //
 // SPDX-License-Identifier: Apache-2.0
@@ -26,7 +26,7 @@ class RealtimeGatewayURLInterceptorTests: XCTestCase {
             "URL should contain the realtime part"
         )
     }
-    
+
     func testCustomDomainInterceptRequest() {
         let url = URL(string: "https://api.example.com/graphql")!
         let request = AppSyncConnectionRequest(url: url)
@@ -35,7 +35,8 @@ class RealtimeGatewayURLInterceptorTests: XCTestCase {
         XCTAssertEqual(
             changedRequest.url.absoluteString,
             "wss://api.example.com/graphql/realtime",
-            "URL string should be equal wss://api.example.com/graphql/realtime")
+            "URL string should be equal wss://api.example.com/graphql/realtime"
+        )
     }
 
 }

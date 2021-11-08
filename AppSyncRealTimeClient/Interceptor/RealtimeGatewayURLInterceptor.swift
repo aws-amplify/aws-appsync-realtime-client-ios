@@ -1,5 +1,5 @@
 //
-// Copyright 2018-2020 Amazon.com,
+// Copyright 2018-2021 Amazon.com,
 // Inc. or its affiliates. All Rights Reserved.
 //
 // SPDX-License-Identifier: Apache-2.0
@@ -23,9 +23,9 @@ public class RealtimeGatewayURLInterceptor: ConnectionInterceptor {
         guard var urlComponents = URLComponents(url: request.url, resolvingAgainstBaseURL: false) else {
             return request
         }
-        
+
         urlComponents.scheme = SubscriptionConstants.realtimeWebsocketScheme
-        if(AppSyncURLHelper.hasStandardAppSyncGraphQLDomain(url: endpoint)) {
+        if AppSyncURLHelper.hasStandardAppSyncGraphQLDomain(url: endpoint) {
             urlComponents.host = host.replacingOccurrences(
                 of: SubscriptionConstants.appsyncHostPart,
                 with: SubscriptionConstants.appsyncRealtimeHostPart
@@ -34,7 +34,7 @@ public class RealtimeGatewayURLInterceptor: ConnectionInterceptor {
             // else custom domain
             urlComponents.path.append(contentsOf: "/" + SubscriptionConstants.appsyncCustomDomainWebSocketPathAppend)
         }
-        
+
         guard let url = urlComponents.url else {
             return request
         }
