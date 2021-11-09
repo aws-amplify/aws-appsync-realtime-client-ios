@@ -25,7 +25,7 @@ public class RealtimeGatewayURLInterceptor: ConnectionInterceptor {
         }
 
         urlComponents.scheme = SubscriptionConstants.realtimeWebsocketScheme
-        if AppSyncURLHelper.hasStandardAppSyncGraphQLDomain(url: endpoint) {
+        if AppSyncURLHelper.isStandardAppSyncGraphQLDomain(url: endpoint) {
             urlComponents.host = host.replacingOccurrences(
                 of: SubscriptionConstants.appsyncHostPart,
                 with: SubscriptionConstants.appsyncRealtimeHostPart
