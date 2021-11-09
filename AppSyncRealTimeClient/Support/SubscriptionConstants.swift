@@ -14,7 +14,7 @@ public enum SubscriptionConstants {
 
     public static let realtimeWebsocketScheme = "wss"
 
-    public static let appsyncCustomDomainWebSocketPathAppend = "realtime"
+    public static let appsyncCustomDomainRealtimePath = "realtime"
 
     public static let emptyPayload = "{}"
 

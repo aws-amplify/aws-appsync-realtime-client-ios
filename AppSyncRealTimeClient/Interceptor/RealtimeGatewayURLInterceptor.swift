@@ -25,14 +25,14 @@ public class RealtimeGatewayURLInterceptor: ConnectionInterceptor {
         }
 
         urlComponents.scheme = SubscriptionConstants.realtimeWebsocketScheme
-        if AppSyncURLHelper.isStandardAppSyncGraphQLDomain(url: endpoint) {
+        if AppSyncURLHelper.isStandardAppSyncGraphQLEndpoint(url: endpoint) {
             urlComponents.host = host.replacingOccurrences(
                 of: SubscriptionConstants.appsyncHostPart,
                 with: SubscriptionConstants.appsyncRealtimeHostPart
             )
         } else {
-            // else custom domain
-            urlComponents.path.append(contentsOf: "/" + SubscriptionConstants.appsyncCustomDomainWebSocketPathAppend)
+            // else this is a custom domain such that the host remains untouched and "/realtime" path is added
+            urlComponents.path.append(contentsOf: "/" + SubscriptionConstants.appsyncCustomDomainRealtimePath)
         }
 
         guard let url = urlComponents.url else {
