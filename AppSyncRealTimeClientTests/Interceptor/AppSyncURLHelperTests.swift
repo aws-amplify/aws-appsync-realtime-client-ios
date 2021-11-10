@@ -15,7 +15,6 @@ class AppSyncURLHelperTests: XCTestCase {
     /// - Given: A graphql endpoint with standard appsync domain
     /// - When: I invoke AppSyncURLHelper.hasStandardAppsyncGraphQLDomain()
     /// - Then: It should return true
-
     func testURLStandardAppSyncDomain() {
         let standardDomainURL =
             URL(string: "https://abcdefghijklmnopqrstuvwxyz.appsync-api.us-west-2.amazonaws.com/graphql")!
@@ -27,7 +26,6 @@ class AppSyncURLHelperTests: XCTestCase {
     /// - Given: A graphql endpoint in capital letters with standard appsync domain
     /// - When: I invoke AppSyncURLHelper.hasStandardAppsyncGraphQLDomain()
     /// - Then: It should return true
-
     func testURLStandardAppSyncDomainCaseInsensitive() {
         let standardDomainURL =
             URL(string: "HTTPS://ABCDEFGHIJKLMNOPQRSTUVWXYZ.APPSYNC-API.US-WEST-2.AMAZONAWS.COM/GRAPHQL")!
@@ -39,7 +37,6 @@ class AppSyncURLHelperTests: XCTestCase {
     /// - Given: A graphql endpoint with a custom domain
     /// - When: I invoke AppSyncURLHelper.hasStandardAppsyncGraphQLDomain()
     /// - Then: It should return false
-
     func testURLCustomAppSyncDomain() {
         let customDomainURL =
             URL(string: "https://api.example.com/graphql")!
