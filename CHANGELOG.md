@@ -3,6 +3,9 @@
 ## Unreleased
 *Changes on `main` branch that have not yet been released*
 
+## 1.6.0
+
+- feat: Realtime interceptor changes for GraphQL subscriptions (See [PR #53](https://github.com/aws-amplify/aws-appsync-realtime-client-ios/pull/53))
 
 ## 1.5.0
 
