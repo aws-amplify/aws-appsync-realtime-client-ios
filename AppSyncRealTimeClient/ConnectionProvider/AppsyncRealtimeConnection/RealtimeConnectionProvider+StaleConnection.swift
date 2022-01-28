@@ -33,6 +33,28 @@ extension RealtimeConnectionProvider {
         staleConnectionTimer?.resetCountdown()
     }
 
+    /// Handle updates from the ConnectivityMonitor
+    func handleConnectivityUpdates(connectivity: ConnectivityPath) {
+        connectionQueue.async {[weak self] in
+            guard let self = self else {
+                return
+            }
+            AppSyncLogger.debug("[RealtimeConnectionProvider] Status: \(self.status). Connectivity status: \(connectivity.status)")
+            if self.status == .connected && connectivity.status == .unsatisfied && !self.isStaleConnection {
+                AppSyncLogger.debug("[RealtimeConnectionProvider] Connetion is stale. Pending reconnect on connectivity.")
+                self.isStaleConnection = true
+
+            } else if self.status == .connected && self.isStaleConnection && connectivity.status == .satisfied {
+                AppSyncLogger.debug("[RealtimeConnectionProvider] Connetion is stale. Disconnecting to begin reconnect.")
+                if self.staleConnectionTimer != nil {
+                    self.stopStaleConnectionTimer()
+                }
+
+                self.disconnectStaleConnection()
+            }
+        }
+    }
+
     /// Fired when the stale connection timer expires
     private func disconnectStaleConnection() {
         connectionQueue.async {[weak self] in
@@ -41,9 +63,9 @@ extension RealtimeConnectionProvider {
             }
             AppSyncLogger.error("[RealtimeConnectionProvider] Realtime connection is stale, disconnecting.")
             self.status = .notConnected
+            self.isStaleConnection = false
             self.websocket.disconnect()
             self.updateCallback(event: .error(ConnectionProviderError.connection))
         }
     }
-
 }

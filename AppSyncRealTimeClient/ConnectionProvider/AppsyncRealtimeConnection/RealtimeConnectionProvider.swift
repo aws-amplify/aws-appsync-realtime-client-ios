@@ -28,11 +28,17 @@ public class RealtimeConnectionProvider: ConnectionProvider {
     /// alive" message will cause the timer to be reset to the full interval.
     var staleConnectionTimer: CountdownTimer?
 
+    /// Intermediate state when the connection is connected and connectivity updates to unsatisfied (offline)
+    var isStaleConnection: Bool
+
     /// Manages concurrency for socket connections, disconnections, writes, and status reports.
     ///
     /// Each connection request will be sent to this queue. Connection request are
     /// handled one at a time.
     let connectionQueue: DispatchQueue
+
+    /// Monitor for connectivity updates to disconnect the current connection if it flips between connectivity statuses
+    let connectivityMonitor: ConnectivityMonitor
 
     /// The serial queue on which status & message callbacks from the web socket are invoked.
     private let serialCallbackQueue = DispatchQueue(
@@ -51,6 +57,11 @@ public class RealtimeConnectionProvider: ConnectionProvider {
         self.connectionQueue = DispatchQueue(
             label: "com.amazonaws.AppSyncRealTimeConnectionProvider.serialQueue"
         )
+        self.isStaleConnection = false
+        self.connectivityMonitor = ConnectivityMonitor()
+        if #available(iOS 12.0, *) {
+            self.connectivityMonitor.start(conectivityUpdates: handleConnectivityUpdates(connectivity:))
+        }
     }
 
     // MARK: - ConnectionProvider methods
