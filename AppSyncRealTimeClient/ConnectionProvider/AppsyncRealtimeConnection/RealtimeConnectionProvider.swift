@@ -59,9 +59,7 @@ public class RealtimeConnectionProvider: ConnectionProvider {
         )
         self.isStaleConnection = false
         self.connectivityMonitor = ConnectivityMonitor()
-        if #available(iOS 12.0, *) {
-            self.connectivityMonitor.start(conectivityUpdates: handleConnectivityUpdates(connectivity:))
-        }
+        connectivityMonitor.start(connectivityUpdates: handleConnectivityUpdates(connectivity:))
     }
 
     // MARK: - ConnectionProvider methods

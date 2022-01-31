@@ -11,7 +11,7 @@ import Network
 typealias ConnectivityUpdates = (ConnectivityPath) -> Void
 
 protocol AnyConnectivityMonitor {
-    func start(connectivityUpdatesQueue: DispatchQueue, onConectivityUpdates: @escaping ConnectivityUpdates)
+    func start(connectivityUpdatesQueue: DispatchQueue, onConnectivityUpdates: @escaping ConnectivityUpdates)
     func cancel()
 }
 
@@ -24,14 +24,24 @@ class ConnectivityMonitor {
     )
     private var monitor: AnyConnectivityMonitor?
 
-    init() {
+    init(connectivityMonitor: AnyConnectivityMonitor? = nil) {
+        self.monitor = connectivityMonitor
     }
 
-    @available(iOS 12.0, *)
-    func start(conectivityUpdates: @escaping ConnectivityUpdates) {
-        let monitor = NetworkMonitor()
-        self.monitor = monitor
-        monitor.start(connectivityUpdatesQueue: connectivityUpdatesQueue, onConectivityUpdates: conectivityUpdates)
+    func start(connectivityUpdates: @escaping ConnectivityUpdates) {
+        if let monitor = monitor {
+            monitor.start(
+                connectivityUpdatesQueue: connectivityUpdatesQueue,
+                onConnectivityUpdates: connectivityUpdates
+            )
+        } else if #available(iOS 12.0, *) {
+            let monitor = NetworkMonitor()
+            self.monitor = monitor
+            monitor.start(
+                connectivityUpdatesQueue: connectivityUpdatesQueue,
+                onConnectivityUpdates: connectivityUpdates
+            )
+        }
     }
 
     func cancel() {
@@ -50,13 +60,13 @@ class ConnectivityMonitor {
 @available(iOS 12.0, macOS 10.14, tvOS 12.0, watchOS 6.0, *)
 class NetworkMonitor: AnyConnectivityMonitor {
     private var monitor: NWPathMonitor?
-    private var onConectivityUpdates: ConnectivityUpdates?
+    private var onConnectivityUpdates: ConnectivityUpdates?
     private var connectivityUpdatesQueue: DispatchQueue?
     private let queue = DispatchQueue(label: "com.amazonaws.NetworkMonitor.queue", qos: .background)
 
-    func start(connectivityUpdatesQueue: DispatchQueue, onConectivityUpdates: @escaping ConnectivityUpdates) {
+    func start(connectivityUpdatesQueue: DispatchQueue, onConnectivityUpdates: @escaping ConnectivityUpdates) {
         self.connectivityUpdatesQueue = connectivityUpdatesQueue
-        self.onConectivityUpdates = onConectivityUpdates
+        self.onConnectivityUpdates = onConnectivityUpdates
         // A new instance is required each time a monitor is started
         let monitor = NWPathMonitor()
         monitor.pathUpdateHandler = didUpdate(path:)
@@ -73,13 +83,13 @@ class NetworkMonitor: AnyConnectivityMonitor {
     }
 
     func didUpdate(path: NWPath) {
-        guard let onConectivityUpdates = onConectivityUpdates,
+        guard let onConnectivityUpdates = onConnectivityUpdates,
               let connectivityUpdatesQueue = connectivityUpdatesQueue else {
             return
         }
         let connectivityPath = ConnectivityPath(path: path)
         connectivityUpdatesQueue.async {
-            onConectivityUpdates(connectivityPath)
+            onConnectivityUpdates(connectivityPath)
         }
     }
 }
