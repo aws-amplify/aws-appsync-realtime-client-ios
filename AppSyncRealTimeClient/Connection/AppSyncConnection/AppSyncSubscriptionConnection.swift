@@ -17,7 +17,7 @@ enum SubscriptionState {
 
 public class AppSyncSubscriptionConnection: SubscriptionConnection, RetryableConnection {
     /// Connection provider that connects with the service
-    weak var connectionProvider: ConnectionProvider?
+    var connectionProvider: ConnectionProvider?
 
     /// The current state of subscription
     var subscriptionState: SubscriptionState = .notSubscribed
