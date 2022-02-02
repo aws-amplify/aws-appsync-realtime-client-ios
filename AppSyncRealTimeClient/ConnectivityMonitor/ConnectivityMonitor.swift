@@ -47,9 +47,6 @@ class ConnectivityMonitor {
         guard let monitor = monitor else {
             return
         }
-        defer {
-            self.monitor = nil
-        }
         monitor.cancel()
     }
 
