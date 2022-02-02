@@ -1,6 +1,6 @@
 //
-// Copyright 2018-2021 Amazon.com,
-// Inc. or its affiliates. All Rights Reserved.
+// Copyright Amazon.com Inc. or its affiliates.
+// All Rights Reserved.
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -11,12 +11,11 @@ import Network
 typealias ConnectivityUpdates = (ConnectivityPath) -> Void
 
 protocol AnyConnectivityMonitor {
-    func start(connectivityUpdatesQueue: DispatchQueue, onConectivityUpdates: @escaping ConnectivityUpdates)
+    func start(connectivityUpdatesQueue: DispatchQueue, onConnectivityUpdates: @escaping ConnectivityUpdates)
     func cancel()
 }
 
 class ConnectivityMonitor {
-    var connectivity: ConnectivityPath?
 
     private let connectivityUpdatesQueue = DispatchQueue(
         label: "com.amazonaws.ConnectivityMonitor.connectivityUpdatesQueue",
@@ -24,14 +23,24 @@ class ConnectivityMonitor {
     )
     private var monitor: AnyConnectivityMonitor?
 
-    init() {
+    init(monitor: AnyConnectivityMonitor? = nil) {
+        self.monitor = monitor
     }
 
-    @available(iOS 12.0, *)
-    func start(conectivityUpdates: @escaping ConnectivityUpdates) {
-        let monitor = NetworkMonitor()
-        self.monitor = monitor
-        monitor.start(connectivityUpdatesQueue: connectivityUpdatesQueue, onConectivityUpdates: conectivityUpdates)
+    func start(onUpdates: @escaping ConnectivityUpdates) {
+        if let monitor = monitor {
+            monitor.start(
+                connectivityUpdatesQueue: connectivityUpdatesQueue,
+                onConnectivityUpdates: onUpdates
+            )
+        } else if #available(iOS 12.0, *) {
+            let monitor = NetworkMonitor()
+            self.monitor = monitor
+            monitor.start(
+                connectivityUpdatesQueue: connectivityUpdatesQueue,
+                onConnectivityUpdates: onUpdates
+            )
+        }
     }
 
     func cancel() {
@@ -39,7 +48,6 @@ class ConnectivityMonitor {
             return
         }
         monitor.cancel()
-        self.monitor = nil
     }
 
     deinit {
@@ -50,13 +58,13 @@ class ConnectivityMonitor {
 @available(iOS 12.0, macOS 10.14, tvOS 12.0, watchOS 6.0, *)
 class NetworkMonitor: AnyConnectivityMonitor {
     private var monitor: NWPathMonitor?
-    private var onConectivityUpdates: ConnectivityUpdates?
+    private var onConnectivityUpdates: ConnectivityUpdates?
     private var connectivityUpdatesQueue: DispatchQueue?
     private let queue = DispatchQueue(label: "com.amazonaws.NetworkMonitor.queue", qos: .background)
 
-    func start(connectivityUpdatesQueue: DispatchQueue, onConectivityUpdates: @escaping ConnectivityUpdates) {
+    func start(connectivityUpdatesQueue: DispatchQueue, onConnectivityUpdates: @escaping ConnectivityUpdates) {
         self.connectivityUpdatesQueue = connectivityUpdatesQueue
-        self.onConectivityUpdates = onConectivityUpdates
+        self.onConnectivityUpdates = onConnectivityUpdates
         // A new instance is required each time a monitor is started
         let monitor = NWPathMonitor()
         monitor.pathUpdateHandler = didUpdate(path:)
@@ -73,13 +81,13 @@ class NetworkMonitor: AnyConnectivityMonitor {
     }
 
     func didUpdate(path: NWPath) {
-        guard let onConectivityUpdates = onConectivityUpdates,
+        guard let onConnectivityUpdates = onConnectivityUpdates,
               let connectivityUpdatesQueue = connectivityUpdatesQueue else {
             return
         }
         let connectivityPath = ConnectivityPath(path: path)
         connectivityUpdatesQueue.async {
-            onConectivityUpdates(connectivityPath)
+            onConnectivityUpdates(connectivityPath)
         }
     }
 }

@@ -43,10 +43,7 @@ extension RealtimeConnectionProvider {
 
             } else if self.status == .connected && self.isStaleConnection && connectivity.status == .satisfied {
                 AppSyncLogger.debug("[RealtimeConnectionProvider] Connetion is stale. Disconnecting to begin reconnect.")
-                if self.staleConnectionTimer != nil {
-                    self.stopStaleConnectionTimer()
-                }
-
+                self.staleConnectionTimer.invalidate()
                 self.disconnectStaleConnection()
             }
         }

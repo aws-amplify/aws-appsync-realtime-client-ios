@@ -48,6 +48,8 @@
 		219BFF3B27A38902000FC148 /* schema.graphql in Resources */ = {isa = PBXBuildFile; fileRef = 219BFF3A27A38902000FC148 /* schema.graphql */; };
 		219BFF4927A3B238000FC148 /* ConnectivityMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 219BFF4827A3B237000FC148 /* ConnectivityMonitor.swift */; };
 		219BFF4B27A3B24F000FC148 /* ConnectivityPath.swift in Sources */ = {isa = PBXBuildFile; fileRef = 219BFF4A27A3B24F000FC148 /* ConnectivityPath.swift */; };
+		219BFF6A27A9AC6E000FC148 /* ConnectivityMonitorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 219BFF6927A9AC6E000FC148 /* ConnectivityMonitorTests.swift */; };
+		219BFF6C27A9AF85000FC148 /* MockConnectivityMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 219BFF6B27A9AF85000FC148 /* MockConnectivityMonitor.swift */; };
 		21D38B412409AFBD00EC2A8D /* AppSyncRealTimeClientIntegrationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21D38B402409AFBD00EC2A8D /* AppSyncRealTimeClientIntegrationTests.swift */; };
 		21D38B432409AFBD00EC2A8D /* AppSyncRealTimeClient.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 217F398F2405D9D500F1A0B3 /* AppSyncRealTimeClient.framework */; };
 		21D38B4C2409B6C000EC2A8D /* amplifyconfiguration.json in Resources */ = {isa = PBXBuildFile; fileRef = 21D38B4B2409B6C000EC2A8D /* amplifyconfiguration.json */; };
@@ -171,6 +173,8 @@
 		219BFF3A27A38902000FC148 /* schema.graphql */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = schema.graphql; sourceTree = "<group>"; };
 		219BFF4827A3B237000FC148 /* ConnectivityMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectivityMonitor.swift; sourceTree = "<group>"; };
 		219BFF4A27A3B24F000FC148 /* ConnectivityPath.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectivityPath.swift; sourceTree = "<group>"; };
+		219BFF6927A9AC6E000FC148 /* ConnectivityMonitorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectivityMonitorTests.swift; sourceTree = "<group>"; };
+		219BFF6B27A9AF85000FC148 /* MockConnectivityMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockConnectivityMonitor.swift; sourceTree = "<group>"; };
 		21D38B3E2409AFBD00EC2A8D /* AppSyncRealTimeClientIntegrationTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AppSyncRealTimeClientIntegrationTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		21D38B402409AFBD00EC2A8D /* AppSyncRealTimeClientIntegrationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSyncRealTimeClientIntegrationTests.swift; sourceTree = "<group>"; };
 		21D38B422409AFBD00EC2A8D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -329,6 +333,7 @@
 			children = (
 				217F39E82406EA3F00F1A0B3 /* Connection */,
 				217F39EC2406EA4000F1A0B3 /* ConnectionProvider */,
+				219BFF6827A9AC4F000FC148 /* ConnectivityMonitor */,
 				217F399F2405D9D500F1A0B3 /* Info.plist */,
 				21D38B84240A39E400EC2A8D /* Interceptor */,
 				217F39EA2406EA3F00F1A0B3 /* Mocks */,
@@ -436,6 +441,7 @@
 			children = (
 				217F39EB2406EA3F00F1A0B3 /* MockConnectionProvider.swift */,
 				FA67507724D3244A005A1345 /* MockWebsocketProvider.swift */,
+				219BFF6B27A9AF85000FC148 /* MockConnectivityMonitor.swift */,
 			);
 			path = Mocks;
 			sourceTree = "<group>";
@@ -465,6 +471,14 @@
 			children = (
 				219BFF4827A3B237000FC148 /* ConnectivityMonitor.swift */,
 				219BFF4A27A3B24F000FC148 /* ConnectivityPath.swift */,
+			);
+			path = ConnectivityMonitor;
+			sourceTree = "<group>";
+		};
+		219BFF6827A9AC4F000FC148 /* ConnectivityMonitor */ = {
+			isa = PBXGroup;
+			children = (
+				219BFF6927A9AC6E000FC148 /* ConnectivityMonitorTests.swift */,
 			);
 			path = ConnectivityMonitor;
 			sourceTree = "<group>";
@@ -1176,6 +1190,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				21D38B89240A39E400EC2A8D /* OIDCAuthInterceptorTests.swift in Sources */,
+				219BFF6C27A9AF85000FC148 /* MockConnectivityMonitor.swift in Sources */,
 				217F39F22406EA4000F1A0B3 /* ConnectionProviderTests.swift in Sources */,
 				2143D46727B5D9B40066B2F7 /* RealTimeConnectionProviderResponseTests.swift in Sources */,
 				FA67507824D3244A005A1345 /* MockWebsocketProvider.swift in Sources */,
@@ -1185,6 +1200,7 @@
 				21D38B8B240A39E400EC2A8D /* AppSyncJSONHelperTests.swift in Sources */,
 				217F39F32406EA4000F1A0B3 /* RealtimeGatewayURLInterceptorTests.swift in Sources */,
 				FA67507E24D33976005A1345 /* RealtimeConnectionProviderTestBase.swift in Sources */,
+				219BFF6A27A9AC6E000FC148 /* ConnectivityMonitorTests.swift in Sources */,
 				978409BA2739C7E1002362A7 /* AppSyncURLHelperTests.swift in Sources */,
 				FA67508424D33ACC005A1345 /* CountdownTimerTests.swift in Sources */,
 				FA67508024D339B0005A1345 /* ConnectionProviderStaleConnectionTests.swift in Sources */,

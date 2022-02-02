@@ -37,15 +37,27 @@ public class RealtimeConnectionProvider: ConnectionProvider {
     /// handled one at a time.
     let connectionQueue: DispatchQueue
 
-    /// Monitor for connectivity updates to disconnect the current connection if it flips between connectivity statuses
+    /// Monitor for connectivity updates
     let connectivityMonitor: ConnectivityMonitor
 
     /// The serial queue on which status & message callbacks from the web socket are invoked.
-    private let serialCallbackQueue = DispatchQueue(
-        label: "com.amazonaws.AppSyncRealTimeConnectionProvider.callbackQueue"
-    )
+    private let serialCallbackQueue: DispatchQueue
 
-    public init(for url: URL, websocket: AppSyncWebsocketProvider) {
+    public convenience init(for url: URL, websocket: AppSyncWebsocketProvider) {
+        self.init(url: url, websocket: websocket)
+    }
+
+    init(
+        url: URL,
+        websocket: AppSyncWebsocketProvider,
+        connectionQueue: DispatchQueue = DispatchQueue(
+            label: "com.amazonaws.AppSyncRealTimeConnectionProvider.serialQueue"
+        ),
+        serialCallbackQueue: DispatchQueue = DispatchQueue(
+            label: "com.amazonaws.AppSyncRealTimeConnectionProvider.callbackQueue"
+        ),
+        connectivityMonitor: ConnectivityMonitor = ConnectivityMonitor()
+    ) {
         self.url = url
         self.websocket = websocket
 
@@ -53,15 +65,15 @@ public class RealtimeConnectionProvider: ConnectionProvider {
         self.status = .notConnected
         self.messageInterceptors = []
         self.connectionInterceptors = []
+
         self.staleConnectionTimer = CountdownTimer()
-        self.connectionQueue = DispatchQueue(
-            label: "com.amazonaws.AppSyncRealTimeConnectionProvider.serialQueue"
-        )
         self.isStaleConnection = false
-        self.connectivityMonitor = ConnectivityMonitor()
-        if #available(iOS 12.0, *) {
-            self.connectivityMonitor.start(conectivityUpdates: handleConnectivityUpdates(connectivity:))
-        }
+
+        self.connectionQueue = connectionQueue
+        self.serialCallbackQueue = serialCallbackQueue
+
+        self.connectivityMonitor = connectivityMonitor
+        connectivityMonitor.start(onUpdates: handleConnectivityUpdates(connectivity:))
     }
 
     // MARK: - ConnectionProvider methods
