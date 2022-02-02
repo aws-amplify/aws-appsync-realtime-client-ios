@@ -115,7 +115,7 @@ jobs:
           command: xcodebuild build-for-testing -workspace AppSyncRealTimeClient.xcworkspace -scheme AppSyncRealTimeClient -sdk iphonesimulator -destination "${destination}" | xcpretty
       - run:
           name: Test AppSyncRealTimeClient
-          command: xcodebuild test -enableThreadSanitizer NO -workspace AppSyncRealTimeClient.xcworkspace -scheme AppSyncRealTimeClient -sdk iphonesimulator -destination "${destination}" | xcpretty --simple --color --report junit
+          command: xcodebuild test -workspace AppSyncRealTimeClient.xcworkspace -scheme AppSyncRealTimeClient -sdk iphonesimulator -destination "${destination}" | xcpretty --simple --color --report junit
       - store_test_results:
           path: build/reports
   deploy:
