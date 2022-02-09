@@ -3,6 +3,10 @@
 ## Unreleased
 *Changes on `main` branch that have not yet been released*
 
+## 1.7.0
+
+- feat: Upgrade Starscream to 4.0.4 (See [PR #62](https://github.com/aws-amplify/aws-appsync-realtime-client-ios/pull/62))
+
 ## 1.6.0
 
 - feat: Realtime interceptor changes for GraphQL subscriptions (See [PR #53](https://github.com/aws-amplify/aws-appsync-realtime-client-ios/pull/53))
