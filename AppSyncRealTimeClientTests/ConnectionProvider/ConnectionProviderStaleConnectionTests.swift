@@ -141,7 +141,6 @@ class ConnectionProviderStaleConnectionTests: RealtimeConnectionProviderTestBase
         connectionQueue.asyncAfter(deadline: .now() + 0.5) {
             XCTAssertFalse(provider.isStaleConnection)
             XCTAssertTrue(provider.status == .notConnected)
-            XCTAssertNil(provider.staleConnectionTimer)
             connectionIsDisconnected.fulfill()
         }
         wait(for: [connectionIsDisconnected, receivedError], timeout: 1.0)
