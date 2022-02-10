@@ -52,3 +52,36 @@ extension RealtimeConnectionProviderResponse: Decodable {
         case responseType = "type"
     }
 }
+
+extension RealtimeConnectionProviderResponse {
+
+    func isMaxSubscriptionReached() -> Bool {
+
+        guard let payload = payload else {
+            return false
+        }
+
+        // Keep this here for backwards compatibility for previously provisioned AppSync services
+        if let errorType = payload["errorType"],
+            errorType == "MaxSubscriptionsReachedException" {
+            return true
+        }
+
+        // The observed response from the service
+        // { "id":"DB23EC80-C51A-4FEE-82F7-AA4949B4F299",
+        //  "type":"error",
+        //  "payload": {
+        //      "errors": {
+        //          "errorType":"MaxSubscriptionsReachedError",
+        //          "message":"Max number of 100 subscriptions reached" }}}
+        if let errors = payload["errors"],
+           case let .object(errorsObject) = errors,
+           let errorType = errorsObject["errorType"],
+           errorType == "MaxSubscriptionsReachedError" {
+            return true
+        }
+
+        return false
+    }
+
+}

@@ -15,10 +15,13 @@ extension AppSyncSubscriptionConnection {
             return
         }
 
-        // If the error identifier is not for the this connection
+        // If the error identifier is not for the this subscription
         // we return immediately without handling the error.
         if case let ConnectionProviderError.subscription(identifier, _) = error,
             identifier != subscriptionItem.identifier {
+            return
+        }
+        if case let ConnectionProviderError.limitExceeded(identifier) = error, identifier != subscriptionItem.identifier {
             return
         }
 
