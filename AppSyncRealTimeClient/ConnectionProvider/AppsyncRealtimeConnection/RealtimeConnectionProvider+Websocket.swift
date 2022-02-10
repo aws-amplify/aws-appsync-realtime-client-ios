@@ -87,7 +87,7 @@ extension RealtimeConnectionProvider: AppSyncWebsocketDelegate {
 
         let interval = value / 1_000
 
-        guard interval != staleConnectionTimer?.interval else {
+        guard interval != staleConnectionTimer.interval else {
             return
         }
 
@@ -97,8 +97,7 @@ extension RealtimeConnectionProvider: AppSyncWebsocketDelegate {
             instructions: \(interval)s
             """
         )
-        staleConnectionTimeout.set(interval)
-        startStaleConnectionTimer()
+        resetStaleConnectionTimer(interval: interval)
     }
 
     /// Resolves & dispatches errors from `response`.

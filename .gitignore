@@ -44,6 +44,7 @@ credentials-mc.json
 amplify
 build/
 .build/
+.vscode/
 dist/
 node_modules/
 aws-exports.js
