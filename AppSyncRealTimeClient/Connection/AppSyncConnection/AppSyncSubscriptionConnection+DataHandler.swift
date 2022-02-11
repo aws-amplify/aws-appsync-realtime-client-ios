@@ -16,9 +16,6 @@ extension AppSyncSubscriptionConnection {
         }
 
         guard response.id == subscriptionItem.identifier else {
-            AppSyncLogger.verbose("""
-                [AppSyncSubscriptionConnection] \(#function): \(subscriptionItem.identifier). Ignoring data event for \(response.id ?? "(null)")
-                """)
             return
         }
 

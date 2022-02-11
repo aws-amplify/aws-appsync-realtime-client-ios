@@ -118,9 +118,7 @@ extension RealtimeConnectionProvider: AppSyncWebsocketDelegate {
             return
         }
 
-        // Map to limit exceed error if we get MaxSubscriptionsReachedException
-        if let errorType = response.payload?["errorType"],
-            errorType == "MaxSubscriptionsReachedException" {
+        if response.isMaxSubscriptionReachedError() {
             let limitExceedError = ConnectionProviderError.limitExceeded(identifier)
             updateCallback(event: .error(limitExceedError))
             return
