@@ -7,6 +7,8 @@
 
 import Foundation
 
+/// More information about the response can be found here
+/// https://docs.aws.amazon.com/appsync/latest/devguide/real-time-websocket-client.html#connection-init-message
 struct RealtimeConnectionProviderResponse {
 
     /// Subscription Identifier
@@ -53,10 +55,19 @@ extension RealtimeConnectionProviderResponse: Decodable {
     }
 }
 
+/// Helper methods to check which type of errors, such as `MaxSubscriptionsReachedError`, `LimitExceededError`.
+/// Errors have the following shape
+///
+///      "type": "error": A constant <string> parameter.
+///      "id": <string>: The ID of the corresponding registered subscription, if relevant.
+///      "payload" <Object>: An object that contains the corresponding error information.
+///
+/// More information can be found here
+/// https://docs.aws.amazon.com/appsync/latest/devguide/real-time-websocket-client.html#error-message
 extension RealtimeConnectionProviderResponse {
 
-    func isMaxSubscriptionReached() -> Bool {
-
+    func isMaxSubscriptionReachedError() -> Bool {
+        // It is expected to contain payload with corresponding error information
         guard let payload = payload else {
             return false
         }

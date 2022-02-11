@@ -18,6 +18,6 @@ class RealTimeConnectionProviderResponseTests: XCTestCase {
             type: .error
         )
 
-        XCTAssertTrue(response.isMaxSubscriptionReached())
+        XCTAssertTrue(response.isMaxSubscriptionReachedError())
     }
 }
