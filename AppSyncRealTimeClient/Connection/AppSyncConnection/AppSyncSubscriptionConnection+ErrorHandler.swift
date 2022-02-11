@@ -21,9 +21,46 @@ extension AppSyncSubscriptionConnection {
             identifier != subscriptionItem.identifier {
             return
         }
-        if case let ConnectionProviderError.limitExceeded(identifier) = error, identifier != subscriptionItem.identifier {
+        
+        if case let ConnectionProviderError.limitExceeded(identifier) = error {
+            // We do not know which subscription this is for, either ignore it or send the error back
+            // Don't go pass this check since it's not retryable, return from here
+            if identifier == nil {
+                // if we are subscribed already, then ignore it.
+                if subscriptionState == .subscribed {
+                    return
+                } else {
+                    // If we are .inProgress or .notSubscribed, set it to `.notSubscribed`, send the error back.
+                    subscriptionState = .notSubscribed
+                    if !throttled {
+                        // TODO: we sent this back for this subscription, but we still don't really know which
+                        // subscription was the one that was throttled.
+                        subscriptionItem.subscriptionEventHandler(.failed(error), subscriptionItem)
+                    }
+                    
+                    // Once we've sent it once, circuit break here using some state on the subscription.
+                    throttled = true
+                    return
+                }
+            }
+
+            // If there is an identifier, and does not equal this subscription's identifier, ignore the error.
+            if identifier != subscriptionItem.identifier {
+                return
+            }
+        }
+
+        if case ConnectionProviderError.other = error {
+            AppSyncLogger.warn("[AppSyncSubscriptionConnection] \(#function): other error \(subscriptionItem.identifier)")
+            // Again this is only ever returned if there is no `id` and it is not LimitExceeded
+            // the default case should also be throttled at the subscription as we don't know whether it
+            // happened because of this subscription
+            // of because of something else.
+            subscriptionItem.subscriptionEventHandler(.failed(error), subscriptionItem)
             return
         }
+        
+        
 
         AppSyncSubscriptionConnection.logExtendedErrorInfo(for: error)
 

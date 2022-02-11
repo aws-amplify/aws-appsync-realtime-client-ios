@@ -27,6 +27,8 @@ public class AppSyncSubscriptionConnection: SubscriptionConnection, RetryableCon
 
     /// Retry logic to handle
     var retryHandler: ConnectionRetryHandler?
+    
+    var throttled: Bool = false
 
     public init(provider: ConnectionProvider) {
         self.connectionProvider = provider

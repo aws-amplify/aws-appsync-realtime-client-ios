@@ -111,6 +111,13 @@ extension RealtimeConnectionProvider: AppSyncWebsocketDelegate {
             return
         }
 
+        if response.isRateLimitExceededError() {
+            AppSyncLogger.debug("[RealtimeConnectionProvider] isRateLimitExceededError")
+            let limitExceedError = ConnectionProviderError.limitExceeded(nil)
+            updateCallback(event: .error(limitExceedError))
+            return
+        }
+
         // Return back as generic error if there is no identifier.
         guard let identifier = response.id else {
             let genericError = ConnectionProviderError.other

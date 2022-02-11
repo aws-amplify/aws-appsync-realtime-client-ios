@@ -95,4 +95,26 @@ extension RealtimeConnectionProviderResponse {
         return false
     }
 
+    func isRateLimitExceededError() -> Bool {
+        // It is expected to contain payload with corresponding error information
+        guard let payload = payload else {
+            return false
+        }
+
+        // The observed response from the service
+        // { "type":"error",
+        //  "payload": {
+        //      "errors": {
+        //          "errorType":"LimitExceededError",
+        //          "message":"Rate limit exceeded" }}}
+        if let errors = payload["errors"],
+           case let .object(errorsObject) = errors,
+           let errorType = errorsObject["errorType"],
+           errorType == "LimitExceededError" {
+            return true
+        }
+
+        return false
+    }
+
 }

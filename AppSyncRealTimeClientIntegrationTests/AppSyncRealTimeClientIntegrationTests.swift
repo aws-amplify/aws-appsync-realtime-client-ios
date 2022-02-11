@@ -218,6 +218,10 @@ class AppSyncRealTimeClientIntegrationTests: AppSyncRealTimeClientTestBase {
         wait(for: [expectedPerforms], timeout: 1)
         assertStatus(of: realTimeConnectionProvider, equals: .notConnected)
     }
+    
+    func testMaxSubscriptionConnection() {
+        
+    }
 
     // MARK: - Helpers
 
