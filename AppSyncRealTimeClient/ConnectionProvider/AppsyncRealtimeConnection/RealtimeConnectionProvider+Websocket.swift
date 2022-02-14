@@ -134,6 +134,14 @@ extension RealtimeConnectionProvider: AppSyncWebsocketDelegate {
             return
         }
 
+        if response.isUnauthorizationException() {
+            // TODO: Update ConnectionProviderError to encapsulate authorization errors
+            // Verify errors returned in other auth modes will fall in here
+            // Pass payload or just message/error code back
+            let genericError = ConnectionProviderError.other
+            updateCallback(event: .error(genericError))
+        }
+
         // If the type of error is not handled (by checking `isLimitExceededError`, `isMaxSubscriptionReachedError`,
         // etc), and is not for a specific subscription, then return a generic error
         guard let identifier = response.id else {
