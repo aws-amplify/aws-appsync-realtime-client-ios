@@ -23,6 +23,7 @@ class AppSyncRealTimeClientTestBase: XCTestCase {
         """
 
     override func setUp() {
+        AppSyncRealTimeClient.logLevel = .verbose
         do {
             let json = try ConfigurationHelper.retrieve(forResource: "amplifyconfiguration")
             if let data = json as? [String: Any],
