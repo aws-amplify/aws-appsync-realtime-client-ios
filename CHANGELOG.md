@@ -10,7 +10,6 @@
 - fix: Retry on MaxSubscriptionReached (See [PR #66](https://github.com/aws-amplify/aws-appsync-realtime-client-ios/pull/66))
 - fix: data race in CountdownTimer (See [PR #65](https://github.com/aws-amplify/aws-appsync-realtime-client-ios/pull/65))
 
-
 ## 1.7.0
 
 - feat: Upgrade Starscream to 4.0.4 (See [PR #62](https://github.com/aws-amplify/aws-appsync-realtime-client-ios/pull/62))
