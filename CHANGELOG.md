@@ -3,6 +3,10 @@
 ## Unreleased
 *Changes on `main` branch that have not yet been released*
 
+## 1.8.0
+
+- feat: Allow setting log level (See [PR #71](https://github.com/aws-amplify/aws-appsync-realtime-client-ios/pull/71))
+
 ## 1.7.1
 
 ### Bug fixes
