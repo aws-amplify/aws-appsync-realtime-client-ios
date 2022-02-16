@@ -28,6 +28,10 @@ public class AppSyncSubscriptionConnection: SubscriptionConnection, RetryableCon
     /// Retry logic to handle
     var retryHandler: ConnectionRetryHandler?
 
+    let serialQueue = DispatchQueue(
+        label: "com.amazonaws.AppSyncSubscriptionConnection.serialQueue"
+    )
+
     public init(provider: ConnectionProvider) {
         self.connectionProvider = provider
     }
@@ -84,13 +88,15 @@ public class AppSyncSubscriptionConnection: SubscriptionConnection, RetryableCon
                 AppSyncLogger.debug("[AppSyncSubscriptionConnection] \(#function): Self is nil, listener is not called.")
                 return
             }
-            switch event {
-            case .connection(let state):
-                self.handleConnectionEvent(connectionState: state)
-            case .data(let response):
-                self.handleDataEvent(response: response)
-            case .error(let error):
-                self.handleError(error: error)
+            self.serialQueue.async {
+                switch event {
+                case .connection(let state):
+                    self.handleConnectionEvent(connectionState: state)
+                case .data(let response):
+                    self.handleDataEvent(response: response)
+                case .error(let error):
+                    self.handleError(error: error)
+                }
             }
         }
     }
