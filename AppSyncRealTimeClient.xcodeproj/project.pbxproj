@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		0B59161BB37D32073E4FD61B /* Pods_AppSyncRTCSample.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7CF486070B34EFD15B4DB8FC /* Pods_AppSyncRTCSample.framework */; };
 		2143D46727B5D9B40066B2F7 /* RealTimeConnectionProviderResponseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2143D46627B5D9B40066B2F7 /* RealTimeConnectionProviderResponseTests.swift */; };
+		2143D4B027BC49BE0066B2F7 /* AWSAppSyncRealTimeClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2143D4AF27BC49BE0066B2F7 /* AWSAppSyncRealTimeClient.swift */; };
 		2164E65D2639AD5600385027 /* StarscreamAdapterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2164E65C2639AD5600385027 /* StarscreamAdapterTests.swift */; };
 		2164E674263C58CE00385027 /* AppSyncRealTimeClientTestBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2164E673263C58CD00385027 /* AppSyncRealTimeClientTestBase.swift */; };
 		217F39992405D9D500F1A0B3 /* AppSyncRealTimeClient.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 217F398F2405D9D500F1A0B3 /* AppSyncRealTimeClient.framework */; };
@@ -123,6 +124,7 @@
 /* Begin PBXFileReference section */
 		18D6E56CE03BAC33493CC19B /* Pods-HostApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HostApp.debug.xcconfig"; path = "Target Support Files/Pods-HostApp/Pods-HostApp.debug.xcconfig"; sourceTree = "<group>"; };
 		2143D46627B5D9B40066B2F7 /* RealTimeConnectionProviderResponseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealTimeConnectionProviderResponseTests.swift; sourceTree = "<group>"; };
+		2143D4AF27BC49BE0066B2F7 /* AWSAppSyncRealTimeClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AWSAppSyncRealTimeClient.swift; sourceTree = "<group>"; };
 		2164E65C2639AD5600385027 /* StarscreamAdapterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StarscreamAdapterTests.swift; sourceTree = "<group>"; };
 		2164E673263C58CD00385027 /* AppSyncRealTimeClientTestBase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSyncRealTimeClientTestBase.swift; sourceTree = "<group>"; };
 		217F398F2405D9D500F1A0B3 /* AppSyncRealTimeClient.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = AppSyncRealTimeClient.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -302,9 +304,10 @@
 		217F39912405D9D500F1A0B3 /* AppSyncRealTimeClient */ = {
 			isa = PBXGroup;
 			children = (
-				217F39932405D9D500F1A0B3 /* Info.plist */,
+				2143D4AF27BC49BE0066B2F7 /* AWSAppSyncRealTimeClient.swift */,
 				217F39B82406E98300F1A0B3 /* Connection */,
 				217F39A92406E98300F1A0B3 /* ConnectionProvider */,
+				217F39932405D9D500F1A0B3 /* Info.plist */,
 				21D38B6E240A272F00EC2A8D /* Interceptor */,
 				217F39C62406E98400F1A0B3 /* Support */,
 				217F39C12406E98400F1A0B3 /* Websocket */,
@@ -1120,6 +1123,7 @@
 				217F39DD2406E98400F1A0B3 /* AppSyncSubscriptionConnection+Connection.swift in Sources */,
 				217F39E52406E98400F1A0B3 /* AppSyncJSONValue.swift in Sources */,
 				217F39E42406E98400F1A0B3 /* RealtimeGatewayURLInterceptor.swift in Sources */,
+				2143D4B027BC49BE0066B2F7 /* AWSAppSyncRealTimeClient.swift in Sources */,
 				217F39E22406E98400F1A0B3 /* StarscreamAdapter+Delegate.swift in Sources */,
 				217F39D52406E98400F1A0B3 /* RealtimeConnectionProviderResponse.swift in Sources */,
 				217F39D62406E98400F1A0B3 /* RealtimeConnectionProvider+MessageInterceptable.swift in Sources */,
