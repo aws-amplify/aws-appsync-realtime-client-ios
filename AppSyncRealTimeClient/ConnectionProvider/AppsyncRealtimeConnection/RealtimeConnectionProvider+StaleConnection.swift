@@ -21,7 +21,7 @@ extension RealtimeConnectionProvider {
 
     /// Reset the stale connection timer in response to receiving a message from the websocket
     func resetStaleConnectionTimer(interval: TimeInterval? = nil) {
-        AppSyncLogger.debug("[RealtimeConnectionProvider] Resetting stale connection timer")
+        AppSyncLogger.verbose("[RealtimeConnectionProvider] Resetting stale connection timer")
         staleConnectionTimer.reset(interval: interval)
     }
 
