@@ -21,8 +21,27 @@ extension AppSyncSubscriptionConnection {
             identifier != subscriptionItem.identifier {
             return
         }
-        if case let ConnectionProviderError.limitExceeded(identifier) = error, identifier != subscriptionItem.identifier {
-            return
+
+        if case let ConnectionProviderError.limitExceeded(identifier) = error {
+            // If the error identifier is not for the this subscription
+            // we return immediately without handling the error.
+            if let identifier = identifier, identifier != subscriptionItem.identifier {
+                return
+            }
+
+            // Limit exceeded without an subscription identifier is an error for the entire connection
+            // that can be caused by multiple subscriptions trying to subscribe at the same time.
+            // Return the error on those subscriptions in-progress, and return immediately.
+            if identifier == nil {
+                if subscriptionState == .inProgress {
+                    subscriptionState = .notSubscribed
+                    AppSyncSubscriptionConnection.logExtendedErrorInfo(for: error)
+                    subscriptionItem.subscriptionEventHandler(.failed(error), subscriptionItem)
+                    connectionProvider?.removeListener(identifier: subscriptionItem.identifier)
+                }
+
+                return
+            }
         }
 
         AppSyncSubscriptionConnection.logExtendedErrorInfo(for: error)
