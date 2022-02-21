@@ -3,6 +3,12 @@
 ## Unreleased
 *Changes on `main` branch that have not yet been released*
 
+## 1.8.1
+
+### Bug fixes
+
+- fix: Subscription failed event should be terminal event (See [PR #74](https://github.com/aws-amplify/aws-appsync-realtime-client-ios/pull/74))
+
 ## 1.8.0
 
 - feat: Allow setting log level (See [PR #71](https://github.com/aws-amplify/aws-appsync-realtime-client-ios/pull/71))
