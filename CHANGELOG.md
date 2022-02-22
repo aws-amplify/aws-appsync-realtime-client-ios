@@ -3,6 +3,12 @@
 ## Unreleased
 *Changes on `main` branch that have not yet been released*
 
+## 1.9.0
+
+### Features
+
+- feat: Attempt to reconnect on connectivity (See [PR #58](https://github.com/aws-amplify/aws-appsync-realtime-client-ios/pull/58))
+
 ## 1.8.1
 
 ### Bug fixes
