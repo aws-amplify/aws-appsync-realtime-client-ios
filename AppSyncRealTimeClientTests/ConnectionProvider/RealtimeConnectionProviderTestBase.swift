@@ -39,8 +39,19 @@ class RealtimeConnectionProviderTestBase: XCTestCase {
     ///
     /// Preconditions:
     /// - `self.websocket` must be initialized in the mock provider's `onConnect`
-    func createProviderAndConnect(listeners: [String]? = nil) -> RealtimeConnectionProvider {
-        let provider = RealtimeConnectionProvider(for: url, websocket: websocket)
+    func createProviderAndConnect(
+        listeners: [String]? = nil,
+        connectionQueue: DispatchQueue = DispatchQueue(label: "com.amazonaws.RealtimeConnectionProviderTestBase.connectionQueue"),
+        serialCallbackQueue: DispatchQueue = DispatchQueue(label: "com.amazonaws.RealtimeConnectionProviderTestBase.serialCallbackQueue"),
+        connectivityMonitor: ConnectivityMonitor = ConnectivityMonitor()
+    ) -> RealtimeConnectionProvider {
+        let provider = RealtimeConnectionProvider(
+            url: url,
+            websocket: websocket,
+            connectionQueue: connectionQueue,
+            serialCallbackQueue: serialCallbackQueue,
+            connectivityMonitor: connectivityMonitor
+        )
         provider.addListener(identifier: "testListener") { event in
             switch event {
             case .connection(let connectionState):
