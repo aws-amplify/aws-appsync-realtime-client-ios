@@ -41,4 +41,24 @@ class RealTimeConnectionProviderResponseTests: XCTestCase {
 
         XCTAssertTrue(response.isMaxSubscriptionReachedError())
     }
+
+    func testIsLimitExceeded_EmptyPayload() throws {
+        let response = RealtimeConnectionProviderResponse(
+            payload: nil,
+            type: .error
+        )
+
+        XCTAssertFalse(response.isLimitExceededError())
+    }
+
+    func testIsLimitExceeded_LimitExceededError() throws {
+        let payload = ["errors": AppSyncJSONValue.object(["errorType": "LimitExceededError"])]
+        let response = RealtimeConnectionProviderResponse(
+            payload: payload,
+            type: .error
+        )
+
+        XCTAssertTrue(response.isLimitExceededError())
+    }
+
 }
