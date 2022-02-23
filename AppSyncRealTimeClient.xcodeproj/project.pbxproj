@@ -11,6 +11,7 @@
 		2143D46727B5D9B40066B2F7 /* RealTimeConnectionProviderResponseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2143D46627B5D9B40066B2F7 /* RealTimeConnectionProviderResponseTests.swift */; };
 		2143D4B027BC49BE0066B2F7 /* AWSAppSyncRealTimeClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2143D4AF27BC49BE0066B2F7 /* AWSAppSyncRealTimeClient.swift */; };
 		2143D4B227BE40B30066B2F7 /* AppSyncRealTimeClientFailureTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2143D4B127BE40B30066B2F7 /* AppSyncRealTimeClientFailureTests.swift */; };
+		2151D5CA27C68C3C00F3C866 /* ConnectionProviderHandleErrorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2151D5C927C68C3C00F3C866 /* ConnectionProviderHandleErrorTests.swift */; };
 		2164E65D2639AD5600385027 /* StarscreamAdapterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2164E65C2639AD5600385027 /* StarscreamAdapterTests.swift */; };
 		2164E674263C58CE00385027 /* AppSyncRealTimeClientTestBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2164E673263C58CD00385027 /* AppSyncRealTimeClientTestBase.swift */; };
 		217C74D227C45B6600AE054F /* AppSyncSubscriptionConnectionErrorHandlerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 217C74D127C45B6600AE054F /* AppSyncSubscriptionConnectionErrorHandlerTests.swift */; };
@@ -133,6 +134,7 @@
 		2143D46627B5D9B40066B2F7 /* RealTimeConnectionProviderResponseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealTimeConnectionProviderResponseTests.swift; sourceTree = "<group>"; };
 		2143D4AF27BC49BE0066B2F7 /* AWSAppSyncRealTimeClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AWSAppSyncRealTimeClient.swift; sourceTree = "<group>"; };
 		2143D4B127BE40B30066B2F7 /* AppSyncRealTimeClientFailureTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSyncRealTimeClientFailureTests.swift; sourceTree = "<group>"; };
+		2151D5C927C68C3C00F3C866 /* ConnectionProviderHandleErrorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectionProviderHandleErrorTests.swift; sourceTree = "<group>"; };
 		2164E65C2639AD5600385027 /* StarscreamAdapterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StarscreamAdapterTests.swift; sourceTree = "<group>"; };
 		2164E673263C58CD00385027 /* AppSyncRealTimeClientTestBase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSyncRealTimeClientTestBase.swift; sourceTree = "<group>"; };
 		217C74D127C45B6600AE054F /* AppSyncSubscriptionConnectionErrorHandlerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSyncSubscriptionConnectionErrorHandlerTests.swift; sourceTree = "<group>"; };
@@ -453,6 +455,7 @@
 			isa = PBXGroup;
 			children = (
 				2143D46527B5D9730066B2F7 /* AppSyncRealTimeConnection */,
+				2151D5C927C68C3C00F3C866 /* ConnectionProviderHandleErrorTests.swift */,
 				FA67507F24D339B0005A1345 /* ConnectionProviderStaleConnectionTests.swift */,
 				217F39ED2406EA4000F1A0B3 /* ConnectionProviderTests.swift */,
 				FA67507C24D338FA005A1345 /* RealtimeConnectionProviderTestBase.swift */,
@@ -1205,6 +1208,7 @@
 				217C74D227C45B6600AE054F /* AppSyncSubscriptionConnectionErrorHandlerTests.swift in Sources */,
 				FA67507E24D33976005A1345 /* RealtimeConnectionProviderTestBase.swift in Sources */,
 				219BFF6A27A9AC6E000FC148 /* ConnectivityMonitorTests.swift in Sources */,
+				2151D5CA27C68C3C00F3C866 /* ConnectionProviderHandleErrorTests.swift in Sources */,
 				978409BA2739C7E1002362A7 /* AppSyncURLHelperTests.swift in Sources */,
 				FA67508424D33ACC005A1345 /* CountdownTimerTests.swift in Sources */,
 				FA67508024D339B0005A1345 /* ConnectionProviderStaleConnectionTests.swift in Sources */,

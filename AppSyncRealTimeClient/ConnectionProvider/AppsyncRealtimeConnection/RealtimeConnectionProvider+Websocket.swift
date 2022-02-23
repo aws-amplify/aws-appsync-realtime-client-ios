@@ -103,7 +103,7 @@ extension RealtimeConnectionProvider: AppSyncWebsocketDelegate {
     /// Resolves & dispatches errors from `response`.
     ///
     /// - Warning: This method must be invoked on the `connectionQueue`
-    private func handleError(response: RealtimeConnectionProviderResponse) {
+    func handleError(response: RealtimeConnectionProviderResponse) {
         // If we get an error in connection inprogress state, return back as connection error.
         guard status != .inProgress else {
             status = .notConnected
