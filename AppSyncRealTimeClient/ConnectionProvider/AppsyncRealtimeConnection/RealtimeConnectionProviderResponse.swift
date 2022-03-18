@@ -68,13 +68,6 @@ extension RealtimeConnectionProviderResponse: Decodable {
 /// https://docs.aws.amazon.com/appsync/latest/devguide/real-time-websocket-client.html#error-message
 extension RealtimeConnectionProviderResponse {
 
-    // The observed response from the service
-    // { "id":"DB23EC80-C51A-4FEE-82F7-AA4949B4F299",
-    //  "type":"error",
-    //  "payload": {
-    //      "errors": {
-    //          "errorType":"MaxSubscriptionsReachedError",
-    //          "message":"Max number of 100 subscriptions reached" }}}
     func isMaxSubscriptionReachedError() -> Bool {
         // It is expected to contain payload with corresponding error information
         guard let payload = payload else {
@@ -87,6 +80,13 @@ extension RealtimeConnectionProviderResponse {
             return true
         }
 
+        // The observed response from the service
+        // { "id":"DB23EC80-C51A-4FEE-82F7-AA4949B4F299",
+        //  "type":"error",
+        //  "payload": {
+        //      "errors": {
+        //          "errorType":"MaxSubscriptionsReachedError",
+        //          "message":"Max number of 100 subscriptions reached" }}}
         if let errors = payload["errors"],
            case let .object(errorsObject) = errors,
            let errorType = errorsObject["errorType"],
@@ -118,14 +118,8 @@ extension RealtimeConnectionProviderResponse {
 
         return false
     }
-    // The observed response from the service
-    // { "payload": {
-    //      "errors": [{
-    //          "errorType":"com.amazonaws.deepdish.graphql.auth#UnauthorizedException",
-    //          "message":"You are not authorized to make this call.",
-    //          "errorCode":400 }]},
-    //  "type":"connection_error" }
-    func isUnauthorizationException() -> Bool {
+
+    func isUnauthorizationError() -> Bool {
         // It is expected to contain payload with corresponding error information
         guard let payload = payload,
               let errors = payload["errors"],
@@ -133,13 +127,22 @@ extension RealtimeConnectionProviderResponse {
             return false
         }
 
+        // The observed response from the service
+        // { "payload": {
+        //      "errors": [{
+        //          "errorType":"com.amazonaws.deepdish.graphql.auth#UnauthorizedException",
+        //          "message":"You are not authorized to make this call.",
+        //          "errorCode":400 }]},
+        //  "type":"connection_error" }
         return errorsArray.contains { error in
             guard case let .object(errorObject) = error else {
                 return false
             }
-            if errorObject["errorCode"] == 400 {
-               return true
+
+            if errorObject["errorType"] == "com.amazonaws.deepdish.graphql.auth#UnauthorizedException" {
+                return true
             }
+
             return false
         }
     }

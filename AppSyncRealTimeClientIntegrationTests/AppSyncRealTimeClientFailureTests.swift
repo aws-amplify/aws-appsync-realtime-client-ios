@@ -166,6 +166,48 @@ class AppSyncRealTimeClientFailureTests: AppSyncRealTimeClientTestBase {
         }
     }
 
+    func testAPIKeyInvalid() {
+        apiKey = "invalid"
+        let subscribeFailed = expectation(description: "subscribe failed")
+        let authInterceptor = APIKeyAuthInterceptor(apiKey)
+        let connectionProvider = ConnectionProviderFactory.createConnectionProvider(
+            for: url,
+            authInterceptor: authInterceptor,
+            connectionType: .appSyncRealtime
+        )
+        let subscriptionConnection = AppSyncSubscriptionConnection(provider: connectionProvider)
+        _ = subscriptionConnection.subscribe(
+            requestString: requestString,
+            variables: nil
+        ) { event, _ in
+
+            switch event {
+            case .connection(let subscriptionConnectionEvent):
+                switch subscriptionConnectionEvent {
+                case .connecting:
+                    break
+                case .connected:
+                    break
+                case .disconnected:
+                    break
+                }
+            case .data(let data):
+                break
+            case .failed(let error):
+                guard let connectionError = error as? ConnectionProviderError,
+                      case .other(let errorDescription, _, _)  = connectionError else {
+                          XCTFail("Should be `.other` error")
+                          return
+                      }
+
+                XCTAssertEqual(errorDescription, "Unauthorized")
+                subscribeFailed.fulfill()
+            }
+        }
+
+        wait(for: [subscribeFailed], timeout: TestCommonConstants.networkTimeout)
+    }
+
     class TestConnectionRetryHandler: ConnectionRetryHandler {
         var count: Int = 0
         func shouldRetryRequest(for error: ConnectionProviderError) -> RetryAdvice {

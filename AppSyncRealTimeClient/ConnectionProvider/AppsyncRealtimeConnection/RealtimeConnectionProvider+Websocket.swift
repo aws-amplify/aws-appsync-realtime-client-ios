@@ -57,6 +57,11 @@ extension RealtimeConnectionProvider: AppSyncWebsocketDelegate {
             connectionQueue.async { [weak self] in
                 self?.handleError(response: response)
             }
+        case .connectionError:
+            AppSyncLogger.verbose("[RealtimeConnectionProvider] received error")
+            connectionQueue.async { [weak self] in
+                self?.handleError(response: response)
+            }
         case .subscriptionAck, .unsubscriptionAck, .data:
             if let appSyncResponse = response.toAppSyncResponse() {
                 updateCallback(event: .data(appSyncResponse))
@@ -104,10 +109,21 @@ extension RealtimeConnectionProvider: AppSyncWebsocketDelegate {
     ///
     /// - Warning: This method must be invoked on the `connectionQueue`
     func handleError(response: RealtimeConnectionProviderResponse) {
-        // If we get an error in connection inprogress state, return back as connection error.
+        // If we get an error in connection inprogress state
         guard status != .inProgress else {
             status = .notConnected
-            updateCallback(event: .error(ConnectionProviderError.connection))
+
+            if response.isUnauthorizationError() {
+                updateCallback(
+                    event: .error(ConnectionProviderError.other(
+                        errorDescription: "Unauthorized",
+                        error: nil,
+                        payload: response.payload
+                    )))
+            } else {
+                updateCallback(event: .error(ConnectionProviderError.connection))
+            }
+
             return
         }
 
@@ -134,18 +150,10 @@ extension RealtimeConnectionProvider: AppSyncWebsocketDelegate {
             return
         }
 
-        if response.isUnauthorizationException() {
-            // TODO: Update ConnectionProviderError to encapsulate authorization errors
-            // Verify errors returned in other auth modes will fall in here
-            // Pass payload or just message/error code back
-            let genericError = ConnectionProviderError.other
-            updateCallback(event: .error(genericError))
-        }
-
         // If the type of error is not handled (by checking `isLimitExceededError`, `isMaxSubscriptionReachedError`,
         // etc), and is not for a specific subscription, then return a generic error
         guard let identifier = response.id else {
-            let genericError = ConnectionProviderError.other
+            let genericError = ConnectionProviderError.other(errorDescription: nil, error: nil, payload: nil)
             updateCallback(event: .error(genericError))
             return
         }

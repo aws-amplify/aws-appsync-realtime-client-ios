@@ -24,5 +24,5 @@ public enum ConnectionProviderError: Error {
     case subscription(String, [String: Any]?)
 
     /// Any other error is identified by this type
-    case other
+    case other(errorDescription: String?, error: Error?, payload: [String: Any]?)
 }
