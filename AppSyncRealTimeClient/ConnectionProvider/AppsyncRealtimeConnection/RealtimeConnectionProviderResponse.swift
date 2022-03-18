@@ -68,6 +68,33 @@ extension RealtimeConnectionProviderResponse: Decodable {
 /// https://docs.aws.amazon.com/appsync/latest/devguide/real-time-websocket-client.html#error-message
 extension RealtimeConnectionProviderResponse {
 
+    func toConnectionProviderError(connectionState: ConnectionState) -> ConnectionProviderError {
+        guard connectionState != .inProgress else {
+            if isUnauthorizationError() {
+                return .other(errorDescription: "Unauthorized", error: nil, payload: payload)
+            } else {
+                return .connection
+            }
+        }
+
+        if isLimitExceededError() || isMaxSubscriptionReachedError() {
+            // Is it observed that LimitExceeded error does not have `id` while MaxSubscriptionReached does have a
+            // corresponding identifier. Both are mapped to `limitExceeded` with optional identifier.
+            return ConnectionProviderError.limitExceeded(id)
+        } else if isUnauthorizationError() {
+            return .other(errorDescription: "Unauthorized", error: nil, payload: payload)
+        }
+
+        // If the type of error is not handled (by checking `isLimitExceededError`, `isMaxSubscriptionReachedError`,
+        // etc), and is not for a specific subscription, then return a generic error
+        guard let identifier = id else {
+            return .other(errorDescription: nil, error: nil, payload: payload)
+        }
+
+        // Default scenario - return the error with subscription id and error payload.
+        return .subscription(identifier, payload)
+    }
+
     func isMaxSubscriptionReachedError() -> Bool {
         // It is expected to contain payload with corresponding error information
         guard let payload = payload else {

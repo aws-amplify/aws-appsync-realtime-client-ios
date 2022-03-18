@@ -182,16 +182,9 @@ class AppSyncRealTimeClientFailureTests: AppSyncRealTimeClientTestBase {
         ) { event, _ in
 
             switch event {
-            case .connection(let subscriptionConnectionEvent):
-                switch subscriptionConnectionEvent {
-                case .connecting:
-                    break
-                case .connected:
-                    break
-                case .disconnected:
-                    break
-                }
-            case .data(let data):
+            case .connection:
+                break
+            case .data:
                 break
             case .failed(let error):
                 guard let connectionError = error as? ConnectionProviderError,
