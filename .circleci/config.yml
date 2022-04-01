@@ -107,7 +107,7 @@ jobs:
     steps:
       - *restore_repo
       - pre_start_simulator
-      - run: pod install
+      - run: bundle exec pod install
       - restore_gems
       - check_bundle
       - run:
