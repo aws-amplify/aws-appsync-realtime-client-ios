@@ -107,8 +107,8 @@ jobs:
     steps:
       - *restore_repo
       - pre_start_simulator
-      - run: bundle exec pod install
       - restore_gems
+      - run: bundle exec pod install
       - check_bundle
       - run:
           name: Build AppSyncRealTimeClient
