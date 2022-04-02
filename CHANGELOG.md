@@ -3,6 +3,12 @@
 ## Unreleased
 *Changes on `main` branch that have not yet been released*
 
+## 1.9.1
+
+### Bug fixes
+
+- fix: Throttle AppSync LimitExceeded errors (See [PR #67](https://github.com/aws-amplify/aws-appsync-realtime-client-ios/pull/67))
+
 ## 1.9.0
 
 ### Features
