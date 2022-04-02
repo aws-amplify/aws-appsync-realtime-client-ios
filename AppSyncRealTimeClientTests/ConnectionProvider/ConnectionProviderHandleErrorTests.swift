@@ -40,6 +40,7 @@ class ConnectionProviderHandleErrorTests: XCTestCase {
 
     /// Error response is limit exceeded (connection level error without subscription id)
     /// Should throttle and receive a fraction of ConnectionProviderError.limitExceeded event without id
+    @available(iOS 13.0, *)
     func testLimitExceededMissingIdThrottled() {
         let provider = RealtimeConnectionProvider(url: url, websocket: websocket)
         let limitExceededThrottle = expectation(description: "received limit exceeded")
