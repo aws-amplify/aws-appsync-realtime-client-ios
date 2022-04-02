@@ -106,10 +106,10 @@ jobs:
     <<: *defaults
     steps:
       - *restore_repo
-      - pre_start_simulator
-      - run: bundle exec pod install
       - restore_gems
       - check_bundle
+      - pre_start_simulator
+      - run: bundle exec pod install
       - run:
           name: Build AppSyncRealTimeClient
           command: xcodebuild build-for-testing -workspace AppSyncRealTimeClient.xcworkspace -scheme AppSyncRealTimeClient -sdk iphonesimulator -destination "${destination}" | xcpretty
