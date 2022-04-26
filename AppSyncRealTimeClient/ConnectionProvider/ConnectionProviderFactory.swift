@@ -27,7 +27,7 @@ public enum ConnectionProviderFactory {
 
         return provider
     }
-    
+
     @available(iOS 13.0.0, *)
     public static func createConnectionProviderAsync(
         for url: URL,
