@@ -40,7 +40,7 @@ public enum ConnectionProviderFactory {
             messageInterceptable.addInterceptor(authInterceptor)
         }
         if let connectionInterceptable = provider as? ConnectionInterceptableAsync {
-            connectionInterceptable.addInterceptor(RealtimeGatewayURLInterceptorAsync())
+            connectionInterceptable.addInterceptor(RealtimeGatewayURLInterceptor())
             connectionInterceptable.addInterceptor(authInterceptor)
         }
 

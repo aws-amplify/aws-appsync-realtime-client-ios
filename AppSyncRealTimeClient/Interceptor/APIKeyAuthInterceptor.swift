@@ -8,7 +8,7 @@
 import Foundation
 
 /// Auth interceptor for API Key based authentication
-public class APIKeyAuthInterceptor: AuthInterceptorAsync {
+public class APIKeyAuthInterceptor: AuthInterceptor, AuthInterceptorAsync {
 
     let apiKey: String
 
