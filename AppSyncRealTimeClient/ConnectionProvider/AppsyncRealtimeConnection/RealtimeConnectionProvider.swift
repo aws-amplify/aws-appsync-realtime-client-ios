@@ -21,8 +21,8 @@ public class RealtimeConnectionProvider: ConnectionProvider {
     let websocket: AppSyncWebsocketProvider
 
     var status: ConnectionState
-    var messageInterceptors: [MessageInterceptor]
-    var connectionInterceptors: [ConnectionInterceptor]
+    var messageInterceptors: [Any]
+    var connectionInterceptors: [Any]
 
     /// A timer that automatically disconnects the current connection if it goes longer
     /// than `staleConnectionTimeout` without activity. Receiving any data or "keep
