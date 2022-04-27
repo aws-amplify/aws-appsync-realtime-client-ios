@@ -13,7 +13,7 @@ extension RealtimeConnectionProvider: MessageInterceptableAsync {
         useAsyncInterceptors = true
         messageInterceptors.append(interceptor)
     }
-    
+
 
     func interceptMessage(_ message: AppSyncMessage, for endpoint: URL) async -> AppSyncMessage {
         let messageInterceptors = messageInterceptors as! [MessageInterceptorAsync]
@@ -22,7 +22,7 @@ extension RealtimeConnectionProvider: MessageInterceptableAsync {
         for interceptor in messageInterceptors {
             finalMessage = await interceptor.interceptMessage(finalMessage, for: endpoint)
         }
-        
+
         return finalMessage
     }
 }
