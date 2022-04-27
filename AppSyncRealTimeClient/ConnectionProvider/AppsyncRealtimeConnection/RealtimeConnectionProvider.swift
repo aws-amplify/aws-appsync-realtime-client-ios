@@ -21,8 +21,11 @@ public class RealtimeConnectionProvider: ConnectionProvider {
     let websocket: AppSyncWebsocketProvider
 
     var status: ConnectionState
+    
+    // These are type Any because they can be either Sync or Async and the async versions require iOS 13 support.
     var messageInterceptors: [Any]
     var connectionInterceptors: [Any]
+    var useAsyncInterceptors = false
 
     /// A timer that automatically disconnects the current connection if it goes longer
     /// than `staleConnectionTimeout` without activity. Receiving any data or "keep
@@ -106,13 +109,27 @@ public class RealtimeConnectionProvider: ConnectionProvider {
             self.status = .inProgress
             self.updateCallback(event: .connection(self.status))
             let request = AppSyncConnectionRequest(url: self.url)
-            let signedRequest = self.interceptConnection(request, for: self.url)
-            DispatchQueue.global().async {
-                self.websocket.connect(
-                    url: signedRequest.url,
-                    protocols: ["graphql-ws"],
-                    delegate: self
-                )
+            
+            if self.useAsyncInterceptors {
+                if #available(iOS 13.0, *) {
+                    Task {
+                        let signedRequest = await self.interceptConnection(request, for: self.url)
+                        self.websocket.connect(url: signedRequest.url,
+                                               protocols: ["graphql-ws"],
+                                               delegate: self)
+                    }
+                } else {
+                    AppSyncLogger.error("Error, attempted to use async-await with a version of iOS < 13.0")
+                }
+            } else {
+                let signedRequest = self.interceptConnection(request, for: self.url)
+                DispatchQueue.global().async {
+                    self.websocket.connect(
+                        url: signedRequest.url,
+                        protocols: ["graphql-ws"],
+                        delegate: self
+                    )
+                }
             }
         }
     }
@@ -123,28 +140,43 @@ public class RealtimeConnectionProvider: ConnectionProvider {
             guard let self = self else {
                 return
             }
-
-            let signedMessage = self.interceptMessage(message, for: self.url)
-            let jsonEncoder = JSONEncoder()
-            do {
-                let jsonData = try jsonEncoder.encode(signedMessage)
-                guard let jsonString = String(data: jsonData, encoding: .utf8) else {
-                    let jsonError = ConnectionProviderError.jsonParse(message.id, nil)
-                    self.updateCallback(event: .error(jsonError))
-                    return
+            
+            if self.useAsyncInterceptors {
+                if #available(iOS 13.0, *) {
+                    Task {
+                        let signedMessage = await self.interceptMessage(message, for: self.url)
+                        self.finishWrite(signedMessage)
+                    }
+                } else {
+                    AppSyncLogger.error("Error, attempted to use async-await with a version of iOS < 13.0")
                 }
-                self.websocket.write(message: jsonString)
-            } catch {
-                AppSyncLogger.error(error)
-                switch message.messageType {
-                case .connectionInit:
-                    self.receivedConnectionInit()
-                default:
-                    self.updateCallback(event: .error(ConnectionProviderError.jsonParse(message.id, error)))
-                }
+            } else {
+                let signedMessage = self.interceptMessage(message, for: self.url)
+                self.finishWrite(signedMessage)
             }
         }
 
+    }
+    
+    private func finishWrite(_ signedMessage: AppSyncMessage) {
+        let jsonEncoder = JSONEncoder()
+        do {
+            let jsonData = try jsonEncoder.encode(signedMessage)
+            guard let jsonString = String(data: jsonData, encoding: .utf8) else {
+                let jsonError = ConnectionProviderError.jsonParse(signedMessage.id, nil)
+                self.updateCallback(event: .error(jsonError))
+                return
+            }
+            self.websocket.write(message: jsonString)
+        } catch {
+            AppSyncLogger.error(error)
+            switch signedMessage.messageType {
+            case .connectionInit:
+                self.receivedConnectionInit()
+            default:
+                self.updateCallback(event: .error(ConnectionProviderError.jsonParse(signedMessage.id, error)))
+            }
+        }
     }
 
     public func disconnect() {

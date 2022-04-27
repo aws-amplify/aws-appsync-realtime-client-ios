@@ -11,6 +11,7 @@ import Foundation
 extension RealtimeConnectionProvider: ConnectionInterceptableAsync {
     
     public func addInterceptor(_ interceptor: ConnectionInterceptorAsync) {
+        useAsyncInterceptors = true
         connectionInterceptors.append(interceptor)
     }
     
