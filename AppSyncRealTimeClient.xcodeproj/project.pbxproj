@@ -76,6 +76,8 @@
 		259F9EB83B9F67D0413A6D4C /* Pods_AppSyncRealTimeClient.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81AFCBED5A97E398A4BD9D06 /* Pods_AppSyncRealTimeClient.framework */; };
 		450019BB151D701382536BD0 /* Pods_HostApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 29CDD85F44666C7241232D29 /* Pods_HostApp.framework */; };
 		4A3EAC9B20D96D81CC3A7EF4 /* Pods_HostApp_AppSyncRealTimeClientIntegrationTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43D112B03D6D38F84995D6FA /* Pods_HostApp_AppSyncRealTimeClientIntegrationTests.framework */; };
+		5CECF690281A0390007D4959 /* RealtimeConnectionProvider+ConnectionInterceptableAsync.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CECF68E281A0390007D4959 /* RealtimeConnectionProvider+ConnectionInterceptableAsync.swift */; };
+		5CECF691281A0390007D4959 /* RealtimeConnectionProvider+MessageInterceptableAsync.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CECF68F281A0390007D4959 /* RealtimeConnectionProvider+MessageInterceptableAsync.swift */; };
 		978409B82739C7BE002362A7 /* AppSyncURLHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 978409B72739C7BE002362A7 /* AppSyncURLHelper.swift */; };
 		978409BA2739C7E1002362A7 /* AppSyncURLHelperTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 978409B92739C7E1002362A7 /* AppSyncURLHelperTests.swift */; };
 		DCFE701B5D1380E566694A48 /* Pods_AppSyncRealTimeClient_AppSyncRealTimeClientTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E662A46AB2C93EE316F784C /* Pods_AppSyncRealTimeClient_AppSyncRealTimeClientTests.framework */; };
@@ -207,6 +209,8 @@
 		356411189EAD2C776D250FB7 /* Pods-HostApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HostApp.release.xcconfig"; path = "Target Support Files/Pods-HostApp/Pods-HostApp.release.xcconfig"; sourceTree = "<group>"; };
 		3E662A46AB2C93EE316F784C /* Pods_AppSyncRealTimeClient_AppSyncRealTimeClientTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AppSyncRealTimeClient_AppSyncRealTimeClientTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		43D112B03D6D38F84995D6FA /* Pods_HostApp_AppSyncRealTimeClientIntegrationTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HostApp_AppSyncRealTimeClientIntegrationTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		5CECF68E281A0390007D4959 /* RealtimeConnectionProvider+ConnectionInterceptableAsync.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "RealtimeConnectionProvider+ConnectionInterceptableAsync.swift"; sourceTree = "<group>"; };
+		5CECF68F281A0390007D4959 /* RealtimeConnectionProvider+MessageInterceptableAsync.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "RealtimeConnectionProvider+MessageInterceptableAsync.swift"; sourceTree = "<group>"; };
 		7CF486070B34EFD15B4DB8FC /* Pods_AppSyncRTCSample.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AppSyncRTCSample.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7D4F451B830A5837CE5274A3 /* Pods-AppSyncRealTimeClient-AppSyncRealTimeClientTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AppSyncRealTimeClient-AppSyncRealTimeClientTests.release.xcconfig"; path = "Target Support Files/Pods-AppSyncRealTimeClient-AppSyncRealTimeClientTests/Pods-AppSyncRealTimeClient-AppSyncRealTimeClientTests.release.xcconfig"; sourceTree = "<group>"; };
 		81AFCBED5A97E398A4BD9D06 /* Pods_AppSyncRealTimeClient.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AppSyncRealTimeClient.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -368,7 +372,9 @@
 			children = (
 				217F39B22406E98300F1A0B3 /* RealtimeConnectionProvider.swift */,
 				217F39B62406E98300F1A0B3 /* RealtimeConnectionProvider+ConnectionInterceptable.swift */,
+				5CECF68E281A0390007D4959 /* RealtimeConnectionProvider+ConnectionInterceptableAsync.swift */,
 				217F39B52406E98300F1A0B3 /* RealtimeConnectionProvider+MessageInterceptable.swift */,
+				5CECF68F281A0390007D4959 /* RealtimeConnectionProvider+MessageInterceptableAsync.swift */,
 				217F39B12406E98300F1A0B3 /* RealtimeConnectionProvider+StaleConnection.swift */,
 				217F39B32406E98300F1A0B3 /* RealtimeConnectionProvider+Websocket.swift */,
 				217F39B42406E98300F1A0B3 /* RealtimeConnectionProviderResponse.swift */,
@@ -1175,6 +1181,7 @@
 				217F39E32406E98400F1A0B3 /* AppSyncLogger.swift in Sources */,
 				217F39D82406E98400F1A0B3 /* ConnectionProvider.swift in Sources */,
 				21D38B83240A392B00EC2A8D /* APIKeyAuthInterceptor.swift in Sources */,
+				5CECF691281A0390007D4959 /* RealtimeConnectionProvider+MessageInterceptableAsync.swift in Sources */,
 				217F39D92406E98400F1A0B3 /* SubscriptionConnection.swift in Sources */,
 				217F39DA2406E98400F1A0B3 /* RetryableConnection.swift in Sources */,
 				978409B82739C7BE002362A7 /* AppSyncURLHelper.swift in Sources */,
@@ -1182,6 +1189,7 @@
 				217F39E72406E98400F1A0B3 /* SubscriptionConnectionType.swift in Sources */,
 				217F39D42406E98400F1A0B3 /* RealtimeConnectionProvider+Websocket.swift in Sources */,
 				217F39DC2406E98400F1A0B3 /* AppSyncSubscriptionConnection.swift in Sources */,
+				5CECF690281A0390007D4959 /* RealtimeConnectionProvider+ConnectionInterceptableAsync.swift in Sources */,
 				21D38B6D240A262800EC2A8D /* AppSyncJSONHelper.swift in Sources */,
 				219BFF4B27A3B24F000FC148 /* ConnectivityPath.swift in Sources */,
 				217F39CE2406E98400F1A0B3 /* ConnectionProviderError.swift in Sources */,

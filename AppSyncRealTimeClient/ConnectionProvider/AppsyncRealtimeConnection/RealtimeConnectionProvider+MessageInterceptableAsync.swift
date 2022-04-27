@@ -14,9 +14,11 @@ extension RealtimeConnectionProvider: MessageInterceptableAsync {
         messageInterceptors.append(interceptor)
     }
 
-
     func interceptMessage(_ message: AppSyncMessage, for endpoint: URL) async -> AppSyncMessage {
-        let messageInterceptors = messageInterceptors as! [MessageInterceptorAsync]
+        guard let messageInterceptors = messageInterceptors as? [MessageInterceptorAsync] else {
+            AppSyncLogger.error("Failed to cast messageInterceptors.")
+            return message
+        }
 
         var finalMessage = message
         for interceptor in messageInterceptors {
