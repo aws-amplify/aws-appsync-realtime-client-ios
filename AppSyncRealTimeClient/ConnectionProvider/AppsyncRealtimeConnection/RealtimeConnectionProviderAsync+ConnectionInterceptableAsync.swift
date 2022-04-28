@@ -7,15 +7,15 @@
 
 import Foundation
 
-//@available(iOS 13.0.0, *)
-extension RealtimeConnectionProvider: ConnectionInterceptableAsync {
+@available(iOS 13.0.0, *)
+extension RealtimeConnectionProviderAsync: ConnectionInterceptableAsync {
 
     public func addInterceptor(_ interceptor: ConnectionInterceptorAsync) {
         useAsyncInterceptors = true
         connectionInterceptors.append(interceptor)
     }
 
-    func interceptConnection(_ request: AppSyncConnectionRequest, for endpoint: URL) async -> AppSyncConnectionRequest {
+    public func interceptConnection(_ request: AppSyncConnectionRequest, for endpoint: URL) async -> AppSyncConnectionRequest {
         guard let connectionInterceptors = connectionInterceptors as? [ConnectionInterceptorAsync] else {
             AppSyncLogger.error("Failed to cast messageInterceptors.")
             return request

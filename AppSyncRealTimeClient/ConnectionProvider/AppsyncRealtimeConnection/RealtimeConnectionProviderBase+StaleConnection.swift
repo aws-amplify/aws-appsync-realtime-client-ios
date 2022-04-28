@@ -8,7 +8,7 @@
 import Foundation
 
 /// Consolidates usage and parameters passed to the `staleConnectionTimer` methods.
-extension RealtimeConnectionProvider {
+extension RealtimeConnectionProviderBase {
 
     /// Start a stale connection timer, first invalidating and destroying any existing timer
     func startStaleConnectionTimer() {

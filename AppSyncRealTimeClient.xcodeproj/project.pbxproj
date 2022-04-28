@@ -22,8 +22,8 @@
 		217F39CF2406E98400F1A0B3 /* AppSyncMessage+Encodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 217F39AD2406E98300F1A0B3 /* AppSyncMessage+Encodable.swift */; };
 		217F39D02406E98400F1A0B3 /* AppSyncMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 217F39AE2406E98300F1A0B3 /* AppSyncMessage.swift */; };
 		217F39D12406E98400F1A0B3 /* AppSyncConnectionRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 217F39AF2406E98300F1A0B3 /* AppSyncConnectionRequest.swift */; };
-		217F39D32406E98400F1A0B3 /* RealtimeConnectionProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 217F39B22406E98300F1A0B3 /* RealtimeConnectionProvider.swift */; };
-		217F39D42406E98400F1A0B3 /* RealtimeConnectionProvider+Websocket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 217F39B32406E98300F1A0B3 /* RealtimeConnectionProvider+Websocket.swift */; };
+		217F39D32406E98400F1A0B3 /* RealtimeConnectionProviderBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 217F39B22406E98300F1A0B3 /* RealtimeConnectionProviderBase.swift */; };
+		217F39D42406E98400F1A0B3 /* RealtimeConnectionProviderBase+Websocket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 217F39B32406E98300F1A0B3 /* RealtimeConnectionProviderBase+Websocket.swift */; };
 		217F39D52406E98400F1A0B3 /* RealtimeConnectionProviderResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 217F39B42406E98300F1A0B3 /* RealtimeConnectionProviderResponse.swift */; };
 		217F39D62406E98400F1A0B3 /* RealtimeConnectionProvider+MessageInterceptable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 217F39B52406E98300F1A0B3 /* RealtimeConnectionProvider+MessageInterceptable.swift */; };
 		217F39D72406E98400F1A0B3 /* RealtimeConnectionProvider+ConnectionInterceptable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 217F39B62406E98300F1A0B3 /* RealtimeConnectionProvider+ConnectionInterceptable.swift */; };
@@ -76,8 +76,10 @@
 		259F9EB83B9F67D0413A6D4C /* Pods_AppSyncRealTimeClient.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81AFCBED5A97E398A4BD9D06 /* Pods_AppSyncRealTimeClient.framework */; };
 		450019BB151D701382536BD0 /* Pods_HostApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 29CDD85F44666C7241232D29 /* Pods_HostApp.framework */; };
 		4A3EAC9B20D96D81CC3A7EF4 /* Pods_HostApp_AppSyncRealTimeClientIntegrationTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43D112B03D6D38F84995D6FA /* Pods_HostApp_AppSyncRealTimeClientIntegrationTests.framework */; };
-		5CECF690281A0390007D4959 /* RealtimeConnectionProvider+ConnectionInterceptableAsync.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CECF68E281A0390007D4959 /* RealtimeConnectionProvider+ConnectionInterceptableAsync.swift */; };
-		5CECF691281A0390007D4959 /* RealtimeConnectionProvider+MessageInterceptableAsync.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CECF68F281A0390007D4959 /* RealtimeConnectionProvider+MessageInterceptableAsync.swift */; };
+		5CB36400281AFEA3000DC14F /* RealtimeConnectionProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CB363FF281AFEA3000DC14F /* RealtimeConnectionProvider.swift */; };
+		5CB36402281AFFFF000DC14F /* RealtimeConnectionProviderAsync.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CB36401281AFFFF000DC14F /* RealtimeConnectionProviderAsync.swift */; };
+		5CECF690281A0390007D4959 /* RealtimeConnectionProviderAsync+ConnectionInterceptableAsync.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CECF68E281A0390007D4959 /* RealtimeConnectionProviderAsync+ConnectionInterceptableAsync.swift */; };
+		5CECF691281A0390007D4959 /* RealtimeConnectionProviderAsync+MessageInterceptableAsync.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CECF68F281A0390007D4959 /* RealtimeConnectionProviderAsync+MessageInterceptableAsync.swift */; };
 		978409B82739C7BE002362A7 /* AppSyncURLHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 978409B72739C7BE002362A7 /* AppSyncURLHelper.swift */; };
 		978409BA2739C7E1002362A7 /* AppSyncURLHelperTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 978409B92739C7E1002362A7 /* AppSyncURLHelperTests.swift */; };
 		DCFE701B5D1380E566694A48 /* Pods_AppSyncRealTimeClient_AppSyncRealTimeClientTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E662A46AB2C93EE316F784C /* Pods_AppSyncRealTimeClient_AppSyncRealTimeClientTests.framework */; };
@@ -97,7 +99,7 @@
 		FA91B21024D306730017404D /* AppSyncRTCProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB5AA1D24D1CD31001F370F /* AppSyncRTCProvider.swift */; };
 		FAAEF946255229DA009DA4D5 /* AtomicValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA2EFABB2550CAC6007698C7 /* AtomicValue.swift */; };
 		FAB5AA1F24D1CD84001F370F /* amplifyconfiguration.json in Resources */ = {isa = PBXBuildFile; fileRef = 21D38B4B2409B6C000EC2A8D /* amplifyconfiguration.json */; };
-		FAB7E91224D2644E00DF1EA1 /* RealtimeConnectionProvider+StaleConnection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 217F39B12406E98300F1A0B3 /* RealtimeConnectionProvider+StaleConnection.swift */; };
+		FAB7E91224D2644E00DF1EA1 /* RealtimeConnectionProviderBase+StaleConnection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 217F39B12406E98300F1A0B3 /* RealtimeConnectionProviderBase+StaleConnection.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -150,9 +152,9 @@
 		217F39AD2406E98300F1A0B3 /* AppSyncMessage+Encodable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "AppSyncMessage+Encodable.swift"; sourceTree = "<group>"; };
 		217F39AE2406E98300F1A0B3 /* AppSyncMessage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppSyncMessage.swift; sourceTree = "<group>"; };
 		217F39AF2406E98300F1A0B3 /* AppSyncConnectionRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppSyncConnectionRequest.swift; sourceTree = "<group>"; };
-		217F39B12406E98300F1A0B3 /* RealtimeConnectionProvider+StaleConnection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "RealtimeConnectionProvider+StaleConnection.swift"; sourceTree = "<group>"; };
-		217F39B22406E98300F1A0B3 /* RealtimeConnectionProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RealtimeConnectionProvider.swift; sourceTree = "<group>"; };
-		217F39B32406E98300F1A0B3 /* RealtimeConnectionProvider+Websocket.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "RealtimeConnectionProvider+Websocket.swift"; sourceTree = "<group>"; };
+		217F39B12406E98300F1A0B3 /* RealtimeConnectionProviderBase+StaleConnection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "RealtimeConnectionProviderBase+StaleConnection.swift"; sourceTree = "<group>"; };
+		217F39B22406E98300F1A0B3 /* RealtimeConnectionProviderBase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RealtimeConnectionProviderBase.swift; sourceTree = "<group>"; };
+		217F39B32406E98300F1A0B3 /* RealtimeConnectionProviderBase+Websocket.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "RealtimeConnectionProviderBase+Websocket.swift"; sourceTree = "<group>"; };
 		217F39B42406E98300F1A0B3 /* RealtimeConnectionProviderResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RealtimeConnectionProviderResponse.swift; sourceTree = "<group>"; };
 		217F39B52406E98300F1A0B3 /* RealtimeConnectionProvider+MessageInterceptable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "RealtimeConnectionProvider+MessageInterceptable.swift"; sourceTree = "<group>"; };
 		217F39B62406E98300F1A0B3 /* RealtimeConnectionProvider+ConnectionInterceptable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "RealtimeConnectionProvider+ConnectionInterceptable.swift"; sourceTree = "<group>"; };
@@ -209,8 +211,10 @@
 		356411189EAD2C776D250FB7 /* Pods-HostApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HostApp.release.xcconfig"; path = "Target Support Files/Pods-HostApp/Pods-HostApp.release.xcconfig"; sourceTree = "<group>"; };
 		3E662A46AB2C93EE316F784C /* Pods_AppSyncRealTimeClient_AppSyncRealTimeClientTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AppSyncRealTimeClient_AppSyncRealTimeClientTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		43D112B03D6D38F84995D6FA /* Pods_HostApp_AppSyncRealTimeClientIntegrationTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HostApp_AppSyncRealTimeClientIntegrationTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		5CECF68E281A0390007D4959 /* RealtimeConnectionProvider+ConnectionInterceptableAsync.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "RealtimeConnectionProvider+ConnectionInterceptableAsync.swift"; sourceTree = "<group>"; };
-		5CECF68F281A0390007D4959 /* RealtimeConnectionProvider+MessageInterceptableAsync.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "RealtimeConnectionProvider+MessageInterceptableAsync.swift"; sourceTree = "<group>"; };
+		5CB363FF281AFEA3000DC14F /* RealtimeConnectionProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealtimeConnectionProvider.swift; sourceTree = "<group>"; };
+		5CB36401281AFFFF000DC14F /* RealtimeConnectionProviderAsync.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealtimeConnectionProviderAsync.swift; sourceTree = "<group>"; };
+		5CECF68E281A0390007D4959 /* RealtimeConnectionProviderAsync+ConnectionInterceptableAsync.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "RealtimeConnectionProviderAsync+ConnectionInterceptableAsync.swift"; sourceTree = "<group>"; };
+		5CECF68F281A0390007D4959 /* RealtimeConnectionProviderAsync+MessageInterceptableAsync.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "RealtimeConnectionProviderAsync+MessageInterceptableAsync.swift"; sourceTree = "<group>"; };
 		7CF486070B34EFD15B4DB8FC /* Pods_AppSyncRTCSample.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AppSyncRTCSample.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7D4F451B830A5837CE5274A3 /* Pods-AppSyncRealTimeClient-AppSyncRealTimeClientTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AppSyncRealTimeClient-AppSyncRealTimeClientTests.release.xcconfig"; path = "Target Support Files/Pods-AppSyncRealTimeClient-AppSyncRealTimeClientTests/Pods-AppSyncRealTimeClient-AppSyncRealTimeClientTests.release.xcconfig"; sourceTree = "<group>"; };
 		81AFCBED5A97E398A4BD9D06 /* Pods_AppSyncRealTimeClient.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AppSyncRealTimeClient.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -370,13 +374,15 @@
 		217F39B02406E98300F1A0B3 /* AppsyncRealtimeConnection */ = {
 			isa = PBXGroup;
 			children = (
-				217F39B22406E98300F1A0B3 /* RealtimeConnectionProvider.swift */,
+				5CB363FF281AFEA3000DC14F /* RealtimeConnectionProvider.swift */,
 				217F39B62406E98300F1A0B3 /* RealtimeConnectionProvider+ConnectionInterceptable.swift */,
-				5CECF68E281A0390007D4959 /* RealtimeConnectionProvider+ConnectionInterceptableAsync.swift */,
 				217F39B52406E98300F1A0B3 /* RealtimeConnectionProvider+MessageInterceptable.swift */,
-				5CECF68F281A0390007D4959 /* RealtimeConnectionProvider+MessageInterceptableAsync.swift */,
-				217F39B12406E98300F1A0B3 /* RealtimeConnectionProvider+StaleConnection.swift */,
-				217F39B32406E98300F1A0B3 /* RealtimeConnectionProvider+Websocket.swift */,
+				5CB36401281AFFFF000DC14F /* RealtimeConnectionProviderAsync.swift */,
+				5CECF68E281A0390007D4959 /* RealtimeConnectionProviderAsync+ConnectionInterceptableAsync.swift */,
+				5CECF68F281A0390007D4959 /* RealtimeConnectionProviderAsync+MessageInterceptableAsync.swift */,
+				217F39B22406E98300F1A0B3 /* RealtimeConnectionProviderBase.swift */,
+				217F39B12406E98300F1A0B3 /* RealtimeConnectionProviderBase+StaleConnection.swift */,
+				217F39B32406E98300F1A0B3 /* RealtimeConnectionProviderBase+Websocket.swift */,
 				217F39B42406E98300F1A0B3 /* RealtimeConnectionProviderResponse.swift */,
 			);
 			path = AppsyncRealtimeConnection;
@@ -1165,8 +1171,8 @@
 				21D38B8E240A3C2300EC2A8D /* ConnectionProviderFactory.swift in Sources */,
 				217F39E02406E98400F1A0B3 /* AppSyncWebsocketProvider.swift in Sources */,
 				219BFF4927A3B238000FC148 /* ConnectivityMonitor.swift in Sources */,
-				FAB7E91224D2644E00DF1EA1 /* RealtimeConnectionProvider+StaleConnection.swift in Sources */,
-				217F39D32406E98400F1A0B3 /* RealtimeConnectionProvider.swift in Sources */,
+				FAB7E91224D2644E00DF1EA1 /* RealtimeConnectionProviderBase+StaleConnection.swift in Sources */,
+				217F39D32406E98400F1A0B3 /* RealtimeConnectionProviderBase.swift in Sources */,
 				217F39D12406E98400F1A0B3 /* AppSyncConnectionRequest.swift in Sources */,
 				217F39DD2406E98400F1A0B3 /* AppSyncSubscriptionConnection+Connection.swift in Sources */,
 				217F39E52406E98400F1A0B3 /* AppSyncJSONValue.swift in Sources */,
@@ -1176,20 +1182,22 @@
 				217F39D52406E98400F1A0B3 /* RealtimeConnectionProviderResponse.swift in Sources */,
 				217F39D62406E98400F1A0B3 /* RealtimeConnectionProvider+MessageInterceptable.swift in Sources */,
 				FA67508224D33A7A005A1345 /* CountdownTimer.swift in Sources */,
+				5CB36402281AFFFF000DC14F /* RealtimeConnectionProviderAsync.swift in Sources */,
 				217F39E62406E98400F1A0B3 /* SubscriptionConstants.swift in Sources */,
 				217F39D02406E98400F1A0B3 /* AppSyncMessage.swift in Sources */,
 				217F39E32406E98400F1A0B3 /* AppSyncLogger.swift in Sources */,
 				217F39D82406E98400F1A0B3 /* ConnectionProvider.swift in Sources */,
 				21D38B83240A392B00EC2A8D /* APIKeyAuthInterceptor.swift in Sources */,
-				5CECF691281A0390007D4959 /* RealtimeConnectionProvider+MessageInterceptableAsync.swift in Sources */,
+				5CECF691281A0390007D4959 /* RealtimeConnectionProviderAsync+MessageInterceptableAsync.swift in Sources */,
 				217F39D92406E98400F1A0B3 /* SubscriptionConnection.swift in Sources */,
 				217F39DA2406E98400F1A0B3 /* RetryableConnection.swift in Sources */,
 				978409B82739C7BE002362A7 /* AppSyncURLHelper.swift in Sources */,
+				5CB36400281AFEA3000DC14F /* RealtimeConnectionProvider.swift in Sources */,
 				217F39CC2406E98400F1A0B3 /* AppSyncResponse.swift in Sources */,
 				217F39E72406E98400F1A0B3 /* SubscriptionConnectionType.swift in Sources */,
-				217F39D42406E98400F1A0B3 /* RealtimeConnectionProvider+Websocket.swift in Sources */,
+				217F39D42406E98400F1A0B3 /* RealtimeConnectionProviderBase+Websocket.swift in Sources */,
 				217F39DC2406E98400F1A0B3 /* AppSyncSubscriptionConnection.swift in Sources */,
-				5CECF690281A0390007D4959 /* RealtimeConnectionProvider+ConnectionInterceptableAsync.swift in Sources */,
+				5CECF690281A0390007D4959 /* RealtimeConnectionProviderAsync+ConnectionInterceptableAsync.swift in Sources */,
 				21D38B6D240A262800EC2A8D /* AppSyncJSONHelper.swift in Sources */,
 				219BFF4B27A3B24F000FC148 /* ConnectivityPath.swift in Sources */,
 				217F39CE2406E98400F1A0B3 /* ConnectionProviderError.swift in Sources */,
@@ -1436,7 +1444,7 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = AppSyncRealTimeClient/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1462,7 +1470,7 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = AppSyncRealTimeClient/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

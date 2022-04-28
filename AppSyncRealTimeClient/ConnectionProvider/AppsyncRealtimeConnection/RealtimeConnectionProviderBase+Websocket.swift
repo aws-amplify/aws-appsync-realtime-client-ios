@@ -7,7 +7,7 @@
 
 import Foundation
 
-extension RealtimeConnectionProvider: AppSyncWebsocketDelegate {
+extension RealtimeConnectionProviderBase: AppSyncWebsocketDelegate {
 
     public func websocketDidConnect(provider: AppSyncWebsocketProvider) {
         // Call the ack to finish the connection handshake
