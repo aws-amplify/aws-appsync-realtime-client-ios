@@ -141,7 +141,9 @@ public class RealtimeConnectionProviderBase: ConnectionProvider {
             self.listeners.removeValue(forKey: identifier)
 
             if self.listeners.isEmpty {
-                AppSyncLogger.debug("[RealtimeConnectionProvider] all subscriptions removed, disconnecting websocket connection.")
+                AppSyncLogger.debug(
+                    "[RealtimeConnectionProvider] all subscriptions removed, disconnecting websocket connection."
+                )
                 self.status = .notConnected
                 self.websocket.disconnect()
                 self.invalidateStaleConnectionTimer()
@@ -205,8 +207,28 @@ public class RealtimeConnectionProvider: RealtimeConnectionProviderBase {
     var messageInterceptors = [MessageInterceptor]()
     var connectionInterceptors = [ConnectionInterceptor]()
 
-    public init(for url: URL, websocket: AppSyncWebsocketProvider) {
-        super.init(url: url, websocket: websocket)
+    override internal init(
+        url: URL,
+        websocket: AppSyncWebsocketProvider,
+        connectionQueue: DispatchQueue = DispatchQueue(
+            label: "com.amazonaws.AppSyncRealTimeConnectionProvider.serialQueue"
+        ),
+        serialCallbackQueue: DispatchQueue = DispatchQueue(
+            label: "com.amazonaws.AppSyncRealTimeConnectionProvider.callbackQueue"
+        ),
+        connectivityMonitor: ConnectivityMonitor = ConnectivityMonitor()
+    ) {
+        super.init(
+            url: url,
+            websocket: websocket,
+            connectionQueue: connectionQueue,
+            serialCallbackQueue: serialCallbackQueue,
+            connectivityMonitor: connectivityMonitor
+        )
+    }
+
+    public convenience init(for url: URL, websocket: AppSyncWebsocketProvider) {
+        self.init(url: url, websocket: websocket)
     }
 
     override public func connect() {
@@ -252,8 +274,28 @@ public class RealtimeConnectionProviderAsync: RealtimeConnectionProviderBase {
     var messageInterceptors = [MessageInterceptorAsync]()
     var connectionInterceptors = [ConnectionInterceptorAsync]()
 
-    public init(for url: URL, websocket: AppSyncWebsocketProvider) {
-        super.init(url: url, websocket: websocket)
+    override internal init(
+        url: URL,
+        websocket: AppSyncWebsocketProvider,
+        connectionQueue: DispatchQueue = DispatchQueue(
+            label: "com.amazonaws.AppSyncRealTimeConnectionProvider.serialQueue"
+        ),
+        serialCallbackQueue: DispatchQueue = DispatchQueue(
+            label: "com.amazonaws.AppSyncRealTimeConnectionProvider.callbackQueue"
+        ),
+        connectivityMonitor: ConnectivityMonitor = ConnectivityMonitor()
+    ) {
+        super.init(
+            url: url,
+            websocket: websocket,
+            connectionQueue: connectionQueue,
+            serialCallbackQueue: serialCallbackQueue,
+            connectivityMonitor: connectivityMonitor
+        )
+    }
+
+    public convenience init(for url: URL, websocket: AppSyncWebsocketProvider) {
+        self.init(url: url, websocket: websocket)
     }
 
     override public func connect() {
