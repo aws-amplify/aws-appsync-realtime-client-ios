@@ -14,7 +14,7 @@ class RealtimeConnectionProviderTestBase: XCTestCase {
 
     var websocket: MockWebsocketProvider!
 
-    //swiftlint:disable:next weak_delegate
+    // swiftlint:disable:next weak_delegate
     var websocketDelegate: AppSyncWebsocketDelegate!
 
     // Shared test expectations. Set expected fulfillment counts and inversions as
@@ -41,8 +41,12 @@ class RealtimeConnectionProviderTestBase: XCTestCase {
     /// - `self.websocket` must be initialized in the mock provider's `onConnect`
     func createProviderAndConnect(
         listeners: [String]? = nil,
-        connectionQueue: DispatchQueue = DispatchQueue(label: "com.amazonaws.RealtimeConnectionProviderTestBase.connectionQueue"),
-        serialCallbackQueue: DispatchQueue = DispatchQueue(label: "com.amazonaws.RealtimeConnectionProviderTestBase.serialCallbackQueue"),
+        connectionQueue: DispatchQueue = DispatchQueue(
+            label: "com.amazonaws.RealtimeConnectionProviderTestBase.connectionQueue"
+        ),
+        serialCallbackQueue: DispatchQueue = DispatchQueue(
+            label: "com.amazonaws.RealtimeConnectionProviderTestBase.serialCallbackQueue"
+        ),
         connectivityMonitor: ConnectivityMonitor = ConnectivityMonitor()
     ) -> RealtimeConnectionProvider {
         let provider = RealtimeConnectionProvider(

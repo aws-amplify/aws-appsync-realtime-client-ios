@@ -53,7 +53,8 @@ public class RealtimeConnectionProviderBase: ConnectionProvider {
         if iLimitExceededSubject == nil {
             iLimitExceededSubject = PassthroughSubject<ConnectionProviderError, Never>()
         }
-        return iLimitExceededSubject as! PassthroughSubject<ConnectionProviderError, Never> // swiftlint:disable:this force_cast
+        // swiftlint:disable:next force_cast
+        return iLimitExceededSubject as! PassthroughSubject<ConnectionProviderError, Never>
     }
 
     // Prevent this class from being instantiated directly.
