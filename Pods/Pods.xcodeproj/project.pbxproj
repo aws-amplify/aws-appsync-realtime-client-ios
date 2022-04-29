@@ -194,7 +194,7 @@
 		82393BF234D31DE622FCE3F0A6D81DA8 /* Pods-AppSyncRealTimeClient-AppSyncRealTimeClientTests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-AppSyncRealTimeClient-AppSyncRealTimeClientTests.modulemap"; sourceTree = "<group>"; };
 		856119884A110C4AE532855C4B44D973 /* Pods-HostApp-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-HostApp-acknowledgements.plist"; sourceTree = "<group>"; };
 		8637F2372A3F1500A725E0B3C2995DCA /* FrameCollector.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = FrameCollector.swift; path = Sources/Framer/FrameCollector.swift; sourceTree = "<group>"; };
-		891B2270823847ED23F2ECFC28F935EC /* Starscream.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Starscream.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		891B2270823847ED23F2ECFC28F935EC /* Starscream */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Starscream; path = Starscream.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8E6E2E9C7E9DC8FAA7C03E83452794FB /* FoundationHTTPHandler.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = FoundationHTTPHandler.swift; path = Sources/Framer/FoundationHTTPHandler.swift; sourceTree = "<group>"; };
 		8FBFA4F497BF24BAB2C3C2C46831CA0A /* Starscream-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Starscream-umbrella.h"; sourceTree = "<group>"; };
 		926BDB89A966BBC606CD53BA1871E433 /* Pods-HostApp-AppSyncRealTimeClientIntegrationTests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-HostApp-AppSyncRealTimeClientIntegrationTests-dummy.m"; sourceTree = "<group>"; };
@@ -402,7 +402,7 @@
 				C5D92A24D6DBC95BE97867525C82CA97 /* Pods-AppSyncRTCSample */,
 				ED00F87B053026A542BE85D0CA39F88F /* Pods-HostApp */,
 				53FD200EDC1B7F726E251F28FC00588D /* Pods-HostApp-AppSyncRealTimeClientIntegrationTests */,
-				891B2270823847ED23F2ECFC28F935EC /* Starscream.framework */,
+				891B2270823847ED23F2ECFC28F935EC /* Starscream */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -689,7 +689,7 @@
 			);
 			name = Starscream;
 			productName = Starscream;
-			productReference = 891B2270823847ED23F2ECFC28F935EC /* Starscream.framework */;
+			productReference = 891B2270823847ED23F2ECFC28F935EC /* Starscream */;
 			productType = "com.apple.product-type.framework";
 		};
 /* End PBXNativeTarget section */
@@ -1197,7 +1197,7 @@
 				GCC_PREFIX_HEADER = "Target Support Files/Starscream/Starscream-prefix.pch";
 				INFOPLIST_FILE = "Target Support Files/Starscream/Starscream-Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1474,7 +1474,7 @@
 				GCC_PREFIX_HEADER = "Target Support Files/Starscream/Starscream-prefix.pch";
 				INFOPLIST_FILE = "Target Support Files/Starscream/Starscream-Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
