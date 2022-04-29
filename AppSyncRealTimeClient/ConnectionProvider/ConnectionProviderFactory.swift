@@ -34,7 +34,11 @@ public enum ConnectionProviderFactory {
         authInterceptor: AuthInterceptorAsync,
         connectionType: SubscriptionConnectionType
     ) -> ConnectionProvider {
-        let provider = ConnectionProviderFactory.createConnectionProvider(for: url, connectionType: connectionType)
+        let provider = ConnectionProviderFactory.createConnectionProvider(
+            for: url,
+            connectionType: connectionType,
+            asyncProvider: true
+        )
 
         if let messageInterceptable = provider as? MessageInterceptableAsync {
             messageInterceptable.addInterceptor(authInterceptor)
@@ -49,13 +53,22 @@ public enum ConnectionProviderFactory {
 
     static func createConnectionProvider(
         for url: URL,
-        connectionType: SubscriptionConnectionType
+        connectionType: SubscriptionConnectionType,
+        asyncProvider: Bool = false
     ) -> ConnectionProvider {
         switch connectionType {
         case .appSyncRealtime:
             let websocketProvider = StarscreamAdapter()
-            let connectionProvider = RealtimeConnectionProvider(for: url, websocket: websocketProvider)
-            return connectionProvider
+            if asyncProvider {
+                if #available(iOS 13.0, *) {
+                    return RealtimeConnectionProviderAsync(for: url, websocket: websocketProvider)
+                } else {
+                    AppSyncLogger.error("Attempted to use an async provider with an iOS version < 13.0")
+                    return RealtimeConnectionProvider(for: url, websocket: websocketProvider)
+                }
+            } else {
+                return RealtimeConnectionProvider(for: url, websocket: websocketProvider)
+            }
         }
     }
 }

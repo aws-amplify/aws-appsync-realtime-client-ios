@@ -14,7 +14,10 @@ extension RealtimeConnectionProviderAsync: ConnectionInterceptableAsync {
         connectionInterceptors.append(interceptor)
     }
 
-    public func interceptConnection(_ request: AppSyncConnectionRequest, for endpoint: URL) async -> AppSyncConnectionRequest {
+    public func interceptConnection(
+        _ request: AppSyncConnectionRequest,
+        for endpoint: URL
+    ) async -> AppSyncConnectionRequest {
         var finalRequest = request
         for interceptor in connectionInterceptors {
             finalRequest = await interceptor.interceptConnection(finalRequest, for: endpoint)
