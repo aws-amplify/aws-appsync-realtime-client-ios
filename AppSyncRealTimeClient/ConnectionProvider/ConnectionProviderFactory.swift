@@ -29,7 +29,7 @@ public enum ConnectionProviderFactory {
     }
 
     @available(iOS 13.0.0, *)
-    public static func createConnectionProviderAsync(
+    public static func createConnectionProvider(
         for url: URL,
         authInterceptor: AuthInterceptorAsync,
         connectionType: SubscriptionConnectionType
