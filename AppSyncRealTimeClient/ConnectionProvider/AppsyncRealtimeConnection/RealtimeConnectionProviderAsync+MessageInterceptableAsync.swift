@@ -5,6 +5,8 @@
 // SPDX-License-Identifier: Apache-2.0
 //
 
+#if swift(>=5.5.2)
+
 import Foundation
 
 @available(iOS 13.0.0, *)
@@ -22,3 +24,5 @@ extension RealtimeConnectionProviderAsync: MessageInterceptableAsync {
         return finalMessage
     }
 }
+
+#endif

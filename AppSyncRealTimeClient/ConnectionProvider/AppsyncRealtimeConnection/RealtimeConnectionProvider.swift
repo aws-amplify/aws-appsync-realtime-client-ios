@@ -269,6 +269,7 @@ public class RealtimeConnectionProvider: RealtimeConnectionProviderBase {
 
 // MARK: - RealtimeConnectionProviderAsync
 
+#if swift(>=5.5.2)
 @available(iOS 13.0, *)
 public class RealtimeConnectionProviderAsync: RealtimeConnectionProviderBase {
 
@@ -336,3 +337,4 @@ public class RealtimeConnectionProviderAsync: RealtimeConnectionProviderBase {
         }
     }
 }
+#endif

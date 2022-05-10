@@ -15,7 +15,13 @@ public enum ConnectionProviderFactory {
         authInterceptor: AuthInterceptor,
         connectionType: SubscriptionConnectionType
     ) -> ConnectionProvider {
-        let provider = ConnectionProviderFactory.createConnectionProvider(for: url, connectionType: connectionType)
+        let provider: ConnectionProvider
+
+        switch connectionType {
+        case .appSyncRealtime:
+            let websocketProvider = StarscreamAdapter()
+            provider = RealtimeConnectionProvider(for: url, websocket: websocketProvider)
+        }
 
         if let messageInterceptable = provider as? MessageInterceptable {
             messageInterceptable.addInterceptor(authInterceptor)
@@ -28,17 +34,20 @@ public enum ConnectionProviderFactory {
         return provider
     }
 
+    #if swift(>=5.5.2)
     @available(iOS 13.0.0, *)
     public static func createConnectionProvider(
         for url: URL,
         authInterceptor: AuthInterceptorAsync,
         connectionType: SubscriptionConnectionType
     ) -> ConnectionProvider {
-        let provider = ConnectionProviderFactory.createConnectionProvider(
-            for: url,
-            connectionType: connectionType,
-            asyncProvider: true
-        )
+        let provider: ConnectionProvider
+
+        switch connectionType {
+        case .appSyncRealtime:
+            let websocketProvider = StarscreamAdapter()
+            provider = RealtimeConnectionProviderAsync(for: url, websocket: websocketProvider)
+        }
 
         if let messageInterceptable = provider as? MessageInterceptableAsync {
             messageInterceptable.addInterceptor(authInterceptor)
@@ -50,25 +59,5 @@ public enum ConnectionProviderFactory {
 
         return provider
     }
-
-    static func createConnectionProvider(
-        for url: URL,
-        connectionType: SubscriptionConnectionType,
-        asyncProvider: Bool = false
-    ) -> ConnectionProvider {
-        switch connectionType {
-        case .appSyncRealtime:
-            let websocketProvider = StarscreamAdapter()
-            if asyncProvider {
-                if #available(iOS 13.0, *) {
-                    return RealtimeConnectionProviderAsync(for: url, websocket: websocketProvider)
-                } else {
-                    AppSyncLogger.error("Attempted to use an async provider with an iOS version < 13.0")
-                    return RealtimeConnectionProvider(for: url, websocket: websocketProvider)
-                }
-            } else {
-                return RealtimeConnectionProvider(for: url, websocket: websocketProvider)
-            }
-        }
-    }
+    #endif
 }
