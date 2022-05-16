@@ -12,7 +12,7 @@ import Foundation
 @available(iOS 13.0.0, *)
 extension RealtimeConnectionProviderAsync: ConnectionInterceptableAsync {
 
-    public func addInterceptor(_ interceptor: ConnectionInterceptorAsync) {
+    public func addInterceptor(_ interceptor: ConnectionInterceptorAsync) async {
         connectionInterceptors.append(interceptor)
     }
 

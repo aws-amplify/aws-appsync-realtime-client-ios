@@ -7,15 +7,18 @@
 
 import Foundation
 
+@available(iOS 13.0.0, *)
 public protocol ConnectionProviderAsync: AnyObject {
 
-    func connect()
+    func connect() async
 
-    func write(_ message: AppSyncMessage)
+    func write(_ message: AppSyncMessage) async
 
-    func disconnect()
+    func disconnect() async
 
-    func addListener(identifier: String, callback: @escaping ConnectionProviderCallback)
+    func addListener(identifier: String, callback: @escaping ConnectionProviderCallbackAsync) async
 
-    func removeListener(identifier: String)
+    func removeListener(identifier: String) async
 }
+
+public typealias ConnectionProviderCallbackAsync = (ConnectionProviderEvent) async -> Void

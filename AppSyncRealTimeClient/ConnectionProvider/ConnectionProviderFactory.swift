@@ -40,21 +40,21 @@ public enum ConnectionProviderFactory {
         for url: URL,
         authInterceptor: AuthInterceptorAsync,
         connectionType: SubscriptionConnectionType
-    ) -> ConnectionProvider {
-        let provider: ConnectionProvider
+    ) async -> ConnectionProviderAsync {
+        let provider: ConnectionProviderAsync
 
         switch connectionType {
         case .appSyncRealtime:
-            let websocketProvider = StarscreamAdapter()
-            provider = RealtimeConnectionProviderAsync(for: url, websocket: websocketProvider)
+            let websocketProvider = StarscreamAdapterAsync()
+            provider = await RealtimeConnectionProviderAsync(for: url, websocket: websocketProvider)
         }
 
         if let messageInterceptable = provider as? MessageInterceptableAsync {
-            messageInterceptable.addInterceptor(authInterceptor)
+            await messageInterceptable.addInterceptor(authInterceptor)
         }
         if let connectionInterceptable = provider as? ConnectionInterceptableAsync {
-            connectionInterceptable.addInterceptor(RealtimeGatewayURLInterceptor())
-            connectionInterceptable.addInterceptor(authInterceptor)
+            await connectionInterceptable.addInterceptor(RealtimeGatewayURLInterceptor())
+            await connectionInterceptable.addInterceptor(authInterceptor)
         }
 
         return provider

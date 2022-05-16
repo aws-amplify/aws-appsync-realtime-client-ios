@@ -8,34 +8,28 @@
 import Foundation
 
 @available(iOS 13.0.0, *)
-extension RealtimeConnectionProviderAsync: AppSyncWebsocketDelegate {
-
-    public func websocketDidConnect(provider: AppSyncWebsocketProvider) {
+extension RealtimeConnectionProviderAsync: AppSyncWebsocketDelegateAsync {
+    public func websocketDidConnect(provider: AppSyncWebsocketProviderAsync) async {
         // Call the ack to finish the connection handshake
         // Inform the callback when ack gives back a response.
         AppSyncLogger.debug("[RealtimeConnectionProvider] WebsocketDidConnect, sending init message")
         sendConnectionInitMessage()
-        startStaleConnectionTimer()
+        await startStaleConnectionTimer()
     }
 
-    public func websocketDidDisconnect(provider: AppSyncWebsocketProvider, error: Error?) {
-        connectionQueue.async { [weak self] in
-            guard let self = self else {
-                return
-            }
-            self.status = .notConnected
+    public func websocketDidDisconnect(provider: AppSyncWebsocketProviderAsync, error: Error?) async {
+            status = .notConnected
             guard error != nil else {
-                self.updateCallback(event: .connection(self.status))
+                updateCallback(event: .connection(status))
                 return
             }
-            self.updateCallback(event: .error(ConnectionProviderError.connection))
-        }
+            updateCallback(event: .error(ConnectionProviderError.connection))
     }
 
-    public func websocketDidReceiveData(provider: AppSyncWebsocketProvider, data: Data) {
+    public func websocketDidReceiveData(provider: AppSyncWebsocketProviderAsync, data: Data) async {
         do {
             let response = try JSONDecoder().decode(RealtimeConnectionProviderResponse.self, from: data)
-            handleResponse(response)
+            await handleResponse(response)
         } catch {
             AppSyncLogger.error(error)
             updateCallback(event: .error(ConnectionProviderError.jsonParse(nil, error)))
@@ -44,20 +38,16 @@ extension RealtimeConnectionProviderAsync: AppSyncWebsocketDelegate {
 
     // MARK: - Handle websocket response
 
-    private func handleResponse(_ response: RealtimeConnectionProviderResponse) {
+    private func handleResponse(_ response: RealtimeConnectionProviderResponse) async {
         resetStaleConnectionTimer()
 
         switch response.responseType {
         case .connectionAck:
             AppSyncLogger.debug("[RealtimeConnectionProvider] received connectionAck")
-            connectionQueue.async { [weak self] in
-                self?.handleConnectionAck(response: response)
-            }
+                handleConnectionAck(response: response)
         case .error:
             AppSyncLogger.verbose("[RealtimeConnectionProvider] received error")
-            connectionQueue.async { [weak self] in
-                self?.handleError(response: response)
-            }
+                handleError(response: response)
         case .subscriptionAck, .unsubscriptionAck, .data:
             if let appSyncResponse = response.toAppSyncResponse() {
                 updateCallback(event: .data(appSyncResponse))

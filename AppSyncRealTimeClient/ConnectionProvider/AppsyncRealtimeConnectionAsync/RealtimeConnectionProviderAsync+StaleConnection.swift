@@ -12,7 +12,7 @@ import Foundation
 extension RealtimeConnectionProviderAsync {
 
     /// Start a stale connection timer, first invalidating and destroying any existing timer
-    func startStaleConnectionTimer() {
+    func startStaleConnectionTimer() async {
         AppSyncLogger.debug(
             "[RealtimeConnectionProvider] Starting stale connection timer for \(staleConnectionTimer.interval)s"
         )
@@ -35,40 +35,32 @@ extension RealtimeConnectionProviderAsync {
 
     /// Handle updates from the ConnectivityMonitor
     func handleConnectivityUpdates(connectivity: ConnectivityPath) {
-        connectionQueue.async {[weak self] in
-            guard let self = self else {
-                return
-            }
             AppSyncLogger.debug(
-                "[RealtimeConnectionProvider] Status: \(self.status). Connectivity status: \(connectivity.status)"
+                "[RealtimeConnectionProvider] Status: \(status). Connectivity status: \(connectivity.status)"
             )
-            if self.status == .connected && connectivity.status == .unsatisfied && !self.isStaleConnection {
+            if status == .connected && connectivity.status == .unsatisfied && !isStaleConnection {
                 AppSyncLogger.debug(
                     "[RealtimeConnectionProvider] Connetion is stale. Pending reconnect on connectivity."
                 )
-                self.isStaleConnection = true
+                isStaleConnection = true
 
-            } else if self.status == .connected && self.isStaleConnection && connectivity.status == .satisfied {
+            } else if status == .connected && isStaleConnection && connectivity.status == .satisfied {
                 AppSyncLogger.debug(
                     "[RealtimeConnectionProvider] Connetion is stale. Disconnecting to begin reconnect."
                 )
-                self.staleConnectionTimer.invalidate()
-                self.disconnectStaleConnection()
+                staleConnectionTimer.invalidate()
+                disconnectStaleConnection()
             }
-        }
     }
 
     /// Fired when the stale connection timer expires
     private func disconnectStaleConnection() {
-        connectionQueue.async {[weak self] in
-            guard let self = self else {
-                return
-            }
+        Task {
             AppSyncLogger.error("[RealtimeConnectionProvider] Realtime connection is stale, disconnecting.")
-            self.status = .notConnected
-            self.isStaleConnection = false
-            self.websocket.disconnect()
-            self.updateCallback(event: .error(ConnectionProviderError.connection))
+            status = .notConnected
+            isStaleConnection = false
+            await websocket.disconnect()
+            updateCallback(event: .error(ConnectionProviderError.connection))
         }
     }
 }

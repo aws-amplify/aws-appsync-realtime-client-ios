@@ -11,15 +11,15 @@ import Combine
 /// Appsync Real time connection that connects to subscriptions
 /// through websocket.
 @available(iOS 13.0.0, *)
-public class RealtimeConnectionProviderAsync: ConnectionProvider {
+public actor RealtimeConnectionProviderAsync: ConnectionProviderAsync {
     /// Maximum number of seconds a connection may go without receiving a keep alive
     /// message before we consider it stale and force a disconnect
     static let staleConnectionTimeout: TimeInterval = 5 * 60
 
     let url: URL
-    var listeners: [String: ConnectionProviderCallback]
+    var listeners: [String: ConnectionProviderCallbackAsync]
 
-    let websocket: AppSyncWebsocketProvider
+    let websocket: AppSyncWebsocketProviderAsync
 
     var status: ConnectionState
 
@@ -60,9 +60,9 @@ public class RealtimeConnectionProviderAsync: ConnectionProvider {
 
     // Prevent this class from being instantiated directly.
     // Use RealtimeConnectionProvider or RealtimeConnectionProviderAsync instead
-    internal init(
+    init(
         url: URL,
-        websocket: AppSyncWebsocketProvider,
+        websocket: AppSyncWebsocketProviderAsync,
         connectionQueue: DispatchQueue = DispatchQueue(
             label: "com.amazonaws.AppSyncRealTimeConnectionProvider.serialQueue"
         ),
@@ -70,7 +70,7 @@ public class RealtimeConnectionProviderAsync: ConnectionProvider {
             label: "com.amazonaws.AppSyncRealTimeConnectionProvider.callbackQueue"
         ),
         connectivityMonitor: ConnectivityMonitor = ConnectivityMonitor()
-    ) {
+    ) async {
         self.url = url
         self.websocket = websocket
         self.listeners = [:]
@@ -86,29 +86,8 @@ public class RealtimeConnectionProviderAsync: ConnectionProvider {
         subscribeToLimitExceededThrottle()
     }
 
-
-//    override internal init(
-//        url: URL,
-//        websocket: AppSyncWebsocketProvider,
-//        connectionQueue: DispatchQueue = DispatchQueue(
-//            label: "com.amazonaws.AppSyncRealTimeConnectionProvider.serialQueue"
-//        ),
-//        serialCallbackQueue: DispatchQueue = DispatchQueue(
-//            label: "com.amazonaws.AppSyncRealTimeConnectionProvider.callbackQueue"
-//        ),
-//        connectivityMonitor: ConnectivityMonitor = ConnectivityMonitor()
-//    ) {
-//        super.init(
-//            url: url,
-//            websocket: websocket,
-//            connectionQueue: connectionQueue,
-//            serialCallbackQueue: serialCallbackQueue,
-//            connectivityMonitor: connectivityMonitor
-//        )
-//    }
-
-    public convenience init(for url: URL, websocket: AppSyncWebsocketProvider) {
-        self.init(url: url, websocket: websocket)
+    public convenience init(for url: URL, websocket: AppSyncWebsocketProviderAsync) async {
+        await self.init(url: url, websocket: websocket)
     }
 
     // MARK: - ConnectionProvider methods
@@ -118,7 +97,7 @@ public class RealtimeConnectionProviderAsync: ConnectionProvider {
         write(message)
     }
 
-    func finishWrite(_ signedMessage: AppSyncMessage) {
+    func finishWrite(_ signedMessage: AppSyncMessage) async {
         let jsonEncoder = JSONEncoder()
         do {
             let jsonData = try jsonEncoder.encode(signedMessage)
@@ -127,7 +106,7 @@ public class RealtimeConnectionProviderAsync: ConnectionProvider {
                 updateCallback(event: .error(jsonError))
                 return
             }
-            websocket.write(message: jsonString)
+            await websocket.write(message: jsonString)
         } catch {
             AppSyncLogger.error(error)
             switch signedMessage.messageType {
@@ -139,36 +118,27 @@ public class RealtimeConnectionProviderAsync: ConnectionProvider {
         }
     }
 
-    public func disconnect() {
-        connectionQueue.async {
-            self.websocket.disconnect()
-            self.invalidateStaleConnectionTimer()
-        }
+    public func disconnect() async {
+         await websocket.disconnect()
+         invalidateStaleConnectionTimer()
     }
 
-    public func addListener(identifier: String, callback: @escaping ConnectionProviderCallback) {
-        connectionQueue.async { [weak self] in
-            self?.listeners[identifier] = callback
-        }
+    public func addListener(identifier: String, callback: @escaping ConnectionProviderCallbackAsync) {
+          listeners[identifier] = callback
     }
 
-    public func removeListener(identifier: String) {
-        connectionQueue.async { [weak self] in
-            guard let self = self else {
-                return
-            }
+    public func removeListener(identifier: String) async {
+            listeners.removeValue(forKey: identifier)
 
-            self.listeners.removeValue(forKey: identifier)
-
-            if self.listeners.isEmpty {
+            if listeners.isEmpty {
                 AppSyncLogger.debug(
                     "[RealtimeConnectionProvider] all subscriptions removed, disconnecting websocket connection."
                 )
-                self.status = .notConnected
-                self.websocket.disconnect()
-                self.invalidateStaleConnectionTimer()
+               status = .notConnected
+            await websocket.disconnect()
+             invalidateStaleConnectionTimer()
             }
-        }
+
     }
 
     // MARK: -
@@ -178,15 +148,12 @@ public class RealtimeConnectionProviderAsync: ConnectionProvider {
     ///
     /// - Parameter event: The connection event to dispatch
     func updateCallback(event: ConnectionProviderEvent) {
-        connectionQueue.async { [weak self] in
-            guard let self = self else {
-                return
+            let allListeners = Array(listeners.values)
+            Task {
+                for listener in allListeners {
+                    await listener(event)
+                }
             }
-            let allListeners = Array(self.listeners.values)
-            self.serialCallbackQueue.async {
-                allListeners.forEach { $0(event) }
-            }
-        }
     }
 
     @available(iOS 13.0, *)
@@ -223,39 +190,28 @@ public class RealtimeConnectionProviderAsync: ConnectionProvider {
     var connectionInterceptors = [ConnectionInterceptorAsync]()
 
     public func connect() {
-        connectionQueue.async { [weak self] in
-            guard let self = self else {
+            guard status == .notConnected else {
+                updateCallback(event: .connection(status))
                 return
             }
-            guard self.status == .notConnected else {
-                self.updateCallback(event: .connection(self.status))
-                return
-            }
-            self.status = .inProgress
-            self.updateCallback(event: .connection(self.status))
-            let request = AppSyncConnectionRequest(url: self.url)
+            status = .inProgress
+            updateCallback(event: .connection(status))
+            let request = AppSyncConnectionRequest(url: url)
 
             Task {
                 let signedRequest = await self.interceptConnection(request, for: self.url)
-                self.websocket.connect(
+                await self.websocket.connect(
                     url: signedRequest.url,
                     protocols: ["graphql-ws"],
                     delegate: self
                 )
             }
-        }
     }
 
     public func write(_ message: AppSyncMessage) {
-        connectionQueue.async { [weak self] in
-            guard let self = self else {
-                return
-            }
-
             Task {
                 let signedMessage = await self.interceptMessage(message, for: self.url)
-                self.finishWrite(signedMessage)
+                await self.finishWrite(signedMessage)
             }
-        }
     }
 }

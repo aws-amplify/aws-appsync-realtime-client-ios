@@ -77,6 +77,8 @@
 		450019BB151D701382536BD0 /* Pods_HostApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 29CDD85F44666C7241232D29 /* Pods_HostApp.framework */; };
 		4A3EAC9B20D96D81CC3A7EF4 /* Pods_HostApp_AppSyncRealTimeClientIntegrationTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43D112B03D6D38F84995D6FA /* Pods_HostApp_AppSyncRealTimeClientIntegrationTests.framework */; };
 		5C5609EE2821E6FC0002ACF5 /* InterceptableConnectionAsync.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C5609ED2821E6FC0002ACF5 /* InterceptableConnectionAsync.swift */; };
+		5C5BE6432831797400B7B58C /* ConcurrencyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C5BE6422831797400B7B58C /* ConcurrencyTests.swift */; };
+		5C5BE6442831797400B7B58C /* AppSyncRealTimeClient.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 217F398F2405D9D500F1A0B3 /* AppSyncRealTimeClient.framework */; };
 		5C89F782282AD0CC00912619 /* RealtimeConnectionProviderAsyncTestBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C89F781282AD0CC00912619 /* RealtimeConnectionProviderAsyncTestBase.swift */; };
 		5C89F784282AD20A00912619 /* ConnectionProviderAsyncTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C89F783282AD20A00912619 /* ConnectionProviderAsyncTests.swift */; };
 		5CC10129283017E00093AC44 /* RealtimeConnectionProviderAsync.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CC10121283017E00093AC44 /* RealtimeConnectionProviderAsync.swift */; };
@@ -85,6 +87,11 @@
 		5CC1012E283017E00093AC44 /* RealtimeConnectionProviderAsync+ConnectionInterceptableAsync.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CC10126283017E00093AC44 /* RealtimeConnectionProviderAsync+ConnectionInterceptableAsync.swift */; };
 		5CC10130283017E00093AC44 /* RealtimeConnectionProviderAsync+MessageInterceptableAsync.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CC10128283017E00093AC44 /* RealtimeConnectionProviderAsync+MessageInterceptableAsync.swift */; };
 		5CC1013228301BDB0093AC44 /* ConnectionProviderAsync.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CC1013128301BDB0093AC44 /* ConnectionProviderAsync.swift */; };
+		5CC10134283025000093AC44 /* AppSyncWebsocketProviderAsync.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CC10133283025000093AC44 /* AppSyncWebsocketProviderAsync.swift */; };
+		5CC101372830288B0093AC44 /* StarscreamAdapterAsync.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CC101352830288B0093AC44 /* StarscreamAdapterAsync.swift */; };
+		5CC101382830288B0093AC44 /* StarscreamAdapterAsync+Delegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CC101362830288B0093AC44 /* StarscreamAdapterAsync+Delegate.swift */; };
+		5CC1013A28304A470093AC44 /* MockWebsocketProviderAsync.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CC1013928304A470093AC44 /* MockWebsocketProviderAsync.swift */; };
+		5CC1013C28315E520093AC44 /* Test.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CC1013B28315E520093AC44 /* Test.swift */; };
 		978409B82739C7BE002362A7 /* AppSyncURLHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 978409B72739C7BE002362A7 /* AppSyncURLHelper.swift */; };
 		978409BA2739C7E1002362A7 /* AppSyncURLHelperTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 978409B92739C7E1002362A7 /* AppSyncURLHelperTests.swift */; };
 		DCFE701B5D1380E566694A48 /* Pods_AppSyncRealTimeClient_AppSyncRealTimeClientTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E662A46AB2C93EE316F784C /* Pods_AppSyncRealTimeClient_AppSyncRealTimeClientTests.framework */; };
@@ -128,6 +135,13 @@
 			proxyType = 1;
 			remoteGlobalIDString = 21D38B522409B93F00EC2A8D;
 			remoteInfo = HostApp;
+		};
+		5C5BE6452831797400B7B58C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 217F39862405D9D500F1A0B3 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 217F398E2405D9D500F1A0B3;
+			remoteInfo = AppSyncRealTimeClient;
 		};
 		FA2B2C3424D4B77600C6B108 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -217,6 +231,8 @@
 		3E662A46AB2C93EE316F784C /* Pods_AppSyncRealTimeClient_AppSyncRealTimeClientTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AppSyncRealTimeClient_AppSyncRealTimeClientTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		43D112B03D6D38F84995D6FA /* Pods_HostApp_AppSyncRealTimeClientIntegrationTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HostApp_AppSyncRealTimeClientIntegrationTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5C5609ED2821E6FC0002ACF5 /* InterceptableConnectionAsync.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InterceptableConnectionAsync.swift; sourceTree = "<group>"; };
+		5C5BE6402831797400B7B58C /* ConcurrencyTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ConcurrencyTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		5C5BE6422831797400B7B58C /* ConcurrencyTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConcurrencyTests.swift; sourceTree = "<group>"; };
 		5C89F781282AD0CC00912619 /* RealtimeConnectionProviderAsyncTestBase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RealtimeConnectionProviderAsyncTestBase.swift; sourceTree = "<group>"; };
 		5C89F783282AD20A00912619 /* ConnectionProviderAsyncTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConnectionProviderAsyncTests.swift; sourceTree = "<group>"; };
 		5CC10121283017E00093AC44 /* RealtimeConnectionProviderAsync.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RealtimeConnectionProviderAsync.swift; sourceTree = "<group>"; };
@@ -225,6 +241,11 @@
 		5CC10126283017E00093AC44 /* RealtimeConnectionProviderAsync+ConnectionInterceptableAsync.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "RealtimeConnectionProviderAsync+ConnectionInterceptableAsync.swift"; sourceTree = "<group>"; };
 		5CC10128283017E00093AC44 /* RealtimeConnectionProviderAsync+MessageInterceptableAsync.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "RealtimeConnectionProviderAsync+MessageInterceptableAsync.swift"; sourceTree = "<group>"; };
 		5CC1013128301BDB0093AC44 /* ConnectionProviderAsync.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConnectionProviderAsync.swift; sourceTree = "<group>"; };
+		5CC10133283025000093AC44 /* AppSyncWebsocketProviderAsync.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppSyncWebsocketProviderAsync.swift; sourceTree = "<group>"; };
+		5CC101352830288B0093AC44 /* StarscreamAdapterAsync.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StarscreamAdapterAsync.swift; sourceTree = "<group>"; };
+		5CC101362830288B0093AC44 /* StarscreamAdapterAsync+Delegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "StarscreamAdapterAsync+Delegate.swift"; sourceTree = "<group>"; };
+		5CC1013928304A470093AC44 /* MockWebsocketProviderAsync.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockWebsocketProviderAsync.swift; sourceTree = "<group>"; };
+		5CC1013B28315E520093AC44 /* Test.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Test.swift; path = AppSyncRealTimeClientTests/Test.swift; sourceTree = SOURCE_ROOT; };
 		7CF486070B34EFD15B4DB8FC /* Pods_AppSyncRTCSample.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AppSyncRTCSample.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7D4F451B830A5837CE5274A3 /* Pods-AppSyncRealTimeClient-AppSyncRealTimeClientTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AppSyncRealTimeClient-AppSyncRealTimeClientTests.release.xcconfig"; path = "Target Support Files/Pods-AppSyncRealTimeClient-AppSyncRealTimeClientTests/Pods-AppSyncRealTimeClient-AppSyncRealTimeClientTests.release.xcconfig"; sourceTree = "<group>"; };
 		81AFCBED5A97E398A4BD9D06 /* Pods_AppSyncRealTimeClient.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AppSyncRealTimeClient.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -290,6 +311,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		5C5BE63D2831797400B7B58C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5C5BE6442831797400B7B58C /* AppSyncRealTimeClient.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		FA91B1F824D3063E0017404D /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -317,6 +346,7 @@
 				21D38B3F2409AFBD00EC2A8D /* AppSyncRealTimeClientIntegrationTests */,
 				FA91B1FC24D3063E0017404D /* AppSyncRTCSample */,
 				21D38B542409B93F00EC2A8D /* HostApp */,
+				5C5BE6412831797400B7B58C /* ConcurrencyTests */,
 				217F39902405D9D500F1A0B3 /* Products */,
 				D146D6DDE2251CCA7A4ECD7F /* Pods */,
 				CC47BA7DC6033B1626BAD959 /* Frameworks */,
@@ -331,6 +361,7 @@
 				21D38B3E2409AFBD00EC2A8D /* AppSyncRealTimeClientIntegrationTests.xctest */,
 				21D38B532409B93F00EC2A8D /* HostApp.app */,
 				FA91B1FB24D3063E0017404D /* AppSyncRTCSample.app */,
+				5C5BE6402831797400B7B58C /* ConcurrencyTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -423,6 +454,7 @@
 			isa = PBXGroup;
 			children = (
 				217F39C22406E98400F1A0B3 /* AppSyncWebsocketProvider.swift */,
+				5CC10133283025000093AC44 /* AppSyncWebsocketProviderAsync.swift */,
 				217F39C32406E98400F1A0B3 /* Starscream */,
 			);
 			path = Websocket;
@@ -433,6 +465,8 @@
 			children = (
 				217F39C42406E98400F1A0B3 /* StarscreamAdapter.swift */,
 				217F39C52406E98400F1A0B3 /* StarscreamAdapter+Delegate.swift */,
+				5CC101352830288B0093AC44 /* StarscreamAdapterAsync.swift */,
+				5CC101362830288B0093AC44 /* StarscreamAdapterAsync+Delegate.swift */,
 			);
 			path = Starscream;
 			sourceTree = "<group>";
@@ -468,6 +502,7 @@
 				217F39EB2406EA3F00F1A0B3 /* MockConnectionProvider.swift */,
 				219BFF6B27A9AF85000FC148 /* MockConnectivityMonitor.swift */,
 				FA67507724D3244A005A1345 /* MockWebsocketProvider.swift */,
+				5CC1013928304A470093AC44 /* MockWebsocketProviderAsync.swift */,
 			);
 			path = Mocks;
 			sourceTree = "<group>";
@@ -482,6 +517,7 @@
 				217F39ED2406EA4000F1A0B3 /* ConnectionProviderTests.swift */,
 				5C89F781282AD0CC00912619 /* RealtimeConnectionProviderAsyncTestBase.swift */,
 				FA67507C24D338FA005A1345 /* RealtimeConnectionProviderTestBase.swift */,
+				5CC1013B28315E520093AC44 /* Test.swift */,
 			);
 			path = ConnectionProvider;
 			sourceTree = "<group>";
@@ -579,6 +615,14 @@
 				21D38B9C240C540D00EC2A8D /* TestCommonConstants.swift */,
 			);
 			path = Support;
+			sourceTree = "<group>";
+		};
+		5C5BE6412831797400B7B58C /* ConcurrencyTests */ = {
+			isa = PBXGroup;
+			children = (
+				5C5BE6422831797400B7B58C /* ConcurrencyTests.swift */,
+			);
+			path = ConcurrencyTests;
 			sourceTree = "<group>";
 		};
 		5CC10120283017E00093AC44 /* AppsyncRealtimeConnectionAsync */ = {
@@ -750,6 +794,24 @@
 			productReference = 21D38B532409B93F00EC2A8D /* HostApp.app */;
 			productType = "com.apple.product-type.application";
 		};
+		5C5BE63F2831797400B7B58C /* ConcurrencyTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 5C5BE6492831797400B7B58C /* Build configuration list for PBXNativeTarget "ConcurrencyTests" */;
+			buildPhases = (
+				5C5BE63C2831797400B7B58C /* Sources */,
+				5C5BE63D2831797400B7B58C /* Frameworks */,
+				5C5BE63E2831797400B7B58C /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				5C5BE6462831797400B7B58C /* PBXTargetDependency */,
+			);
+			name = ConcurrencyTests;
+			productName = ConcurrencyTests;
+			productReference = 5C5BE6402831797400B7B58C /* ConcurrencyTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		FA91B1FA24D3063E0017404D /* AppSyncRTCSample */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = FA91B20E24D306430017404D /* Build configuration list for PBXNativeTarget "AppSyncRTCSample" */;
@@ -778,7 +840,7 @@
 		217F39862405D9D500F1A0B3 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 1160;
+				LastSwiftUpdateCheck = 1330;
 				LastUpgradeCheck = 1130;
 				ORGANIZATIONNAME = amazonaws;
 				TargetAttributes = {
@@ -794,6 +856,9 @@
 					};
 					21D38B522409B93F00EC2A8D = {
 						CreatedOnToolsVersion = 11.3.1;
+					};
+					5C5BE63F2831797400B7B58C = {
+						CreatedOnToolsVersion = 13.3.1;
 					};
 					FA91B1FA24D3063E0017404D = {
 						CreatedOnToolsVersion = 11.6;
@@ -818,6 +883,7 @@
 				21D38B3D2409AFBD00EC2A8D /* AppSyncRealTimeClientIntegrationTests */,
 				FA91B1FA24D3063E0017404D /* AppSyncRTCSample */,
 				21D38B522409B93F00EC2A8D /* HostApp */,
+				5C5BE63F2831797400B7B58C /* ConcurrencyTests */,
 			);
 		};
 /* End PBXProject section */
@@ -855,6 +921,13 @@
 				21D38B5F2409B94100EC2A8D /* Preview Assets.xcassets in Resources */,
 				21D38B5C2409B94100EC2A8D /* Assets.xcassets in Resources */,
 				FAB5AA1F24D1CD84001F370F /* amplifyconfiguration.json in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5C5BE63E2831797400B7B58C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1195,6 +1268,7 @@
 				217F39CD2406E98400F1A0B3 /* InterceptableConnection.swift in Sources */,
 				21D38B8E240A3C2300EC2A8D /* ConnectionProviderFactory.swift in Sources */,
 				217F39E02406E98400F1A0B3 /* AppSyncWebsocketProvider.swift in Sources */,
+				5CC101372830288B0093AC44 /* StarscreamAdapterAsync.swift in Sources */,
 				219BFF4927A3B238000FC148 /* ConnectivityMonitor.swift in Sources */,
 				FAB7E91224D2644E00DF1EA1 /* RealtimeConnectionProviderBase+StaleConnection.swift in Sources */,
 				217F39D32406E98400F1A0B3 /* RealtimeConnectionProvider.swift in Sources */,
@@ -1202,6 +1276,7 @@
 				5C5609EE2821E6FC0002ACF5 /* InterceptableConnectionAsync.swift in Sources */,
 				217F39DD2406E98400F1A0B3 /* AppSyncSubscriptionConnection+Connection.swift in Sources */,
 				5CC10130283017E00093AC44 /* RealtimeConnectionProviderAsync+MessageInterceptableAsync.swift in Sources */,
+				5CC101382830288B0093AC44 /* StarscreamAdapterAsync+Delegate.swift in Sources */,
 				217F39E52406E98400F1A0B3 /* AppSyncJSONValue.swift in Sources */,
 				217F39E42406E98400F1A0B3 /* RealtimeGatewayURLInterceptor.swift in Sources */,
 				2143D4B027BC49BE0066B2F7 /* AWSAppSyncRealTimeClient.swift in Sources */,
@@ -1227,6 +1302,7 @@
 				219BFF4B27A3B24F000FC148 /* ConnectivityPath.swift in Sources */,
 				5CC10129283017E00093AC44 /* RealtimeConnectionProviderAsync.swift in Sources */,
 				217F39CE2406E98400F1A0B3 /* ConnectionProviderError.swift in Sources */,
+				5CC10134283025000093AC44 /* AppSyncWebsocketProviderAsync.swift in Sources */,
 				217F39E12406E98400F1A0B3 /* StarscreamAdapter.swift in Sources */,
 				217F39D72406E98400F1A0B3 /* RealtimeConnectionProvider+ConnectionInterceptable.swift in Sources */,
 				217F39DE2406E98400F1A0B3 /* AppSyncSubscriptionConnection+ErrorHandler.swift in Sources */,
@@ -1242,6 +1318,7 @@
 				217F39F22406EA4000F1A0B3 /* ConnectionProviderTests.swift in Sources */,
 				2143D46727B5D9B40066B2F7 /* RealTimeConnectionProviderResponseTests.swift in Sources */,
 				FA67507824D3244A005A1345 /* MockWebsocketProvider.swift in Sources */,
+				5CC1013C28315E520093AC44 /* Test.swift in Sources */,
 				217F39F02406EA4000F1A0B3 /* AppSyncSubscriptionConnectionTests.swift in Sources */,
 				FA67507B24D338CB005A1345 /* Error+Extension.swift in Sources */,
 				5C89F782282AD0CC00912619 /* RealtimeConnectionProviderAsyncTestBase.swift in Sources */,
@@ -1256,6 +1333,7 @@
 				978409BA2739C7E1002362A7 /* AppSyncURLHelperTests.swift in Sources */,
 				FA67508424D33ACC005A1345 /* CountdownTimerTests.swift in Sources */,
 				FA67508024D339B0005A1345 /* ConnectionProviderStaleConnectionTests.swift in Sources */,
+				5CC1013A28304A470093AC44 /* MockWebsocketProviderAsync.swift in Sources */,
 				217F39F12406EA4000F1A0B3 /* MockConnectionProvider.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1281,6 +1359,14 @@
 				21D38B562409B93F00EC2A8D /* AppDelegate.swift in Sources */,
 				21D38B582409B93F00EC2A8D /* SceneDelegate.swift in Sources */,
 				21D38B5A2409B93F00EC2A8D /* ContentView.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5C5BE63C2831797400B7B58C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5C5BE6432831797400B7B58C /* ConcurrencyTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1312,6 +1398,11 @@
 			isa = PBXTargetDependency;
 			target = 21D38B522409B93F00EC2A8D /* HostApp */;
 			targetProxy = 21D38B672409B95000EC2A8D /* PBXContainerItemProxy */;
+		};
+		5C5BE6462831797400B7B58C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 217F398E2405D9D500F1A0B3 /* AppSyncRealTimeClient */;
+			targetProxy = 5C5BE6452831797400B7B58C /* PBXContainerItemProxy */;
 		};
 		FA2B2C3524D4B77600C6B108 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -1638,6 +1729,44 @@
 			};
 			name = Release;
 		};
+		5C5BE6472831797400B7B58C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = W3DRXD72QU;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.4;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.amazonaws.ConcurrencyTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		5C5BE6482831797400B7B58C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = W3DRXD72QU;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.4;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.amazonaws.ConcurrencyTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 		FA91B20C24D306430017404D /* Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = BBF14AA5E9A4D036CA87B952 /* Pods-AppSyncRTCSample.debug.xcconfig */;
@@ -1724,6 +1853,15 @@
 			buildConfigurations = (
 				21D38B652409B94100EC2A8D /* Debug */,
 				21D38B662409B94100EC2A8D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		5C5BE6492831797400B7B58C /* Build configuration list for PBXNativeTarget "ConcurrencyTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5C5BE6472831797400B7B58C /* Debug */,
+				5C5BE6482831797400B7B58C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

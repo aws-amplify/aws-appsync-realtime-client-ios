@@ -11,7 +11,7 @@ import Foundation
 
 @available(iOS 13.0.0, *)
 extension RealtimeConnectionProviderAsync: MessageInterceptableAsync {
-    public func addInterceptor(_ interceptor: MessageInterceptorAsync) {
+    public func addInterceptor(_ interceptor: MessageInterceptorAsync) async {
         messageInterceptors.append(interceptor)
     }
 

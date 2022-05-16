@@ -13,7 +13,7 @@ public protocol ConnectionInterceptableAsync {
     /// Add a new interceptor to the object.
     ///
     /// - Parameter interceptor: interceptor to be added
-    func addInterceptor(_ interceptor: ConnectionInterceptorAsync)
+    func addInterceptor(_ interceptor: ConnectionInterceptorAsync) async
 
     func interceptConnection(_ request: AppSyncConnectionRequest, for endpoint: URL) async -> AppSyncConnectionRequest
     #endif
@@ -22,7 +22,7 @@ public protocol ConnectionInterceptableAsync {
 @available(iOS 13.0.0, *)
 public protocol MessageInterceptableAsync {
     #if swift(>=5.5.2)
-    func addInterceptor(_ interceptor: MessageInterceptorAsync)
+    func addInterceptor(_ interceptor: MessageInterceptorAsync) async
 
     func interceptMessage(_ message: AppSyncMessage, for endpoint: URL) async -> AppSyncMessage
     #endif

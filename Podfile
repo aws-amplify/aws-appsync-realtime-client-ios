@@ -21,6 +21,8 @@ target 'AppSyncRealTimeClient' do
     # Pods for testing
   end
 
+  target 'ConcurrencyTests' do
+  end
 end
 
 target "AppSyncRTCSample" do 
@@ -50,3 +52,15 @@ target "HostApp" do
   end
 end
 
+# target 'ConcurrencyTests' do
+#   # Comment the next line if you don't want to use dynamic frameworks
+#   use_frameworks!
+
+#   # Pods for AppSyncRealTimeClient
+  
+#   # If you update this dependency version, be sure to update the Cartfile also
+#   pod "Starscream", "~> 4.0.4"
+  
+#   include_build_tools!
+
+# end
