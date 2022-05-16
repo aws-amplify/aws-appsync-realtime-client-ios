@@ -20,10 +20,7 @@ extension RealtimeConnectionProviderAsync: AppSyncWebsocketDelegate {
     }
 
     public func websocketDidDisconnect(provider: AppSyncWebsocketProvider, error: Error?) {
-        connectionQueue.async { [weak self] in
-            guard let self = self else {
-                return
-            }
+        Task {
             self.status = .notConnected
             guard error != nil else {
                 self.updateCallback(event: .connection(self.status))
@@ -51,13 +48,13 @@ extension RealtimeConnectionProviderAsync: AppSyncWebsocketDelegate {
         switch response.responseType {
         case .connectionAck:
             AppSyncLogger.debug("[RealtimeConnectionProvider] received connectionAck")
-            connectionQueue.async { [weak self] in
-                self?.handleConnectionAck(response: response)
+            Task {
+                self.handleConnectionAck(response: response)
             }
         case .error:
             AppSyncLogger.verbose("[RealtimeConnectionProvider] received error")
-            connectionQueue.async { [weak self] in
-                self?.handleError(response: response)
+            Task {
+                self.handleError(response: response)
             }
         case .subscriptionAck, .unsubscriptionAck, .data:
             if let appSyncResponse = response.toAppSyncResponse() {

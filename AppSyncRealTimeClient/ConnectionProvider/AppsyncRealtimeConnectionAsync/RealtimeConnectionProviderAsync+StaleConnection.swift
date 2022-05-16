@@ -37,10 +37,7 @@ extension RealtimeConnectionProviderAsync {
 
     /// Handle updates from the ConnectivityMonitor
     func handleConnectivityUpdates(connectivity: ConnectivityPath) {
-        connectionQueue.async {[weak self] in
-            guard let self = self else {
-                return
-            }
+        Task {
             AppSyncLogger.debug(
                 "[RealtimeConnectionProvider] Status: \(self.status). Connectivity status: \(connectivity.status)"
             )
@@ -62,10 +59,7 @@ extension RealtimeConnectionProviderAsync {
 
     /// Fired when the stale connection timer expires
     private func disconnectStaleConnection() {
-        connectionQueue.async {[weak self] in
-            guard let self = self else {
-                return
-            }
+        Task {
             AppSyncLogger.error("[RealtimeConnectionProvider] Realtime connection is stale, disconnecting.")
             self.status = .notConnected
             self.isStaleConnection = false
