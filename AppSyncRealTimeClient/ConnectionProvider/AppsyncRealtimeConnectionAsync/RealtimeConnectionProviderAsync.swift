@@ -13,13 +13,16 @@ import Combine
 /// Appsync Real time connection that connects to subscriptions
 /// through websocket.
 @available(iOS 13.0, *)
-public class RealtimeConnectionProviderAsync: ConnectionProvider {
+public actor RealtimeConnectionProviderAsync: ConnectionProvider {
     /// Maximum number of seconds a connection may go without receiving a keep alive
     /// message before we consider it stale and force a disconnect
     static let staleConnectionTimeout: TimeInterval = 5 * 60
 
     let url: URL
     var listeners: [String: ConnectionProviderCallback]
+    
+    var messageInterceptors = [MessageInterceptorAsync]()
+    var connectionInterceptors = [ConnectionInterceptorAsync]()
 
     let websocket: AppSyncWebsocketProvider
 
@@ -49,8 +52,8 @@ public class RealtimeConnectionProviderAsync: ConnectionProvider {
     /// connection level LimitExceeded errors for each subscribe made. A connection level error means that there is no
     /// subscription id associated with the error. When handling these errors, all subscriptions will receive a message
     /// for the error. Use this subject to send and throttle the errors on the client side.
-    var limitExceededThrottleSink: Any?
-    var iLimitExceededSubject: Any?
+    private(set) var limitExceededThrottleSink: Any?
+    private(set) var iLimitExceededSubject: Any?
     var limitExceededSubject: PassthroughSubject<ConnectionProviderError, Never> {
         if iLimitExceededSubject == nil {
             iLimitExceededSubject = PassthroughSubject<ConnectionProviderError, Never>()
@@ -117,31 +120,39 @@ public class RealtimeConnectionProviderAsync: ConnectionProvider {
         }
     }
 
-    public func disconnect() {
+    nonisolated public func disconnect() {
         Task {
             self.websocket.disconnect()
+            await self.invalidateStaleConnectionTimer()
+        }
+    }
+
+    nonisolated public func addListener(identifier: String, callback: @escaping ConnectionProviderCallback) {
+        Task {
+            await _addListener(identifier: identifier, callback: callback)
+        }
+    }
+    
+    private func _addListener(identifier: String, callback: @escaping ConnectionProviderCallback) {
+        self.listeners[identifier] = callback
+    }
+
+    nonisolated public func removeListener(identifier: String) {
+        Task {
+            await _removeListener(identifier: identifier)
+        }
+    }
+    
+    private func _removeListener(identifier: String) {
+        self.listeners.removeValue(forKey: identifier)
+        
+        if self.listeners.isEmpty {
+            AppSyncLogger.debug(
+                "[RealtimeConnectionProvider] all subscriptions removed, disconnecting websocket connection."
+            )
+            self.status = .notConnected
+            self.websocket.disconnect()
             self.invalidateStaleConnectionTimer()
-        }
-    }
-
-    public func addListener(identifier: String, callback: @escaping ConnectionProviderCallback) {
-        Task {
-            self.listeners[identifier] = callback
-        }
-    }
-
-    public func removeListener(identifier: String) {
-        Task {
-            self.listeners.removeValue(forKey: identifier)
-
-            if self.listeners.isEmpty {
-                AppSyncLogger.debug(
-                    "[RealtimeConnectionProvider] all subscriptions removed, disconnecting websocket connection."
-                )
-                self.status = .notConnected
-                self.websocket.disconnect()
-                self.invalidateStaleConnectionTimer()
-            }
         }
     }
 
@@ -151,9 +162,9 @@ public class RealtimeConnectionProviderAsync: ConnectionProvider {
     /// but internally this method uses the connectionQueue to get the currently registered listeners.
     ///
     /// - Parameter event: The connection event to dispatch
-    func updateCallback(event: ConnectionProviderEvent) {
+    nonisolated func updateCallback(event: ConnectionProviderEvent) {
         Task {
-            let allListeners = Array(self.listeners.values)
+            let allListeners = Array(await self.listeners.values)
             allListeners.forEach { $0(event) }
         }
     }
@@ -187,12 +198,14 @@ public class RealtimeConnectionProviderAsync: ConnectionProvider {
         status = .notConnected
         updateCallback(event: .error(ConnectionProviderError.connection))
     }
-
-    var messageInterceptors = [MessageInterceptorAsync]()
-    var connectionInterceptors = [ConnectionInterceptorAsync]()
     
-    public func connect() {
+    nonisolated public func connect() {
         Task {
+            await _connect()
+        }
+    }
+    
+    private func _connect() async {
             guard self.status == .notConnected else {
                 self.updateCallback(event: .connection(self.status))
                 return
@@ -207,13 +220,12 @@ public class RealtimeConnectionProviderAsync: ConnectionProvider {
                 protocols: ["graphql-ws"],
                 delegate: self
             )
-        }
     }
     
-    public func write(_ message: AppSyncMessage) {
+    nonisolated public func write(_ message: AppSyncMessage) {
         Task {
             let signedMessage = await self.interceptMessage(message, for: self.url)
-            self.finishWrite(signedMessage)
+            await self.finishWrite(signedMessage)
         }
     }
 }

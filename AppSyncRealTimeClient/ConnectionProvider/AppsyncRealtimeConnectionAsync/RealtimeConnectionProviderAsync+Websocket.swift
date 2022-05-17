@@ -11,7 +11,8 @@ import Foundation
 @available(iOS 13.0, *)
 extension RealtimeConnectionProviderAsync: AppSyncWebsocketDelegate {
 
-    public func websocketDidConnect(provider: AppSyncWebsocketProvider) {
+    nonisolated public func websocketDidConnect(provider: AppSyncWebsocketProvider) {
+        
         // Call the ack to finish the connection handshake
         // Inform the callback when ack gives back a response.
         AppSyncLogger.debug("[RealtimeConnectionProvider] WebsocketDidConnect, sending init message")
@@ -19,9 +20,9 @@ extension RealtimeConnectionProviderAsync: AppSyncWebsocketDelegate {
         startStaleConnectionTimer()
     }
 
-    public func websocketDidDisconnect(provider: AppSyncWebsocketProvider, error: Error?) {
+    nonisolated public func websocketDidDisconnect(provider: AppSyncWebsocketProvider, error: Error?) {
         Task {
-            self.status = .notConnected
+            status = .notConnected
             guard error != nil else {
                 self.updateCallback(event: .connection(self.status))
                 return
@@ -30,7 +31,7 @@ extension RealtimeConnectionProviderAsync: AppSyncWebsocketDelegate {
         }
     }
 
-    public func websocketDidReceiveData(provider: AppSyncWebsocketProvider, data: Data) {
+    nonisolated public func websocketDidReceiveData(provider: AppSyncWebsocketProvider, data: Data) {
         do {
             let response = try JSONDecoder().decode(RealtimeConnectionProviderResponse.self, from: data)
             handleResponse(response)

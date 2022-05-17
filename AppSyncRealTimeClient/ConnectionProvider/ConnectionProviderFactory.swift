@@ -36,11 +36,11 @@ public enum ConnectionProviderFactory {
 
     #if swift(>=5.5.2)
     @available(iOS 13.0.0, *)
-    public static func createConnectionProvider(
+    public static func createConnectionProviderAsync (
         for url: URL,
         authInterceptor: AuthInterceptorAsync,
         connectionType: SubscriptionConnectionType
-    ) -> ConnectionProvider {
+    ) async -> ConnectionProvider {
         let provider: ConnectionProvider
 
         switch connectionType {
@@ -50,11 +50,11 @@ public enum ConnectionProviderFactory {
         }
 
         if let messageInterceptable = provider as? MessageInterceptableAsync {
-            messageInterceptable.addInterceptor(authInterceptor)
+            await messageInterceptable.addInterceptor(authInterceptor)
         }
         if let connectionInterceptable = provider as? ConnectionInterceptableAsync {
-            connectionInterceptable.addInterceptor(RealtimeGatewayURLInterceptor())
-            connectionInterceptable.addInterceptor(authInterceptor)
+            await connectionInterceptable.addInterceptor(RealtimeGatewayURLInterceptor())
+            await connectionInterceptable.addInterceptor(authInterceptor)
         }
 
         return provider

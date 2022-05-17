@@ -45,7 +45,7 @@ extension RealtimeConnectionProviderAsync {
                 AppSyncLogger.debug(
                     "[RealtimeConnectionProvider] Connetion is stale. Pending reconnect on connectivity."
                 )
-                self.isStaleConnection = true
+                isStaleConnection = true
 
             } else if self.status == .connected && self.isStaleConnection && connectivity.status == .satisfied {
                 AppSyncLogger.debug(
