@@ -39,20 +39,20 @@ extension RealtimeConnectionProviderAsync {
     func handleConnectivityUpdates(connectivity: ConnectivityPath) {
         Task {
             AppSyncLogger.debug(
-                "[RealtimeConnectionProvider] Status: \(self.status). Connectivity status: \(connectivity.status)"
+                "[RealtimeConnectionProvider] Status: \(status). Connectivity status: \(connectivity.status)"
             )
-            if self.status == .connected && connectivity.status == .unsatisfied && !self.isStaleConnection {
+            if status == .connected && connectivity.status == .unsatisfied && !isStaleConnection {
                 AppSyncLogger.debug(
                     "[RealtimeConnectionProvider] Connetion is stale. Pending reconnect on connectivity."
                 )
                 isStaleConnection = true
 
-            } else if self.status == .connected && self.isStaleConnection && connectivity.status == .satisfied {
+            } else if status == .connected && isStaleConnection && connectivity.status == .satisfied {
                 AppSyncLogger.debug(
                     "[RealtimeConnectionProvider] Connetion is stale. Disconnecting to begin reconnect."
                 )
-                self.staleConnectionTimer.invalidate()
-                self.disconnectStaleConnection()
+                staleConnectionTimer.invalidate()
+                disconnectStaleConnection()
             }
         }
     }
@@ -61,10 +61,10 @@ extension RealtimeConnectionProviderAsync {
     private func disconnectStaleConnection() {
         Task {
             AppSyncLogger.error("[RealtimeConnectionProvider] Realtime connection is stale, disconnecting.")
-            self.status = .notConnected
-            self.isStaleConnection = false
-            self.websocket.disconnect()
-            self.updateCallback(event: .error(ConnectionProviderError.connection))
+            status = .notConnected
+            isStaleConnection = false
+            await self.websocket.disconnect()
+            updateCallback(event: .error(ConnectionProviderError.connection))
         }
     }
 }

@@ -20,7 +20,7 @@ public protocol ConnectionInterceptableAsync {
 }
 
 @available(iOS 13.0.0, *)
-public protocol MessageInterceptableAsync{
+public protocol MessageInterceptableAsync {
     #if swift(>=5.5.2)
     func addInterceptor(_ interceptor: MessageInterceptorAsync) async
 

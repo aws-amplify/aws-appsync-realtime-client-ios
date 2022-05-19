@@ -81,6 +81,9 @@
 		5C18EF1E28344DBE003B2A1F /* RealtimeConnectionProviderAsync+ConnectionInterceptableAsync.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C18EF1928344DBE003B2A1F /* RealtimeConnectionProviderAsync+ConnectionInterceptableAsync.swift */; };
 		5C18EF1F28344DBE003B2A1F /* RealtimeConnectionProviderAsync+Websocket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C18EF1A28344DBE003B2A1F /* RealtimeConnectionProviderAsync+Websocket.swift */; };
 		5C18EF2028344DBE003B2A1F /* RealtimeConnectionProviderAsync+MessageInterceptableAsync.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C18EF1B28344DBE003B2A1F /* RealtimeConnectionProviderAsync+MessageInterceptableAsync.swift */; };
+		5C516C90283698D100E75CBE /* AppSyncWebsocketProviderAsync.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C516C8F283698D100E75CBE /* AppSyncWebsocketProviderAsync.swift */; };
+		5C516C9428369B7E00E75CBE /* StarscreamAdapterAsync.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C516C9228369B7E00E75CBE /* StarscreamAdapterAsync.swift */; };
+		5C516C9528369B7E00E75CBE /* StarscreamAdapterAsync+Delegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C516C9328369B7E00E75CBE /* StarscreamAdapterAsync+Delegate.swift */; };
 		5C5609EE2821E6FC0002ACF5 /* InterceptableConnectionAsync.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C5609ED2821E6FC0002ACF5 /* InterceptableConnectionAsync.swift */; };
 		978409B82739C7BE002362A7 /* AppSyncURLHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 978409B72739C7BE002362A7 /* AppSyncURLHelper.swift */; };
 		978409BA2739C7E1002362A7 /* AppSyncURLHelperTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 978409B92739C7E1002362A7 /* AppSyncURLHelperTests.swift */; };
@@ -218,6 +221,9 @@
 		5C18EF1928344DBE003B2A1F /* RealtimeConnectionProviderAsync+ConnectionInterceptableAsync.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "RealtimeConnectionProviderAsync+ConnectionInterceptableAsync.swift"; sourceTree = "<group>"; };
 		5C18EF1A28344DBE003B2A1F /* RealtimeConnectionProviderAsync+Websocket.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "RealtimeConnectionProviderAsync+Websocket.swift"; sourceTree = "<group>"; };
 		5C18EF1B28344DBE003B2A1F /* RealtimeConnectionProviderAsync+MessageInterceptableAsync.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "RealtimeConnectionProviderAsync+MessageInterceptableAsync.swift"; sourceTree = "<group>"; };
+		5C516C8F283698D100E75CBE /* AppSyncWebsocketProviderAsync.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppSyncWebsocketProviderAsync.swift; sourceTree = "<group>"; };
+		5C516C9228369B7E00E75CBE /* StarscreamAdapterAsync.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StarscreamAdapterAsync.swift; sourceTree = "<group>"; };
+		5C516C9328369B7E00E75CBE /* StarscreamAdapterAsync+Delegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "StarscreamAdapterAsync+Delegate.swift"; sourceTree = "<group>"; };
 		5C5609ED2821E6FC0002ACF5 /* InterceptableConnectionAsync.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InterceptableConnectionAsync.swift; sourceTree = "<group>"; };
 		7CF486070B34EFD15B4DB8FC /* Pods_AppSyncRTCSample.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AppSyncRTCSample.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7D4F451B830A5837CE5274A3 /* Pods-AppSyncRealTimeClient-AppSyncRealTimeClientTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AppSyncRealTimeClient-AppSyncRealTimeClientTests.release.xcconfig"; path = "Target Support Files/Pods-AppSyncRealTimeClient-AppSyncRealTimeClientTests/Pods-AppSyncRealTimeClient-AppSyncRealTimeClientTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -416,7 +422,9 @@
 			isa = PBXGroup;
 			children = (
 				217F39C22406E98400F1A0B3 /* AppSyncWebsocketProvider.swift */,
+				5C516C8F283698D100E75CBE /* AppSyncWebsocketProviderAsync.swift */,
 				217F39C32406E98400F1A0B3 /* Starscream */,
+				5C516C9128369B7E00E75CBE /* StarscreamAsync */,
 			);
 			path = Websocket;
 			sourceTree = "<group>";
@@ -584,6 +592,16 @@
 			name = AppsyncRealtimeConnectionAsync;
 			path = AppSyncRealTimeClient/ConnectionProvider/AppsyncRealtimeConnectionAsync;
 			sourceTree = SOURCE_ROOT;
+		};
+		5C516C9128369B7E00E75CBE /* StarscreamAsync */ = {
+			isa = PBXGroup;
+			children = (
+				5C516C9228369B7E00E75CBE /* StarscreamAdapterAsync.swift */,
+				5C516C9328369B7E00E75CBE /* StarscreamAdapterAsync+Delegate.swift */,
+			);
+			name = StarscreamAsync;
+			path = Starscream/StarscreamAsync;
+			sourceTree = "<group>";
 		};
 		CC47BA7DC6033B1626BAD959 /* Frameworks */ = {
 			isa = PBXGroup;
@@ -1179,6 +1197,7 @@
 				21D38B7C240A2A1300EC2A8D /* OIDCAuthInterceptor.swift in Sources */,
 				5C18EF1E28344DBE003B2A1F /* RealtimeConnectionProviderAsync+ConnectionInterceptableAsync.swift in Sources */,
 				217F39DB2406E98400F1A0B3 /* AppSyncSubscriptionConnection+DataHandler.swift in Sources */,
+				5C516C9428369B7E00E75CBE /* StarscreamAdapterAsync.swift in Sources */,
 				21D38B94240C4A2A00EC2A8D /* OIDCAuthProvider.swift in Sources */,
 				217F39DF2406E98400F1A0B3 /* SubscriptionItem.swift in Sources */,
 				FAAEF946255229DA009DA4D5 /* AtomicValue.swift in Sources */,
@@ -1218,8 +1237,10 @@
 				219BFF4B27A3B24F000FC148 /* ConnectivityPath.swift in Sources */,
 				217F39CE2406E98400F1A0B3 /* ConnectionProviderError.swift in Sources */,
 				217F39E12406E98400F1A0B3 /* StarscreamAdapter.swift in Sources */,
+				5C516C90283698D100E75CBE /* AppSyncWebsocketProviderAsync.swift in Sources */,
 				217F39D72406E98400F1A0B3 /* RealtimeConnectionProvider+ConnectionInterceptable.swift in Sources */,
 				217F39DE2406E98400F1A0B3 /* AppSyncSubscriptionConnection+ErrorHandler.swift in Sources */,
+				5C516C9528369B7E00E75CBE /* StarscreamAdapterAsync+Delegate.swift in Sources */,
 				5C18EF2028344DBE003B2A1F /* RealtimeConnectionProviderAsync+MessageInterceptableAsync.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

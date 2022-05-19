@@ -9,10 +9,10 @@ import Foundation
 
 #if swift(>=5.5.2)
 @available(iOS 13.0, *)
-extension RealtimeConnectionProviderAsync: AppSyncWebsocketDelegate {
+extension RealtimeConnectionProviderAsync: AppSyncWebsocketDelegateAsync {
 
-    nonisolated public func websocketDidConnect(provider: AppSyncWebsocketProvider) {
-        
+    public func websocketDidConnect(provider: AppSyncWebsocketProviderAsync) async {
+
         // Call the ack to finish the connection handshake
         // Inform the callback when ack gives back a response.
         AppSyncLogger.debug("[RealtimeConnectionProvider] WebsocketDidConnect, sending init message")
@@ -20,18 +20,18 @@ extension RealtimeConnectionProviderAsync: AppSyncWebsocketDelegate {
         startStaleConnectionTimer()
     }
 
-    nonisolated public func websocketDidDisconnect(provider: AppSyncWebsocketProvider, error: Error?) {
+    public func websocketDidDisconnect(provider: AppSyncWebsocketProviderAsync, error: Error?) async {
         Task {
-            status = .notConnected
+            setStatus(.notConnected)
             guard error != nil else {
-                self.updateCallback(event: .connection(self.status))
+                updateCallback(event: .connection(status))
                 return
             }
-            self.updateCallback(event: .error(ConnectionProviderError.connection))
+            updateCallback(event: .error(ConnectionProviderError.connection))
         }
     }
 
-    nonisolated public func websocketDidReceiveData(provider: AppSyncWebsocketProvider, data: Data) {
+    public func websocketDidReceiveData(provider: AppSyncWebsocketProviderAsync, data: Data) async {
         do {
             let response = try JSONDecoder().decode(RealtimeConnectionProviderResponse.self, from: data)
             handleResponse(response)
@@ -50,12 +50,12 @@ extension RealtimeConnectionProviderAsync: AppSyncWebsocketDelegate {
         case .connectionAck:
             AppSyncLogger.debug("[RealtimeConnectionProvider] received connectionAck")
             Task {
-                self.handleConnectionAck(response: response)
+                handleConnectionAck(response: response)
             }
         case .error:
             AppSyncLogger.verbose("[RealtimeConnectionProvider] received error")
             Task {
-                self.handleError(response: response)
+                handleError(response: response)
             }
         case .subscriptionAck, .unsubscriptionAck, .data:
             if let appSyncResponse = response.toAppSyncResponse() {
@@ -118,11 +118,11 @@ extension RealtimeConnectionProviderAsync: AppSyncWebsocketDelegate {
                 updateCallback(event: .error(limitExceedError))
                 return
             }
-            
-            self.limitExceededSubject.send(limitExceedError)
+
+            limitExceededSubject.send(limitExceedError)
             return
         }
-        
+
         if response.isMaxSubscriptionReachedError() {
             let limitExceedError = ConnectionProviderError.limitExceeded(response.id)
             updateCallback(event: .error(limitExceedError))
