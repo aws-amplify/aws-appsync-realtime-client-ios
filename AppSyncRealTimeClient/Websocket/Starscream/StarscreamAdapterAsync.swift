@@ -9,14 +9,19 @@ import Foundation
 import Starscream
 
 @available(iOS 13.0.0, *)
-public class StarscreamAdapterAsync: AppSyncWebsocketProviderAsync {
+public actor StarscreamAdapterAsync: AppSyncWebsocketProviderAsync {
     var socket: WebSocket?
     weak var delegate: AppSyncWebsocketDelegateAsync?
 
     // swiftlint:disable:next identifier_name
     var _isConnected: Bool
-    public var isConnected: Bool {
-            _isConnected
+
+    public func isConnected() -> Bool {
+        _isConnected
+    }
+
+    func setIsConnected(_ isConnected: Bool) {
+        _isConnected = isConnected
     }
 
     public init() {

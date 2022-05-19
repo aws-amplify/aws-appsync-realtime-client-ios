@@ -11,7 +11,7 @@ import Starscream
 /// Extension to handle delegate callback from Starscream
 @available(iOS 13.0.0, *)
 extension StarscreamAdapterAsync: Starscream.WebSocketDelegate {
-    public func didReceive(event: WebSocketEvent, client: WebSocket) {
+    public nonisolated func didReceive(event: WebSocketEvent, client: WebSocket) {
         switch event {
         case .connected:
             websocketDidConnect(socket: client)
@@ -37,33 +37,33 @@ extension StarscreamAdapterAsync: Starscream.WebSocketDelegate {
         }
     }
 
-    private func websocketDidConnect(socket: WebSocketClient) {
+    private nonisolated func websocketDidConnect(socket: WebSocketClient) {
         AppSyncLogger.verbose("[StarscreamAdapter] websocketDidConnect: websocket has been connected.")
         Task {
-            _isConnected = true
+            await setIsConnected(true)
             await delegate?.websocketDidConnect(provider: self)
         }
     }
 
-    private func websocketDidDisconnect(socket: WebSocketClient, error: Error?) {
+    private nonisolated func websocketDidDisconnect(socket: WebSocketClient, error: Error?) {
         AppSyncLogger.verbose(
             "[StarscreamAdapter] websocketDidDisconnect: \(error?.localizedDescription ?? "No error")"
         )
         Task {
-            _isConnected = false
+            await setIsConnected(false)
             await delegate?.websocketDidDisconnect(provider: self, error: error)
         }
     }
 
-    private func websocketDidReceiveMessage(socket: WebSocketClient, text: String) {
+    private nonisolated func websocketDidReceiveMessage(socket: WebSocketClient, text: String) {
         AppSyncLogger.verbose("[StarscreamAdapter] websocketDidReceiveMessage: - \(text)")
         let data = text.data(using: .utf8) ?? Data()
         Task {
-        await delegate?.websocketDidReceiveData(provider: self, data: data)
+            await delegate?.websocketDidReceiveData(provider: self, data: data)
         }
     }
 
-    private func websocketDidReceiveData(socket: WebSocketClient, data: Data) {
+    private nonisolated func websocketDidReceiveData(socket: WebSocketClient, data: Data) {
         AppSyncLogger.verbose("[StarscreamAdapter] WebsocketDidReceiveData - \(data)")
         Task {
             await delegate?.websocketDidReceiveData(provider: self, data: data)

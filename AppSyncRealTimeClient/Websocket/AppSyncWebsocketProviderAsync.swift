@@ -25,7 +25,7 @@ public protocol AppSyncWebsocketProviderAsync {
     func write(message: String) async
 
     /// Returns `true` if the websocket is connected
-    var isConnected: Bool { get }
+    func isConnected() async -> Bool
 }
 
 /// Delegate method to get callbacks on websocket provider connection
