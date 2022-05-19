@@ -56,4 +56,3 @@ public actor StarscreamAdapterAsync: AppSyncWebsocketProviderAsync {
         }
     }
 }
-

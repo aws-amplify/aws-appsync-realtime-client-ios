@@ -70,4 +70,3 @@ extension StarscreamAdapterAsync: Starscream.WebSocketDelegate {
         }
     }
 }
-

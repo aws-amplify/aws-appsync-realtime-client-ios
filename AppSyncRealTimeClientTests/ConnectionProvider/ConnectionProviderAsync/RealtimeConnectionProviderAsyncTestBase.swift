@@ -13,10 +13,10 @@ class RealtimeConnectionProviderAsyncTestBase: XCTestCase {
 
     let url = URL(string: "https://www.appsyncrealtimeclient.test/")!
 
-    var websocket: MockWebsocketProvider!
+    var websocket: MockWebsocketProviderAsync!
 
     // swiftlint:disable:next weak_delegate
-    var websocketDelegate: AppSyncWebsocketDelegate!
+    var websocketDelegate: AppSyncWebsocketDelegateAsync!
 
     // Shared test expectations. Set expected fulfillment counts and inversions as
     // needed in the body of the test.

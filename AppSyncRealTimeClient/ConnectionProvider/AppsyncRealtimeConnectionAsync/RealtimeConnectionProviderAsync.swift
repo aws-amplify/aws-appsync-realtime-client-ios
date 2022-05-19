@@ -40,17 +40,11 @@ public actor RealtimeConnectionProviderAsync: ConnectionProvider {
     /// Intermediate state when the connection is connected and connectivity updates to unsatisfied (offline)
     var isStaleConnection: Bool
 
-    /// Manages concurrency for socket connections, disconnections, writes, and status reports.
-    ///
-    /// Each connection request will be sent to this queue. Connection request are
-    /// handled one at a time.
-//    let connectionQueue: DispatchQueue
-
     /// Monitor for connectivity updates
     let connectivityMonitor: ConnectivityMonitor
 
     /// The serial queue on which status & message callbacks from the web socket are invoked.
-//    private let serialCallbackQueue: DispatchQueue
+    //    private let serialCallbackQueue: DispatchQueue
 
     /// Throttle when AppSync sends LimitExceeded error. High rate of subscriptions requests will cause AppSync to send
     /// connection level LimitExceeded errors for each subscribe made. A connection level error means that there is no
@@ -69,12 +63,6 @@ public actor RealtimeConnectionProviderAsync: ConnectionProvider {
     init(
         url: URL,
         websocket: AppSyncWebsocketProviderAsync,
-//        connectionQueue: DispatchQueue = DispatchQueue(
-//            label: "com.amazonaws.AppSyncRealTimeConnectionProvider.serialQueue"
-//        ),
-//        serialCallbackQueue: DispatchQueue = DispatchQueue(
-//            label: "com.amazonaws.AppSyncRealTimeConnectionProvider.callbackQueue"
-//        ),
         connectivityMonitor: ConnectivityMonitor = ConnectivityMonitor()
     ) {
         self.url = url
@@ -83,13 +71,11 @@ public actor RealtimeConnectionProviderAsync: ConnectionProvider {
         self.status = .notConnected
         self.staleConnectionTimer = CountdownTimer()
         self.isStaleConnection = false
-//        self.connectionQueue = connectionQueue
-//        self.serialCallbackQueue = serialCallbackQueue
         self.connectivityMonitor = connectivityMonitor
 
         connectivityMonitor.start(onUpdates: handleConnectivityUpdates(connectivity:))
 
-//        subscribeToLimitExceededThrottle()
+        //        subscribeToLimitExceededThrottle()
     }
 
     public convenience init(for url: URL, websocket: AppSyncWebsocketProviderAsync) {
@@ -173,29 +159,29 @@ public actor RealtimeConnectionProviderAsync: ConnectionProvider {
         }
     }
 
-//    @available(iOS 13.0, *)
-//    func subscribeToLimitExceededThrottle() {
-//        limitExceededThrottleSink = limitExceededSubject
-//            .filter {
-//                // Make sure the limitExceeded error is a connection level error (no subscription id present).
-//                // When id is present, it is passed back directly subscription via `updateCallback`.
-//                if case .limitExceeded(let id) = $0, id == nil {
-//                    return true
-//                }
-//                return false
-//            }
-//            .throttle(for: .milliseconds(150), scheduler: connectionQueue, latest: true)
-//            .sink { completion in
-//                switch completion {
-//                case .failure(let error):
-//                    AppSyncLogger.verbose("limitExceededThrottleSink failed \(error)")
-//                case .finished:
-//                    AppSyncLogger.verbose("limitExceededThrottleSink finished")
-//                }
-//        } receiveValue: { result in
-//            self.updateCallback(event: .error(result))
-//        }
-//    }
+    //    @available(iOS 13.0, *)
+    //    func subscribeToLimitExceededThrottle() {
+    //        limitExceededThrottleSink = limitExceededSubject
+    //            .filter {
+    //                // Make sure the limitExceeded error is a connection level error (no subscription id present).
+    //                // When id is present, it is passed back directly subscription via `updateCallback`.
+    //                if case .limitExceeded(let id) = $0, id == nil {
+    //                    return true
+    //                }
+    //                return false
+    //            }
+    //            .throttle(for: .milliseconds(150), scheduler: connectionQueue, latest: true)
+    //            .sink { completion in
+    //                switch completion {
+    //                case .failure(let error):
+    //                    AppSyncLogger.verbose("limitExceededThrottleSink failed \(error)")
+    //                case .finished:
+    //                    AppSyncLogger.verbose("limitExceededThrottleSink finished")
+    //                }
+    //        } receiveValue: { result in
+    //            self.updateCallback(event: .error(result))
+    //        }
+    //    }
 
     /// - Warning: This must be invoked from the `connectionQueue`
     private func receivedConnectionInit() {
@@ -210,15 +196,15 @@ public actor RealtimeConnectionProviderAsync: ConnectionProvider {
     }
 
     private func _connect() async {
-            guard status == .notConnected else {
-                updateCallback(event: .connection(status))
-                return
-            }
-            status = .inProgress
+        guard status == .notConnected else {
             updateCallback(event: .connection(status))
-            let request = AppSyncConnectionRequest(url: url)
+            return
+        }
+        status = .inProgress
+        updateCallback(event: .connection(status))
+        let request = AppSyncConnectionRequest(url: url)
 
-            let signedRequest = await interceptConnection(request, for: url)
+        let signedRequest = await interceptConnection(request, for: url)
         await websocket.connect(
             url: signedRequest.url,
             protocols: ["graphql-ws"],
