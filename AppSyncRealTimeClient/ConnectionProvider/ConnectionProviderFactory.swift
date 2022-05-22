@@ -39,14 +39,16 @@ public enum ConnectionProviderFactory {
     public static func createConnectionProviderAsync(
         for url: URL,
         authInterceptor: AuthInterceptorAsync,
-        connectionType: SubscriptionConnectionType
-    ) async -> ConnectionProvider {
+        connectionType: SubscriptionConnectionType,
+        completionHandler: @escaping (ConnectionProvider) -> Void
+    ) {
+        Task {
         let provider: ConnectionProvider
 
         switch connectionType {
         case .appSyncRealtime:
             let websocketProvider = StarscreamAdapterAsync()
-            provider = RealtimeConnectionProviderAsync(for: url, websocket: websocketProvider)
+            await provider = RealtimeConnectionProviderAsync(for: url, websocket: websocketProvider)
         }
 
         if let messageInterceptable = provider as? MessageInterceptableAsync {
@@ -57,7 +59,8 @@ public enum ConnectionProviderFactory {
             await connectionInterceptable.addInterceptor(authInterceptor)
         }
 
-        return provider
+        completionHandler( provider)
+        }
     }
     #endif
 }

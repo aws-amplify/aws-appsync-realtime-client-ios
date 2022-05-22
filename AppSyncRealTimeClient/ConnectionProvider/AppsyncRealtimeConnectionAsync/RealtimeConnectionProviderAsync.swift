@@ -64,7 +64,7 @@ public actor RealtimeConnectionProviderAsync: ConnectionProvider {
         url: URL,
         websocket: AppSyncWebsocketProviderAsync,
         connectivityMonitor: ConnectivityMonitor = ConnectivityMonitor()
-    ) {
+    ) async {
         self.url = url
         self.websocket = websocket
         self.listeners = [:]
@@ -78,8 +78,8 @@ public actor RealtimeConnectionProviderAsync: ConnectionProvider {
         //        subscribeToLimitExceededThrottle()
     }
 
-    public convenience init(for url: URL, websocket: AppSyncWebsocketProviderAsync) {
-        self.init(url: url, websocket: websocket)
+    public convenience init(for url: URL, websocket: AppSyncWebsocketProviderAsync) async {
+        await self.init(url: url, websocket: websocket)
     }
 
     // MARK: - ConnectionProvider methods
@@ -159,29 +159,29 @@ public actor RealtimeConnectionProviderAsync: ConnectionProvider {
         }
     }
 
-    //    @available(iOS 13.0, *)
-    //    func subscribeToLimitExceededThrottle() {
-    //        limitExceededThrottleSink = limitExceededSubject
-    //            .filter {
-    //                // Make sure the limitExceeded error is a connection level error (no subscription id present).
-    //                // When id is present, it is passed back directly subscription via `updateCallback`.
-    //                if case .limitExceeded(let id) = $0, id == nil {
-    //                    return true
-    //                }
-    //                return false
-    //            }
-    //            .throttle(for: .milliseconds(150), scheduler: connectionQueue, latest: true)
-    //            .sink { completion in
-    //                switch completion {
-    //                case .failure(let error):
-    //                    AppSyncLogger.verbose("limitExceededThrottleSink failed \(error)")
-    //                case .finished:
-    //                    AppSyncLogger.verbose("limitExceededThrottleSink finished")
-    //                }
-    //        } receiveValue: { result in
-    //            self.updateCallback(event: .error(result))
-    //        }
-    //    }
+//        @available(iOS 13.0, *)
+//        func subscribeToLimitExceededThrottle() {
+//            limitExceededThrottleSink = limitExceededSubject
+//                .filter {
+//                    // Make sure the limitExceeded error is a connection level error (no subscription id present).
+//                    // When id is present, it is passed back directly subscription via `updateCallback`.
+//                    if case .limitExceeded(let id) = $0, id == nil {
+//                        return true
+//                    }
+//                    return false
+//                }
+//                .throttle(for: .milliseconds(150), scheduler: connectionQueue, latest: true)
+//                .sink { completion in
+//                    switch completion {
+//                    case .failure(let error):
+//                        AppSyncLogger.verbose("limitExceededThrottleSink failed \(error)")
+//                    case .finished:
+//                        AppSyncLogger.verbose("limitExceededThrottleSink finished")
+//                    }
+//            } receiveValue: { result in
+//                self.updateCallback(event: .error(result))
+//            }
+//        }
 
     /// - Warning: This must be invoked from the `connectionQueue`
     private func receivedConnectionInit() {
