@@ -15,7 +15,6 @@ public class StarscreamAdapter: AppSyncWebsocketProvider {
     var socket: WebSocket?
     weak var delegate: AppSyncWebsocketDelegate?
 
-    // swiftlint:disable:next identifier_name
     var _isConnected: Bool
     public var isConnected: Bool {
         serialQueue.sync {

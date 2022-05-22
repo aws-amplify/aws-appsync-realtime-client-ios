@@ -11,7 +11,7 @@ public enum AppSyncRealTimeClient {
 
     static let lock: NSLocking = NSLock()
 
-    static var _logLevel = LogLevel.error // swiftlint:disable:this identifier_name
+    static var _logLevel = LogLevel.error
 
     public static var logLevel: LogLevel {
         get {

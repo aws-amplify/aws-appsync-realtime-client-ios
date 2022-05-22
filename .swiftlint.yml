@@ -23,6 +23,7 @@ function_body_length:
   warning: 100
   error: 150
 identifier_name:
+  allowed_symbols: "_"
   excluded:
     - id
     - of

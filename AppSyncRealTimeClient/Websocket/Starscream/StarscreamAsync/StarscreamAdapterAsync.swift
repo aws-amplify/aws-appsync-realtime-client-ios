@@ -13,7 +13,6 @@ public actor StarscreamAdapterAsync: AppSyncWebsocketProviderAsync {
     var socket: WebSocket?
     weak var delegate: AppSyncWebsocketDelegateAsync?
 
-    // swiftlint:disable:next identifier_name
     var _isConnected: Bool
 
     public func isConnected() -> Bool {
