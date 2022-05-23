@@ -49,8 +49,8 @@ class RealtimeConnectionProviderAsyncTestBase: XCTestCase {
 //            label: "com.amazonaws.RealtimeConnectionProviderTestBase.serialCallbackQueue"
 //        ),
         connectivityMonitor: ConnectivityMonitor = ConnectivityMonitor()
-    ) -> RealtimeConnectionProviderAsync {
-        let provider = RealtimeConnectionProviderAsync(
+    ) async -> RealtimeConnectionProviderAsync {
+        let provider = await RealtimeConnectionProviderAsync(
             url: url,
             websocket: websocket,
             connectivityMonitor: connectivityMonitor

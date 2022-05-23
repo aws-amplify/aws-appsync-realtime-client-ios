@@ -15,14 +15,14 @@ public protocol AppSyncWebsocketProviderAsync {
     ///
     /// This is an async call. After the connection is succesfully established, the delegate
     /// will receive the callback on `websocketDidConnect(:)`
-    func connect(url: URL, protocols: [String], delegate: AppSyncWebsocketDelegateAsync?) async
+    func connect(url: URL, protocols: [String], delegate: AppSyncWebsocketDelegateAsync?)
 
     /// Disconnects the websocket.
-    func disconnect() async
+    func disconnect()
 
     /// Write message to the websocket provider
     /// - Parameter message: Message to write
-    func write(message: String) async
+    func write(message: String)
 
     /// Returns `true` if the websocket is connected
     func isConnected() async -> Bool

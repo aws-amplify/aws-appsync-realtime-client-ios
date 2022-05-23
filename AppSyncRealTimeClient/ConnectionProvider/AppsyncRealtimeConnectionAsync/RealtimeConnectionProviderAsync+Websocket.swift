@@ -10,7 +10,6 @@ import Foundation
 #if swift(>=5.5.2)
 @available(iOS 13.0, *)
 extension RealtimeConnectionProviderAsync: AppSyncWebsocketDelegateAsync {
-
     public func websocketDidConnect(provider: AppSyncWebsocketProviderAsync) async {
 
         // Call the ack to finish the connection handshake

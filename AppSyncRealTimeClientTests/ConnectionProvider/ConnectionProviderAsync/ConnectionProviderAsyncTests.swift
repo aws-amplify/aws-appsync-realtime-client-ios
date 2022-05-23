@@ -52,7 +52,7 @@ class ConnectionProviderAsyncTests: RealtimeConnectionProviderAsyncTestBase {
         )
 
         // Retain the provider so it doesn't release prior to executing callbacks
-        let provider = createProviderAndConnect()
+        let provider = await createProviderAndConnect()
 
         // Get rid of "written to, but never read" compiler warnings
         print(provider)
@@ -103,7 +103,7 @@ class ConnectionProviderAsyncTests: RealtimeConnectionProviderAsyncTestBase {
         )
 
         // Retain the provider so it doesn't release prior to executing callbacks
-        let provider = createProviderAndConnect(listeners: ["1", "2", "3", "4"])
+        let provider = await createProviderAndConnect(listeners: ["1", "2", "3", "4"])
 
 //        wait(
 //            for: [receivedInProgress, receivedConnected, receivedNotConnected, receivedError],
@@ -144,7 +144,7 @@ class ConnectionProviderAsyncTests: RealtimeConnectionProviderAsyncTestBase {
     /// - And the websocket reports a connection error
     /// Then:
     /// - The subscriber is notified of the unsuccessful connection
-    func testConnectionError() {
+    func testConnectionError() async {
         receivedConnected.isInverted = true
         receivedNotConnected.isInverted = true
 
@@ -176,12 +176,12 @@ class ConnectionProviderAsyncTests: RealtimeConnectionProviderAsyncTestBase {
         )
 
         // Retain the provider so it doesn't release prior to executing callbacks
-        let provider = createProviderAndConnect()
+        let provider = await createProviderAndConnect()
 
         // Get rid of "written to, but never read" compiler warnings
         print(provider)
 
-        waitForExpectations(timeout: 0.05)
+        await waitForExpectations(timeout: 0.05)
     }
 
     /// Stale connection test
@@ -228,7 +228,7 @@ class ConnectionProviderAsyncTests: RealtimeConnectionProviderAsyncTestBase {
             onWrite: onWrite
         )
 
-        let provider = createProviderAndConnect()
+        let provider = await createProviderAndConnect()
 
         await waitForExpectations(timeout: 0.05)
 

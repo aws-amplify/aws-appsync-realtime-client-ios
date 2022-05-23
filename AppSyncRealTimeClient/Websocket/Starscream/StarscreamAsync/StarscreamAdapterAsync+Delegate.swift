@@ -36,53 +36,51 @@ extension StarscreamAdapterAsync: Starscream.WebSocketDelegate {
             websocketDidDisconnect(socket: client, error: error)
         }
     }
-    
+
     private nonisolated func websocketDidConnect(socket: WebSocketClient) {
+        taskQueue.async { [weak self] in
+            await self?._websocketDidConnect(socket: socket)
+        }
+    }
+
+    private func _websocketDidConnect(socket: WebSocketClient) async {
         AppSyncLogger.verbose("[StarscreamAdapter] websocketDidConnect: websocket has been connected.")
-        Task {
-            await taskSerializer.add {
-                Task {
-                    await self.setIsConnected(true)
-                    await self.delegate?.websocketDidConnect(provider: self)
-                }
-            }
-        }
+        _isConnected = true
+        await delegate?.websocketDidConnect(provider: self)
     }
-    
+
     private nonisolated func websocketDidDisconnect(socket: WebSocketClient, error: Error?) {
-        Task {
-            await taskSerializer.add {
-                AppSyncLogger.verbose(
-                    "[StarscreamAdapter] websocketDidDisconnect: \(error?.localizedDescription ?? "No error")"
-                )
-                Task {
-                    await self.setIsConnected(false)
-                    await self.delegate?.websocketDidDisconnect(provider: self, error: error)
-                }
-            }
+        taskQueue.async { [weak self] in
+            await self?._websocketDidDisconnect(socket: socket, error: error)
         }
     }
-    
+
+    private func _websocketDidDisconnect(socket: WebSocketClient, error: Error?) async {
+        AppSyncLogger.verbose("[StarscreamAdapter] websocketDidDisconnect: \(error?.localizedDescription ?? "No error")")
+        _isConnected = false
+        await delegate?.websocketDidDisconnect(provider: self, error: error)
+    }
+
     private nonisolated func websocketDidReceiveMessage(socket: WebSocketClient, text: String) {
-        Task {
-            await taskSerializer.add {
-                AppSyncLogger.verbose("[StarscreamAdapter] websocketDidReceiveMessage: - \(text)")
-                let data = text.data(using: .utf8) ?? Data()
-                Task {
-                    await self.delegate?.websocketDidReceiveData(provider: self, data: data)
-                }
-            }
+        taskQueue.async { [weak self] in
+            await self?._websocketDidReceiveMessage(socket: socket, text: text)
         }
     }
-    
+
+    private func _websocketDidReceiveMessage(socket: WebSocketClient, text: String) async {
+        AppSyncLogger.verbose("[StarscreamAdapter] websocketDidReceiveMessage: - \(text)")
+        let data = text.data(using: .utf8) ?? Data()
+        await delegate?.websocketDidReceiveData(provider: self, data: data)
+    }
+
     private nonisolated func websocketDidReceiveData(socket: WebSocketClient, data: Data) {
-        Task {
-            await taskSerializer.add {
-                AppSyncLogger.verbose("[StarscreamAdapter] WebsocketDidReceiveData - \(data)")
-                Task {
-                    await self.delegate?.websocketDidReceiveData(provider: self, data: data)
-                }
-            }
+        taskQueue.async { [weak self] in
+            await self?._websocketDidReceiveData(socket: socket, data: data)
         }
+    }
+
+    private func _websocketDidReceiveData(socket: WebSocketClient, data: Data) async {
+        AppSyncLogger.verbose("[StarscreamAdapter] WebsocketDidReceiveData - \(data)")
+        await delegate?.websocketDidReceiveData(provider: self, data: data)
     }
 }

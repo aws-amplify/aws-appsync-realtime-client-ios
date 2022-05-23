@@ -26,6 +26,10 @@ public actor RealtimeConnectionProviderAsync: ConnectionProvider {
 
     let websocket: AppSyncWebsocketProviderAsync
 
+    let taskQueue = TaskQueue<Void>()
+
+    let serialCallbackQueue = DispatchQueue(label: "com.amazonaws.AppSyncRealTimeConnectionProvider.callbackQueue")
+
     var status: ConnectionState
 
     func setStatus(_ status: ConnectionState) {
@@ -89,43 +93,16 @@ public actor RealtimeConnectionProviderAsync: ConnectionProvider {
         write(message)
     }
 
-    func finishWrite(_ signedMessage: AppSyncMessage) async {
-        let jsonEncoder = JSONEncoder()
-        do {
-            let jsonData = try jsonEncoder.encode(signedMessage)
-            guard let jsonString = String(data: jsonData, encoding: .utf8) else {
-                let jsonError = ConnectionProviderError.jsonParse(signedMessage.id, nil)
-                updateCallback(event: .error(jsonError))
-                return
-            }
-            await websocket.write(message: jsonString)
-        } catch {
-            AppSyncLogger.error(error)
-            switch signedMessage.messageType {
-            case .connectionInit:
-                receivedConnectionInit()
-            default:
-                updateCallback(event: .error(ConnectionProviderError.jsonParse(signedMessage.id, error)))
-            }
-        }
-    }
-    
     public nonisolated func disconnect() {
-        Task {
-            await taskSerializer.add {
-                Task {
-                    await self.websocket.disconnect()
-                    await self.invalidateStaleConnectionTimer()
-                }
-            }
+        taskQueue.async {
+            self.websocket.disconnect()
+            await self.invalidateStaleConnectionTimer()
         }
     }
-    
+
     public nonisolated func addListener(identifier: String, callback: @escaping ConnectionProviderCallback) {
-        Task {
-            await taskSerializer.add {
-                await self._addListener(identifier: identifier, callback: callback)
-            }
+        taskQueue.async {
+            await self._addListener(identifier: identifier, callback: callback)
         }
     }
 
@@ -134,10 +111,8 @@ public actor RealtimeConnectionProviderAsync: ConnectionProvider {
     }
 
     public nonisolated func removeListener(identifier: String) {
-        Task {
-            await taskSerializer.add {
-                await self._removeListener(identifier: identifier)
-            }
+        taskQueue.async { [weak self] in
+            await self?._removeListener(identifier: identifier)
         }
     }
 
@@ -149,7 +124,7 @@ public actor RealtimeConnectionProviderAsync: ConnectionProvider {
                 "[RealtimeConnectionProvider] all subscriptions removed, disconnecting websocket connection."
             )
             status = .notConnected
-            await websocket.disconnect()
+            websocket.disconnect()
             invalidateStaleConnectionTimer()
         }
     }
@@ -161,16 +136,15 @@ public actor RealtimeConnectionProviderAsync: ConnectionProvider {
     ///
     /// - Parameter event: The connection event to dispatch
     nonisolated func updateCallback(event: ConnectionProviderEvent) {
-        Task {
-            await taskSerializer.add {
-                Task {
-                    let allListeners = Array(await self.listeners.values)
-                    allListeners.forEach { $0(event) }
-                }
+        taskQueue.async {
+            let allListeners = Array(await self.listeners.values)
+
+            self.serialCallbackQueue.async {
+                allListeners.forEach { $0(event) }
             }
         }
     }
-    
+
     //        @available(iOS 13.0, *)
     //        func subscribeToLimitExceededThrottle() {
 //            limitExceededThrottleSink = limitExceededSubject
@@ -200,14 +174,10 @@ public actor RealtimeConnectionProviderAsync: ConnectionProvider {
         status = .notConnected
         updateCallback(event: .error(ConnectionProviderError.connection))
     }
-    
-    let taskSerializer = SerialTasks<Void>()
 
     public nonisolated func connect() {
-        Task {
-            await taskSerializer.add {
-                await self._connect()
-            }
+        taskQueue.async {
+            await self._connect()
         }
     }
 
@@ -221,39 +191,40 @@ public actor RealtimeConnectionProviderAsync: ConnectionProvider {
         let request = AppSyncConnectionRequest(url: url)
 
         let signedRequest = await interceptConnection(request, for: url)
-        await websocket.connect(
-            url: signedRequest.url,
-            protocols: ["graphql-ws"],
-            delegate: self
-        )
+//        DispatchQueue.global().async {
+            websocket.connect(
+                url: signedRequest.url,
+                protocols: ["graphql-ws"],
+                delegate: self
+            )
+//        }
     }
 
     public nonisolated func write(_ message: AppSyncMessage) {
-        Task {
-            await taskSerializer.add {
-                await self._write(message)
+        taskQueue.async { [weak self] in
+            guard let self = self else { return }
+
+            let signedMessage = await self.interceptMessage(message, for: self.url)
+            let jsonEncoder = JSONEncoder()
+            do {
+                let jsonData = try jsonEncoder.encode(signedMessage)
+                guard let jsonString = String(data: jsonData, encoding: .utf8) else {
+                    let jsonError = ConnectionProviderError.jsonParse(message.id, nil)
+                    self.updateCallback(event: .error(jsonError))
+                    return
+                }
+                self.websocket.write(message: jsonString)
+            } catch {
+                AppSyncLogger.error(error)
+                switch message.messageType {
+                case .connectionInit:
+                    await self.receivedConnectionInit()
+                default:
+                    self.updateCallback(event: .error(ConnectionProviderError.jsonParse(message.id, error)))
+                }
             }
         }
     }
-    
-    private func _write(_ message: AppSyncMessage) {
-        Task {
-            let signedMessage = await self.interceptMessage(message, for: self.url)
-            await self.finishWrite(signedMessage)
-        }
-    }
 }
-    
-@available(iOS 13.0, *)
-actor SerialTasks<Success> {
-    private var previousTask: Task<Success, Error>?
-    
-    func add(block: @Sendable @escaping () async throws -> Success) {
-        previousTask = Task { [previousTask] in
-            let _ = await previousTask?.result
-            return try await block()
-        }
-    }
-}
-    
+
 #endif

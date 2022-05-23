@@ -6,13 +6,15 @@
 //
 
 import Foundation
-import AppSyncRealTimeClient
+@testable import AppSyncRealTimeClient
 
 @available(iOS 13.0.0, *)
 actor MockWebsocketProviderAsync: AppSyncWebsocketProviderAsync {
     typealias OnConnect = (URL, [String], AppSyncWebsocketDelegateAsync?) -> Void
     typealias OnDisconnect = () -> Void
     typealias OnWrite = (String) async -> Void
+
+    let taskQueue = TaskQueue<Void>()
 
     // swiftlint:disable:next identifier_name
     var _isConnected: Bool
@@ -36,16 +38,22 @@ actor MockWebsocketProviderAsync: AppSyncWebsocketProviderAsync {
         self.onWrite = onWrite
     }
 
-    func connect(url: URL, protocols: [String], delegate: AppSyncWebsocketDelegateAsync?) async {
-        onConnect?(url, protocols, delegate)
+    nonisolated func connect(url: URL, protocols: [String], delegate: AppSyncWebsocketDelegateAsync?) {
+        taskQueue.async { [weak self] in
+            self?.onConnect?(url, protocols, delegate)
+        }
     }
 
-    func disconnect() async {
-        onDisconnect?()
+    nonisolated func disconnect() {
+        taskQueue.async { [weak self] in
+            self?.onDisconnect?()
+        }
     }
 
-    func write(message: String) async {
-        await onWrite?(message)
+    nonisolated func write(message: String) {
+        taskQueue.async { [weak self] in
+            await self?.onWrite?(message)
+        }
     }
 
 }
