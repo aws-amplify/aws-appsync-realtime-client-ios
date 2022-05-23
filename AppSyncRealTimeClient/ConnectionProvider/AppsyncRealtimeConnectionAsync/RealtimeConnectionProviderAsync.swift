@@ -89,11 +89,6 @@ public class RealtimeConnectionProviderAsync: ConnectionProvider {
 
     // MARK: - ConnectionProvider methods
 
-    func sendConnectionInitMessage() {
-        let message = AppSyncMessage(type: .connectionInit("connection_init"))
-        write(message)
-    }
-
     public func connect() {
         taskQueue.async { [weak self] in
             guard let self = self else {
@@ -178,6 +173,11 @@ public class RealtimeConnectionProviderAsync: ConnectionProvider {
     }
 
     // MARK: -
+
+    func sendConnectionInitMessage() {
+        let message = AppSyncMessage(type: .connectionInit("connection_init"))
+        write(message)
+    }
 
     /// Invokes all registered listeners with `event`. The event is dispatched on `serialCallbackQueue`,
     /// but internally this method uses the connectionQueue to get the currently registered listeners.

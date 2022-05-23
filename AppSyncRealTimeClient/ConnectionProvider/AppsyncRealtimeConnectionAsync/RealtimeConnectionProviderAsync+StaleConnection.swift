@@ -19,7 +19,7 @@ extension RealtimeConnectionProviderAsync {
             "[RealtimeConnectionProvider] Starting stale connection timer for \(staleConnectionTimer.interval)s"
         )
 
-        staleConnectionTimer.start(interval: RealtimeConnectionProviderBase.staleConnectionTimeout) {
+        staleConnectionTimer.start(interval: RealtimeConnectionProviderAsync.staleConnectionTimeout) {
             self.disconnectStaleConnection()
         }
     }

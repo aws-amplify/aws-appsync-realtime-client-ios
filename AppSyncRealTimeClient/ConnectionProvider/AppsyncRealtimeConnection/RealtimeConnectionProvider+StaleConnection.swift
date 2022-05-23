@@ -8,15 +8,13 @@
 import Foundation
 
 /// Consolidates usage and parameters passed to the `staleConnectionTimer` methods.
-extension RealtimeConnectionProviderBase {
+extension RealtimeConnectionProvider {
 
     /// Start a stale connection timer, first invalidating and destroying any existing timer
     func startStaleConnectionTimer() {
-        AppSyncLogger.debug(
-            "[RealtimeConnectionProvider] Starting stale connection timer for \(staleConnectionTimer.interval)s"
-        )
+        AppSyncLogger.debug("[RealtimeConnectionProvider] Starting stale connection timer for \(staleConnectionTimer.interval)s")
 
-        staleConnectionTimer.start(interval: RealtimeConnectionProviderBase.staleConnectionTimeout) {
+        staleConnectionTimer.start(interval: RealtimeConnectionProvider.staleConnectionTimeout) {
             self.disconnectStaleConnection()
         }
     }
@@ -38,19 +36,13 @@ extension RealtimeConnectionProviderBase {
             guard let self = self else {
                 return
             }
-            AppSyncLogger.debug(
-                "[RealtimeConnectionProvider] Status: \(self.status). Connectivity status: \(connectivity.status)"
-            )
+            AppSyncLogger.debug("[RealtimeConnectionProvider] Status: \(self.status). Connectivity status: \(connectivity.status)")
             if self.status == .connected && connectivity.status == .unsatisfied && !self.isStaleConnection {
-                AppSyncLogger.debug(
-                    "[RealtimeConnectionProvider] Connetion is stale. Pending reconnect on connectivity."
-                )
+                AppSyncLogger.debug("[RealtimeConnectionProvider] Connetion is stale. Pending reconnect on connectivity.")
                 self.isStaleConnection = true
 
             } else if self.status == .connected && self.isStaleConnection && connectivity.status == .satisfied {
-                AppSyncLogger.debug(
-                    "[RealtimeConnectionProvider] Connetion is stale. Disconnecting to begin reconnect."
-                )
+                AppSyncLogger.debug("[RealtimeConnectionProvider] Connetion is stale. Disconnecting to begin reconnect.")
                 self.staleConnectionTimer.invalidate()
                 self.disconnectStaleConnection()
             }
