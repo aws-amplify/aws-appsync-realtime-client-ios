@@ -11,7 +11,7 @@ import XCTest
 class AppSyncRealTimeClientFailureTests: AppSyncRealTimeClientTestBase {
 
     /// Test the current AppSync limit of 100 subscriptions per connection
-    func testMaxSubscriptionReached() {
+    func testMaxSubscriptionReached() { // swiftlint:disable:this cyclomatic_complexity
         let subscribeSuccess = expectation(description: "subscribe successfully")
         subscribeSuccess.expectedFulfillmentCount = 100
         let authInterceptor = APIKeyAuthInterceptor(apiKey)
@@ -86,7 +86,7 @@ class AppSyncRealTimeClientFailureTests: AppSyncRealTimeClientTestBase {
     }
 
     /// Subscriptions receiving a failed event should only receive it once.
-    func testMaxSubscriptionReachedWithRetry() {
+    func testMaxSubscriptionReachedWithRetry() { // swiftlint:disable:this cyclomatic_complexity
         let subscribeSuccess = expectation(description: "subscribe successfully")
         subscribeSuccess.expectedFulfillmentCount = 100
         let authInterceptor = APIKeyAuthInterceptor(apiKey)

@@ -152,7 +152,8 @@ class AppSyncRealTimeClientIntegrationTests: AppSyncRealTimeClientTestBase {
         assertStatus(of: realTimeConnectionProvider, equals: .notConnected)
     }
 
-    /// The purpose of this test is to ensure that a signifcant number of subscriptions can be created on a websocket, then unsubscribed, and repeated.
+    /// The purpose of this test is to ensure that a signifcant number of subscriptions
+    /// can be created on a websocket, then unsubscribed, and repeated.
     ///
     /// Specifically, the following test exercises the following:
     /// 1. Create a new connection provider
@@ -211,7 +212,7 @@ class AppSyncRealTimeClientIntegrationTests: AppSyncRealTimeClientTestBase {
             let item = subscriptionConnection.subscribe(
                 requestString: requestString,
                 variables: nil
-            ) { event, _ in }
+            ) { _, _ in }
             subscriptionConnection.unsubscribe(item: item)
             expectedPerforms.fulfill()
         }
