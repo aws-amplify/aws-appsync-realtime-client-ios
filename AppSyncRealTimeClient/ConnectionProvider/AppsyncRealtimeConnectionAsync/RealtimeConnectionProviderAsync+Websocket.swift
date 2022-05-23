@@ -20,7 +20,7 @@ extension RealtimeConnectionProviderAsync: AppSyncWebsocketDelegate {
     }
 
     public func websocketDidDisconnect(provider: AppSyncWebsocketProvider, error: Error?) {
-        connectionQueue.async { [weak self] in
+        taskQueue.async { [weak self] in
             guard let self = self else {
                 return
             }
@@ -51,12 +51,12 @@ extension RealtimeConnectionProviderAsync: AppSyncWebsocketDelegate {
         switch response.responseType {
         case .connectionAck:
             AppSyncLogger.debug("[RealtimeConnectionProvider] received connectionAck")
-            connectionQueue.async { [weak self] in
+            taskQueue.async { [weak self] in
                 self?.handleConnectionAck(response: response)
             }
         case .error:
             AppSyncLogger.verbose("[RealtimeConnectionProvider] received error")
-            connectionQueue.async { [weak self] in
+            taskQueue.async { [weak self] in
                 self?.handleError(response: response)
             }
         case .subscriptionAck, .unsubscriptionAck, .data:
@@ -120,11 +120,11 @@ extension RealtimeConnectionProviderAsync: AppSyncWebsocketDelegate {
                 updateCallback(event: .error(limitExceedError))
                 return
             }
-            
-            self.limitExceededSubject.send(limitExceedError)
+
+            limitExceededSubject.send(limitExceedError)
             return
         }
-        
+
         if response.isMaxSubscriptionReachedError() {
             let limitExceedError = ConnectionProviderError.limitExceeded(response.id)
             updateCallback(event: .error(limitExceedError))
