@@ -109,17 +109,23 @@ public actor RealtimeConnectionProviderAsync: ConnectionProvider {
             }
         }
     }
-
+    
     public nonisolated func disconnect() {
         Task {
-            await self.websocket.disconnect()
-            await self.invalidateStaleConnectionTimer()
+            await taskSerializer.add {
+                Task {
+                    await self.websocket.disconnect()
+                    await self.invalidateStaleConnectionTimer()
+                }
+            }
         }
     }
-
+    
     public nonisolated func addListener(identifier: String, callback: @escaping ConnectionProviderCallback) {
         Task {
-            await _addListener(identifier: identifier, callback: callback)
+            await taskSerializer.add {
+                await self._addListener(identifier: identifier, callback: callback)
+            }
         }
     }
 
@@ -129,7 +135,9 @@ public actor RealtimeConnectionProviderAsync: ConnectionProvider {
 
     public nonisolated func removeListener(identifier: String) {
         Task {
-            await _removeListener(identifier: identifier)
+            await taskSerializer.add {
+                await self._removeListener(identifier: identifier)
+            }
         }
     }
 
@@ -154,13 +162,17 @@ public actor RealtimeConnectionProviderAsync: ConnectionProvider {
     /// - Parameter event: The connection event to dispatch
     nonisolated func updateCallback(event: ConnectionProviderEvent) {
         Task {
-            let allListeners = Array(await self.listeners.values)
-            allListeners.forEach { $0(event) }
+            await taskSerializer.add {
+                Task {
+                    let allListeners = Array(await self.listeners.values)
+                    allListeners.forEach { $0(event) }
+                }
+            }
         }
     }
-
-//        @available(iOS 13.0, *)
-//        func subscribeToLimitExceededThrottle() {
+    
+    //        @available(iOS 13.0, *)
+    //        func subscribeToLimitExceededThrottle() {
 //            limitExceededThrottleSink = limitExceededSubject
 //                .filter {
 //                    // Make sure the limitExceeded error is a connection level error (no subscription id present).
@@ -188,10 +200,14 @@ public actor RealtimeConnectionProviderAsync: ConnectionProvider {
         status = .notConnected
         updateCallback(event: .error(ConnectionProviderError.connection))
     }
+    
+    let taskSerializer = SerialTasks<Void>()
 
     public nonisolated func connect() {
         Task {
-            await _connect()
+            await taskSerializer.add {
+                await self._connect()
+            }
         }
     }
 
@@ -214,9 +230,30 @@ public actor RealtimeConnectionProviderAsync: ConnectionProvider {
 
     public nonisolated func write(_ message: AppSyncMessage) {
         Task {
+            await taskSerializer.add {
+                await self._write(message)
+            }
+        }
+    }
+    
+    private func _write(_ message: AppSyncMessage) {
+        Task {
             let signedMessage = await self.interceptMessage(message, for: self.url)
             await self.finishWrite(signedMessage)
         }
     }
 }
+    
+@available(iOS 13.0, *)
+actor SerialTasks<Success> {
+    private var previousTask: Task<Success, Error>?
+    
+    func add(block: @Sendable @escaping () async throws -> Success) {
+        previousTask = Task { [previousTask] in
+            let _ = await previousTask?.result
+            return try await block()
+        }
+    }
+}
+    
 #endif
