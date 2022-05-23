@@ -55,7 +55,7 @@ public class RealtimeConnectionProvider: ConnectionProvider {
         if iLimitExceededSubject == nil {
             iLimitExceededSubject = PassthroughSubject<ConnectionProviderError, Never>()
         }
-        return iLimitExceededSubject as! PassthroughSubject<ConnectionProviderError, Never> // swiftlint:disable:this force_cast
+        return iLimitExceededSubject as! PassthroughSubject<ConnectionProviderError, Never> // swiftlint:disable:this force_cast line_length
     }
 
     public convenience init(for url: URL, websocket: AppSyncWebsocketProvider) {
@@ -169,7 +169,9 @@ public class RealtimeConnectionProvider: ConnectionProvider {
             self.listeners.removeValue(forKey: identifier)
 
             if self.listeners.isEmpty {
-                AppSyncLogger.debug("[RealtimeConnectionProvider] all subscriptions removed, disconnecting websocket connection.")
+                AppSyncLogger.debug(
+                    "[RealtimeConnectionProvider] all subscriptions removed, disconnecting websocket connection."
+                )
                 self.status = .notConnected
                 self.websocket.disconnect()
                 self.invalidateStaleConnectionTimer()
@@ -229,4 +231,3 @@ public class RealtimeConnectionProvider: ConnectionProvider {
         updateCallback(event: .error(ConnectionProviderError.connection))
     }
 }
-

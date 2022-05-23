@@ -117,4 +117,3 @@ extension RealtimeConnectionProviderResponse {
         return false
     }
 }
-
