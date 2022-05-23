@@ -5,9 +5,9 @@
 // SPDX-License-Identifier: Apache-2.0
 //
 
-import Foundation
-
 #if swift(>=5.5.2)
+
+import Foundation
 
 /// Consolidates usage and parameters passed to the `staleConnectionTimer` methods.
 @available(iOS 13.0, *)

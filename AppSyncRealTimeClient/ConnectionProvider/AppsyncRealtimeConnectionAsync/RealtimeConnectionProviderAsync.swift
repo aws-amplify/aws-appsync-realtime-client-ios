@@ -5,10 +5,10 @@
 // SPDX-License-Identifier: Apache-2.0
 //
 
+#if swift(>=5.5.2)
+
 import Foundation
 import Combine
-
-#if swift(>=5.5.2)
 
 /// Appsync Real time connection that connects to subscriptions
 /// through websocket.
@@ -25,6 +25,9 @@ public class RealtimeConnectionProviderAsync: ConnectionProvider {
 
     var status: ConnectionState
 
+    var messageInterceptors = [MessageInterceptorAsync]()
+    var connectionInterceptors = [ConnectionInterceptorAsync]()
+
     /// A timer that automatically disconnects the current connection if it goes longer
     /// than `staleConnectionTimeout` without activity. Receiving any data or "keep
     /// alive" message will cause the timer to be reset to the full interval.
@@ -37,7 +40,6 @@ public class RealtimeConnectionProviderAsync: ConnectionProvider {
     ///
     /// Each connection request will be sent to this queue. Connection request are
     /// handled one at a time.
-//    let connectionQueue: DispatchQueue
     let taskQueue = TaskQueue<Void>()
 
     /// Monitor for connectivity updates
@@ -52,7 +54,6 @@ public class RealtimeConnectionProviderAsync: ConnectionProvider {
     /// for the error. Use this subject to send and throttle the errors on the client side.
     var limitExceededThrottleSink: Any?
     var iLimitExceededSubject: Any?
-    @available(iOS 13.0, *)
     var limitExceededSubject: PassthroughSubject<ConnectionProviderError, Never> {
         if iLimitExceededSubject == nil {
             iLimitExceededSubject = PassthroughSubject<ConnectionProviderError, Never>()
@@ -93,23 +94,53 @@ public class RealtimeConnectionProviderAsync: ConnectionProvider {
         write(message)
     }
 
-    func finishWrite(_ signedMessage: AppSyncMessage) {
-        let jsonEncoder = JSONEncoder()
-        do {
-            let jsonData = try jsonEncoder.encode(signedMessage)
-            guard let jsonString = String(data: jsonData, encoding: .utf8) else {
-                let jsonError = ConnectionProviderError.jsonParse(signedMessage.id, nil)
-                updateCallback(event: .error(jsonError))
+    public func connect() {
+        taskQueue.async { [weak self] in
+            guard let self = self else {
                 return
             }
-            websocket.write(message: jsonString)
-        } catch {
-            AppSyncLogger.error(error)
-            switch signedMessage.messageType {
-            case .connectionInit:
-                receivedConnectionInit()
-            default:
-                updateCallback(event: .error(ConnectionProviderError.jsonParse(signedMessage.id, error)))
+            guard self.status == .notConnected else {
+                self.updateCallback(event: .connection(self.status))
+                return
+            }
+            self.status = .inProgress
+            self.updateCallback(event: .connection(self.status))
+            let request = AppSyncConnectionRequest(url: self.url)
+
+            let signedRequest = await self.interceptConnection(request, for: self.url)
+            self.websocket.connect(
+                url: signedRequest.url,
+                protocols: ["graphql-ws"],
+                delegate: self
+            )
+        }
+    }
+
+    public func write(_ message: AppSyncMessage) {
+        taskQueue.async { [weak self] in
+            guard let self = self else {
+                return
+            }
+
+            let signedMessage = await self.interceptMessage(message, for: self.url)
+
+            let jsonEncoder = JSONEncoder()
+            do {
+                let jsonData = try jsonEncoder.encode(signedMessage)
+                guard let jsonString = String(data: jsonData, encoding: .utf8) else {
+                    let jsonError = ConnectionProviderError.jsonParse(signedMessage.id, nil)
+                    self.updateCallback(event: .error(jsonError))
+                    return
+                }
+                self.websocket.write(message: jsonString)
+            } catch {
+                AppSyncLogger.error(error)
+                switch signedMessage.messageType {
+                case .connectionInit:
+                    self.receivedConnectionInit()
+                default:
+                    self.updateCallback(event: .error(ConnectionProviderError.jsonParse(signedMessage.id, error)))
+                }
             }
         }
     }
@@ -168,42 +199,6 @@ public class RealtimeConnectionProviderAsync: ConnectionProvider {
     private func receivedConnectionInit() {
         status = .notConnected
         updateCallback(event: .error(ConnectionProviderError.connection))
-    }
-
-    var messageInterceptors = [MessageInterceptorAsync]()
-    var connectionInterceptors = [ConnectionInterceptorAsync]()
-
-    public func connect() {
-        taskQueue.async { [weak self] in
-            guard let self = self else {
-                return
-            }
-            guard self.status == .notConnected else {
-                self.updateCallback(event: .connection(self.status))
-                return
-            }
-            self.status = .inProgress
-            self.updateCallback(event: .connection(self.status))
-            let request = AppSyncConnectionRequest(url: self.url)
-
-            let signedRequest = await self.interceptConnection(request, for: self.url)
-            self.websocket.connect(
-                url: signedRequest.url,
-                protocols: ["graphql-ws"],
-                delegate: self
-            )
-        }
-    }
-
-    public func write(_ message: AppSyncMessage) {
-        taskQueue.async { [weak self] in
-            guard let self = self else {
-                return
-            }
-
-            let signedMessage = await self.interceptMessage(message, for: self.url)
-            self.finishWrite(signedMessage)
-        }
     }
 }
 #endif

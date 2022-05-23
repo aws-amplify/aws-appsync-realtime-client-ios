@@ -5,9 +5,10 @@
 // SPDX-License-Identifier: Apache-2.0
 //
 
+#if swift(>=5.5.2)
+
 import Foundation
 
-#if swift(>=5.5.2)
 @available(iOS 13.0, *)
 extension RealtimeConnectionProviderAsync: AppSyncWebsocketDelegate {
 
