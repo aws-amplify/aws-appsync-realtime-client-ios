@@ -8,14 +8,14 @@
 import XCTest
 @testable import AppSyncRealTimeClient
 
-class AppSyncRealTimeClientFailureTests: AppSyncRealTimeClientTestBase {
+class AppSyncRealTimeClientAsyncFailureTests: AppSyncRealTimeClientTestBase {
 
     /// Test the current AppSync limit of 100 subscriptions per connection
     func testMaxSubscriptionReached() { // swiftlint:disable:this cyclomatic_complexity
         let subscribeSuccess = expectation(description: "subscribe successfully")
         subscribeSuccess.expectedFulfillmentCount = 100
         let authInterceptor = APIKeyAuthInterceptor(apiKey)
-        let connectionProvider = ConnectionProviderFactory.createConnectionProvider(
+        let connectionProvider = ConnectionProviderFactory.createConnectionProviderAsync(
             for: url,
             authInterceptor: authInterceptor,
             connectionType: .appSyncRealtime
@@ -90,7 +90,7 @@ class AppSyncRealTimeClientFailureTests: AppSyncRealTimeClientTestBase {
         let subscribeSuccess = expectation(description: "subscribe successfully")
         subscribeSuccess.expectedFulfillmentCount = 100
         let authInterceptor = APIKeyAuthInterceptor(apiKey)
-        let connectionProvider = ConnectionProviderFactory.createConnectionProvider(
+        let connectionProvider = ConnectionProviderFactory.createConnectionProviderAsync(
             for: url,
             authInterceptor: authInterceptor,
             connectionType: .appSyncRealtime

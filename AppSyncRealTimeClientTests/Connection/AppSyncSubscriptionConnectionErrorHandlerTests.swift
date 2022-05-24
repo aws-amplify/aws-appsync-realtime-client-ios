@@ -8,6 +8,7 @@
 import XCTest
 @testable import AppSyncRealTimeClient
 
+// swiftlint:disable:next type_name type_body_length
 class AppSyncSubscriptionConnectionErrorHandlerTests: XCTestCase {
 
     let connectionProvider = MockConnectionProvider()
@@ -67,7 +68,7 @@ class AppSyncSubscriptionConnectionErrorHandlerTests: XCTestCase {
             case .failed(let error):
                 guard let connection = error as? ConnectionProviderError,
                       case .subscription(let id, _) = connection,
-                      id != nil else {
+                      !id.isEmpty else {
                           XCTFail("Should be .subscription(item.identifier)")
                           return
                 }

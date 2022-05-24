@@ -8,7 +8,7 @@
 import XCTest
 @testable import AppSyncRealTimeClient
 
-class RealtimeConnectionProviderTestBase: XCTestCase {
+class RealtimeConnectionProviderAsyncTestBase: XCTestCase {
 
     let url = URL(string: "https://www.appsyncrealtimeclient.test/")!
 
@@ -41,9 +41,6 @@ class RealtimeConnectionProviderTestBase: XCTestCase {
     /// - `self.websocket` must be initialized in the mock provider's `onConnect`
     func createProviderAndConnect(
         listeners: [String]? = nil,
-        connectionQueue: DispatchQueue = DispatchQueue(
-            label: "com.amazonaws.RealtimeConnectionProviderTestBase.connectionQueue"
-        ),
         serialCallbackQueue: DispatchQueue = DispatchQueue(
             label: "com.amazonaws.RealtimeConnectionProviderTestBase.serialCallbackQueue"
         ),
@@ -52,7 +49,6 @@ class RealtimeConnectionProviderTestBase: XCTestCase {
         let provider = RealtimeConnectionProvider(
             url: url,
             websocket: websocket,
-            connectionQueue: connectionQueue,
             serialCallbackQueue: serialCallbackQueue,
             connectivityMonitor: connectivityMonitor
         )
