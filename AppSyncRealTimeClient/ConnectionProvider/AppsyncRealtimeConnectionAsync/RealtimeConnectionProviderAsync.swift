@@ -195,7 +195,7 @@ public class RealtimeConnectionProviderAsync: ConnectionProvider {
         }
     }
 
-    /// - Warning: This must be invoked from the `connectionQueue`
+    /// - Warning: This must be invoked from the `taskQueue`
     private func receivedConnectionInit() {
         status = .notConnected
         updateCallback(event: .error(ConnectionProviderError.connection))
