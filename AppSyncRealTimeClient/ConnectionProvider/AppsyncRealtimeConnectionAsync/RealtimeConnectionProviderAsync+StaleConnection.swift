@@ -62,7 +62,7 @@ extension RealtimeConnectionProviderAsync {
 
     /// Fired when the stale connection timer expires
     private func disconnectStaleConnection() {
-        taskQueue.async {[weak self] in
+        taskQueue.async { [weak self] in
             guard let self = self else {
                 return
             }
