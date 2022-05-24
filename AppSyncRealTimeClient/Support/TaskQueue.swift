@@ -5,12 +5,6 @@
 // SPDX-License-Identifier: Apache-2.0
 //
 
-//
-//  File.swift
-//
-//
-//  Created by Ameter, Chris on 5/23/22.
-//
 #if swift(>=5.5.2)
 
 import Foundation
