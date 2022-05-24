@@ -13,16 +13,16 @@ import Foundation
 actor TaskQueue<Success> {
     private var previousTask: Task<Success, Error>?
 
-    func sync(block: @Sendable @escaping () async throws -> Success) {
+    func sync(block: @Sendable @escaping () async throws -> Success) rethrows {
         previousTask = Task { [previousTask] in
             _ = await previousTask?.result
             return try await block()
         }
     }
 
-    nonisolated func async(block: @Sendable @escaping () async throws -> Success) {
+    nonisolated func async(block: @Sendable @escaping () async throws -> Success) rethrows {
         Task {
-            await sync(block: block)
+            try await sync(block: block)
         }
     }
 }
