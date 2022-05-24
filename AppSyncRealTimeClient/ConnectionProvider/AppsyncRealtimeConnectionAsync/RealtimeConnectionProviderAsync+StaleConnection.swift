@@ -37,7 +37,7 @@ extension RealtimeConnectionProviderAsync {
 
     /// Handle updates from the ConnectivityMonitor
     func handleConnectivityUpdates(connectivity: ConnectivityPath) {
-        taskQueue.async {[weak self] in
+        taskQueue.async { [weak self] in
             guard let self = self else {
                 return
             }
