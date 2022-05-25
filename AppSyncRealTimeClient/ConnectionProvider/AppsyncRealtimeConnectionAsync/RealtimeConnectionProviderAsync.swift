@@ -195,6 +195,29 @@ public class RealtimeConnectionProviderAsync: ConnectionProvider {
         }
     }
 
+    func subscribeToLimitExceededThrottle() {
+        limitExceededThrottleSink = limitExceededSubject
+            .filter {
+                // Make sure the limitExceeded error is a connection level error (no subscription id present).
+                // When id is present, it is passed back directly subscription via `updateCallback`.
+                if case .limitExceeded(let id) = $0, id == nil {
+                    return true
+                }
+                return false
+            }
+            .throttle(for: .milliseconds(150), scheduler: serialCallbackQueue, latest: true)
+            .sink { completion in
+                switch completion {
+                case .failure(let error):
+                    AppSyncLogger.verbose("limitExceededThrottleSink failed \(error)")
+                case .finished:
+                    AppSyncLogger.verbose("limitExceededThrottleSink finished")
+                }
+            } receiveValue: { result in
+                self.updateCallback(event: .error(result))
+            }
+    }
+
     /// - Warning: This must be invoked from the `taskQueue`
     private func receivedConnectionInit() {
         status = .notConnected
