@@ -3,6 +3,12 @@
 ## Unreleased
 *Changes on `main` branch that have not yet been released*
 
+## 1.10.0
+
+### Features
+
+- feat: Add Swift concurrency (async/await) support for async interceptors
+
 ## 1.9.1
 
 ### Bug fixes
