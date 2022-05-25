@@ -81,6 +81,7 @@ public class RealtimeConnectionProviderAsync: ConnectionProvider {
         self.connectivityMonitor = connectivityMonitor
 
         connectivityMonitor.start(onUpdates: handleConnectivityUpdates(connectivity:))
+        subscribeToLimitExceededThrottle()
     }
 
     public convenience init(for url: URL, websocket: AppSyncWebsocketProvider) {
@@ -193,6 +194,29 @@ public class RealtimeConnectionProviderAsync: ConnectionProvider {
                 allListeners.forEach { $0(event) }
             }
         }
+    }
+
+    func subscribeToLimitExceededThrottle() {
+        limitExceededThrottleSink = limitExceededSubject
+            .filter {
+                // Make sure the limitExceeded error is a connection level error (no subscription id present).
+                // When id is present, it is passed back directly subscription via `updateCallback`.
+                if case .limitExceeded(_?) = $0 {
+                    return false
+                }
+                return true
+            }
+            .throttle(for: .milliseconds(150), scheduler: serialCallbackQueue, latest: true)
+            .sink { completion in
+                switch completion {
+                case .failure(let error):
+                    AppSyncLogger.verbose("limitExceededThrottleSink failed \(error)")
+                case .finished:
+                    AppSyncLogger.verbose("limitExceededThrottleSink finished")
+                }
+            } receiveValue: { result in
+                self.updateCallback(event: .error(result))
+            }
     }
 
     /// - Warning: This must be invoked from the `taskQueue`

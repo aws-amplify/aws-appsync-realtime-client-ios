@@ -220,9 +220,9 @@ public class RealtimeConnectionProvider: ConnectionProvider {
                 case .finished:
                     AppSyncLogger.verbose("limitExceededThrottleSink finished")
                 }
-        } receiveValue: { result in
-            self.updateCallback(event: .error(result))
-        }
+            } receiveValue: { result in
+                self.updateCallback(event: .error(result))
+            }
     }
 
     /// - Warning: This must be invoked from the `connectionQueue`
