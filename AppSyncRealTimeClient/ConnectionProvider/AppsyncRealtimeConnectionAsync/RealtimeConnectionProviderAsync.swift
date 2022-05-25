@@ -81,6 +81,7 @@ public class RealtimeConnectionProviderAsync: ConnectionProvider {
         self.connectivityMonitor = connectivityMonitor
 
         connectivityMonitor.start(onUpdates: handleConnectivityUpdates(connectivity:))
+        subscribeToLimitExceededThrottle()
     }
 
     public convenience init(for url: URL, websocket: AppSyncWebsocketProvider) {
