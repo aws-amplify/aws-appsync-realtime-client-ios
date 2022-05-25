@@ -3,7 +3,7 @@
 ## Unreleased
 *Changes on `main` branch that have not yet been released*
 
-## 1.10.1
+## 1.10.0
 
 ### Features
 
