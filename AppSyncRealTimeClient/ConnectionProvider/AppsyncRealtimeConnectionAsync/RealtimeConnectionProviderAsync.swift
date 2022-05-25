@@ -201,10 +201,10 @@ public class RealtimeConnectionProviderAsync: ConnectionProvider {
             .filter {
                 // Make sure the limitExceeded error is a connection level error (no subscription id present).
                 // When id is present, it is passed back directly subscription via `updateCallback`.
-                if case .limitExceeded(let id) = $0, id == nil {
-                    return true
+                if case .limitExceeded(_?) = $0 {
+                    return false
                 }
-                return false
+                return true
             }
             .throttle(for: .milliseconds(150), scheduler: serialCallbackQueue, latest: true)
             .sink { completion in
