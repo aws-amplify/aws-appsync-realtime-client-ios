@@ -69,20 +69,20 @@ extension RealtimeConnectionProviderResponse: Decodable {
 extension RealtimeConnectionProviderResponse {
 
     func toConnectionProviderError(connectionState: ConnectionState) -> ConnectionProviderError {
+        // If it is Unauthorized, return `.other` error.
+        guard !isUnauthorizationError() else {
+            return .other(errorDescription: "Unauthorized", error: nil, payload: payload)
+        }
+
+        // If it is in-progress, return `.connection`.
         guard connectionState != .inProgress else {
-            if isUnauthorizationError() {
-                return .other(errorDescription: "Unauthorized", error: nil, payload: payload)
-            } else {
-                return .connection
-            }
+            return .connection
         }
 
         if isLimitExceededError() || isMaxSubscriptionReachedError() {
             // Is it observed that LimitExceeded error does not have `id` while MaxSubscriptionReached does have a
             // corresponding identifier. Both are mapped to `limitExceeded` with optional identifier.
-            return ConnectionProviderError.limitExceeded(id)
-        } else if isUnauthorizationError() {
-            return .other(errorDescription: "Unauthorized", error: nil, payload: payload)
+            return .limitExceeded(id)
         }
 
         // If the type of error is not handled (by checking `isLimitExceededError`, `isMaxSubscriptionReachedError`,
@@ -162,11 +162,12 @@ extension RealtimeConnectionProviderResponse {
         //          "errorCode":400 }]},
         //  "type":"connection_error" }
         return errorsArray.contains { error in
-            guard case let .object(errorObject) = error else {
+            guard case let .object(errorObject) = error,
+                  case let .string(errorObjectString) = errorObject["errorType"] else {
                 return false
             }
 
-            if errorObject["errorType"] == "com.amazonaws.deepdish.graphql.auth#UnauthorizedException" {
+            if errorObjectString.contains("UnauthorizedException") {
                 return true
             }
 

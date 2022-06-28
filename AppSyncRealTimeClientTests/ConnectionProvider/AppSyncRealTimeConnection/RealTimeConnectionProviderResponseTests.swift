@@ -76,8 +76,10 @@ class RealTimeConnectionProviderResponseTests: XCTestCase {
         )
 
         XCTAssertFalse(response.isUnauthorizationError())
-        XCTAssertEqual(response.toConnectionProviderError(connectionState: .connected),
-                        .other(errorDescription: nil, error: nil, payload: nil))
+        XCTAssertEqual(
+            response.toConnectionProviderError(connectionState: .connected),
+            .other(errorDescription: nil, error: nil, payload: nil)
+        )
     }
 
     func testIsUnauthorized_UnauthorizedException() throws {
@@ -90,8 +92,10 @@ class RealTimeConnectionProviderResponseTests: XCTestCase {
         )
 
         XCTAssertTrue(response.isUnauthorizationError())
-        XCTAssertEqual(response.toConnectionProviderError(connectionState: .connected),
-                        .other(errorDescription: "Unauthorized", error: nil, payload: nil))
+        XCTAssertEqual(
+            response.toConnectionProviderError(connectionState: .connected),
+            .other(errorDescription: "Unauthorized", error: nil, payload: nil)
+        )
     }
 }
 
