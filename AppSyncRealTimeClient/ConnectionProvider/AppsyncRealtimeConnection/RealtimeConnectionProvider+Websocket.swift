@@ -122,21 +122,6 @@ extension RealtimeConnectionProvider: AppSyncWebsocketDelegate {
             updateCallback(event: .error(error))
         }
     }
-
-    private func updateWithGenericError(identifier: String?, payload: [String: Any]?) {
-        // If the type of error is not handled (by checking `isLimitExceededError`, `isMaxSubscriptionReachedError`,
-        // etc), and is not for a specific subscription, then return a generic error
-        guard let identifier = identifier else {
-            let genericError = ConnectionProviderError.other(errorDescription: nil, error: nil, payload: payload)
-            updateCallback(event: .error(genericError))
-            return
-        }
-
-        // Default scenario - return the error with subscription id and error payload.
-        let subscriptionError = ConnectionProviderError.subscription(identifier, payload)
-        updateCallback(event: .error(subscriptionError))
-    }
-
 }
 
 extension RealtimeConnectionProviderResponse {

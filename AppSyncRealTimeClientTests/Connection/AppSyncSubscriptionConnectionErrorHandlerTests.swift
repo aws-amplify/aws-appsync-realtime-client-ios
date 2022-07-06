@@ -238,7 +238,7 @@ class AppSyncSubscriptionConnectionErrorHandlerTests: XCTestCase {
         XCTAssertNil(connectionProvider.listener)
     }
 
-    func testOther() throws {
+    func testUnknown() throws {
         let connection = AppSyncSubscriptionConnection(provider: connectionProvider)
         let connectedMessageExpectation = expectation(description: "Connected event should be fired")
         let failedEvent = expectation(description: "Failed event should be fired")
@@ -252,8 +252,8 @@ class AppSyncSubscriptionConnectionErrorHandlerTests: XCTestCase {
                 XCTFail("Data event should not be published")
             case .failed(let error):
                 guard let connection = error as? ConnectionProviderError,
-                      case .other = connection else {
-                          XCTFail("Should be .other")
+                      case .unknown = connection else {
+                          XCTFail("Should be .unknown")
                           return
                 }
                 failedEvent.fulfill()
@@ -263,8 +263,8 @@ class AppSyncSubscriptionConnectionErrorHandlerTests: XCTestCase {
         XCTAssertEqual(connection.subscriptionState, .subscribed)
         XCTAssertNotNil(connectionProvider.listener)
 
-        let otherError = ConnectionProviderError.other(errorDescription: nil, error: nil, payload: nil)
-        connection.handleError(error: otherError)
+        let unknownError = ConnectionProviderError.unknown(message: nil, causedBy: nil, payload: nil)
+        connection.handleError(error: unknownError)
         wait(for: [failedEvent], timeout: 5)
         XCTAssertEqual(connection.subscriptionState, .notSubscribed)
         XCTAssertNil(connectionProvider.listener)

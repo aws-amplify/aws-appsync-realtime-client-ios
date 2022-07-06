@@ -54,7 +54,7 @@ class RealTimeConnectionProviderResponseTests: XCTestCase {
         XCTAssertFalse(response.isLimitExceededError())
         XCTAssertEqual(
             response.toConnectionProviderError(connectionState: .connected),
-            .other(errorDescription: nil, error: nil, payload: nil)
+            .unknown(message: nil, causedBy: nil, payload: nil)
         )
     }
 
@@ -78,7 +78,7 @@ class RealTimeConnectionProviderResponseTests: XCTestCase {
         XCTAssertFalse(response.isUnauthorizationError())
         XCTAssertEqual(
             response.toConnectionProviderError(connectionState: .connected),
-            .other(errorDescription: nil, error: nil, payload: nil)
+            .unknown(message: nil, causedBy: nil, payload: nil)
         )
     }
 
@@ -94,7 +94,7 @@ class RealTimeConnectionProviderResponseTests: XCTestCase {
         XCTAssertTrue(response.isUnauthorizationError())
         XCTAssertEqual(
             response.toConnectionProviderError(connectionState: .connected),
-            .other(errorDescription: "Unauthorized", error: nil, payload: nil)
+            .unauthorized
         )
     }
 }
@@ -110,8 +110,10 @@ extension ConnectionProviderError: Equatable {
             return id1 == id2
         case (.subscription(let id1, _), .subscription(let id2, _)):
             return id1 == id2
-        case (.other(let errorDescription1, _, _), .other(let errorDescription2, _, _)):
-            return errorDescription1 == errorDescription2
+        case (.unauthorized, .unauthorized):
+            return true
+        case (.unknown(let message1, _, _), .unknown(let message2, _, _)):
+            return message1 == message2
         default:
             return false
         }

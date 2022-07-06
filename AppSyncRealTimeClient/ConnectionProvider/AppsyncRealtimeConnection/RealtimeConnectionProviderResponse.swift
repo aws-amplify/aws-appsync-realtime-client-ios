@@ -69,9 +69,9 @@ extension RealtimeConnectionProviderResponse: Decodable {
 extension RealtimeConnectionProviderResponse {
 
     func toConnectionProviderError(connectionState: ConnectionState) -> ConnectionProviderError {
-        // If it is Unauthorized, return `.other` error.
+        // If it is Unauthorized, return `.unauthorized` error.
         guard !isUnauthorizationError() else {
-            return .other(errorDescription: "Unauthorized", error: nil, payload: payload)
+            return .unauthorized
         }
 
         // If it is in-progress, return `.connection`.
@@ -86,9 +86,9 @@ extension RealtimeConnectionProviderResponse {
         }
 
         // If the type of error is not handled (by checking `isLimitExceededError`, `isMaxSubscriptionReachedError`,
-        // etc), and is not for a specific subscription, then return a generic error
+        // etc), and is not for a specific subscription, then return unknown error
         guard let identifier = id else {
-            return .other(errorDescription: nil, error: nil, payload: payload)
+            return .unknown(message: nil, causedBy: nil, payload: payload)
         }
 
         // Default scenario - return the error with subscription id and error payload.

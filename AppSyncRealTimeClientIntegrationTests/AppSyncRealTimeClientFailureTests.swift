@@ -188,12 +188,10 @@ class AppSyncRealTimeClientFailureTests: AppSyncRealTimeClientTestBase {
                 break
             case .failed(let error):
                 guard let connectionError = error as? ConnectionProviderError,
-                      case .other(let errorDescription, _, _)  = connectionError else {
-                          XCTFail("Should be `.other` error")
+                      case .unauthorized = connectionError else {
+                          XCTFail("Should be `.unauthorized` error")
                           return
                       }
-
-                XCTAssertEqual(errorDescription, "Unauthorized")
                 subscribeFailed.fulfill()
             }
         }
