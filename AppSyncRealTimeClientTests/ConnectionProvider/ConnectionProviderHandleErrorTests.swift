@@ -121,8 +121,8 @@ class ConnectionProviderHandleErrorTests: XCTestCase {
                       XCTFail("Should have received error event")
                       return
             }
-            guard case .other = connectionError else {
-                XCTFail("Should have received .other error")
+            guard case .unknown = connectionError else {
+                XCTFail("Should have received .unknown error")
                 return
             }
 
