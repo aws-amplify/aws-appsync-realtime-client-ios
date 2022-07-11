@@ -3,6 +3,14 @@
 ## Unreleased
 *Changes on `main` branch that have not yet been released*
 
+## 2.0.0
+
+- feat: Handle Unauthorized errors (See [PR #69](https://github.com/aws-amplify/aws-appsync-realtime-client-ios/pull/69))
+- fix: rebase RTConnectionProvider+Websocket to Async version (See [PR #91](https://github.com/aws-amplify/aws-appsync-realtime-client-ios/pull/91))
+- fix: create valid unauthorized request for odic/userpool connections (See [PR #93](https://github.com/aws-amplify/aws-appsync-realtime-client-ios/pull/93))
+
+Breaking changes: `ConnectionProviderError.other` has been removed and `.unauthorized` and `.unknown` cases has been added.
+
 ## 1.10.0
 
 ### Features
