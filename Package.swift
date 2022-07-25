@@ -5,10 +5,6 @@ import PackageDescription
 
 let package = Package(
     name: "AppSyncRealTimeClient",
-    platforms: [
-        .iOS(.v13),
-        .macOS(.v12)
-    ],
     products: [
         .library(
             name: "AppSyncRealTimeClient",

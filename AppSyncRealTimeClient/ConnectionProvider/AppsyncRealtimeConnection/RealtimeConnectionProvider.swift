@@ -50,7 +50,7 @@ public class RealtimeConnectionProvider: ConnectionProvider {
     /// for the error. Use this subject to send and throttle the errors on the client side.
     var limitExceededThrottleSink: Any?
     var iLimitExceededSubject: Any?
-    @available(iOS 13.0, *)
+    @available(iOS 13.0, macOS 10.15, tvOS 13.0, watchOS 6.0, *)
     var limitExceededSubject: PassthroughSubject<ConnectionProviderError, Never> {
         if iLimitExceededSubject == nil {
             iLimitExceededSubject = PassthroughSubject<ConnectionProviderError, Never>()
@@ -201,7 +201,7 @@ public class RealtimeConnectionProvider: ConnectionProvider {
         }
     }
 
-    @available(iOS 13.0, *)
+    @available(iOS 13.0, macOS 10.15, tvOS 13.0, watchOS 6.0, *)
     func subscribeToLimitExceededThrottle() {
         limitExceededThrottleSink = limitExceededSubject
             .filter {
