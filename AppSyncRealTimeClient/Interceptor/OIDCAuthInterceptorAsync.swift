@@ -7,21 +7,20 @@
 
 import Foundation
 
-public class OIDCAuthInterceptor: AuthInterceptor {
+public class OIDCAuthInterceptorAsync: AuthInterceptorAsync {
 
-    let authProvider: OIDCAuthProvider
+    let authProvider: OIDCAuthProviderAsync
 
-    public init(_ authProvider: OIDCAuthProvider) {
+    public init(_ authProvider: OIDCAuthProviderAsync) {
         self.authProvider = authProvider
     }
 
-    public func interceptMessage(_ message: AppSyncMessage, for endpoint: URL) -> AppSyncMessage {
+    public func interceptMessage(_ message: AppSyncMessage, for endpoint: URL) async -> AppSyncMessage {
         let host = endpoint.host!
         let jwtToken: String
-        switch authProvider.getLatestAuthToken() {
-        case .success(let token):
-            jwtToken = token
-        case .failure:
+        do {
+            jwtToken = try await authProvider.getLatestAuthToken()
+        } catch {
             return message
         }
         switch message.messageType {
@@ -45,13 +44,12 @@ public class OIDCAuthInterceptor: AuthInterceptor {
     public func interceptConnection(
         _ request: AppSyncConnectionRequest,
         for endpoint: URL
-    ) -> AppSyncConnectionRequest {
+    ) async -> AppSyncConnectionRequest {
         let host = endpoint.host!
         let jwtToken: String
-        switch authProvider.getLatestAuthToken() {
-        case .success(let token):
-            jwtToken = token
-        case .failure:
+        do {
+            jwtToken = try await authProvider.getLatestAuthToken()
+        } catch {
             // A user that is not signed in should receive an unauthorized error from the connection attempt. This code
             // achieves this by always creating a valid request to AppSync even when the token cannot be retrieved. The
             // request sent to AppSync will receive a response indicating the request is unauthorized. If we do not use
