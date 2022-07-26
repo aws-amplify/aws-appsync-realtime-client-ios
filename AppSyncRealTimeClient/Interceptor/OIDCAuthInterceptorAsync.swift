@@ -5,8 +5,11 @@
 // SPDX-License-Identifier: Apache-2.0
 //
 
+#if swift(>=5.5.2)
+
 import Foundation
 
+@available(iOS 13.0, macOS 10.15, tvOS 13.0, watchOS 6.0, *)
 public class OIDCAuthInterceptorAsync: AuthInterceptorAsync {
 
     let authProvider: OIDCAuthProviderAsync
@@ -99,3 +102,4 @@ private class UserPoolsAuthenticationHeader: AuthenticationHeader {
         try super.encode(to: encoder)
     }
 }
+#endif

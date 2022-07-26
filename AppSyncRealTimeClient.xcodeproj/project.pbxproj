@@ -76,7 +76,9 @@
 		259F9EB83B9F67D0413A6D4C /* Pods_AppSyncRealTimeClient.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81AFCBED5A97E398A4BD9D06 /* Pods_AppSyncRealTimeClient.framework */; };
 		450019BB151D701382536BD0 /* Pods_HostApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 29CDD85F44666C7241232D29 /* Pods_HostApp.framework */; };
 		4A3EAC9B20D96D81CC3A7EF4 /* Pods_HostApp_AppSyncRealTimeClientIntegrationTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43D112B03D6D38F84995D6FA /* Pods_HostApp_AppSyncRealTimeClientIntegrationTests.framework */; };
+		5C4E7C5E289082D3001800C1 /* OIDCAuthProviderAsync.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C4E7C5D289082D3001800C1 /* OIDCAuthProviderAsync.swift */; };
 		5C5609EE2821E6FC0002ACF5 /* InterceptableConnectionAsync.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C5609ED2821E6FC0002ACF5 /* InterceptableConnectionAsync.swift */; };
+		5C95D878289081F0008D66E9 /* OIDCAuthInterceptorAsync.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C95D877289081F0008D66E9 /* OIDCAuthInterceptorAsync.swift */; };
 		5CF3E96B283C33D40036EAD2 /* AppSyncRealTimeClientAsyncFailureTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CF3E968283C33D40036EAD2 /* AppSyncRealTimeClientAsyncFailureTests.swift */; };
 		5CF3E96D283C33D40036EAD2 /* AppSyncRealTimeClientAsyncIntegrationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CF3E96A283C33D40036EAD2 /* AppSyncRealTimeClientAsyncIntegrationTests.swift */; };
 		5CFF7233283C1971001D5471 /* RealtimeConnectionProviderAsync.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CFF722E283C1971001D5471 /* RealtimeConnectionProviderAsync.swift */; };
@@ -218,7 +220,9 @@
 		356411189EAD2C776D250FB7 /* Pods-HostApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HostApp.release.xcconfig"; path = "Target Support Files/Pods-HostApp/Pods-HostApp.release.xcconfig"; sourceTree = "<group>"; };
 		3E662A46AB2C93EE316F784C /* Pods_AppSyncRealTimeClient_AppSyncRealTimeClientTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AppSyncRealTimeClient_AppSyncRealTimeClientTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		43D112B03D6D38F84995D6FA /* Pods_HostApp_AppSyncRealTimeClientIntegrationTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HostApp_AppSyncRealTimeClientIntegrationTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		5C4E7C5D289082D3001800C1 /* OIDCAuthProviderAsync.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OIDCAuthProviderAsync.swift; sourceTree = "<group>"; };
 		5C5609ED2821E6FC0002ACF5 /* InterceptableConnectionAsync.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InterceptableConnectionAsync.swift; sourceTree = "<group>"; };
+		5C95D877289081F0008D66E9 /* OIDCAuthInterceptorAsync.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OIDCAuthInterceptorAsync.swift; sourceTree = "<group>"; };
 		5CF3E968283C33D40036EAD2 /* AppSyncRealTimeClientAsyncFailureTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppSyncRealTimeClientAsyncFailureTests.swift; sourceTree = "<group>"; };
 		5CF3E96A283C33D40036EAD2 /* AppSyncRealTimeClientAsyncIntegrationTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppSyncRealTimeClientAsyncIntegrationTests.swift; sourceTree = "<group>"; };
 		5CFF722E283C1971001D5471 /* RealtimeConnectionProviderAsync.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RealtimeConnectionProviderAsync.swift; sourceTree = "<group>"; };
@@ -450,6 +454,7 @@
 				FA2EFABB2550CAC6007698C7 /* AtomicValue.swift */,
 				FA67508124D33A7A005A1345 /* CountdownTimer.swift */,
 				21D38B93240C4A2A00EC2A8D /* OIDCAuthProvider.swift */,
+				5C4E7C5D289082D3001800C1 /* OIDCAuthProviderAsync.swift */,
 				217F39CB2406E98400F1A0B3 /* SubscriptionConnectionType.swift */,
 				217F39CA2406E98400F1A0B3 /* SubscriptionConstants.swift */,
 				5CFF7238283C19CF001D5471 /* TaskQueue.swift */,
@@ -558,6 +563,7 @@
 			children = (
 				21D38B82240A392B00EC2A8D /* APIKeyAuthInterceptor.swift */,
 				21D38B78240A2A1300EC2A8D /* OIDCAuthInterceptor.swift */,
+				5C95D877289081F0008D66E9 /* OIDCAuthInterceptorAsync.swift */,
 				217F39C82406E98400F1A0B3 /* RealtimeGatewayURLInterceptor.swift */,
 			);
 			path = Interceptor;
@@ -1229,6 +1235,7 @@
 				217F39D52406E98400F1A0B3 /* RealtimeConnectionProviderResponse.swift in Sources */,
 				217F39D62406E98400F1A0B3 /* RealtimeConnectionProvider+MessageInterceptable.swift in Sources */,
 				5CFF7233283C1971001D5471 /* RealtimeConnectionProviderAsync.swift in Sources */,
+				5C95D878289081F0008D66E9 /* OIDCAuthInterceptorAsync.swift in Sources */,
 				FA67508224D33A7A005A1345 /* CountdownTimer.swift in Sources */,
 				217F39E62406E98400F1A0B3 /* SubscriptionConstants.swift in Sources */,
 				5CFF7234283C1971001D5471 /* RealtimeConnectionProviderAsync+StaleConnection.swift in Sources */,
@@ -1237,6 +1244,7 @@
 				217F39D82406E98400F1A0B3 /* ConnectionProvider.swift in Sources */,
 				21D38B83240A392B00EC2A8D /* APIKeyAuthInterceptor.swift in Sources */,
 				217F39D92406E98400F1A0B3 /* SubscriptionConnection.swift in Sources */,
+				5C4E7C5E289082D3001800C1 /* OIDCAuthProviderAsync.swift in Sources */,
 				217F39DA2406E98400F1A0B3 /* RetryableConnection.swift in Sources */,
 				978409B82739C7BE002362A7 /* AppSyncURLHelper.swift in Sources */,
 				217F39CC2406E98400F1A0B3 /* AppSyncResponse.swift in Sources */,
