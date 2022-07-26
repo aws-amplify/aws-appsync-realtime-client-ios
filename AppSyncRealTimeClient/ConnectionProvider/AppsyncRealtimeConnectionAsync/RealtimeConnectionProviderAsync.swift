@@ -12,7 +12,7 @@ import Combine
 
 /// Appsync Real time connection that connects to subscriptions
 /// through websocket.
-@available(iOS 13.0, *)
+@available(iOS 13.0, macOS 10.15, tvOS 13.0, watchOS 6.0, *)
 public class RealtimeConnectionProviderAsync: ConnectionProvider {
     /// Maximum number of seconds a connection may go without receiving a keep alive
     /// message before we consider it stale and force a disconnect

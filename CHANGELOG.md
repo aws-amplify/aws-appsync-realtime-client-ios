@@ -3,6 +3,15 @@
 ## Unreleased
 *Changes on `main` branch that have not yet been released*
 
+## 2.1.0
+
+### Features
+- feat: added async oidc interceptor (#100)(See [PR #100](https://github.com/aws-amplify/aws-appsync-realtime-client-ios/pull/100))
+
+### Fixes
+- fix: sets OS versions for os_log (See [PR #99](https://github.com/aws-amplify/aws-appsync-realtime-client-ios/pull/99))
+- fix: supports cross platform builds (See [PR #98](https://github.com/aws-amplify/aws-appsync-realtime-client-ios/pull/98))
+
 ## 2.0.0
 
 - feat: Handle Unauthorized errors (See [PR #69](https://github.com/aws-amplify/aws-appsync-realtime-client-ios/pull/69))

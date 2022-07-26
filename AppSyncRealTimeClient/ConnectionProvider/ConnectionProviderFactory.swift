@@ -35,7 +35,7 @@ public enum ConnectionProviderFactory {
     }
 
     #if swift(>=5.5.2)
-    @available(iOS 13.0.0, *)
+    @available(iOS 13.0, macOS 10.15, tvOS 13.0, watchOS 6.0, *)
     public static func createConnectionProviderAsync(
         for url: URL,
         authInterceptor: AuthInterceptorAsync,
