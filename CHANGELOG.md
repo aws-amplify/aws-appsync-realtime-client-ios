@@ -3,10 +3,16 @@
 ## Unreleased
 *Changes on `main` branch that have not yet been released*
 
+## 2.1.1
+
+### Fixes
+
+- fix: add runtime and compiler gates to OIDCAuthInterceptorAsync OIDCAuthProviderAsync and add files to workspace (See [PR #104](https://github.com/aws-amplify/aws-appsync-realtime-client-ios/pull/104))
+
 ## 2.1.0
 
 ### Features
-- feat: added async oidc interceptor (#100)(See [PR #100](https://github.com/aws-amplify/aws-appsync-realtime-client-ios/pull/100))
+- feat: added async oidc interceptor (See [PR #100](https://github.com/aws-amplify/aws-appsync-realtime-client-ios/pull/100))
 
 ### Fixes
 - fix: sets OS versions for os_log (See [PR #99](https://github.com/aws-amplify/aws-appsync-realtime-client-ios/pull/99))
