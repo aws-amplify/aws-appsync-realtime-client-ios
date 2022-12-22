@@ -38,8 +38,11 @@ public class StarscreamAdapter: AppSyncWebsocketProvider {
         serialQueue.async {
             AppSyncLogger.verbose("[StarscreamAdapter] connect. Connecting to url")
             var urlRequest = URLRequest(url: url)
+            urlRequest.setValue("no-store", forHTTPHeaderField: "Cache-Control")
+
             let protocolHeaderValue = protocols.joined(separator: ", ")
             urlRequest.setValue(protocolHeaderValue, forHTTPHeaderField: "Sec-WebSocket-Protocol")
+
             self.socket = WebSocket(request: urlRequest)
             self.delegate = delegate
             self.socket?.delegate = self
