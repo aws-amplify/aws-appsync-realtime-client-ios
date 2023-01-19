@@ -15,7 +15,7 @@ public class RealtimeConnectionProvider: ConnectionProvider {
     /// message before we consider it stale and force a disconnect
     static let staleConnectionTimeout: TimeInterval = 5 * 60
 
-    private var urlRequest: URLRequest
+    private let urlRequest: URLRequest
     var listeners: [String: ConnectionProviderCallback]
 
     let websocket: AppSyncWebsocketProvider
@@ -105,7 +105,10 @@ public class RealtimeConnectionProvider: ConnectionProvider {
             }
 
             guard let url = self.urlRequest.url else {
-                self.updateCallback(event: .error(ConnectionProviderError.unknown(message: "Missing URL", payload: nil)))
+                self.updateCallback(event: .error(ConnectionProviderError.unknown(
+                    message: "Missing URL",
+                    payload: nil
+                )))
                 return
             }
             self.status = .inProgress
@@ -113,11 +116,12 @@ public class RealtimeConnectionProvider: ConnectionProvider {
 
             let request = AppSyncConnectionRequest(url: url)
             let signedRequest = self.interceptConnection(request, for: url)
-            self.urlRequest.url = signedRequest.url
+            var urlRequest = self.urlRequest
+            urlRequest.url = signedRequest.url
 
             DispatchQueue.global().async {
                 self.websocket.connect(
-                    urlRequest: self.urlRequest,
+                    urlRequest: urlRequest,
                     protocols: ["graphql-ws"],
                     delegate: self
                 )
@@ -132,7 +136,10 @@ public class RealtimeConnectionProvider: ConnectionProvider {
                 return
             }
             guard let url = self.urlRequest.url else {
-                self.updateCallback(event: .error(ConnectionProviderError.unknown(message: "Missing URL", payload: nil)))
+                self.updateCallback(event: .error(ConnectionProviderError.unknown(
+                    message: "Missing URL",
+                    payload: nil
+                )))
                 return
             }
             let signedMessage = self.interceptMessage(message, for: url)

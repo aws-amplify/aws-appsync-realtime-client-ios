@@ -18,7 +18,7 @@ public class RealtimeConnectionProviderAsync: ConnectionProvider {
     /// message before we consider it stale and force a disconnect
     static let staleConnectionTimeout: TimeInterval = 5 * 60
 
-    var urlRequest: URLRequest
+    let urlRequest: URLRequest
     var listeners: [String: ConnectionProviderCallback]
 
     let websocket: AppSyncWebsocketProvider
@@ -99,16 +99,21 @@ public class RealtimeConnectionProviderAsync: ConnectionProvider {
                 self.updateCallback(event: .connection(self.status))
                 return
             }
-            self.status = .inProgress
-            self.updateCallback(event: .connection(self.status))
             guard let url = self.urlRequest.url else {
+                self.updateCallback(event: .error(ConnectionProviderError.unknown(
+                    message: "Missing URL",
+                    payload: nil
+                )))
                 return
             }
+            self.status = .inProgress
+            self.updateCallback(event: .connection(self.status))
             let request = AppSyncConnectionRequest(url: url)
             let signedRequest = await self.interceptConnection(request, for: url)
-            self.urlRequest.url = signedRequest.url
+            var urlRequest = self.urlRequest
+            urlRequest.url = signedRequest.url
             self.websocket.connect(
-                urlRequest: self.urlRequest,
+                urlRequest: urlRequest,
                 protocols: ["graphql-ws"],
                 delegate: self
             )
@@ -121,6 +126,10 @@ public class RealtimeConnectionProviderAsync: ConnectionProvider {
                 return
             }
             guard let url = self.urlRequest.url else {
+                self.updateCallback(event: .error(ConnectionProviderError.unknown(
+                    message: "Missing URL",
+                    payload: nil
+                )))
                 return
             }
             let signedMessage = await self.interceptMessage(message, for: url)
