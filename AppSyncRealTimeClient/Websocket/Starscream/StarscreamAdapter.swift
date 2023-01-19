@@ -38,7 +38,7 @@ public class StarscreamAdapter: AppSyncWebsocketProvider {
         serialQueue.async {
             AppSyncLogger.verbose("[StarscreamAdapter] connect. Connecting to url")
             var urlRequest = urlRequest
-            
+
             urlRequest.setValue("no-store", forHTTPHeaderField: "Cache-Control")
 
             let protocolHeaderValue = protocols.joined(separator: ", ")

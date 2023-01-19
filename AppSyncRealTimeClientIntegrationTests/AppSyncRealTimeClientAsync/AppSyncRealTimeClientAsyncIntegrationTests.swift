@@ -23,7 +23,7 @@ class AppSyncRealTimeClientAsyncIntegrationTests: AppSyncRealTimeClientTestBase 
         let subscribeSuccess = expectation(description: "subscribe successfully")
         let authInterceptor = APIKeyAuthInterceptor(apiKey)
         let connectionProvider = ConnectionProviderFactory.createConnectionProviderAsync(
-            for: url,
+            for: urlRequest,
             authInterceptor: authInterceptor,
             connectionType: .appSyncRealtime
         )
@@ -75,7 +75,7 @@ class AppSyncRealTimeClientAsyncIntegrationTests: AppSyncRealTimeClientTestBase 
 
         let authInterceptor = APIKeyAuthInterceptor(apiKey)
         let connectionProvider = ConnectionProviderFactory.createConnectionProviderAsync(
-            for: url,
+            for: urlRequest,
             authInterceptor: authInterceptor,
             connectionType: .appSyncRealtime
         )
@@ -170,7 +170,7 @@ class AppSyncRealTimeClientAsyncIntegrationTests: AppSyncRealTimeClientTestBase 
     func testSubscribeUnsubscribeRepeat() {
         let authInterceptor = APIKeyAuthInterceptor(apiKey)
         let connectionProvider = ConnectionProviderFactory.createConnectionProviderAsync(
-            for: url,
+            for: urlRequest,
             authInterceptor: authInterceptor,
             connectionType: .appSyncRealtime
         )
@@ -197,7 +197,7 @@ class AppSyncRealTimeClientAsyncIntegrationTests: AppSyncRealTimeClientTestBase 
     func testMultipleThreadsSubscribeUnsubscribe() {
         let authInterceptor = APIKeyAuthInterceptor(apiKey)
         let connectionProvider = ConnectionProviderFactory.createConnectionProviderAsync(
-            for: url,
+            for: urlRequest,
             authInterceptor: authInterceptor,
             connectionType: .appSyncRealtime
         )

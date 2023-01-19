@@ -10,7 +10,7 @@ import XCTest
 
 class AppSyncRealTimeClientTestBase: XCTestCase {
 
-    var url: URL!
+    var urlRequest: URLRequest!
     var apiKey: String!
     let requestString = """
         subscription onCreate {
@@ -35,7 +35,8 @@ class AppSyncRealTimeClientTestBase: XCTestCase {
                 let endpoint = apiName["endpoint"] as? String,
                 let apiKey = apiName["apiKey"] as? String {
 
-                url = URL(string: endpoint)
+                urlRequest = URLRequest(url: URL(string: endpoint)!)
+
                 self.apiKey = apiKey
             } else {
                 throw "Could not retrieve endpoint"

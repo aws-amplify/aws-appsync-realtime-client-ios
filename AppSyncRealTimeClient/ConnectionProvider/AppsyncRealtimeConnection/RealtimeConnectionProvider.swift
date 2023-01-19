@@ -103,18 +103,18 @@ public class RealtimeConnectionProvider: ConnectionProvider {
                 self.updateCallback(event: .connection(self.status))
                 return
             }
-            
+
             guard let url = self.urlRequest.url else {
                 self.updateCallback(event: .error(ConnectionProviderError.unknown(message: "Missing URL", payload: nil)))
                 return
             }
             self.status = .inProgress
             self.updateCallback(event: .connection(self.status))
-            
+
             let request = AppSyncConnectionRequest(url: url)
             let signedRequest = self.interceptConnection(request, for: url)
             self.urlRequest.url = signedRequest.url
-            
+
             DispatchQueue.global().async {
                 self.websocket.connect(
                     urlRequest: self.urlRequest,
