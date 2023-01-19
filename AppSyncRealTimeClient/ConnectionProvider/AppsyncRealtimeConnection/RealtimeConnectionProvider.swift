@@ -103,11 +103,14 @@ public class RealtimeConnectionProvider: ConnectionProvider {
                 self.updateCallback(event: .connection(self.status))
                 return
             }
-            self.status = .inProgress
-            self.updateCallback(event: .connection(self.status))
+            
             guard let url = self.urlRequest.url else {
+                self.updateCallback(event: .error(ConnectionProviderError.unknown(message: "Missing URL", payload: nil)))
                 return
             }
+            self.status = .inProgress
+            self.updateCallback(event: .connection(self.status))
+            
             let request = AppSyncConnectionRequest(url: url)
             let signedRequest = self.interceptConnection(request, for: url)
             self.urlRequest.url = signedRequest.url
@@ -129,6 +132,7 @@ public class RealtimeConnectionProvider: ConnectionProvider {
                 return
             }
             guard let url = self.urlRequest.url else {
+                self.updateCallback(event: .error(ConnectionProviderError.unknown(message: "Missing URL", payload: nil)))
                 return
             }
             let signedMessage = self.interceptMessage(message, for: url)
