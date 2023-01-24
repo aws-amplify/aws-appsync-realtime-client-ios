@@ -9,13 +9,13 @@ import XCTest
 @testable import AppSyncRealTimeClient
 
 class ConnectionProviderHandleErrorTests: XCTestCase {
-    let url = URL(string: "https://www.appsyncrealtimeclient.test/")!
+    let urlRequest = URLRequest(url: URL(string: "https://www.appsyncrealtimeclient.test/")!)
     var websocket = MockWebsocketProvider()
 
     /// Error response is limit exceeded with id
     /// Should receive ConnectionProviderError.limitExceeded with id
     func testLimitExceededWithId() {
-        let provider = RealtimeConnectionProvider(url: url, websocket: websocket)
+        let provider = RealtimeConnectionProvider(urlRequest: urlRequest, websocket: websocket)
 
         let subscriptionEvent = expectation(description: "Receieved subscription event")
         provider.addListener(identifier: "id") { event in
@@ -42,7 +42,7 @@ class ConnectionProviderHandleErrorTests: XCTestCase {
     /// Should throttle and receive a fraction of ConnectionProviderError.limitExceeded event without id
     @available(iOS 13.0, macOS 10.15, tvOS 13.0, watchOS 6.0, *)
     func testLimitExceededMissingIdThrottled() {
-        let provider = RealtimeConnectionProvider(url: url, websocket: websocket)
+        let provider = RealtimeConnectionProvider(urlRequest: urlRequest, websocket: websocket)
         let limitExceededThrottle = expectation(description: "received limit exceeded")
         limitExceededThrottle.expectedFulfillmentCount = 100
         let sink = provider.limitExceededSubject.sink { error in
@@ -86,7 +86,7 @@ class ConnectionProviderHandleErrorTests: XCTestCase {
     /// Error response is max subscription with subscription id
     /// Should receive ConnectionProviderError.limitExceeded with id
     func testMaxSubscriptionReached() {
-        let provider = RealtimeConnectionProvider(url: url, websocket: websocket)
+        let provider = RealtimeConnectionProvider(urlRequest: urlRequest, websocket: websocket)
 
         let subscriptionEvent = expectation(description: "Receieved subscription event")
         provider.addListener(identifier: "id") { event in
@@ -112,7 +112,7 @@ class ConnectionProviderHandleErrorTests: XCTestCase {
     /// Error response with no indication for which subscription and missing payload
     /// Should receive ConnectionProviderError.other
     func testMissingId() throws {
-        let provider = RealtimeConnectionProvider(url: url, websocket: websocket)
+        let provider = RealtimeConnectionProvider(urlRequest: urlRequest, websocket: websocket)
 
         let subscriptionEvent = expectation(description: "Receieved subscription event")
         provider.addListener(identifier: "id") { event in
@@ -137,7 +137,7 @@ class ConnectionProviderHandleErrorTests: XCTestCase {
     /// Error response subscription id and payload
     /// Should receive ConnectionProviderError.subscription(id, payload)
     func testWithSubscriptionId() throws {
-        let provider = RealtimeConnectionProvider(url: url, websocket: websocket)
+        let provider = RealtimeConnectionProvider(urlRequest: urlRequest, websocket: websocket)
 
         let subscriptionEvent = expectation(description: "Receieved subscription event")
         provider.addListener(identifier: "id") { event in

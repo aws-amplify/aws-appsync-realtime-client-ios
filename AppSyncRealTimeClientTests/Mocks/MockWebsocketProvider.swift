@@ -9,7 +9,7 @@ import Foundation
 import AppSyncRealTimeClient
 
 class MockWebsocketProvider: AppSyncWebsocketProvider {
-    typealias OnConnect = (URL, [String], AppSyncWebsocketDelegate?) -> Void
+    typealias OnConnect = (URLRequest, [String], AppSyncWebsocketDelegate?) -> Void
     typealias OnDisconnect = () -> Void
     typealias OnWrite = (String) -> Void
 
@@ -30,8 +30,8 @@ class MockWebsocketProvider: AppSyncWebsocketProvider {
         self.onWrite = onWrite
     }
 
-    func connect(url: URL, protocols: [String], delegate: AppSyncWebsocketDelegate?) {
-        onConnect?(url, protocols, delegate)
+    func connect(urlRequest: URLRequest, protocols: [String], delegate: AppSyncWebsocketDelegate?) {
+        onConnect?(urlRequest, protocols, delegate)
     }
 
     func disconnect() {

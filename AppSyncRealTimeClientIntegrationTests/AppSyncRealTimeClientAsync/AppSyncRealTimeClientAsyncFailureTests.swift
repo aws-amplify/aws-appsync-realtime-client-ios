@@ -16,7 +16,7 @@ class AppSyncRealTimeClientAsyncFailureTests: AppSyncRealTimeClientTestBase {
         subscribeSuccess.expectedFulfillmentCount = 100
         let authInterceptor = APIKeyAuthInterceptor(apiKey)
         let connectionProvider = ConnectionProviderFactory.createConnectionProviderAsync(
-            for: url,
+            for: urlRequest,
             authInterceptor: authInterceptor,
             connectionType: .appSyncRealtime
         )
@@ -91,7 +91,7 @@ class AppSyncRealTimeClientAsyncFailureTests: AppSyncRealTimeClientTestBase {
         subscribeSuccess.expectedFulfillmentCount = 100
         let authInterceptor = APIKeyAuthInterceptor(apiKey)
         let connectionProvider = ConnectionProviderFactory.createConnectionProviderAsync(
-            for: url,
+            for: urlRequest,
             authInterceptor: authInterceptor,
             connectionType: .appSyncRealtime
         )
