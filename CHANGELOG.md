@@ -3,6 +3,17 @@
 ## Unreleased
 *Changes on `main` branch that have not yet been released*
 
+## 3.0.0
+
+**Breaking changes**: This is a major version release due to the changes made in [PR #110](https://github.com/aws-amplify/aws-appsync-realtime-client-ios/pull/110). The public interface for `ConnectionProviderFactory`, `RealtimeConnectionProviderAsync`, and `RealtimeConnectionProvider` has been modified to take in a `URLRequest` parameter instead of a `URL`.
+
+### Features
+- feat: pass URLRequest instead of URL to interfaces (See [PR #110](https://github.com/aws-amplify/aws-appsync-realtime-client-ios/pull/110))
+
+### Fixes
+- fix: fixed a bug that prevented TaskQueue sync method from waiting for the task to complete. (See [PR #107](https://github.com/aws-amplify/aws-appsync-realtime-client-ios/pull/107))
+- chore: Add no store for the cache in urlsession (See [PR #109](https://github.com/aws-amplify/aws-appsync-realtime-client-ios/pull/109))
+
 ## 2.1.1
 
 ### Fixes

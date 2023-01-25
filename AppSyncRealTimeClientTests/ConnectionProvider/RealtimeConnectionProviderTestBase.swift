@@ -10,7 +10,7 @@ import XCTest
 
 class RealtimeConnectionProviderTestBase: XCTestCase {
 
-    let url = URL(string: "https://www.appsyncrealtimeclient.test/")!
+    let urlRequest = URLRequest(url: URL(string: "https://www.appsyncrealtimeclient.test/")!)
 
     var websocket: MockWebsocketProvider!
 
@@ -50,7 +50,7 @@ class RealtimeConnectionProviderTestBase: XCTestCase {
         connectivityMonitor: ConnectivityMonitor = ConnectivityMonitor()
     ) -> RealtimeConnectionProvider {
         let provider = RealtimeConnectionProvider(
-            url: url,
+            urlRequest: urlRequest,
             websocket: websocket,
             connectionQueue: connectionQueue,
             serialCallbackQueue: serialCallbackQueue,

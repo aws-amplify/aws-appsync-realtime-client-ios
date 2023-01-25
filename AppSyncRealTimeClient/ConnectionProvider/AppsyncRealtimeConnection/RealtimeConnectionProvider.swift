@@ -15,7 +15,7 @@ public class RealtimeConnectionProvider: ConnectionProvider {
     /// message before we consider it stale and force a disconnect
     static let staleConnectionTimeout: TimeInterval = 5 * 60
 
-    private let url: URL
+    private let urlRequest: URLRequest
     var listeners: [String: ConnectionProviderCallback]
 
     let websocket: AppSyncWebsocketProvider
@@ -58,12 +58,12 @@ public class RealtimeConnectionProvider: ConnectionProvider {
         return iLimitExceededSubject as! PassthroughSubject<ConnectionProviderError, Never> // swiftlint:disable:this force_cast line_length
     }
 
-    public convenience init(for url: URL, websocket: AppSyncWebsocketProvider) {
-        self.init(url: url, websocket: websocket)
+    public convenience init(for urlRequest: URLRequest, websocket: AppSyncWebsocketProvider) {
+        self.init(urlRequest: urlRequest, websocket: websocket)
     }
 
     init(
-        url: URL,
+        urlRequest: URLRequest,
         websocket: AppSyncWebsocketProvider,
         connectionQueue: DispatchQueue = DispatchQueue(
             label: "com.amazonaws.AppSyncRealTimeConnectionProvider.serialQueue"
@@ -73,7 +73,7 @@ public class RealtimeConnectionProvider: ConnectionProvider {
         ),
         connectivityMonitor: ConnectivityMonitor = ConnectivityMonitor()
     ) {
-        self.url = url
+        self.urlRequest = urlRequest
         self.websocket = websocket
         self.listeners = [:]
         self.status = .notConnected
@@ -103,13 +103,25 @@ public class RealtimeConnectionProvider: ConnectionProvider {
                 self.updateCallback(event: .connection(self.status))
                 return
             }
+
+            guard let url = self.urlRequest.url else {
+                self.updateCallback(event: .error(ConnectionProviderError.unknown(
+                    message: "Missing URL",
+                    payload: nil
+                )))
+                return
+            }
             self.status = .inProgress
             self.updateCallback(event: .connection(self.status))
-            let request = AppSyncConnectionRequest(url: self.url)
-            let signedRequest = self.interceptConnection(request, for: self.url)
+
+            let request = AppSyncConnectionRequest(url: url)
+            let signedRequest = self.interceptConnection(request, for: url)
+            var urlRequest = self.urlRequest
+            urlRequest.url = signedRequest.url
+
             DispatchQueue.global().async {
                 self.websocket.connect(
-                    url: signedRequest.url,
+                    urlRequest: urlRequest,
                     protocols: ["graphql-ws"],
                     delegate: self
                 )
@@ -123,8 +135,14 @@ public class RealtimeConnectionProvider: ConnectionProvider {
             guard let self = self else {
                 return
             }
-
-            let signedMessage = self.interceptMessage(message, for: self.url)
+            guard let url = self.urlRequest.url else {
+                self.updateCallback(event: .error(ConnectionProviderError.unknown(
+                    message: "Missing URL",
+                    payload: nil
+                )))
+                return
+            }
+            let signedMessage = self.interceptMessage(message, for: url)
             let jsonEncoder = JSONEncoder()
             do {
                 let jsonData = try jsonEncoder.encode(signedMessage)
