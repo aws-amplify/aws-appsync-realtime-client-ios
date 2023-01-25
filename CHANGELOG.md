@@ -5,7 +5,7 @@
 
 ## 3.0.0
 
-**Breaking changes**: This is a major version release due to the changes made in [PR #110](https://github.com/aws-amplify/aws-appsync-realtime-client-ios/pull/110). The public interface for `ConnectionProviderFactory`, `RealtimeConnectionProviderAsync`, and `RealtimeConnectionProvider` has been modified to take in a URLRequest parameter instead of a URL.
+**Breaking changes**: This is a major version release due to the changes made in [PR #110](https://github.com/aws-amplify/aws-appsync-realtime-client-ios/pull/110). The public interface for `ConnectionProviderFactory`, `RealtimeConnectionProviderAsync`, and `RealtimeConnectionProvider` has been modified to take in a `URLRequest` parameter instead of a `URL`.
 
 ### Features
 - feat: pass URLRequest instead of URL to interfaces (See [PR #110](https://github.com/aws-amplify/aws-appsync-realtime-client-ios/pull/110))
