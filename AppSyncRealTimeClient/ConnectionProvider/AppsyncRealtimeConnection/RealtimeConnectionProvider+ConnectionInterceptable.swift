@@ -15,9 +15,41 @@ extension RealtimeConnectionProvider: ConnectionInterceptable {
 
     public func interceptConnection(
         _ request: AppSyncConnectionRequest,
-        for endpoint: URL
-    ) -> AppSyncConnectionRequest {
-        let finalRequest = connectionInterceptors.reduce(request) { $1.interceptConnection($0, for: endpoint) }
-        return finalRequest
+        for endpoint: URL,
+        completion: (AppSyncConnectionRequest) -> Void) {
+
+            chainInterceptors(
+                index: 0,
+                request: request,
+                endpoint: endpoint,
+                completion: completion)
+        }
+
+    private func chainInterceptors(
+        index: Int,
+        request: AppSyncConnectionRequest,
+        endpoint: URL,
+        completion: (AppSyncConnectionRequest) -> Void) {
+
+            guard index < connectionInterceptors.count else {
+                completion(request)
+                return
+            }
+            let interceptor = connectionInterceptors[index]
+            interceptor.interceptConnection(request, for: endpoint) { interceptedRequest in
+                chainInterceptors(
+                    index: index + 1,
+                    request: interceptedRequest,
+                    endpoint: endpoint,
+                    completion: completion)
+            }
+        }
+
+    // MARK: Deprecated method
+
+    public func interceptConnection(
+        _ request: AppSyncConnectionRequest,
+        for endpoint: URL) -> AppSyncConnectionRequest {
+        fatalError("Should not be invoked, use the callback based api")
     }
 }
