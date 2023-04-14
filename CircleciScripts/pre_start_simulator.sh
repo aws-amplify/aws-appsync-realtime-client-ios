@@ -9,7 +9,11 @@ if [[ -z $test_device_id ]] ; then
   echo "Runtime: '${runtime}'"
 
   # Get the last alphabetical device (probably something in the iPhone X family, as of 2019-05-31)
+<<<<<<< HEAD
    devicetype=$( xcrun simctl list devicetypes "iPhone " | sort | tail -1 | sed 's/.*(//' | sed 's/).*//' | tr -d '[:space:]' )
+=======
+  devicetype=$( xcrun simctl list devicetypes "iPhone " | sort | tail -1 | sed 's/.*(//' | sed 's/).*//' | tr -d '[:space:]' )
+>>>>>>> fa14604 (Fix cci build failure)
   echo "Device type: '${devicetype}'"
 
   test_device_id=$( xcrun simctl create "circleci-test-device" "${devicetype}" "${runtime}" | tr -d '[:space:]' )
