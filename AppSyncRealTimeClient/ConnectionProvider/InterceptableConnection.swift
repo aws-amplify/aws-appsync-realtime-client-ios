@@ -9,7 +9,7 @@ import Foundation
 
 /// Intercepts the connect request
 public protocol ConnectionInterceptable {
-    
+
     /// Add a new interceptor to the object.
     ///
     /// - Parameter interceptor: interceptor to be added
@@ -36,7 +36,7 @@ public protocol ConnectionInterceptable {
 }
 
 public protocol MessageInterceptable {
-    
+
     func addInterceptor(_ interceptor: MessageInterceptor)
 
     @available(

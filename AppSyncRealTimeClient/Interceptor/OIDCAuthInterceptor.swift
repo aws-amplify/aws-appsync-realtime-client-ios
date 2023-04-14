@@ -18,7 +18,8 @@ public class OIDCAuthInterceptor: AuthInterceptor {
     public func interceptMessage(
         _ message: AppSyncMessage,
         for endpoint: URL,
-        completion: (AppSyncMessage) -> Void) {
+        completion: (AppSyncMessage) -> Void
+    ) {
             guard let host = endpoint.host else {
                 completion(message)
                 return
@@ -54,7 +55,8 @@ public class OIDCAuthInterceptor: AuthInterceptor {
     public func interceptConnection(
         _ request: AppSyncConnectionRequest,
         for endpoint: URL,
-        completion: (AppSyncConnectionRequest) -> Void) {
+        completion: (AppSyncConnectionRequest) -> Void
+    ) {
 
             guard let host = endpoint.host else {
                 completion(request)
@@ -67,13 +69,15 @@ public class OIDCAuthInterceptor: AuthInterceptor {
                 case .success(let token):
                     jwtToken = token
                 case .failure:
-                    // A user that is not signed in should receive an unauthorized error from the connection attempt. This code
-                    // achieves this by always creating a valid request to AppSync even when the token cannot be retrieved. The
-                    // request sent to AppSync will receive a response indicating the request is unauthorized. If we do not use
-                    // empty token string and perform the remaining logic of the request construction then it will fail request
-                    // validation at AppSync before the authorization check, which ends up being propagated back to the caller
-                    // as a "bad request". Example of bad requests are when the header and payload query strings are missing
-                    // or when the data is not base64 encoded.
+                    // A user that is not signed in should receive an unauthorized error from
+                    // the connection attempt. This code achieves this by always creating a valid
+                    // request to AppSync even when the token cannot be retrieved. The request sent
+                    // to AppSync will receive a response indicating the request is unauthorized.
+                    // If we do not use empty token string and perform the remaining logic of the
+                    // request construction then it will fail request validation at AppSync before
+                    // the authorization check, which ends up being propagated back to the caller
+                    // as a "bad request". Example of bad requests are when the header and payload
+                    // query strings are missing or when the data is not base64 encoded.
                     jwtToken = ""
                 }
 
@@ -102,7 +106,8 @@ public class OIDCAuthInterceptor: AuthInterceptor {
 
     public func interceptMessage(
         _ message: AppSyncMessage,
-        for endpoint: URL) -> AppSyncMessage {
+        for endpoint: URL
+    ) -> AppSyncMessage {
             fatalError("")
         }
 

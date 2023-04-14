@@ -16,20 +16,23 @@ extension RealtimeConnectionProvider: MessageInterceptable {
     public func interceptMessage(
         _ message: AppSyncMessage,
         for endpoint: URL,
-        completion: (AppSyncMessage) -> Void) {
+        completion: (AppSyncMessage) -> Void
+    ) {
 
             chainInterceptors(
                 index: 0,
                 message: message,
                 endpoint: endpoint,
-                completion: completion)
+                completion: completion
+            )
         }
 
     private func chainInterceptors(
         index: Int,
         message: AppSyncMessage,
         endpoint: URL,
-        completion: (AppSyncMessage) -> Void) {
+        completion: (AppSyncMessage) -> Void
+    ) {
 
             guard index < messageInterceptors.count else {
                 completion(message)
@@ -41,7 +44,8 @@ extension RealtimeConnectionProvider: MessageInterceptable {
                     index: index + 1,
                     message: interceptedMessage,
                     endpoint: endpoint,
-                    completion: completion)
+                    completion: completion
+                )
             }
         }
 
