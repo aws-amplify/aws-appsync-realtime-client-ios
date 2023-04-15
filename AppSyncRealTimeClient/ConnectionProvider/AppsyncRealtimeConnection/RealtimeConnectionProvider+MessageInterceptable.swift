@@ -16,42 +16,44 @@ extension RealtimeConnectionProvider: MessageInterceptable {
     public func interceptMessage(
         _ message: AppSyncMessage,
         for endpoint: URL,
-        completion: (AppSyncMessage) -> Void
+        completion: @escaping (AppSyncMessage) -> Void
     ) {
 
-            chainInterceptors(
-                index: 0,
-                message: message,
-                endpoint: endpoint,
-                completion: completion
-            )
-        }
+        chainInterceptors(
+            index: 0,
+            message: message,
+            endpoint: endpoint,
+            completion: completion
+        )
+    }
 
     private func chainInterceptors(
         index: Int,
         message: AppSyncMessage,
         endpoint: URL,
-        completion: (AppSyncMessage) -> Void
+        completion: @escaping (AppSyncMessage) -> Void
     ) {
 
-            guard index < messageInterceptors.count else {
-                completion(message)
-                return
-            }
-            let interceptor = messageInterceptors[index]
-            interceptor.interceptMessage(message, for: endpoint) { interceptedMessage in
-                chainInterceptors(
-                    index: index + 1,
-                    message: interceptedMessage,
-                    endpoint: endpoint,
-                    completion: completion
-                )
-            }
+        guard index < messageInterceptors.count else {
+            completion(message)
+            return
         }
+        let interceptor = messageInterceptors[index]
+        interceptor.interceptMessage(message, for: endpoint) { interceptedMessage in
+            self.chainInterceptors(
+                index: index + 1,
+                message: interceptedMessage,
+                endpoint: endpoint,
+                completion: completion
+            )
+        }
+    }
 
     // MARK: Deprecated method
 
     public func interceptMessage(_ message: AppSyncMessage, for endpoint: URL) -> AppSyncMessage {
-        fatalError("Should not be invoked, use the callback based api")
+        // This is added here for backward compatibility
+        let finalMessage = messageInterceptors.reduce(message) { $1.interceptMessage($0, for: endpoint) }
+        return finalMessage
     }
 }

@@ -16,9 +16,8 @@ extension RealtimeConnectionProvider: ConnectionInterceptable {
     public func interceptConnection(
         _ request: AppSyncConnectionRequest,
         for endpoint: URL,
-        completion: (AppSyncConnectionRequest) -> Void
+        completion: @escaping (AppSyncConnectionRequest) -> Void
     ) {
-
             chainInterceptors(
                 index: 0,
                 request: request,
@@ -31,7 +30,7 @@ extension RealtimeConnectionProvider: ConnectionInterceptable {
         index: Int,
         request: AppSyncConnectionRequest,
         endpoint: URL,
-        completion: (AppSyncConnectionRequest) -> Void
+        completion: @escaping (AppSyncConnectionRequest) -> Void
     ) {
 
             guard index < connectionInterceptors.count else {
@@ -40,7 +39,7 @@ extension RealtimeConnectionProvider: ConnectionInterceptable {
             }
             let interceptor = connectionInterceptors[index]
             interceptor.interceptConnection(request, for: endpoint) { interceptedRequest in
-                chainInterceptors(
+                self.chainInterceptors(
                     index: index + 1,
                     request: interceptedRequest,
                     endpoint: endpoint,
@@ -55,6 +54,8 @@ extension RealtimeConnectionProvider: ConnectionInterceptable {
         _ request: AppSyncConnectionRequest,
         for endpoint: URL
     ) -> AppSyncConnectionRequest {
-        fatalError("Should not be invoked, use the callback based api")
+        // This is added here for backward compatibility
+        let finalRequest = connectionInterceptors.reduce(request) { $1.interceptConnection($0, for: endpoint) }
+        return finalRequest
     }
 }

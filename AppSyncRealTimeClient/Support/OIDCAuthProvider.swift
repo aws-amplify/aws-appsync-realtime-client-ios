@@ -8,12 +8,12 @@
 public protocol OIDCAuthProvider {
     func getLatestAuthToken() -> Result<String, Error>
 
-    func getLatestAuthToken(completion: (Result<String, Error>) -> Void )
+    func getLatestAuthToken(completion: @escaping (Result<String, Error>) -> Void )
 }
 
 public extension OIDCAuthProvider {
 
-    func getLatestAuthToken(completion: (Result<String, Error>) -> Void) {
+    func getLatestAuthToken(completion: @escaping (Result<String, Error>) -> Void) {
         let result = getLatestAuthToken()
         completion(result)
     }
