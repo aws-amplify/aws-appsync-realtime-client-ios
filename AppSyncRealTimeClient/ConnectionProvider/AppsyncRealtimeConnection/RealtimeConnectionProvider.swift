@@ -115,16 +115,17 @@ public class RealtimeConnectionProvider: ConnectionProvider {
             self.updateCallback(event: .connection(self.status))
 
             let request = AppSyncConnectionRequest(url: url)
-            let signedRequest = self.interceptConnection(request, for: url)
-            var urlRequest = self.urlRequest
-            urlRequest.url = signedRequest.url
+            self.interceptConnection(request, for: url) { signedRequest in
+                var urlRequest = self.urlRequest
+                urlRequest.url = signedRequest.url
 
-            DispatchQueue.global().async {
-                self.websocket.connect(
-                    urlRequest: urlRequest,
-                    protocols: ["graphql-ws"],
-                    delegate: self
-                )
+                DispatchQueue.global().async {
+                    self.websocket.connect(
+                        urlRequest: urlRequest,
+                        protocols: ["graphql-ws"],
+                        delegate: self
+                    )
+                }
             }
         }
     }
@@ -142,25 +143,27 @@ public class RealtimeConnectionProvider: ConnectionProvider {
                 )))
                 return
             }
-            let signedMessage = self.interceptMessage(message, for: url)
-            let jsonEncoder = JSONEncoder()
-            do {
-                let jsonData = try jsonEncoder.encode(signedMessage)
-                guard let jsonString = String(data: jsonData, encoding: .utf8) else {
-                    let jsonError = ConnectionProviderError.jsonParse(message.id, nil)
-                    self.updateCallback(event: .error(jsonError))
-                    return
-                }
-                self.websocket.write(message: jsonString)
-            } catch {
-                AppSyncLogger.error(error)
-                switch message.messageType {
-                case .connectionInit:
-                    self.receivedConnectionInit()
-                default:
-                    self.updateCallback(event: .error(ConnectionProviderError.jsonParse(message.id, error)))
+            self.interceptMessage(message, for: url) { signedMessage in
+                let jsonEncoder = JSONEncoder()
+                do {
+                    let jsonData = try jsonEncoder.encode(signedMessage)
+                    guard let jsonString = String(data: jsonData, encoding: .utf8) else {
+                        let jsonError = ConnectionProviderError.jsonParse(message.id, nil)
+                        self.updateCallback(event: .error(jsonError))
+                        return
+                    }
+                    self.websocket.write(message: jsonString)
+                } catch {
+                    AppSyncLogger.error(error)
+                    switch message.messageType {
+                    case .connectionInit:
+                        self.receivedConnectionInit()
+                    default:
+                        self.updateCallback(event: .error(ConnectionProviderError.jsonParse(message.id, error)))
+                    }
                 }
             }
+
         }
 
     }
