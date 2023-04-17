@@ -91,6 +91,7 @@
 		5CFF723E283C1AF5001D5471 /* RealtimeConnectionProviderAsyncTestBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CFF723C283C1AF5001D5471 /* RealtimeConnectionProviderAsyncTestBase.swift */; };
 		978409B82739C7BE002362A7 /* AppSyncURLHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 978409B72739C7BE002362A7 /* AppSyncURLHelper.swift */; };
 		978409BA2739C7E1002362A7 /* AppSyncURLHelperTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 978409B92739C7E1002362A7 /* AppSyncURLHelperTests.swift */; };
+		B4AEC68C29E8A14F00D693CD /* InterceptableConnection+Default.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4AEC68B29E8A14F00D693CD /* InterceptableConnection+Default.swift */; };
 		DCFE701B5D1380E566694A48 /* Pods_AppSyncRealTimeClient_AppSyncRealTimeClientTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E662A46AB2C93EE316F784C /* Pods_AppSyncRealTimeClient_AppSyncRealTimeClientTests.framework */; };
 		FA67507824D3244A005A1345 /* MockWebsocketProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA67507724D3244A005A1345 /* MockWebsocketProvider.swift */; };
 		FA67507B24D338CB005A1345 /* Error+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA67507A24D338C6005A1345 /* Error+Extension.swift */; };
@@ -242,6 +243,7 @@
 		A843B4589131E0D2DB13ADC7 /* Pods-HostApp-AppSyncRealTimeClientIntegrationTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HostApp-AppSyncRealTimeClientIntegrationTests.debug.xcconfig"; path = "Target Support Files/Pods-HostApp-AppSyncRealTimeClientIntegrationTests/Pods-HostApp-AppSyncRealTimeClientIntegrationTests.debug.xcconfig"; sourceTree = "<group>"; };
 		B07A87133C24AA78AF59093C /* Pods-AppSyncRealTimeClient.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AppSyncRealTimeClient.debug.xcconfig"; path = "Target Support Files/Pods-AppSyncRealTimeClient/Pods-AppSyncRealTimeClient.debug.xcconfig"; sourceTree = "<group>"; };
 		B4A642C2C000E0D0B568A4A9 /* Pods-AppSyncRTCSample.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AppSyncRTCSample.release.xcconfig"; path = "Target Support Files/Pods-AppSyncRTCSample/Pods-AppSyncRTCSample.release.xcconfig"; sourceTree = "<group>"; };
+		B4AEC68B29E8A14F00D693CD /* InterceptableConnection+Default.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "InterceptableConnection+Default.swift"; sourceTree = "<group>"; };
 		BBF14AA5E9A4D036CA87B952 /* Pods-AppSyncRTCSample.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AppSyncRTCSample.debug.xcconfig"; path = "Target Support Files/Pods-AppSyncRTCSample/Pods-AppSyncRTCSample.debug.xcconfig"; sourceTree = "<group>"; };
 		C73EA796F50FB0196FDF4865 /* Pods-AppSyncRealTimeClient.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AppSyncRealTimeClient.release.xcconfig"; path = "Target Support Files/Pods-AppSyncRealTimeClient/Pods-AppSyncRealTimeClient.release.xcconfig"; sourceTree = "<group>"; };
 		E65A19C826699DA299A49284 /* Pods-HostApp-AppSyncRealTimeClientIntegrationTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HostApp-AppSyncRealTimeClientIntegrationTests.release.xcconfig"; path = "Target Support Files/Pods-HostApp-AppSyncRealTimeClientIntegrationTests/Pods-HostApp-AppSyncRealTimeClientIntegrationTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -386,6 +388,7 @@
 				217F39AC2406E98300F1A0B3 /* ConnectionProviderError.swift */,
 				21D38B8D240A3C2300EC2A8D /* ConnectionProviderFactory.swift */,
 				217F39AB2406E98300F1A0B3 /* InterceptableConnection.swift */,
+				B4AEC68B29E8A14F00D693CD /* InterceptableConnection+Default.swift */,
 				5C5609ED2821E6FC0002ACF5 /* InterceptableConnectionAsync.swift */,
 			);
 			path = ConnectionProvider;
@@ -1231,6 +1234,7 @@
 				219BFF4927A3B238000FC148 /* ConnectivityMonitor.swift in Sources */,
 				FAB7E91224D2644E00DF1EA1 /* RealtimeConnectionProvider+StaleConnection.swift in Sources */,
 				217F39D32406E98400F1A0B3 /* RealtimeConnectionProvider.swift in Sources */,
+				B4AEC68C29E8A14F00D693CD /* InterceptableConnection+Default.swift in Sources */,
 				217F39D12406E98400F1A0B3 /* AppSyncConnectionRequest.swift in Sources */,
 				5C5609EE2821E6FC0002ACF5 /* InterceptableConnectionAsync.swift in Sources */,
 				217F39DD2406E98400F1A0B3 /* AppSyncSubscriptionConnection+Connection.swift in Sources */,
