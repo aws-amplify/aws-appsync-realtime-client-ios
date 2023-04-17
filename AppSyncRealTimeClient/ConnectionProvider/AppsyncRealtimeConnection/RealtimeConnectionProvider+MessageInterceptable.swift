@@ -20,28 +20,28 @@ extension RealtimeConnectionProvider: MessageInterceptable {
     ) {
 
         chainInterceptors(
-            index: 0,
+            iterator: messageInterceptors.makeIterator(),
             message: message,
             endpoint: endpoint,
             completion: completion
         )
     }
 
-    private func chainInterceptors(
-        index: Int,
+    private func chainInterceptors<I: IteratorProtocol>(
+        iterator: I,
         message: AppSyncMessage,
         endpoint: URL,
         completion: @escaping (AppSyncMessage) -> Void
-    ) {
+    ) where I.Element == MessageInterceptor {
 
-        guard index < messageInterceptors.count else {
+        var mutableIterator = iterator
+        guard let interceptor = mutableIterator.next() else {
             completion(message)
             return
         }
-        let interceptor = messageInterceptors[index]
         interceptor.interceptMessage(message, for: endpoint) { interceptedMessage in
             self.chainInterceptors(
-                index: index + 1,
+                iterator: mutableIterator,
                 message: interceptedMessage,
                 endpoint: endpoint,
                 completion: completion

@@ -19,28 +19,28 @@ extension RealtimeConnectionProvider: ConnectionInterceptable {
         completion: @escaping (AppSyncConnectionRequest) -> Void
     ) {
             chainInterceptors(
-                index: 0,
+                iterator: connectionInterceptors.makeIterator(),
                 request: request,
                 endpoint: endpoint,
                 completion: completion
             )
         }
 
-    private func chainInterceptors(
-        index: Int,
+    private func chainInterceptors<I: IteratorProtocol>(
+        iterator: I,
         request: AppSyncConnectionRequest,
         endpoint: URL,
         completion: @escaping (AppSyncConnectionRequest) -> Void
-    ) {
+    ) where I.Element == ConnectionInterceptor {
 
-            guard index < connectionInterceptors.count else {
+            var mutableIterator = iterator
+            guard let interceptor = mutableIterator.next() else {
                 completion(request)
                 return
             }
-            let interceptor = connectionInterceptors[index]
             interceptor.interceptConnection(request, for: endpoint) { interceptedRequest in
                 self.chainInterceptors(
-                    index: index + 1,
+                    iterator: mutableIterator,
                     request: interceptedRequest,
                     endpoint: endpoint,
                     completion: completion
