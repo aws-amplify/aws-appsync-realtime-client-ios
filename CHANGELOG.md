@@ -3,6 +3,8 @@
 ## Unreleased
 *Changes on `main` branch that have not yet been released*
 
+## 3.1.0
+
 ### Features
 - feat: Add async implementation and OIDCAuthProvider protocol ([#119](https://github.com/aws-amplify/aws-appsync-realtime-client-ios/pull/119))
 - feat: Add asynchronous version of interceptor protocol ([#118](https://github.com/aws-amplify/aws-appsync-realtime-client-ios/pull/118))
