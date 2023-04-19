@@ -4,7 +4,7 @@ version: 2.1
 
 defaults: &defaults
   macos:
-    xcode: '13.2.1'
+    xcode: '14.2.0'
   working_directory: ~/aws-appsync-realtime-client-ios
   environment:
       BUNDLE_PATH: vendor/bundle
@@ -47,8 +47,8 @@ commands:
     steps:
       - restore_cache:
           keys:
-            - v1-gems-{{ checksum "~/aws-appsync-realtime-client-ios/Gemfile.lock" }}
-            - v1-gems-
+            - app-{{ .Environment.CACHE_VERSION }}-gems-{{ checksum "~/aws-appsync-realtime-client-ios/Gemfile.lock" }}
+            - app-{{ .Environment.CACHE_VERSION }}-gems-
 
   check_bundle:
     steps:
@@ -94,12 +94,12 @@ jobs:
       - restore_gems
       - run:
           name: Bundle install
-          command: bundle check --path $BUNDLE_PATH || bundle install --path $BUNDLE_PATH
+          command: bundle config set --local path 'vendor/bundle' && bundle install
           environment:
             BUNDLE_JOBS: 4
             BUNDLE_RETRY: 3
       - save_cache:
-          key: v1-gems-{{ checksum "~/aws-appsync-realtime-client-ios/Gemfile.lock" }}
+          key: app-{{ .Environment.CACHE_VERSION }}-gems-{{ checksum "~/aws-appsync-realtime-client-ios/Gemfile.lock" }}
           paths:
             - vendor/bundle
   build_test_appsync_realtime_client:

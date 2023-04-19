@@ -3,6 +3,16 @@
 ## Unreleased
 *Changes on `main` branch that have not yet been released*
 
+## 3.1.0
+
+### Features
+- feat: Add async implementation and OIDCAuthProvider protocol ([#119](https://github.com/aws-amplify/aws-appsync-realtime-client-ios/pull/119))
+- feat: Add asynchronous version of interceptor protocol ([#118](https://github.com/aws-amplify/aws-appsync-realtime-client-ios/pull/118))
+
+### Misc
+- chore: Update the pods ([#120](https://github.com/aws-amplify/aws-appsync-realtime-client-ios/pull/120))
+- chore: fix build warnings ([#116](https://github.com/aws-amplify/aws-appsync-realtime-client-ios/pull/116))
+
 ## 3.0.0
 
 **Breaking changes**: This is a major version release due to the changes made in [PR #110](https://github.com/aws-amplify/aws-appsync-realtime-client-ios/pull/110). The public interface for `ConnectionProviderFactory`, `RealtimeConnectionProviderAsync`, and `RealtimeConnectionProvider` has been modified to take in a `URLRequest` parameter instead of a `URL`.
