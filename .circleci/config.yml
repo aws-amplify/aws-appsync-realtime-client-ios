@@ -1,6 +1,8 @@
 # .circleci/config.yml
 
 version: 2.1
+orbs:
+  aws-cli: circleci/aws-cli@3.1.4
 
 defaults: &defaults
   macos:
@@ -124,6 +126,10 @@ jobs:
     steps: 
       - *restore_repo
       - restore_gems
+      - aws-cli/setup:
+          role-arn: $AWS_OIDC_ROLE_ARN
+          role-session-name: "${CIRCLE_WORKFLOW_JOB_ID}.deploy"
+          session-duration: '900'
       - check_bundle
       - run:
           name: Release pods
@@ -139,6 +145,7 @@ workflows:
           requires:
             - install_gems
       - deploy:
+          context: amplify-swift-aws-oidc
           filters:
             branches:
               only:
