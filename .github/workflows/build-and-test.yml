@@ -1,0 +1,50 @@
+name: Build and Test
+on:
+  workflow_call:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+permissions:
+      contents: read
+
+concurrency:
+  group: ${{ github.head_ref || github.run_id }}
+  cancel-in-progress: true
+
+jobs:
+  build-test-ios:
+    runs-on: macos-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@ac593985615ec2ede58e132d2e21d2b1cbd6127c # v3.3.0
+        with:
+          persist-credentials: false
+
+      - name: Restore Gems Cache
+        uses: actions/cache@88522ab9f39a2ea568f7027eddc7d8d8bc9d59c8 # v3.3.1
+        with:
+          path: vendor/bundle
+          key: app-${{ runner.os }}-gems-${{ hashFiles('**/Gemfile.lock') }}
+          restore-keys: |
+            app-${{ runner.os }}-gems-
+
+      - name: Install Bundle
+        env:
+          BUNDLE_PATH: vendor/bundle
+        run: |
+            bundle config set --local path $BUNDLE_PATH
+            bundle check || bundle install
+
+      - name: Install Pods
+        run: bundle exec pod install
+
+      - name: Build AppSyncRealTimeClient
+        run: xcodebuild build-for-testing -workspace AppSyncRealTimeClient.xcworkspace -scheme AppSyncRealTimeClient -sdk iphonesimulator -destination "platform=iOS Simulator,name=iPhone 14,OS=latest" | xcpretty
+
+      - name: Test AppSyncRealTimeClient
+        run: xcodebuild test -workspace AppSyncRealTimeClient.xcworkspace -scheme AppSyncRealTimeClient -sdk iphonesimulator -destination "platform=iOS Simulator,name=iPhone 14,OS=latest" | xcpretty --simple --color --report junit

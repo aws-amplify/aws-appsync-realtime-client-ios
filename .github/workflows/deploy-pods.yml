@@ -1,0 +1,49 @@
+name: Deploy Pods
+on:
+  push:
+    branches:
+      - release
+
+permissions:
+      id-token: write
+      contents: write
+jobs:
+  build-and-test:
+    uses: ./.github/workflows/build-and-test.yml
+
+  release:
+    environment: CocoaPodsRelease
+    needs: [build-and-test]
+    runs-on: macos-latest
+    steps: 
+      - name: Checkout repo
+        uses: actions/checkout@ac593985615ec2ede58e132d2e21d2b1cbd6127c # v3.3.0
+        with:
+          persist-credentials: false
+
+      - name: Restore Gems Cache
+        uses: actions/cache@88522ab9f39a2ea568f7027eddc7d8d8bc9d59c8 # v3.3.1
+        with:
+          path: vendor/bundle
+          key: app-${{ runner.os }}-gems-${{ hashFiles('**/Gemfile.lock') }}
+          restore-keys: |
+            app-${{ runner.os }}-gems-
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@5fd3084fc36e372ff1fff382a39b10d03659f355 #v2
+        with:
+          role-to-assume: ${{ secrets.AWS_ROLE_TO_ASSUME }}
+          role-session-name: ${{ format('{0}.deploy', github.run_id) }}
+          aws-region: ${{ secrets.AWS_REGION }}
+
+      - name: Install Bundle
+        env:
+          BUNDLE_PATH: vendor/bundle
+        run: |
+            bundle config set --local path $BUNDLE_PATH
+            bundle check || bundle install
+
+      - name:  Release Pods
+        env:
+          COCOAPODS_SECRET_ARN: ${{ secrets.COCOAPODS_SECRET_ARN }}
+        run: bundle exec fastlane release_pods
