@@ -13,6 +13,8 @@
 # Uncomment the line if you want fastlane to automatically update itself
 # update_fastlane
 
+require 'json'
+
 opt_out_usage
 
 default_platform(:ios)
@@ -31,6 +33,14 @@ platform :ios do
 
   desc "Release pods"
   lane :release_pods do
+    # Define `COCOAPODS_TRUNK_TOKEN` env var for trunk authentication
+    # https://github.com/CocoaPods/cocoapods-trunk/commit/9e6ec1c1faf96fa837dc2ed70b5f54006b181ed6
+    secret = sh(
+        command: 'aws secretsmanager get-secret-value --secret-id ${COCOAPODS_SECRET_ARN}',
+        log: false
+    )
+
+    ENV['COCOAPODS_TRUNK_TOKEN'] = JSON.parse(secret)["SecretString"]
 
     pods.each { |pod|
       pod_push(path: pod, allow_warnings: true, swift_version: "5.1")
