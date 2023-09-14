@@ -3,6 +3,9 @@
 ## Unreleased
 *Changes on `main` branch that have not yet been released*
 
+## 3.1.1
+- fix: pin starscream to 4.0.4 ([#132](https://github.com/aws-amplify/aws-appsync-realtime-client-ios/pull/132))
+
 ## 3.1.0
 
 ### Features
