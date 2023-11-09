@@ -30,7 +30,13 @@ extension RealtimeConnectionProviderAsync: AppSyncWebsocketDelegate {
                 self.updateCallback(event: .connection(self.status))
                 return
             }
-            self.updateCallback(event: .error(ConnectionProviderError.connection(nil, nil)))
+            #if os(watchOS)
+            self.updateCallback(event: .error(ConnectionProviderError.connection(
+                "This API uses low-level networking (websockets). Running on watchOS only works for specific circumstances.",
+                error)))
+            #else
+            self.updateCallback(event: .error(ConnectionProviderError.connection(nil, error)))
+            #endif
         }
     }
 
