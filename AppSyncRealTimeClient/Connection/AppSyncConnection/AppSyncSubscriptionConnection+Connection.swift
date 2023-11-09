@@ -13,7 +13,7 @@ extension AppSyncSubscriptionConnection {
         // we should retry the connection
         if connectionState == .notConnected
             && subscriptionState == .inProgress {
-            let connectionError = ConnectionProviderError.connection
+            let connectionError = ConnectionProviderError.connection(nil, nil)
             handleError(error: connectionError)
             return
         }

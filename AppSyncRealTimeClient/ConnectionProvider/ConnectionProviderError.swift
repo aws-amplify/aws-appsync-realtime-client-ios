@@ -10,7 +10,7 @@ import Foundation
 public enum ConnectionProviderError: Error {
 
     /// Caused by connection error
-    case connection
+    case connection(String?, Error?)
 
     /// Caused by JSON parse error. The first optional String will be the connection identifier if available.
     case jsonParse(String?, Error?)

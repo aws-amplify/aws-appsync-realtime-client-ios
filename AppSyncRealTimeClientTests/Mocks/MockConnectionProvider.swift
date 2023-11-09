@@ -24,7 +24,7 @@ class MockConnectionProvider: ConnectionProvider {
 
     func connect() {
         guard validConnection else {
-            listener?(.error(ConnectionProviderError.connection))
+            listener?(.error(ConnectionProviderError.connection(nil, nil)))
             return
         }
 
@@ -39,7 +39,7 @@ class MockConnectionProvider: ConnectionProvider {
     func write(_ message: AppSyncMessage) {
 
         guard validConnection else {
-            listener?(.error(ConnectionProviderError.connection))
+            listener?(.error(ConnectionProviderError.connection(nil, nil)))
             return
         }
 
@@ -70,7 +70,7 @@ class MockConnectionProvider: ConnectionProvider {
 
     func disconnect() {
         guard validConnection else {
-            listener?(.error(ConnectionProviderError.connection))
+            listener?(.error(ConnectionProviderError.connection(nil, nil)))
             return
         }
 

@@ -30,7 +30,7 @@ extension RealtimeConnectionProviderAsync: AppSyncWebsocketDelegate {
                 self.updateCallback(event: .connection(self.status))
                 return
             }
-            self.updateCallback(event: .error(ConnectionProviderError.connection))
+            self.updateCallback(event: .error(ConnectionProviderError.connection(nil, nil)))
         }
     }
 

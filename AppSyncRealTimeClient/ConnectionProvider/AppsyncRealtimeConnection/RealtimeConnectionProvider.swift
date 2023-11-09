@@ -255,6 +255,6 @@ public class RealtimeConnectionProvider: ConnectionProvider {
     /// - Warning: This must be invoked from the `connectionQueue`
     private func receivedConnectionInit() {
         status = .notConnected
-        updateCallback(event: .error(ConnectionProviderError.connection))
+        updateCallback(event: .error(ConnectionProviderError.connection(nil, nil)))
     }
 }

@@ -76,7 +76,7 @@ extension RealtimeConnectionProviderResponse {
 
         // If it is in-progress, return `.connection`.
         guard connectionState != .inProgress else {
-            return .connection
+            return .connection(nil, nil)
         }
 
         if isLimitExceededError() || isMaxSubscriptionReachedError() {
