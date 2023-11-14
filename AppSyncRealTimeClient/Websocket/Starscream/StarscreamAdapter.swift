@@ -68,7 +68,8 @@ public class StarscreamAdapter: AppSyncWebsocketProvider {
                         AppSyncLogger.debug(
                             "[StarscreamAdapter] Manually send disconnect."
                         )
-                        self.delegate?.websocketDidDisconnect(provider: self, error: nil)
+                        let error = ConnectionProviderError.connection("WatchOS Error", nil)
+                        delegate?.websocketDidDisconnect(provider: self, error: error)
                     } else {
                         AppSyncLogger.debug(
                             "[StarscreamAdapter] watchOS subscriptions are connected within 3s."
