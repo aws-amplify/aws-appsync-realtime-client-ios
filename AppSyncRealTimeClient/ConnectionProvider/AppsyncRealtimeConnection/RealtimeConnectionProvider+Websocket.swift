@@ -28,6 +28,9 @@ extension RealtimeConnectionProvider: AppSyncWebsocketDelegate {
                 return
             }
             #if os(watchOS)
+            AppSyncLogger.debug(
+                "[RealtimeConnectionProvider] on watchOS, received disconnect."
+            )
             self.updateCallback(event: .error(ConnectionProviderError.connection(
                 "This API uses low-level networking (websockets). Running on watchOS only works for specific circumstances.",
                 error)))
