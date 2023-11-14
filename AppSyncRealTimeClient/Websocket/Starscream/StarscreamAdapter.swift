@@ -53,27 +53,29 @@ public class StarscreamAdapter: AppSyncWebsocketProvider {
             self.socket?.callbackQueue = self.callbackQueue
             self.socket?.connect()
             #if os(watchOS)
-            // On watchOS, if it takes longer than 5 seconds
-            // to connect, fail fast.
             AppSyncLogger.debug(
-                "[StarscreamAdapter] Starting connectivity timer for watchOS for 3s"
+                "[StarscreamAdapter] Starting connectivity timer for watchOS for 3s."
             )
             self.watchOSConnectivityTimer.start(interval: 3) {
                 AppSyncLogger.debug(
                     "[StarscreamAdapter] watchOS connectivity timer is up."
                 )
-                if !self._isConnected {
-                    AppSyncLogger.debug(
-                        "[StarscreamAdapter] watchOS subscriptions not connected after 3s."
-                    )
-                    self.serialQueue.async {
+                self.serialQueue.async {
+                    if !self._isConnected {
+                        AppSyncLogger.debug(
+                            "[StarscreamAdapter] watchOS subscriptions not connected after 3s."
+                        )
+                        AppSyncLogger.debug(
+                            "[StarscreamAdapter] Manually send disconnect."
+                        )
                         self.delegate?.websocketDidDisconnect(provider: self, error: nil)
+                    } else {
+                        AppSyncLogger.debug(
+                            "[StarscreamAdapter] watchOS subscriptions are connected within 3s."
+                        )
                     }
-                } else {
-                    AppSyncLogger.debug(
-                        "[StarscreamAdapter] watchOS subscriptions are connected within 3s."
-                    )
                 }
+                
             }
             #endif
         }
