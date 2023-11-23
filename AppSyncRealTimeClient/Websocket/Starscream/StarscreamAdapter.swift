@@ -23,6 +23,8 @@ public class StarscreamAdapter: AppSyncWebsocketProvider {
         }
     }
 
+    let watchOSConnectivityTimer: CountdownTimer
+    
     public init() {
         let serialQueue = DispatchQueue(label: "com.amazonaws.StarscreamAdapter.serialQueue")
         let callbackQueue = DispatchQueue(
@@ -32,6 +34,7 @@ public class StarscreamAdapter: AppSyncWebsocketProvider {
         self._isConnected = false
         self.serialQueue = serialQueue
         self.callbackQueue = callbackQueue
+        self.watchOSConnectivityTimer = CountdownTimer()
     }
 
     public func connect(urlRequest: URLRequest, protocols: [String], delegate: AppSyncWebsocketDelegate?) {
@@ -49,6 +52,33 @@ public class StarscreamAdapter: AppSyncWebsocketProvider {
             self.socket?.delegate = self
             self.socket?.callbackQueue = self.callbackQueue
             self.socket?.connect()
+            #if os(watchOS)
+            AppSyncLogger.debug(
+                "[StarscreamAdapter] Starting connectivity timer for watchOS for 3s."
+            )
+            self.watchOSConnectivityTimer.start(interval: 3) {
+                AppSyncLogger.debug(
+                    "[StarscreamAdapter] watchOS connectivity timer is up."
+                )
+                self.serialQueue.async {
+                    if !self._isConnected {
+                        AppSyncLogger.debug(
+                            "[StarscreamAdapter] watchOS subscriptions not connected after 3s."
+                        )
+                        AppSyncLogger.debug(
+                            "[StarscreamAdapter] Manually send disconnect."
+                        )
+                        let error = ConnectionProviderError.connection("WatchOS Error", nil)
+                        delegate?.websocketDidDisconnect(provider: self, error: error)
+                    } else {
+                        AppSyncLogger.debug(
+                            "[StarscreamAdapter] watchOS subscriptions are connected within 3s."
+                        )
+                    }
+                }
+                
+            }
+            #endif
         }
     }
 

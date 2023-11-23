@@ -232,7 +232,7 @@ class AppSyncSubscriptionConnectionErrorHandlerTests: XCTestCase {
         XCTAssertEqual(connection.subscriptionState, .subscribed)
         XCTAssertNotNil(connectionProvider.listener)
 
-        let connectionError = ConnectionProviderError.connection
+        let connectionError = ConnectionProviderError.connection(nil, nil)
         connection.handleError(error: connectionError)
         wait(for: [failedEvent], timeout: 5)
         XCTAssertEqual(connection.subscriptionState, .notSubscribed)
@@ -304,7 +304,7 @@ class AppSyncSubscriptionConnectionErrorHandlerTests: XCTestCase {
         XCTAssertEqual(connection.subscriptionState, .subscribed)
         XCTAssertNotNil(connectionProvider.listener)
 
-        let connectionError = ConnectionProviderError.connection
+        let connectionError = ConnectionProviderError.connection(nil, nil)
         connection.handleError(error: connectionError)
         wait(for: [connectedOnRetryExpectation], timeout: 5)
         XCTAssertEqual(connection.subscriptionState, .subscribed)

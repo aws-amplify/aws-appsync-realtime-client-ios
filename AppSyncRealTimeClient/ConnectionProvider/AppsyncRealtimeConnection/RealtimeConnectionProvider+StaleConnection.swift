@@ -67,7 +67,7 @@ extension RealtimeConnectionProvider {
             self.status = .notConnected
             self.isStaleConnection = false
             self.websocket.disconnect()
-            self.updateCallback(event: .error(ConnectionProviderError.connection))
+            self.updateCallback(event: .error(ConnectionProviderError.connection(nil, nil)))
         }
     }
 }
