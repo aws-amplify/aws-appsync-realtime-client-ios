@@ -1,18 +1,81 @@
 name: Kickoff release
 
-on: [workflow_dispatch]
+on:
+  workflow_dispatch:
+    inputs:
+      release-version:
+        description: Release version
+        required: true
+
 
 permissions:
+  id-token: write
+  contents: write
   pull-requests: write
 
 jobs:
-  prepare-release:
-    name: Prepare release
+  validate-version-format:
+    name: Validate Release Version Format
+    if: ${{ github.ref_name == 'main' }}
+    runs-on: ubuntu-latest
+    env:
+      RELEASE_VERSION: ${{ github.event.inputs.release-version }}
+    steps:
+      - name: Validate release version input
+        run: |
+          if [[ "$RELEASE_VERSION" =~ ^[0-9]+\.[0-9]+\.[0-9]+$ ]]
+          then
+            echo "Valid version - $RELEASE_VERSION"
+          else
+            echo "Invalid version - $RELEASE_VERSION"
+            exit 1
+          fi
+        shell: bash
+
+  create-release-pr:
+    name: Create release PR for ${{ github.event.inputs.release-version }}
+    needs: [validate-version-format]
+    env:
+      RELEASE_VERSION: ${{ github.event.inputs.release-version }}
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@ac593985615ec2ede58e132d2e21d2b1cbd6127c # v3.3.0
-      - name: Create PR to push main to release branch
+      - name: Checkout Code
+        uses: actions/checkout@c85c95e3d7251135ab7dc9ce3241c5835cc595a9 # v3.5.3
+        with:
+          ref: main
+
+      - name: Restore Gems Cache
+        uses: actions/cache@88522ab9f39a2ea568f7027eddc7d8d8bc9d59c8 # v3.3.1
+        with:
+          path: vendor/bundle
+          key: app-${{ runner.os }}-gems-${{ hashFiles('**/Gemfile.lock') }}
+          restore-keys: |
+            app-${{ runner.os }}-gems-
+      - name: Install Bundle
+        env:
+          BUNDLE_PATH: vendor/bundle
+        run: |
+            bundle config set --local path $BUNDLE_PATH
+            bundle check || bundle install
+
+      - name: Bump versions to ${{ env.RELEASE_VERSION }}
+        run: bundle exec fastlane bump_podspecs version:$RELEASE_VERSION
+
+      - name: Create git branch with release commit
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: "gh pr create --title 'chore: kickoff release' --body 'kickoff release' --head main --base release"
+        run: |
+          git config user.name aws-amplify-ops
+          git config user.email aws-amplify-ops@amazon.com
+          git add -A
+          git checkout -b releases/$RELEASE_VERSION
+          git commit -am "chore: release commit for $RELEASE_VERSION"
+          git push origin releases/$RELEASE_VERSION
+        shell: bash
+
+      - uses: actions/checkout@ac593985615ec2ede58e132d2e21d2b1cbd6127c # v3.3.0
+      - name: Create PR target main
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: "gh pr create --title 'chore: release commit for $RELEASE_VERSION' --body 'kickoff release' --head releases/$RELEASE_VERSION --base main"

@@ -25,10 +25,9 @@ pods = [
 
 platform :ios do
   desc "Bump pod versions"
-  lane :bump_podspecs_patch do
-
-    pods.each { |pod| version_bump_podspec(path: pod, bump_type: "patch") }
-
+  lane :bump_podspecs do |options|
+    next_version = options[:version].to_s
+    pods.each { |pod| version_bump_podspec(path: pod, version_number: "#{next_version}") }
   end
 
   desc "Release pods"
