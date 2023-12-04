@@ -45,6 +45,12 @@ jobs:
         with:
           ref: main
 
+      - name: Setup Ruby
+        uses: ruby/setup-ruby@250fcd6a742febb1123a77a841497ccaa8b9e939 # v1.152.0
+        with:
+          ruby-version: '3.2.1'
+          bundler-cache: true
+
       - name: Restore Gems Cache
         uses: actions/cache@88522ab9f39a2ea568f7027eddc7d8d8bc9d59c8 # v3.3.1
         with:
@@ -52,6 +58,7 @@ jobs:
           key: app-${{ runner.os }}-gems-${{ hashFiles('**/Gemfile.lock') }}
           restore-keys: |
             app-${{ runner.os }}-gems-
+
       - name: Install Bundle
         env:
           BUNDLE_PATH: vendor/bundle
