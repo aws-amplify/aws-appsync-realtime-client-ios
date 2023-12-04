@@ -1,0 +1,16 @@
+current directory: /home/runner/work/aws-appsync-realtime-client-ios/aws-appsync-realtime-client-ios/vendor/bundle/ruby/3.2.0/gems/json-2.6.1/ext/json
+/opt/hostedtoolcache/Ruby/3.2.1/x64/bin/ruby -I /opt/hostedtoolcache/Ruby/3.2.1/x64/lib/ruby/3.2.0 extconf.rb
+creating Makefile
+
+current directory: /home/runner/work/aws-appsync-realtime-client-ios/aws-appsync-realtime-client-ios/vendor/bundle/ruby/3.2.0/gems/json-2.6.1/ext/json
+make DESTDIR\= sitearchdir\=./.gem.20231204-1874-6l9vrj sitelibdir\=./.gem.20231204-1874-6l9vrj clean
+
+current directory: /home/runner/work/aws-appsync-realtime-client-ios/aws-appsync-realtime-client-ios/vendor/bundle/ruby/3.2.0/gems/json-2.6.1/ext/json
+make DESTDIR\= sitearchdir\=./.gem.20231204-1874-6l9vrj sitelibdir\=./.gem.20231204-1874-6l9vrj
+make: Nothing to be done for 'all'.
+
+current directory: /home/runner/work/aws-appsync-realtime-client-ios/aws-appsync-realtime-client-ios/vendor/bundle/ruby/3.2.0/gems/json-2.6.1/ext/json
+make DESTDIR\= sitearchdir\=./.gem.20231204-1874-6l9vrj sitelibdir\=./.gem.20231204-1874-6l9vrj install
+
+current directory: /home/runner/work/aws-appsync-realtime-client-ios/aws-appsync-realtime-client-ios/vendor/bundle/ruby/3.2.0/gems/json-2.6.1/ext/json
+make DESTDIR\= sitearchdir\=./.gem.20231204-1874-6l9vrj sitelibdir\=./.gem.20231204-1874-6l9vrj clean

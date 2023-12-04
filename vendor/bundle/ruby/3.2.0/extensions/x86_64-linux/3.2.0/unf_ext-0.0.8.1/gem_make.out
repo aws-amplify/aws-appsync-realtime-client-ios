@@ -1,0 +1,19 @@
+current directory: /home/runner/work/aws-appsync-realtime-client-ios/aws-appsync-realtime-client-ios/vendor/bundle/ruby/3.2.0/gems/unf_ext-0.0.8.1/ext/unf_ext
+/opt/hostedtoolcache/Ruby/3.2.1/x64/bin/ruby -I /opt/hostedtoolcache/Ruby/3.2.1/x64/lib/ruby/3.2.0 extconf.rb
+checking for -lstdc++... yes
+creating Makefile
+
+current directory: /home/runner/work/aws-appsync-realtime-client-ios/aws-appsync-realtime-client-ios/vendor/bundle/ruby/3.2.0/gems/unf_ext-0.0.8.1/ext/unf_ext
+make DESTDIR\= sitearchdir\=./.gem.20231204-1874-vigglr sitelibdir\=./.gem.20231204-1874-vigglr clean
+
+current directory: /home/runner/work/aws-appsync-realtime-client-ios/aws-appsync-realtime-client-ios/vendor/bundle/ruby/3.2.0/gems/unf_ext-0.0.8.1/ext/unf_ext
+make DESTDIR\= sitearchdir\=./.gem.20231204-1874-vigglr sitelibdir\=./.gem.20231204-1874-vigglr
+compiling unf.cc
+linking shared-object unf_ext.so
+
+current directory: /home/runner/work/aws-appsync-realtime-client-ios/aws-appsync-realtime-client-ios/vendor/bundle/ruby/3.2.0/gems/unf_ext-0.0.8.1/ext/unf_ext
+make DESTDIR\= sitearchdir\=./.gem.20231204-1874-vigglr sitelibdir\=./.gem.20231204-1874-vigglr install
+/usr/bin/install -c -m 0755 unf_ext.so ./.gem.20231204-1874-vigglr
+
+current directory: /home/runner/work/aws-appsync-realtime-client-ios/aws-appsync-realtime-client-ios/vendor/bundle/ruby/3.2.0/gems/unf_ext-0.0.8.1/ext/unf_ext
+make DESTDIR\= sitearchdir\=./.gem.20231204-1874-vigglr sitelibdir\=./.gem.20231204-1874-vigglr clean
