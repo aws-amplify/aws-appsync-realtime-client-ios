@@ -75,9 +75,9 @@ jobs:
         run: |
           git config user.name aws-amplify-ops
           git config user.email aws-amplify-ops@amazon.com
-          git add -A
+          git add ./AppSyncRealTimeClient.podspec
           git checkout -b releases/$RELEASE_VERSION
-          git commit -am "chore: release commit for $RELEASE_VERSION"
+          git commit -m "chore: release commit for $RELEASE_VERSION"
           git push origin releases/$RELEASE_VERSION
         shell: bash
 
@@ -85,4 +85,4 @@ jobs:
       - name: Create PR target main
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: "gh pr create --title 'chore: release commit for $RELEASE_VERSION' --body 'kickoff release' --head releases/$RELEASE_VERSION --base main"
+        run: 'gh pr create --title "chore: release commit for $RELEASE_VERSION" --body "kickoff release" --head releases/$RELEASE_VERSION --base main'
