@@ -1,21 +1,45 @@
 name: Deploy Pods
 on:
-  push:
+  pull_request:
+    types:
+      - closed
     branches:
-      - release
+      - main
 
 permissions:
-      id-token: write
-      contents: write
+  id-token: write
+  contents: write
+
 jobs:
+  extract-release-version:
+    if: |
+      startsWith(github.head_ref, 'releases/') &&
+      github.event.pull_request.merged == true &&
+      contains(github.event.pull_request.title, 'chore: release commit for')
+    runs-on: ubuntu-latest
+    outputs:
+      version: ${{ steps.extract-release-version.outputs.result }}
+    steps:
+      - name: Extract release version
+        uses: actions/github-script@d7906e4ad0b1822421a7e6a35d5ca353c962f410 # v6.4.1
+        id: extract-release-version
+        with:
+          result-encoding: string
+          script: |
+            const matches = `${{ github.event.pull_request.title }}`.match(/[0-9]+\.[0-9]+\.[0-9]+/) ?? []
+            return matches.length > 0 ? matches[0] : ""
+
   build-and-test:
+    needs: [extract-release-version]
     uses: ./.github/workflows/build-and-test.yml
 
   release:
     environment: CocoaPodsRelease
-    needs: [build-and-test]
+    needs: [build-and-test, extract-release-version]
     runs-on: macos-latest
-    steps: 
+    env:
+      RELEASE_VERSION: ${{ needs.extract-release-version.outputs.version }}
+    steps:
       - name: Checkout repo
         uses: actions/checkout@ac593985615ec2ede58e132d2e21d2b1cbd6127c # v3.3.0
         with:
@@ -42,6 +66,18 @@ jobs:
         run: |
             bundle config set --local path $BUNDLE_PATH
             bundle check || bundle install
+
+      - name: Create release tag
+        uses: actions/github-script@d7906e4ad0b1822421a7e6a35d5ca353c962f410 # v6.4.1
+        with:
+          script: |
+            github.rest.git.createRef({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              ref: `refs/tags/${process.env.RELEASE_VERSION}`,
+              sha: context.sha,
+              force: true
+            })
 
       - name:  Release Pods
         env:
