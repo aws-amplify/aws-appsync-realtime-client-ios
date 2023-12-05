@@ -1,6 +1,6 @@
 //
-// Copyright 2018-2020 Amazon.com,
-// Inc. or its affiliates. All Rights Reserved.
+// Copyright Amazon.com Inc. or its affiliates.
+// All Rights Reserved.
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -18,7 +18,6 @@ extension AppSyncSubscriptionConnection {
             return
         }
         if connectionState == .connected {
-            AppSyncLogger.debug("Start subscription")
             startSubscription()
         }
     }
@@ -32,7 +31,9 @@ extension AppSyncSubscriptionConnection {
         else {
             return
         }
-
+        AppSyncLogger.debug(
+            "[AppSyncSubscriptionConnection]: Connection connected, start subscription \(subscriptionItem.identifier)."
+        )
         subscriptionState = .inProgress
 
         guard let payload = convertToPayload(
@@ -52,7 +53,7 @@ extension AppSyncSubscriptionConnection {
 
     private func convertToPayload(for query: String, variables: [String: Any?]?) -> AppSyncMessage.Payload? {
         guard let subscriptionItem = subscriptionItem else {
-            AppSyncLogger.debug("\(#function): no subscription item")
+            AppSyncLogger.warn("[AppSyncSubscriptionConnection] \(#function): missing subscription item")
             return nil
         }
 

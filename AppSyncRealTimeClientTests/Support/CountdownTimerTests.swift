@@ -1,6 +1,6 @@
 //
-// Copyright 2018-2020 Amazon.com,
-// Inc. or its affiliates. All Rights Reserved.
+// Copyright Amazon.com Inc. or its affiliates.
+// All Rights Reserved.
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -19,7 +19,8 @@ class CountdownTimerTests: XCTestCase {
 
     func testTimerFires() {
         let timerFired = expectation(description: "timerFired")
-        let timer = CountdownTimer(interval: 0.1) { timerFired.fulfill() }
+        let timer = CountdownTimer()
+        timer.start(interval: 0.1) { timerFired.fulfill() }
         waitForExpectations(timeout: 1.0)
         timer.invalidate()
     }
@@ -27,7 +28,8 @@ class CountdownTimerTests: XCTestCase {
     func testTimerDoesNotFireEarly() {
         let timerFired = expectation(description: "timerFired")
         timerFired.isInverted = true
-        let timer = CountdownTimer(interval: 0.5) { timerFired.fulfill() }
+        let timer = CountdownTimer()
+        timer.start(interval: 0.5) { timerFired.fulfill() }
         waitForExpectations(timeout: 0.1)
         timer.invalidate()
     }
@@ -36,7 +38,8 @@ class CountdownTimerTests: XCTestCase {
         let timerFired = expectation(description: "timerFired")
         timerFired.isInverted = true
         XCTAssert(Thread.isMainThread)
-        let timer = CountdownTimer(interval: 1.0) {
+        let timer = CountdownTimer()
+        timer.start(interval: 1.0) {
             timerFired.fulfill()
             XCTAssertFalse(Thread.isMainThread)
         }
@@ -47,7 +50,10 @@ class CountdownTimerTests: XCTestCase {
     func testTimerDoesNotFireAfterInvalidate() {
         let timerFired = expectation(description: "timerFired")
         timerFired.isInverted = true
-        let timer = CountdownTimer(interval: 0.1) { timerFired.fulfill() }
+        let timer = CountdownTimer()
+        timer.start(interval: 0.1) {
+            timerFired.fulfill()
+        }
         timer.invalidate()
         waitForExpectations(timeout: 0.2)
     }
@@ -66,13 +72,13 @@ class CountdownTimerTests: XCTestCase {
     /// - 100: Ensure timer has not yet fired
     /// - 300: Ensure timer has fired
     func testTimerFiresOnSchedule() {
-        var timer: CountdownTimer!
+        let timer = CountdownTimer()
         let timerHasFired = AtomicValue(initialValue: false)
 
         let timerShouldHaveFired = expectation(description: "the timer should have fired by now")
 
         DispatchQueue.global().asyncAfter(deadline: .now() + .milliseconds(0)) {
-            timer = CountdownTimer(interval: 0.200) {
+            timer.start(interval: 0.200) {
                 timerHasFired.set(true)
             }
         }
@@ -103,17 +109,20 @@ class CountdownTimerTests: XCTestCase {
     /// Test timing in ms:
     /// - 000: Set up a timer with a .3 sec interval
     /// - 100: Ensure timer has not yet fired
-    /// - 200: Issue a `resetCountdown`
+    /// - 200: Issue a `reset` before timer would fire
     /// - 400: Ensure timer has not yet fired
-    /// - 600: Ensure timer has yet fired
+    /// - 600: Timer should fire around this time
+    /// - 700: Ensure timer has fired
     func testTimerResets() {
-        var timer: CountdownTimer!
+        let timer = CountdownTimer()
         let timerHasFired = AtomicValue(initialValue: false)
 
         let timerShouldHaveFired = expectation(description: "the timer should have fired by now")
 
         DispatchQueue.global().asyncAfter(deadline: .now() + .milliseconds(0)) {
-            timer = CountdownTimer(interval: 0.300) { timerHasFired.set(true) }
+            timer.start(interval: 0.300) {
+                timerHasFired.set(true)
+            }
         }
 
         DispatchQueue.global().asyncAfter(deadline: .now() + .milliseconds(100)) {
@@ -121,14 +130,14 @@ class CountdownTimerTests: XCTestCase {
         }
 
         DispatchQueue.global().asyncAfter(deadline: .now() + .milliseconds(200)) {
-            timer.resetCountdown()
+            timer.reset()
         }
 
         DispatchQueue.global().asyncAfter(deadline: .now() + .milliseconds(400)) {
             XCTAssertFalse(timerHasFired.get(), "The timer should not have fired yet")
         }
 
-        DispatchQueue.global().asyncAfter(deadline: .now() + .milliseconds(600)) {
+        DispatchQueue.global().asyncAfter(deadline: .now() + .milliseconds(700)) {
             XCTAssert(timerHasFired.get(), "The timer should have fired by now")
             timerShouldHaveFired.fulfill()
         }
@@ -140,12 +149,21 @@ class CountdownTimerTests: XCTestCase {
 
     /// Test that concurrent operations on the timer do not result in data races
     func testConcurrency() {
-        let timerShouldHaveFired = expectation(description: "the timer should have fired by now")
-        let timer = CountdownTimer(interval: 0.1) { timerShouldHaveFired.fulfill() }
-        DispatchQueue.concurrentPerform(iterations: 10_000) { _ in
-            timer.resetCountdown()
-        }
-        waitForExpectations(timeout: 1.0)
-    }
+        let concurrentCount = expectation(description: "timer fired at least once")
+        concurrentCount.expectedFulfillmentCount = 10_000
+        let timer = CountdownTimer()
 
+        DispatchQueue.concurrentPerform(iterations: 10_000) { _ in
+            let randomInt = Int.random(in: 1 ... 3)
+            if randomInt == 1 {
+                timer.start(interval: 0.01) { }
+            } else if randomInt == 2 {
+                timer.invalidate()
+            } else {
+                timer.reset()
+            }
+            concurrentCount.fulfill()
+        }
+        waitForExpectations(timeout: 10)
+    }
 }

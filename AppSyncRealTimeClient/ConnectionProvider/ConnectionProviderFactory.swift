@@ -1,6 +1,6 @@
 //
-// Copyright 2018-2020 Amazon.com,
-// Inc. or its affiliates. All Rights Reserved.
+// Copyright Amazon.com Inc. or its affiliates.
+// All Rights Reserved.
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -8,14 +8,20 @@
 import Foundation
 
 /// Create connection providers to connect to the websocket endpoint of the AppSync endpoint.
-public struct ConnectionProviderFactory {
+public enum ConnectionProviderFactory {
 
     public static func createConnectionProvider(
-        for url: URL,
+        for urlRequest: URLRequest,
         authInterceptor: AuthInterceptor,
         connectionType: SubscriptionConnectionType
     ) -> ConnectionProvider {
-        let provider = ConnectionProviderFactory.createConnectionProvider(for: url, connectionType: connectionType)
+        let provider: ConnectionProvider
+
+        switch connectionType {
+        case .appSyncRealtime:
+            let websocketProvider = StarscreamAdapter()
+            provider = RealtimeConnectionProvider(for: urlRequest, websocket: websocketProvider)
+        }
 
         if let messageInterceptable = provider as? MessageInterceptable {
             messageInterceptable.addInterceptor(authInterceptor)
@@ -28,15 +34,30 @@ public struct ConnectionProviderFactory {
         return provider
     }
 
-    static func createConnectionProvider(
-        for url: URL,
+    #if swift(>=5.5.2)
+    @available(iOS 13.0, macOS 10.15, tvOS 13.0, watchOS 6.0, *)
+    public static func createConnectionProviderAsync(
+        for urlRequest: URLRequest,
+        authInterceptor: AuthInterceptorAsync,
         connectionType: SubscriptionConnectionType
     ) -> ConnectionProvider {
+        let provider: ConnectionProvider
+
         switch connectionType {
         case .appSyncRealtime:
             let websocketProvider = StarscreamAdapter()
-            let connectionProvider = RealtimeConnectionProvider(for: url, websocket: websocketProvider)
-            return connectionProvider
+            provider = RealtimeConnectionProviderAsync(for: urlRequest, websocket: websocketProvider)
         }
+
+        if let messageInterceptable = provider as? MessageInterceptableAsync {
+            messageInterceptable.addInterceptor(authInterceptor)
+        }
+        if let connectionInterceptable = provider as? ConnectionInterceptableAsync {
+            connectionInterceptable.addInterceptor(RealtimeGatewayURLInterceptor())
+            connectionInterceptable.addInterceptor(authInterceptor)
+        }
+
+        return provider
     }
+    #endif
 }

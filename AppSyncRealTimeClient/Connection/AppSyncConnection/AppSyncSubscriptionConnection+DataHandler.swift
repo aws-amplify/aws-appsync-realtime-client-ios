@@ -1,6 +1,6 @@
 //
-// Copyright 2018-2020 Amazon.com,
-// Inc. or its affiliates. All Rights Reserved.
+// Copyright Amazon.com Inc. or its affiliates.
+// All Rights Reserved.
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -11,12 +11,11 @@ extension AppSyncSubscriptionConnection {
 
     func handleDataEvent(response: AppSyncResponse) {
         guard let subscriptionItem = subscriptionItem else {
-            AppSyncLogger.debug("\(#function): no subscription item")
+            AppSyncLogger.warn("[AppSyncSubscriptionConnection] \(#function): missing subscription item")
             return
         }
 
         guard response.id == subscriptionItem.identifier else {
-            AppSyncLogger.verbose("\(#function): ignoring data event for \(response.id ?? "(null)")")
             return
         }
 

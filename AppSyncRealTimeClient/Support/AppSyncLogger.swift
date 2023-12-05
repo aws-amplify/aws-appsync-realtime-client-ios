@@ -1,6 +1,6 @@
 //
-// Copyright 2018-2020 Amazon.com,
-// Inc. or its affiliates. All Rights Reserved.
+// Copyright Amazon.com Inc. or its affiliates.
+// All Rights Reserved.
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -10,16 +10,58 @@ import os
 
 struct AppSyncLogger {
 
+    static var logLevel: AppSyncRealTimeClient.LogLevel {
+        AppSyncRealTimeClient.logLevel
+    }
+
+//    iOS 13.0, macOS 10.15, tvOS 13.0, watchOS 6.0, *
     static func error(_ log: String) {
-        if #available(iOS 10.0, *) {
+        // Always logged, no conditional check needed
+        if #available(iOS 10.0, macOS 10.12, tvOS 10.0, watchOS 3.0, *) {
             os_log("%@", type: .error, log)
         } else {
             NSLog("%@", log)
         }
     }
 
+    static func error(_ error: Error) {
+        if #available(iOS 10.0, macOS 10.12, tvOS 10.0, watchOS 3.0, *) {
+            os_log("%@", type: .error, error.localizedDescription)
+        } else {
+            NSLog("%@", error.localizedDescription)
+        }
+    }
+
+    static func warn(_ log: String) {
+        guard logLevel.rawValue >= AppSyncRealTimeClient.LogLevel.warn.rawValue else {
+            return
+        }
+
+        if #available(iOS 10.0, macOS 10.12, tvOS 10.0, watchOS 3.0, *) {
+            os_log("%@", type: .info, log)
+        } else {
+            NSLog("%@", log)
+        }
+    }
+
+    static func info(_ log: String) {
+        guard logLevel.rawValue >= AppSyncRealTimeClient.LogLevel.info.rawValue else {
+            return
+        }
+
+        if #available(iOS 10.0, macOS 10.12, tvOS 10.0, watchOS 3.0, *) {
+            os_log("%@", type: .info, log)
+        } else {
+            NSLog("%@", log)
+        }
+    }
+
     static func debug(_ log: String) {
-        if #available(iOS 10.0, *) {
+        guard logLevel.rawValue >= AppSyncRealTimeClient.LogLevel.debug.rawValue else {
+            return
+        }
+
+        if #available(iOS 10.0, macOS 10.12, tvOS 10.0, watchOS 3.0, *) {
             os_log("%@", type: .debug, log)
         } else {
             NSLog("%@", log)
@@ -27,34 +69,14 @@ struct AppSyncLogger {
     }
 
     static func verbose(_ log: String) {
-        if #available(iOS 10.0, *) {
+        guard logLevel.rawValue >= AppSyncRealTimeClient.LogLevel.verbose.rawValue else {
+            return
+        }
+
+        if #available(iOS 10.0, macOS 10.12, tvOS 10.0, watchOS 3.0, *) {
             os_log("%@", type: .debug, log)
         } else {
             NSLog("%@", log)
-        }
-    }
-
-    static func info(_ log: String) {
-        if #available(iOS 10.0, *) {
-            os_log("%@", type: .info, log)
-        } else {
-            NSLog("%@", log)
-        }
-    }
-
-    static func warn(_ log: String) {
-        if #available(iOS 10.0, *) {
-            os_log("%@", type: .info, log)
-        } else {
-            NSLog("%@", log)
-        }
-    }
-
-    static func error(_ error: Error) {
-        if #available(iOS 10.0, *) {
-            os_log("%@", type: .error, error.localizedDescription)
-        } else {
-            NSLog("%@", error.localizedDescription)
         }
     }
 }

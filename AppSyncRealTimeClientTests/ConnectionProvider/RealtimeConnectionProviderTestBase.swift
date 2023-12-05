@@ -1,6 +1,6 @@
 //
-// Copyright 2018-2020 Amazon.com,
-// Inc. or its affiliates. All Rights Reserved.
+// Copyright Amazon.com Inc. or its affiliates.
+// All Rights Reserved.
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -10,11 +10,11 @@ import XCTest
 
 class RealtimeConnectionProviderTestBase: XCTestCase {
 
-    let url = URL(string: "https://www.appsyncrealtimeclient.test/")!
+    let urlRequest = URLRequest(url: URL(string: "https://www.appsyncrealtimeclient.test/")!)
 
     var websocket: MockWebsocketProvider!
 
-    //swiftlint:disable:next weak_delegate
+    // swiftlint:disable:next weak_delegate
     var websocketDelegate: AppSyncWebsocketDelegate!
 
     // Shared test expectations. Set expected fulfillment counts and inversions as
@@ -39,8 +39,23 @@ class RealtimeConnectionProviderTestBase: XCTestCase {
     ///
     /// Preconditions:
     /// - `self.websocket` must be initialized in the mock provider's `onConnect`
-    func createProviderAndConnect() -> RealtimeConnectionProvider {
-        let provider = RealtimeConnectionProvider(for: url, websocket: websocket)
+    func createProviderAndConnect(
+        listeners: [String]? = nil,
+        connectionQueue: DispatchQueue = DispatchQueue(
+            label: "com.amazonaws.RealtimeConnectionProviderTestBase.connectionQueue"
+        ),
+        serialCallbackQueue: DispatchQueue = DispatchQueue(
+            label: "com.amazonaws.RealtimeConnectionProviderTestBase.serialCallbackQueue"
+        ),
+        connectivityMonitor: ConnectivityMonitor = ConnectivityMonitor()
+    ) -> RealtimeConnectionProvider {
+        let provider = RealtimeConnectionProvider(
+            urlRequest: urlRequest,
+            websocket: websocket,
+            connectionQueue: connectionQueue,
+            serialCallbackQueue: serialCallbackQueue,
+            connectivityMonitor: connectivityMonitor
+        )
         provider.addListener(identifier: "testListener") { event in
             switch event {
             case .connection(let connectionState):
@@ -56,6 +71,11 @@ class RealtimeConnectionProviderTestBase: XCTestCase {
                 self.receivedError.fulfill()
             default:
                 break
+            }
+        }
+        if let listeners = listeners {
+            listeners.forEach { identifier in
+                provider.addListener(identifier: identifier) { _ in }
             }
         }
         provider.connect()

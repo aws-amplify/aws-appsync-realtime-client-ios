@@ -1,6 +1,6 @@
 //
-// Copyright 2018-2020 Amazon.com,
-// Inc. or its affiliates. All Rights Reserved.
+// Copyright Amazon.com Inc. or its affiliates.
+// All Rights Reserved.
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -11,15 +11,37 @@ import Starscream
 extension AppSyncSubscriptionConnection {
     func handleError(error: Error) {
         guard let subscriptionItem = subscriptionItem else {
-            AppSyncLogger.debug("\(#function): no subscription item")
+            AppSyncLogger.warn("[AppSyncSubscriptionConnection] \(#function): missing subscription item")
             return
         }
 
-        // If the error identifier is not for the this connection
+        // If the error identifier is not for the this subscription
         // we return immediately without handling the error.
         if case let ConnectionProviderError.subscription(identifier, _) = error,
             identifier != subscriptionItem.identifier {
             return
+        }
+
+        if case let ConnectionProviderError.limitExceeded(identifier) = error {
+            // If the error identifier is not for the this subscription
+            // we return immediately without handling the error.
+            if let identifier = identifier, identifier != subscriptionItem.identifier {
+                return
+            }
+
+            // Limit exceeded without an subscription identifier is an error for the entire connection
+            // that can be caused by multiple subscriptions trying to subscribe at the same time.
+            // Return the error on those subscriptions in-progress, and return immediately.
+            if identifier == nil {
+                if subscriptionState == .inProgress {
+                    subscriptionState = .notSubscribed
+                    AppSyncSubscriptionConnection.logExtendedErrorInfo(for: error)
+                    subscriptionItem.subscriptionEventHandler(.failed(error), subscriptionItem)
+                    connectionProvider?.removeListener(identifier: subscriptionItem.identifier)
+                }
+
+                return
+            }
         }
 
         AppSyncSubscriptionConnection.logExtendedErrorInfo(for: error)
@@ -29,17 +51,20 @@ extension AppSyncSubscriptionConnection {
             let connectionError = error as? ConnectionProviderError
         else {
             subscriptionItem.subscriptionEventHandler(.failed(error), subscriptionItem)
+            connectionProvider?.removeListener(identifier: subscriptionItem.identifier)
             return
         }
 
         let retryAdvice = retryHandler.shouldRetryRequest(for: connectionError)
         if retryAdvice.shouldRetry, let retryInterval = retryAdvice.retryInterval {
-            AppSyncLogger.debug("Retrying subscription \(subscriptionItem.identifier) after \(retryInterval)")
+            // swiftlint:disable:next line_length
+            AppSyncLogger.debug("[AppSyncSubscriptionConnection] Retrying subscription \(subscriptionItem.identifier) after \(retryInterval)")
             DispatchQueue.global().asyncAfter(deadline: .now() + retryInterval) {
                 self.connectionProvider?.connect()
             }
         } else {
             subscriptionItem.subscriptionEventHandler(.failed(error), subscriptionItem)
+            connectionProvider?.removeListener(identifier: subscriptionItem.identifier)
         }
     }
 
@@ -83,8 +108,10 @@ extension AppSyncSubscriptionConnection {
                 additionalInfo=\(String(describing: errorPayload))
                 """
             )
-        case .other:
-            AppSyncLogger.error("ConnectionProviderError.other")
+        case .unauthorized:
+            AppSyncLogger.error("ConnectionProviderError.unauthorized")
+        case .unknown:
+            AppSyncLogger.error("ConnectionProviderError.unknown")
         }
     }
 

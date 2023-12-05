@@ -10,13 +10,11 @@
   --elseposition same-line
 
 --enable fileHeader
-  --header "//\n// Copyright 2018-{created.year} Amazon.com,\n// Inc. or its affiliates. All Rights Reserved.\n//\n// SPDX-License-Identifier: Apache-2.0\n//"
+  --header "//\n// Copyright Amazon.com Inc. or its affiliates.\n// All Rights Reserved.\n//\n// SPDX-License-Identifier: Apache-2.0\n//"
 
 --disable hoistPatternLet
-  --patternlet inline
 
 --disable indent
-  --ifdef outdent
   --indent 4
   --indentcase false
   --xcodeindentation disabled
@@ -45,7 +43,6 @@
   --semicolons never
 
 --disable sortedImports
-  --importgrouping testable-bottom
 
 --enable spaceAroundOperators
   --operatorfunc spaced
@@ -54,13 +51,11 @@
   --trailingclosures 
 
 --disable trailingCommas
-  --commas inline
 
 --enable trailingSpace
   --trimwhitespace always
 
 --disable unusedArguments
-  --stripunusedargs closure-only
 
 --enable void
   --empty void

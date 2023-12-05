@@ -1,6 +1,6 @@
 //
-// Copyright 2018-2020 Amazon.com,
-// Inc. or its affiliates. All Rights Reserved.
+// Copyright Amazon.com Inc. or its affiliates.
+// All Rights Reserved.
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -59,6 +59,7 @@ class AppSyncSubscriptionConnectionTests: XCTestCase {
         }
         XCTAssertNotNil(item, "Subscription item should not be nil")
         wait(for: [connectingMessageExpectation, connectedMessageExpectation], timeout: 5, enforceOrder: true)
+        XCTAssertNotNil(connectionProvider.listener)
     }
 
     /// Test unsubscribe subscription gives us back the right events
@@ -101,8 +102,10 @@ class AppSyncSubscriptionConnectionTests: XCTestCase {
         XCTAssertNotNil(item, "Subscription item should not be nil")
         wait(for: [connectingMessageExpectation, connectedMessageExpectation], timeout: 5, enforceOrder: true)
 
+        XCTAssertNotNil(connectionProvider.listener)
         connection.unsubscribe(item: item)
         wait(for: [unsubscribeAckExpectation], timeout: 2)
+        XCTAssertNil(connectionProvider.listener)
     }
 
     /// Test subscription with invalid connection
@@ -141,6 +144,7 @@ class AppSyncSubscriptionConnectionTests: XCTestCase {
         }
         XCTAssertNotNil(item, "Subscription item should not be nil")
         wait(for: [connectingMessageExpectation, errorEventExpectation], timeout: 5, enforceOrder: true)
+        XCTAssertNil(connectionProvider.listener)
     }
 
     /// Test if trying to subscribe with a 'not connected' connection gives error
@@ -181,6 +185,7 @@ class AppSyncSubscriptionConnectionTests: XCTestCase {
         }
         XCTAssertNotNil(item, "Subscription item should not be nil")
         wait(for: [connectingMessageExpectation, errorEventExpectation], timeout: 5, enforceOrder: true)
+        XCTAssertNil(connectionProvider.listener)
     }
 
     /// Test if valid data is returned
@@ -230,6 +235,7 @@ class AppSyncSubscriptionConnectionTests: XCTestCase {
         )
         connectionProvider.sendDataResponse(mockResponse)
         wait(for: [dataEventExpectation], timeout: 2)
+        XCTAssertNotNil(connectionProvider.listener)
     }
 
     func testNilDataInVariables() {
@@ -261,6 +267,7 @@ class AppSyncSubscriptionConnectionTests: XCTestCase {
         }
         XCTAssertNotNil(item, "Subscription item should not be nil")
         wait(for: [connectingMessageExpectation, connectedMessageExpectation], timeout: 5, enforceOrder: true)
+        XCTAssertNotNil(connectionProvider.listener)
     }
 
 }

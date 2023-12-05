@@ -43,8 +43,14 @@ credentials-mc.json
 
 amplify
 build/
+.build/
+.vscode/
+.bundle/
 dist/
 node_modules/
+vendor/
+fastlane/report.xml
+fastlane/README.md
 aws-exports.js
 amplify-build-config.json
 amplify-gradle-config.json

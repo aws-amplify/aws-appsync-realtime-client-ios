@@ -1,8 +1,119 @@
 # AppSync RealTime Client for iOS
 
 ## Unreleased
+*Changes on `main` branch that have not yet been released*
 
-- *Changes on `main` branch that have not yet been released*
+## 3.1.1
+- fix: pin starscream to 4.0.4 ([#132](https://github.com/aws-amplify/aws-appsync-realtime-client-ios/pull/132))
+
+## 3.1.0
+
+### Features
+- feat: Add async implementation and OIDCAuthProvider protocol ([#119](https://github.com/aws-amplify/aws-appsync-realtime-client-ios/pull/119))
+- feat: Add asynchronous version of interceptor protocol ([#118](https://github.com/aws-amplify/aws-appsync-realtime-client-ios/pull/118))
+
+### Misc
+- chore: Update the pods ([#120](https://github.com/aws-amplify/aws-appsync-realtime-client-ios/pull/120))
+- chore: fix build warnings ([#116](https://github.com/aws-amplify/aws-appsync-realtime-client-ios/pull/116))
+
+## 3.0.0
+
+**Breaking changes**: This is a major version release due to the changes made in [PR #110](https://github.com/aws-amplify/aws-appsync-realtime-client-ios/pull/110). The public interface for `ConnectionProviderFactory`, `RealtimeConnectionProviderAsync`, and `RealtimeConnectionProvider` has been modified to take in a `URLRequest` parameter instead of a `URL`.
+
+### Features
+- feat: pass URLRequest instead of URL to interfaces (See [PR #110](https://github.com/aws-amplify/aws-appsync-realtime-client-ios/pull/110))
+
+### Fixes
+- fix: fixed a bug that prevented TaskQueue sync method from waiting for the task to complete. (See [PR #107](https://github.com/aws-amplify/aws-appsync-realtime-client-ios/pull/107))
+- chore: Add no store for the cache in urlsession (See [PR #109](https://github.com/aws-amplify/aws-appsync-realtime-client-ios/pull/109))
+
+## 2.1.1
+
+### Fixes
+
+- fix: add runtime and compiler gates to OIDCAuthInterceptorAsync OIDCAuthProviderAsync and add files to workspace (See [PR #104](https://github.com/aws-amplify/aws-appsync-realtime-client-ios/pull/104))
+
+## 2.1.0
+
+### Features
+- feat: added async oidc interceptor (See [PR #100](https://github.com/aws-amplify/aws-appsync-realtime-client-ios/pull/100))
+
+### Fixes
+- fix: sets OS versions for os_log (See [PR #99](https://github.com/aws-amplify/aws-appsync-realtime-client-ios/pull/99))
+- fix: supports cross platform builds (See [PR #98](https://github.com/aws-amplify/aws-appsync-realtime-client-ios/pull/98))
+
+## 2.0.0
+
+- feat: Handle Unauthorized errors (See [PR #69](https://github.com/aws-amplify/aws-appsync-realtime-client-ios/pull/69))
+- fix: rebase RTConnectionProvider+Websocket to Async version (See [PR #91](https://github.com/aws-amplify/aws-appsync-realtime-client-ios/pull/91))
+- fix: create valid unauthorized request for odic/userpool connections (See [PR #93](https://github.com/aws-amplify/aws-appsync-realtime-client-ios/pull/93))
+
+Breaking changes: `ConnectionProviderError.other` has been removed and `.unauthorized` and `.unknown` cases has been added.
+
+## 1.10.0
+
+### Features
+
+- feat: Add Swift concurrency (async/await) support for async interceptors
+
+## 1.9.1
+
+### Bug fixes
+
+- fix: Throttle AppSync LimitExceeded errors (See [PR #67](https://github.com/aws-amplify/aws-appsync-realtime-client-ios/pull/67))
+
+## 1.9.0
+
+### Features
+
+- feat: Attempt to reconnect on connectivity (See [PR #58](https://github.com/aws-amplify/aws-appsync-realtime-client-ios/pull/58))
+
+## 1.8.1
+
+### Bug fixes
+
+- fix: Subscription failed event should be terminal event (See [PR #74](https://github.com/aws-amplify/aws-appsync-realtime-client-ios/pull/74))
+
+## 1.8.0
+
+- feat: Allow setting log level (See [PR #71](https://github.com/aws-amplify/aws-appsync-realtime-client-ios/pull/71))
+
+## 1.7.1
+
+### Bug fixes
+
+- fix: Retry on MaxSubscriptionReached (See [PR #66](https://github.com/aws-amplify/aws-appsync-realtime-client-ios/pull/66))
+- fix: data race in CountdownTimer (See [PR #65](https://github.com/aws-amplify/aws-appsync-realtime-client-ios/pull/65))
+
+## 1.7.0
+
+- feat: Upgrade Starscream to 4.0.4 (See [PR #62](https://github.com/aws-amplify/aws-appsync-realtime-client-ios/pull/62))
+
+## 1.6.0
+
+- feat: Realtime interceptor changes for GraphQL subscriptions (See [PR #53](https://github.com/aws-amplify/aws-appsync-realtime-client-ios/pull/53))
+
+## 1.5.0
+
+### Feature
+
+- feat: disconnect on last subscription, fix data races (See [PR #46](https://github.com/aws-amplify/aws-appsync-realtime-client-ios/pull/46))
+
+### Misc
+
+- Exclude resources file from SPM (See [PR #43](https://github.com/aws-amplify/aws-appsync-realtime-client-ios/pull/43))
+
+## 1.4.4
+
+### Feature
+
+- AppSyncRealTimeClient can now be installed via Swift Package Manager. Thanks [@pjechris](https://github.com/pjechris)!
+
+## 1.4.3
+
+### Bug fixes
+
+- Fix race condition in disconnect; protect status & write access (See [PR #40](https://github.com/aws-amplify/aws-appsync-realtime-client-ios/pull/40))
 
 ## 1.4.2
 

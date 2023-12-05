@@ -1,0 +1,81 @@
+name: Deploy Pods
+on:
+  pull_request:
+    types:
+      - closed
+    branches:
+      - main
+
+permissions:
+  id-token: write
+  contents: write
+
+jobs:
+  extract-release-version:
+    if: |
+      startsWith(github.head_ref, 'releases/') &&
+      github.event.pull_request.merged == true &&
+      contains(github.event.pull_request.title, 'chore: release commit for')
+    runs-on: ubuntu-latest
+    outputs:
+      version: ${{ steps.extract-release-version.outputs.result }}
+    steps:
+      - name: Extract release version
+        uses: actions/github-script@d7906e4ad0b1822421a7e6a35d5ca353c962f410 # v6.4.1
+        id: extract-release-version
+        with:
+          result-encoding: string
+          script: |
+            const matches = `${{ github.event.pull_request.title }}`.match(/[0-9]+\.[0-9]+\.[0-9]+/) ?? []
+            return matches.length > 0 ? matches[0] : ""
+
+  release:
+    environment: CocoaPodsRelease
+    needs: [extract-release-version]
+    runs-on: macos-latest
+    env:
+      RELEASE_VERSION: ${{ needs.extract-release-version.outputs.version }}
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@ac593985615ec2ede58e132d2e21d2b1cbd6127c # v3.3.0
+        with:
+          persist-credentials: false
+
+      - name: Restore Gems Cache
+        uses: actions/cache@88522ab9f39a2ea568f7027eddc7d8d8bc9d59c8 # v3.3.1
+        with:
+          path: vendor/bundle
+          key: app-${{ runner.os }}-gems-${{ hashFiles('**/Gemfile.lock') }}
+          restore-keys: |
+            app-${{ runner.os }}-gems-
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@5fd3084fc36e372ff1fff382a39b10d03659f355 #v2
+        with:
+          role-to-assume: ${{ secrets.AWS_ROLE_TO_ASSUME }}
+          role-session-name: ${{ format('{0}.deploy', github.run_id) }}
+          aws-region: ${{ secrets.AWS_REGION }}
+
+      - name: Install Bundle
+        env:
+          BUNDLE_PATH: vendor/bundle
+        run: |
+            bundle config set --local path $BUNDLE_PATH
+            bundle check || bundle install
+
+      - name: Create release tag
+        uses: actions/github-script@d7906e4ad0b1822421a7e6a35d5ca353c962f410 # v6.4.1
+        with:
+          script: |
+            github.rest.git.createRef({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              ref: `refs/tags/${process.env.RELEASE_VERSION}`,
+              sha: context.sha,
+              force: true
+            })
+
+      - name:  Release Pods
+        env:
+          COCOAPODS_SECRET_ARN: ${{ secrets.COCOAPODS_SECRET_ARN }}
+        run: bundle exec fastlane release_pods

@@ -2,7 +2,7 @@
 platform :ios, '9.0'
 
 def include_build_tools!
-  pod 'SwiftFormat/CLI'
+  pod 'SwiftFormat/CLI', "~> 0.49.0"
   pod 'SwiftLint'
 end
 
@@ -13,7 +13,7 @@ target 'AppSyncRealTimeClient' do
   # Pods for AppSyncRealTimeClient
   
   # If you update this dependency version, be sure to update the Cartfile also
-  pod "Starscream", "~> 3.1.0"
+  pod "Starscream", "4.0.4"
   
   include_build_tools!
 

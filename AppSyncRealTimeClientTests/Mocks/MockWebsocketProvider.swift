@@ -1,6 +1,6 @@
 //
-// Copyright 2018-2020 Amazon.com,
-// Inc. or its affiliates. All Rights Reserved.
+// Copyright Amazon.com Inc. or its affiliates.
+// All Rights Reserved.
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -9,20 +9,20 @@ import Foundation
 import AppSyncRealTimeClient
 
 class MockWebsocketProvider: AppSyncWebsocketProvider {
-    typealias OnConnect = (URL, [String], AppSyncWebsocketDelegate?) -> Void
+    typealias OnConnect = (URLRequest, [String], AppSyncWebsocketDelegate?) -> Void
     typealias OnDisconnect = () -> Void
     typealias OnWrite = (String) -> Void
 
     var isConnected: Bool
 
-    let onConnect: OnConnect
-    let onDisconnect: OnDisconnect
-    let onWrite: OnWrite
+    let onConnect: OnConnect?
+    let onDisconnect: OnDisconnect?
+    let onWrite: OnWrite?
 
     init(
-        onConnect: @escaping OnConnect,
-        onDisconnect: @escaping OnDisconnect,
-        onWrite: @escaping OnWrite
+        onConnect: OnConnect? = nil,
+        onDisconnect: OnDisconnect? = nil,
+        onWrite: OnWrite? = nil
     ) {
         self.isConnected = false
         self.onConnect = onConnect
@@ -30,16 +30,16 @@ class MockWebsocketProvider: AppSyncWebsocketProvider {
         self.onWrite = onWrite
     }
 
-    func connect(url: URL, protocols: [String], delegate: AppSyncWebsocketDelegate?) {
-        onConnect(url, protocols, delegate)
+    func connect(urlRequest: URLRequest, protocols: [String], delegate: AppSyncWebsocketDelegate?) {
+        onConnect?(urlRequest, protocols, delegate)
     }
 
     func disconnect() {
-        onDisconnect()
+        onDisconnect?()
     }
 
     func write(message: String) {
-        onWrite(message)
+        onWrite?(message)
     }
 
 }

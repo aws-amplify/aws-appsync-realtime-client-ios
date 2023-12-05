@@ -1,6 +1,6 @@
 //
-// Copyright 2018-2020 Amazon.com,
-// Inc. or its affiliates. All Rights Reserved.
+// Copyright Amazon.com Inc. or its affiliates.
+// All Rights Reserved.
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -57,6 +57,71 @@ class ConnectionProviderTests: RealtimeConnectionProviderTestBase {
         print(provider)
 
         waitForExpectations(timeout: 0.05)
+    }
+
+    /// Provider add and remove listeners tests
+    ///
+    /// Given:
+    /// - A connected websocket with a listener
+    /// When:
+    /// - remove all listeners
+    /// Then:
+    /// - The listeners are removed and the connection is disconnected
+    func testAddRemoveListeners() {
+        receivedNotConnected.isInverted = true
+        receivedError.isInverted = true
+
+        let onConnect: MockWebsocketProvider.OnConnect = { _, _, delegate in
+            self.websocketDelegate = delegate
+            DispatchQueue.global().async {
+                delegate?.websocketDidConnect(provider: self.websocket)
+            }
+        }
+
+        let receivedDisconnect = expectation(description: "receivedDisconnect")
+        let onDisconnect: MockWebsocketProvider.OnDisconnect = {
+            receivedDisconnect.fulfill()
+        }
+
+        let onWrite: MockWebsocketProvider.OnWrite = { message in
+            guard RealtimeConnectionProviderTestBase.messageType(of: message, equals: "connection_init") else {
+                XCTFail("Incoming message did not have 'connection_init' type")
+                return
+            }
+
+            self.websocketDelegate.websocketDidReceiveData(
+                provider: self.websocket,
+                data: RealtimeConnectionProviderTestBase.makeConnectionAckMessage()
+            )
+        }
+
+        websocket = MockWebsocketProvider(
+            onConnect: onConnect,
+            onDisconnect: onDisconnect,
+            onWrite: onWrite
+        )
+
+        // Retain the provider so it doesn't release prior to executing callbacks
+        let provider = createProviderAndConnect(listeners: ["1", "2", "3", "4"])
+
+        wait(
+            for: [receivedInProgress, receivedConnected, receivedNotConnected, receivedError],
+            timeout: 1
+        )
+
+        XCTAssertFalse(provider.listeners.isEmpty)
+
+        let listenersToRemove = provider.listeners.map { $0.key }
+
+        // Removing all the listeners will disconnect the websocket connection
+        for identifier in listenersToRemove {
+            provider.removeListener(identifier: identifier)
+        }
+
+        // Since removing listeners is asynchronous, we have to wait for the disconnect
+        wait(for: [receivedDisconnect], timeout: 1)
+        XCTAssertTrue(provider.listeners.isEmpty)
+        XCTAssertEqual(provider.status, .notConnected)
     }
 
     /// Provider test
@@ -155,7 +220,7 @@ class ConnectionProviderTests: RealtimeConnectionProviderTestBase {
         let provider = createProviderAndConnect()
 
         wait(for: [receivedConnected], timeout: 0.05)
-        XCTAssertEqual(provider.staleConnectionTimeout.get(), expectedTimeoutInSeconds)
+        XCTAssertEqual(provider.staleConnectionTimer.interval, expectedTimeoutInSeconds)
 
         waitForExpectations(timeout: 0.05)
     }

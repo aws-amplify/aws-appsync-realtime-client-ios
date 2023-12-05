@@ -1,6 +1,6 @@
 //
-// Copyright 2018-2020 Amazon.com,
-// Inc. or its affiliates. All Rights Reserved.
+// Copyright Amazon.com Inc. or its affiliates.
+// All Rights Reserved.
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -8,7 +8,7 @@
 import Foundation
 
 /// Auth interceptor for API Key based authentication
-public class APIKeyAuthInterceptor: AuthInterceptor {
+public class APIKeyAuthInterceptor: AuthInterceptor, AuthInterceptorAsync {
 
     let apiKey: String
 
@@ -63,7 +63,7 @@ public class APIKeyAuthInterceptor: AuthInterceptor {
             )
             return signedMessage
         default:
-            AppSyncLogger.debug("Message type does not need signing - \(message.messageType)")
+            break
         }
         return message
     }
