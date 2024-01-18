@@ -35,4 +35,6 @@ public protocol AppSyncWebsocketDelegate: AnyObject {
     func websocketDidDisconnect(provider: AppSyncWebsocketProvider, error: Error?)
 
     func websocketDidReceiveData(provider: AppSyncWebsocketProvider, data: Data)
+
+    func websocketDidReceiveError(provider: AppSyncWebsocketProvider, error: Error?)
 }

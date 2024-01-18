@@ -12,9 +12,6 @@ target 'AppSyncRealTimeClient' do
 
   # Pods for AppSyncRealTimeClient
   
-  # If you update this dependency version, be sure to update the Cartfile also
-  pod "Starscream", "4.0.4"
-  
   include_build_tools!
 
   target 'AppSyncRealTimeClientTests' do
