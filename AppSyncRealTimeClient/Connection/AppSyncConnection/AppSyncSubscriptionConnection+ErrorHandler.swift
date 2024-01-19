@@ -6,7 +6,6 @@
 //
 
 import Foundation
-import Starscream
 
 extension AppSyncSubscriptionConnection {
     func handleError(error: Error) {
@@ -72,8 +71,6 @@ extension AppSyncSubscriptionConnection {
         switch error {
         case let typedError as ConnectionProviderError:
             logExtendedErrorInfo(for: typedError)
-        case let typedError as WSError:
-            logExtendedErrorInfo(for: typedError)
         case let typedError as NSError:
             logExtendedErrorInfo(for: typedError)
         default:
@@ -115,10 +112,6 @@ extension AppSyncSubscriptionConnection {
         }
     }
 
-    private static func logExtendedErrorInfo(for error: WSError) {
-        AppSyncLogger.error(error)
-    }
-
     private static func logExtendedErrorInfo(for error: NSError) {
         AppSyncLogger.error(
             """
@@ -129,14 +122,4 @@ extension AppSyncSubscriptionConnection {
         )
     }
 
-}
-
-extension WSError: CustomStringConvertible {
-    public var description: String {
-        """
-        WSError:\(message); \
-        code:\(code); \
-        type:\(type)
-        """
-    }
 }

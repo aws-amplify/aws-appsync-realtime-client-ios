@@ -69,7 +69,7 @@ extension RealtimeConnectionProviderAsync {
             AppSyncLogger.error("[RealtimeConnectionProvider] Realtime connection is stale, disconnecting.")
             self.status = .notConnected
             self.isStaleConnection = false
-            self.websocket.disconnect()
+            self.webSocket.disconnect()
             self.updateCallback(event: .error(ConnectionProviderError.connection))
         }
     }

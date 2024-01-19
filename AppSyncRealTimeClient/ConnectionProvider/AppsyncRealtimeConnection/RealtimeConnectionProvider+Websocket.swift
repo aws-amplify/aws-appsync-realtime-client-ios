@@ -8,6 +8,10 @@
 import Foundation
 
 extension RealtimeConnectionProvider: AppSyncWebsocketDelegate {
+    public func websocketDidReceiveError(provider: AppSyncWebsocketProvider, error: Error?) {
+        AppSyncLogger.debug("[RealtimeConnectionProvider] WebsocketDidReceiveError, error: \(String(describing: error))")
+    }
+    
 
     public func websocketDidConnect(provider: AppSyncWebsocketProvider) {
         // Call the ack to finish the connection handshake
@@ -23,11 +27,12 @@ extension RealtimeConnectionProvider: AppSyncWebsocketDelegate {
                 return
             }
             self.status = .notConnected
-            guard error != nil else {
+
+            if error != nil {
+                self.updateCallback(event: .error(ConnectionProviderError.connection))
+            } else {
                 self.updateCallback(event: .connection(self.status))
-                return
             }
-            self.updateCallback(event: .error(ConnectionProviderError.connection))
         }
     }
 

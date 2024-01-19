@@ -5,12 +5,12 @@
 // SPDX-License-Identifier: Apache-2.0
 //
 
-#if swift(>=5.5.2)
-
 import Foundation
 
-@available(iOS 13.0, macOS 10.15, tvOS 13.0, watchOS 6.0, *)
 extension RealtimeConnectionProviderAsync: AppSyncWebsocketDelegate {
+    public func websocketDidReceiveError(provider: AppSyncWebsocketProvider, error: Error?) {
+        AppSyncLogger.debug("[RealtimeConnectionProvider] WebsocketDidReceiveError, error: \(String(describing: error))")
+    }
 
     public func websocketDidConnect(provider: AppSyncWebsocketProvider) {
         // Call the ack to finish the connection handshake
@@ -127,4 +127,3 @@ extension RealtimeConnectionProviderAsync: AppSyncWebsocketDelegate {
     }
 
 }
-#endif

@@ -15,12 +15,12 @@ struct AppSyncLogger {
     }
 
 //    iOS 13.0, macOS 10.15, tvOS 13.0, watchOS 6.0, *
-    static func error(_ log: String) {
+    static func error(_ log: @autoclosure () -> String) {
         // Always logged, no conditional check needed
         if #available(iOS 10.0, macOS 10.12, tvOS 10.0, watchOS 3.0, *) {
-            os_log("%@", type: .error, log)
+            os_log("%@", type: .error, log())
         } else {
-            NSLog("%@", log)
+            NSLog("%@", log())
         }
     }
 
@@ -32,51 +32,51 @@ struct AppSyncLogger {
         }
     }
 
-    static func warn(_ log: String) {
+    static func warn(_ log: @autoclosure () -> String) {
         guard logLevel.rawValue >= AppSyncRealTimeClient.LogLevel.warn.rawValue else {
             return
         }
 
         if #available(iOS 10.0, macOS 10.12, tvOS 10.0, watchOS 3.0, *) {
-            os_log("%@", type: .info, log)
+            os_log("%@", type: .info, log())
         } else {
-            NSLog("%@", log)
+            NSLog("%@", log())
         }
     }
 
-    static func info(_ log: String) {
+    static func info(_ log: @autoclosure () -> String) {
         guard logLevel.rawValue >= AppSyncRealTimeClient.LogLevel.info.rawValue else {
             return
         }
 
         if #available(iOS 10.0, macOS 10.12, tvOS 10.0, watchOS 3.0, *) {
-            os_log("%@", type: .info, log)
+            os_log("%@", type: .info, log())
         } else {
-            NSLog("%@", log)
+            NSLog("%@", log())
         }
     }
 
-    static func debug(_ log: String) {
+    static func debug(_ log: @autoclosure () -> String) {
         guard logLevel.rawValue >= AppSyncRealTimeClient.LogLevel.debug.rawValue else {
             return
         }
 
         if #available(iOS 10.0, macOS 10.12, tvOS 10.0, watchOS 3.0, *) {
-            os_log("%@", type: .debug, log)
+            os_log("%@", type: .debug, log())
         } else {
-            NSLog("%@", log)
+            NSLog("%@", log())
         }
     }
 
-    static func verbose(_ log: String) {
+    static func verbose(_ log: @autoclosure () -> String) {
         guard logLevel.rawValue >= AppSyncRealTimeClient.LogLevel.verbose.rawValue else {
             return
         }
 
         if #available(iOS 10.0, macOS 10.12, tvOS 10.0, watchOS 3.0, *) {
-            os_log("%@", type: .debug, log)
+            os_log("%@", type: .debug, log())
         } else {
-            NSLog("%@", log)
+            NSLog("%@", log())
         }
     }
 }
