@@ -56,7 +56,9 @@ jobs:
           cd $(ls -d */|head -n 1)
           pathCoverage=Build/Build/ProfileData/${PWD##*/}/Coverage.profdata
           cd ${{ github.workspace }}
-          find Build/Build/Products/Debug-iphonesimulator -type f -printf "%f\n"
+          for file in Build/Build/Products/Debug-iphonesimulator/*; do
+            echo "${file##*/}"
+          done
           xcrun llvm-cov export -format="lcov" -instr-profile $pathCoverage Build/Build/Products/Debug-iphonesimulator/AppSyncRealTimeClient.o > AppSyncRealTimeClient-Coverage.lcov
       
       - name: Upload Report
