@@ -47,4 +47,19 @@ jobs:
         run: xcodebuild build-for-testing -workspace AppSyncRealTimeClient.xcworkspace -scheme AppSyncRealTimeClient -sdk iphonesimulator -destination "platform=iOS Simulator,name=iPhone 14,OS=latest" | xcpretty
 
       - name: Test AppSyncRealTimeClient
-        run: xcodebuild test -workspace AppSyncRealTimeClient.xcworkspace -scheme AppSyncRealTimeClient -sdk iphonesimulator -destination "platform=iOS Simulator,name=iPhone 14,OS=latest" | xcpretty --simple --color --report junit
+        run: xcodebuild test -workspace AppSyncRealTimeClient.xcworkspace -scheme AppSyncRealTimeClient -sdk iphonesimulator -destination "platform=iOS Simulator,name=iPhone 14,OS=latest" -derivedDataPath Build/ -enableCodeCoverage YES -clonedSourcePackagesDirPath ~/Library/Developer/Xcode/DerivedData/AppSyncRealTimeClient | xcpretty --simple --color --report junit
+
+      - name: Generate Coverage Report
+        continue-on-error: true
+        run: |
+          cd Build/Build/ProfileData
+          cd $(ls -d */|head -n 1)
+          pathCoverage=Build/Build/ProfileData/${PWD##*/}/Coverage.profdata
+          cd ${{ github.workspace }}
+          xcrun llvm-cov export -format="lcov" -instr-profile $pathCoverage Build/Build/Products/Debug-iphonesimulator/AppSyncRealTimeClient.o > AppSyncRealTimeClient-Coverage.lcov
+      
+      - name: Upload Report
+        uses: codecov/codecov-action@eaaf4bedf32dbdc6b720b63067d99c4d77d6047d # v3.1.4
+        with:
+          flags: AppSyncRealTimeClient
+          verbose: true
