@@ -1,5 +1,5 @@
 # Uncomment the next line to define a global platform for your project
-platform :ios, '9.0'
+platform :ios, '13.0'
 
 def include_build_tools!
   pod 'SwiftFormat/CLI', "~> 0.49.0"
@@ -13,7 +13,7 @@ target 'AppSyncRealTimeClient' do
   # Pods for AppSyncRealTimeClient
   
   # If you update this dependency version, be sure to update the Cartfile also
-  pod "Starscream", "4.0.4"
+  pod "Starscream", "4.0.6"
   
   include_build_tools!
 
