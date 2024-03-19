@@ -43,8 +43,5 @@ jobs:
       - name: Install Pods
         run: bundle exec pod install
 
-      - name: Build AppSyncRealTimeClient
-        run: xcodebuild build-for-testing -workspace AppSyncRealTimeClient.xcworkspace -scheme AppSyncRealTimeClient -sdk iphonesimulator -destination "platform=iOS Simulator,name=iPhone 14,OS=latest" | xcpretty
-
       - name: Test AppSyncRealTimeClient
-        run: xcodebuild test -workspace AppSyncRealTimeClient.xcworkspace -scheme AppSyncRealTimeClient -sdk iphonesimulator -destination "platform=iOS Simulator,name=iPhone 14,OS=latest" | xcpretty --simple --color --report junit
+        run: xcodebuild test -workspace AppSyncRealTimeClient.xcworkspace -scheme AppSyncRealTimeClient -sdk iphonesimulator -destination "platform=iOS Simulator,name=iPhone 14,OS=latest" | xcpretty --simple --color --report junit && exit ${PIPESTATUS[0]}
