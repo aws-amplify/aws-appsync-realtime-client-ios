@@ -72,7 +72,10 @@ class ConnectionProviderStaleConnectionTests: RealtimeConnectionProviderTestBase
     ///    - Connectivity updates to satisfied (network is back up)
     /// - Then:
     ///    - Websocket is disconnected
-    func testConnectionDisconnectsAfterConnectivityUpdates() {
+    func testConnectionDisconnectsAfterConnectivityUpdates() throws {
+        #if os(watchOS)
+        throw XCTSkip("Disabled on watchOS since connectivity monitor is disabled.")
+        #endif
         receivedNotConnected.isInverted = true
         receivedError.isInverted = true
 
