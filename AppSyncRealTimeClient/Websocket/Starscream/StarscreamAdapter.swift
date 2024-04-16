@@ -24,7 +24,7 @@ public class StarscreamAdapter: AppSyncWebsocketProvider {
     }
 
     let watchOSConnectivityTimer: CountdownTimer
-    
+
     public init() {
         let serialQueue = DispatchQueue(label: "com.amazonaws.StarscreamAdapter.serialQueue")
         let callbackQueue = DispatchQueue(

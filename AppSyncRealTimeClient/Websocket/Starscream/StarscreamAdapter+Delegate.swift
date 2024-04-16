@@ -10,7 +10,7 @@ import Starscream
 
 /// Extension to handle delegate callback from Starscream
 extension StarscreamAdapter: Starscream.WebSocketDelegate {
-    public func didReceive(event: WebSocketEvent, client: WebSocket) {
+    public func didReceive(event: Starscream.WebSocketEvent, client: Starscream.WebSocketClient) {
         switch event {
         case .connected:
             websocketDidConnect(socket: client)
@@ -33,6 +33,8 @@ extension StarscreamAdapter: Starscream.WebSocketDelegate {
             websocketDidDisconnect(socket: client, error: nil)
         case .error(let error):
             websocketDidDisconnect(socket: client, error: error)
+        case .peerClosed:
+            websocketDidDisconnect(socket: client, error: nil)
         }
     }
 
