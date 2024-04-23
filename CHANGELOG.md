@@ -3,6 +3,25 @@
 ## Unreleased
 *Changes on `main` branch that have not yet been released*
 
+## 3.2.0
+
+### Features
+
+- feat: starscream upgrade to 4.0.8, iOS min 12 ([#159](https://github.com/aws-amplify/aws-appsync-realtime-client-ios/pull/159))
+
+### Fixes
+
+- fix: Fixing Build and Test workflow ([#158](https://github.com/aws-amplify/aws-appsync-realtime-client-ios/pull/158))
+
+
+## 3.1.2
+
+### Fixes
+
+- chore: update readme with info block specifying where to open issues ([#140](https://github.com/aws-amplify/aws-appsync-realtime-client-ios/pull/140))
+- fix: watchOS support - disable network monitoring, add client timeout ([#141](https://github.com/aws-amplify/aws-appsync-realtime-client-ios/pull/141))
+
+
 ## 3.1.1
 - fix: pin starscream to 4.0.4 ([#132](https://github.com/aws-amplify/aws-appsync-realtime-client-ios/pull/132))
 
@@ -167,7 +186,7 @@ Breaking changes: `ConnectionProviderError.other` has been removed and `.unautho
 
 ### Bug fix
 
-- Added necessary files required for Carthage users. See [PR #12](https://github.com/aws-amplify/aws-appsync-realtime-client-ios/pull/12) [PR #13](https://github.com/aws-amplify/aws-appsync-realtime-client-ios/pull/13) 
+- Added necessary files required for Carthage users. See [PR #12](https://github.com/aws-amplify/aws-appsync-realtime-client-ios/pull/12) [PR #13](https://github.com/aws-amplify/aws-appsync-realtime-client-ios/pull/13)
 
 ## 1.1.0
 
