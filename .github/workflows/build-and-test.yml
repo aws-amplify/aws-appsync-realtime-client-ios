@@ -41,7 +41,9 @@ jobs:
             bundle check || bundle install
 
       - name: Install Pods
-        run: bundle exec pod install
+        run: |
+          bundle exec pod install
+          gem install cocoapods
 
       - name: Test AppSyncRealTimeClient
         run: xcodebuild test -workspace AppSyncRealTimeClient.xcworkspace -scheme AppSyncRealTimeClient -sdk iphonesimulator -destination "platform=iOS Simulator,name=iPhone 14,OS=latest" | xcpretty --simple --color --report junit && exit ${PIPESTATUS[0]}
