@@ -18,7 +18,7 @@ concurrency:
 
 jobs:
   build-test-ios:
-    runs-on: macos-13
+    runs-on: macos-12
     steps:
       - name: Checkout repo
         uses: actions/checkout@ac593985615ec2ede58e132d2e21d2b1cbd6127c # v3.3.0
@@ -43,8 +43,6 @@ jobs:
       - name: Install Pods
         run: |
           bundle exec pod install
-          gem install cocoapods
-          pod install --repo-update
 
       - name: Test AppSyncRealTimeClient
         run: xcodebuild test -workspace AppSyncRealTimeClient.xcworkspace -scheme AppSyncRealTimeClient -sdk iphonesimulator -destination "platform=iOS Simulator,name=iPhone 14,OS=latest" | xcpretty --simple --color --report junit && exit ${PIPESTATUS[0]}
