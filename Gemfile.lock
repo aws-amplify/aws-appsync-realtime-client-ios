@@ -264,7 +264,7 @@ GEM
       unf_ext
     unf_ext (0.0.8.1)
     unicode-display_width (1.8.0)
-    webrick (1.7.0)
+    webrick (1.8.1)
     word_wrap (1.0.0)
     xcodeproj (1.25.0)
       CFPropertyList (>= 2.3.3, < 4.0)
@@ -289,4 +289,4 @@ DEPENDENCIES
   xcpretty (= 0.3.0)
 
 BUNDLED WITH
-   2.5.14
+   2.3.7
