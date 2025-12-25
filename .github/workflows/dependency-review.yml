@@ -4,6 +4,8 @@ on:
   pull_request:
     branches:
       - main
+  repository_dispatch:
+    types: [create-pull-request]
 
 permissions:
   contents: read
