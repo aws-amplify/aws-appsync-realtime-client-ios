@@ -1,0 +1,44 @@
+# License allowlist for dependency review.
+# Based on amazon-ospo/dependency-review-config/default with additional
+# compound SPDX expressions required by this repo's RubyGems dependencies.
+allow-licenses:
+  - 0BSD
+  - Apache-2.0
+  - BSD-1-Clause
+  - BSD-2-Clause
+  - BSD-2-Clause-FreeBSD
+  - BSD-3-Clause
+  - BSD-3-Clause-Attribution
+  - BSD-Source-Code
+  - bzip2-1.0.6
+  - CDDL-1.1
+  - CDLA-Permissive-2.0
+  - curl
+  - EPL-2.0
+  - ISC
+  - JSON
+  - MIT
+  - MPL-2.0
+  - NTP
+  - OLDAP-2.8
+  - OpenSSL
+  - PDDL-1.0
+  - PostgreSQL
+  - Python-2.0
+  - Ruby
+  - Spencer-94
+  - Unicode-DFS-2015
+  - Unicode-DFS-2016
+  - Unlicense
+  - WTFPL
+  - X11
+  - Zlib
+  - zlib-acknowledgement
+  # Compound SPDX expressions seen in RubyGems dependencies
+  - BSD-2-Clause AND BSD-3-Clause
+  - BSD-2-Clause AND BSD-3-Clause AND Ruby
+  - BSD-2-Clause AND MIT
+  - BSD-2-Clause AND MIT AND Ruby
+  - BSD-3-Clause AND MIT
+  - MIT AND Ruby
+  - LicenseRef-github-NOASSERTION
