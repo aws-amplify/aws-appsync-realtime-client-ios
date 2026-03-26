@@ -70,14 +70,14 @@ public class StarscreamAdapter: AppSyncWebsocketProvider {
             self.socket?.write(string: message)
         }
     }
-    
+
     private func startWatchOSConnectivityTimer() {
         #if os(watchOS)
         let watchOSConnectTimeoutInSeconds = TimeInterval(5)
         AppSyncLogger.debug(
             "[StarscreamAdapter] Starting connectivity timer for watchOS for \(watchOSConnectTimeoutInSeconds)s."
         )
-        self.watchOSConnectivityTimer.start(interval: watchOSConnectTimeoutInSeconds) {
+        watchOSConnectivityTimer.start(interval: watchOSConnectTimeoutInSeconds) {
             AppSyncLogger.debug(
                 "[StarscreamAdapter] watchOS connectivity timer is up."
             )

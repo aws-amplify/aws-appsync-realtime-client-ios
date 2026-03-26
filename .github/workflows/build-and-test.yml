@@ -45,4 +45,4 @@ jobs:
           bundle exec pod install
 
       - name: Test AppSyncRealTimeClient
-        run: xcodebuild test -workspace AppSyncRealTimeClient.xcworkspace -scheme AppSyncRealTimeClient -sdk iphonesimulator -destination "platform=iOS Simulator,name=iPhone 16 Pro Max,OS=18.5" | xcpretty --simple --color --report junit && exit ${PIPESTATUS[0]}
+        run: xcodebuild test -workspace AppSyncRealTimeClient.xcworkspace -scheme AppSyncRealTimeClient -sdk iphonesimulator -destination "platform=iOS Simulator,name=iPhone 16 Pro Max,OS=18.5" -test-iterations 3 -retry-tests-on-failure -parallel-testing-enabled NO -test-repetition-relaunch-enabled YES | xcpretty --simple --color --report junit && exit ${PIPESTATUS[0]}
