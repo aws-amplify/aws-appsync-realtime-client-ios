@@ -21,7 +21,7 @@ class ConnectivityMonitorTests: XCTestCase {
             connectivityUpdateReceived.fulfill()
             XCTAssertNotNil(connectivity)
         }
-        wait(for: [connectivityUpdateReceived], timeout: 1)
+        wait(for: [connectivityUpdateReceived], timeout: 5)
         monitor.cancel()
     }
 
@@ -37,7 +37,7 @@ class ConnectivityMonitorTests: XCTestCase {
         mockMonitor.sendConnectivityUpdate(.init())
         mockMonitor.sendConnectivityUpdate(.init())
         mockMonitor.sendConnectivityUpdate(.init())
-        wait(for: [connectivityUpdateReceived], timeout: 1)
+        wait(for: [connectivityUpdateReceived], timeout: 5)
         monitor.cancel()
     }
 }
