@@ -87,7 +87,7 @@ public class RealtimeConnectionProviderAsync: ConnectionProvider {
         #if !os(watchOS)
         connectivityMonitor.start(onUpdates: handleConnectivityUpdates(connectivity:))
         #endif
-
+        
         subscribeToLimitExceededThrottle()
     }
 

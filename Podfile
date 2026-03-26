@@ -2,7 +2,7 @@
 platform :ios, '12.0'
 
 def include_build_tools!
-  pod 'SwiftFormat/CLI', "~> 0.60.1"
+  pod 'SwiftFormat/CLI', "~> 0.49.0"
   pod 'SwiftLint'
 end
 
