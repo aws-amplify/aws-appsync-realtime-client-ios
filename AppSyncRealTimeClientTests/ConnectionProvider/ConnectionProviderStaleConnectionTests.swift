@@ -124,7 +124,7 @@ class ConnectionProviderStaleConnectionTests: RealtimeConnectionProviderTestBase
         // Send connectivity update - network down
         monitor.sendConnectivityUpdate(.init(status: .unsatisfied))
         let connectionIsStale = expectation(description: "connection is stale")
-        connectionQueue.asyncAfter(deadline: .now() + 1.0) {
+        connectionQueue.asyncAfter(deadline: .now() + 0.5) {
             XCTAssertTrue(provider.isStaleConnection)
             connectionIsStale.fulfill()
         }
@@ -141,11 +141,11 @@ class ConnectionProviderStaleConnectionTests: RealtimeConnectionProviderTestBase
         }
         monitor.sendConnectivityUpdate(.init(status: .satisfied))
         let connectionIsDisconnected = expectation(description: "connection is disconnected")
-        connectionQueue.asyncAfter(deadline: .now() + 1.0) {
+        connectionQueue.asyncAfter(deadline: .now() + 0.5) {
             XCTAssertFalse(provider.isStaleConnection)
             XCTAssertTrue(provider.status == .notConnected)
             connectionIsDisconnected.fulfill()
         }
-        wait(for: [connectionIsDisconnected, receivedError], timeout: 5.0)
+        wait(for: [connectionIsDisconnected, receivedError], timeout: 1.0)
     }
 }
