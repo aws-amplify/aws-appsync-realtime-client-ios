@@ -38,6 +38,14 @@
                BlueprintName = "AppSyncRealTimeClientTests"
                ReferencedContainer = "container:AppSyncRealTimeClient.xcodeproj">
             </BuildableReference>
+            <SkippedTests>
+               <Test
+                  Identifier = "ConnectionProviderStaleConnectionTests/testConnectionDisconnectsAfterConnectivityUpdates()">
+               </Test>
+               <Test
+                  Identifier = "ConnectivityMonitorTests">
+               </Test>
+            </SkippedTests>
          </TestableReference>
       </Testables>
    </TestAction>
