@@ -48,7 +48,7 @@ jobs:
       - name: Setup Ruby
         uses: ruby/setup-ruby@250fcd6a742febb1123a77a841497ccaa8b9e939 # v1.152.0
         with:
-          ruby-version: '3.2.1'
+          ruby-version: '3.3'
           bundler-cache: true
 
       - name: Restore Gems Cache
